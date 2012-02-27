@@ -12,32 +12,28 @@ This file may be used under the terms of the GNU General Public License version 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
 */
-Ext.define('FV.view.Viewport', {
-    extend: 'Ext.container.Viewport',
+Ext.Loader.setConfig({ 
+    enabled: true,
+    paths: {
+        Ext: 'http://dev.sencha.com/deploy/ext-4.0.7-gpl/src' //TODO: make a local copy - shouldn't be hitting their dev server
+    }
+});
+Ext.application({
+    name: 'AM',
 
-    requires: [
-        'FV.view.Viewer',
-        'FV.view.feed.List',
-        'Ext.layout.container.Border'
-    ]//,
+    controllers: [
+        'Users'
+    ],
 
-//	layout: 'border',
-
-//    items: [{
-//        region: 'center',
-//        xtype: 'panel',
-//        html: 'FOOBAR'
-//    }]
-/*    
-	items: [{
-		region: 'center',
-		xtype: 'viewer'
-	}, {
-		region: 'west',
-		width: 225,
-		xtype: 'feedlist'
-	}
-    ]
-*/    
+    launch: function() {
+        Ext.create('Ext.container.Viewport', {
+            layout: 'fit',
+            items: [
+                {
+                    xtype: 'userlist'
+                }
+            ]
+        });
+    }
 });
 

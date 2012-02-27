@@ -1,35 +1,41 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-GNU General Public License Usage
-This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
+//FOR DEBUG PURPOSES, LET EXTJS FIGURE OUT WHERE SCRIPTS ARE AND LOAD THEM
 Ext.Loader.setConfig({ 
-    enabled: true
+    enabled: true,
+    paths: {
+        Ext: 'http://dev.sencha.com/deploy/ext-4.0.7-gpl/src' //TODO: make a local copy - shouldn't be hitting their dev server
+    }
 });
+
 Ext.application({
     name: 'FV',
+    appFolder: 'app', // this is the default, but I'm being explicit
 
-    // All the paths for custom classes
+    // Set up paths for custom classes
     paths: {
-        'Ext.ux': '../../../examples/ux/',
-        'FV': '/app/'
+          'Ext.ux': 'extjs/'
     },
 
     // Define all the controllers that should initialize at boot up of your application
-    controllers: [
-        'Articles',
-        'Feeds'
-    ],
+//    controllers: [
+//        'Articles',
+//        'Feeds'//,
+//        'Stats'
+//    ],
     
-    autoCreateViewport: true
+//    autoCreateViewport: true //to automatically load and instantiate FV.view.Viewport
+    
+//    ,
+
+    launch: function() {
+        Ext.create('FV.view.Viewport', {
+            layout: 'fit',
+            items: [
+                {
+                    xtype: 'panel',
+                    html: 'FOO'
+                }
+            ]
+        });
+    }
 });
 

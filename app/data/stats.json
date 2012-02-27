@@ -1,0 +1,22 @@
+[
+    {
+        team: "Lakers",
+        name: "Kobe Bryant",
+        points: 50
+    },
+    {
+        team: "Heat",
+        name: "LeBron James",
+        points: 52
+    },
+    {
+        team: "Celtics",
+        name: "Paul Pierce",
+        points: 30
+    },
+    {
+        team: "Thunder",
+        name: "Kevin Durant",
+        points: 42
+    }
+]

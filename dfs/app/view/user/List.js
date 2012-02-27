@@ -12,32 +12,16 @@ This file may be used under the terms of the GNU General Public License version 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
 */
-Ext.define('FV.view.Viewport', {
-    extend: 'Ext.container.Viewport',
+Ext.define('AM.view.user.List' ,{
+    extend: 'Ext.grid.Panel',
+    alias : 'widget.userlist',
 
-    requires: [
-        'FV.view.Viewer',
-        'FV.view.feed.List',
-        'Ext.layout.container.Border'
-    ]//,
+    title : 'All Users',
+    store: 'Users',
 
-//	layout: 'border',
-
-//    items: [{
-//        region: 'center',
-//        xtype: 'panel',
-//        html: 'FOOBAR'
-//    }]
-/*    
-	items: [{
-		region: 'center',
-		xtype: 'viewer'
-	}, {
-		region: 'west',
-		width: 225,
-		xtype: 'feedlist'
-	}
+    columns: [
+        {header: 'Name',  dataIndex: 'name',  flex: 1},
+        {header: 'Email', dataIndex: 'email', flex: 1}
     ]
-*/    
 });
 

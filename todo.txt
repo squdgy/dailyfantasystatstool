@@ -1,4 +1,10 @@
 This is running at http://azure-nodejs.cloudapp.net!
 
 Next steps:
- Figure out what the next steps are
+Clean up directory - remove modules, non-used files
+get app to run with loader, remove classes.js
+Add extjs directories
+Create dummy stats data, stats record, stats store, grid for stats
+Change server.js implementation to be cleaner - use some modules, but not sure which
+Figure out build process for Ext JS 4
+Move css into css file

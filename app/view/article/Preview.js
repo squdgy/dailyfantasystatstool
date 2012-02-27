@@ -13,7 +13,7 @@ If you are unsure which license is appropriate for your use, please contact the 
 
 */
 Ext.define('FV.view.article.Preview', {
-	extend: 'Ext.panel.Panel',
+    extend: 'Ext.panel.Panel',
 	alias: 'widget.articlepreview',
 
     requires: ['Ext.toolbar.Toolbar'],
