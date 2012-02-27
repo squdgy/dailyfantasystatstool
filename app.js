@@ -12,12 +12,16 @@ This file may be used under the terms of the GNU General Public License version 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
 */
+Ext.Loader.setConfig({ 
+    enabled: true
+});
 Ext.application({
     name: 'FV',
 
     // All the paths for custom classes
     paths: {
-        'Ext.ux': '../../../examples/ux/'
+        'Ext.ux': '../../../examples/ux/',
+        'FV': '/app/'
     },
 
     // Define all the controllers that should initialize at boot up of your application

@@ -18,9 +18,9 @@ Ext.define('FV.store.Feeds', {
     model: 'FV.model.Feed',
 
     data: [
-        {name: 'Sencha Blog',   url: 'http://feeds.feedburner.com/extblog'},
-        {name: 'Sencha Forums', url: 'http://sencha.com/forum/external.php?type=RSS2'},
-        {name: 'Ajaxian',       url: 'http://feeds.feedburner.com/ajaxian'}
+        {name: 'CodingOutLoud',   url: 'http://feeds.feedburner.com/codingoutloud'},
+        {name: 'Steve Marx', url: 'http://blog.smarx.com/rss'},
+        {name: 'cloud9ide blog', url: 'http://cloud9ide.posterous.com/rss.xml'}
     ]
 });
 

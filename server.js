@@ -1,7 +1,16 @@
 var http = require('http'),
     url = require('url'),
+    path = require('path'),
     fs = require('fs');
 
+var mimeTypes = {
+    "html": "text/html",
+    "jpeg": "image/jpeg",
+    "jpg": "image/jpeg",
+    "png": "image/png",
+    "js": "text/javascript",
+    "css": "text/css"};
+    
 var failMiserably = function(res) { // report error to response
     res.statusCode = 500;
     res.end('Wicked Terrible Internal Server Error');
@@ -25,20 +34,30 @@ http.createServer(function (req, res) {
             console.log(param);
             if (param[0] === 'feed') {
                 var feed = param[1];
+                //TODO: url decode
+                feed = feed.replace(/%3A/gi, ':');
+                feed = feed.replace(/%2F/gi, '/');
+                feed = feed.replace(/%2F/gi, '/');
+                feed = feed.replace(/%3F/gi, '?');
+                feed = feed.replace(/%3D/gi, '=');
             }
         }
         console.log(feed);
         var feedData = "";
         
-        var feedParts = feed.split('%2F');
+        var feedParts = feed.split('/');        
         var fpLen = feedParts.length;
+        var rpath = feedParts[fpLen - 1];
+        var host = feed.replace(rpath, '');
+        var host = host.replace('http://', '');
+        host = host.substring(0, host.length - 1);
         var options = {
-            host: feedParts[fpLen-2],
+            host: host,
             port: 80,
-            path: '/' + feedParts[fpLen-1]
+            path: '/' + rpath
         };
         
-        http.get(options, function(feedResponse){
+        var feedReqiest = http.get(options, function(feedResponse){
             var pageData = "";
             feedResponse.setEncoding('utf8');
             feedResponse.on('data', function (chunk) {
@@ -57,25 +76,39 @@ http.createServer(function (req, res) {
             });
 
             feedResponse.on('error', function() {failMiserably(res);});
+        });
+        feedReqiest.on('error', function(e){
+            console.log(e.message);
+            notifyNotFound(res);
         });       
-    } else if (pathname === '/feed-viewer.html') {
-        fs.stat('feed-viewer.html', function(err, stat){
-            if (err) {
-                if ('ENOENT' == err.code) {
-                    notifyNotFound(res);
-                } else {
-                    failMiserably(res);
-                }
+    } else {
+        if (pathname === '/') pathname = '/feed-viewer.html';
+        var filename = path.join(process.cwd(), pathname);
+        path.exists(filename, function(exists) {
+            if (exists) {
+                pathname = pathname.substring(1);
+                fs.stat(pathname, function(err, stat){
+                    if (err) {
+                        if ('ENOENT' == err.code) {
+                            notifyNotFound(res);
+                        } else {
+                            failMiserably(res);
+                        }
+                    } else {
+                        //res.setHeader('Content-Length', stat.size);
+                        res.writeHead(200, {'Content-Type':mimeType});                
+                        var mimeType = mimeTypes[path.extname(filename).split(".")[1]];
+                        var stream = fs.createReadStream(pathname);
+                        stream.pipe(res);
+                        stream.on('error', function(err){
+                            failMiserably(res);
+                        });
+                    }
+                });        
             } else {
-                res.setHeader('Content-Length', stat.size);
-                var stream = fs.createReadStream(pathname);
-                stream.pipe(res);
-                stream.on('error', function(err){
-                    failMiserably(res);
-                });
+                console.log(pathname + ' not found');
+                notifyNotFound(res);
             }
-        });        
-    } else { // a file we don't handle
-        notifyNotFound(res);
+        });
     }
 }).listen(process.env.PORT);
