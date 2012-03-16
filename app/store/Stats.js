@@ -3,23 +3,23 @@
 Copyright (c) 2012 Maura Wilder
 
 */
-Ext.define('FV.store.Stats', {
+Ext.define('DFST.store.Stats', {
     extend: 'Ext.data.Store',
 
     requires: ['Ext.data.reader.Xml'],
 
-    model: 'FV.model.StatSet',
+    model: 'DFST.model.StatSet',
 
+    autoLoad: true,
 	proxy: {
 		type: 'ajax',
 		url: 'app/data/stats.json',
 		reader: {
-			type: 'json',
-			record: 'item'
+			type: 'json'
 		}
 	},
 
-	sortInfo: {
+sortInfo: {
 		property: 'points',
 		direction: 'DESC'
 	}

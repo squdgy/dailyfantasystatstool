@@ -1,9 +1,9 @@
-Ext.define('FV.view.statset.Grid', {
+Ext.define('DFST.view.statset.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetgrid',
 
 	cls: 'feed-grid',
-	disabled: true,
+	disabled: false,
 
     requires: ['Ext.ux.PreviewPlugin', 'Ext.toolbar.Toolbar'],
     
@@ -30,20 +30,14 @@ Ext.define('FV.view.statset.Grid', {
 			}, {
 				text: 'Name',
 				dataIndex: 'name',
-				hidden: true,
 				width: 200
 			}, {
 				text: 'Points',
 				dataIndex: 'points'
-			}],
-			dockedItems:[{
-				xtype: 'toolbar',
-				dock: 'top',
-				items: [{
-					text: 'Open All',
-					action: 'openall'
-				}]
-			}]
+			}, {
+                text: 'Assists',
+                dataIndex: 'assists'
+            }]
 		});
 
 		this.callParent(arguments);

@@ -12,11 +12,11 @@ This file may be used under the terms of the GNU General Public License version 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
 */
-Ext.define('FV.view.Viewer', {
+Ext.define('DFST.view.Viewer', {
     extend: 'Ext.tab.Panel',
     alias: 'widget.viewer',
     
-    requires: ['FV.view.feed.Show'],
+//    requires: ['DFST.view.feed.Show'],
     
     activeItem: 0,
     margins: '5 5 5 5',

@@ -2,21 +2,25 @@
     {
         team: "Lakers",
         name: "Kobe Bryant",
-        points: 50
+        points: 50,
+        assists: 3
     },
     {
         team: "Heat",
         name: "LeBron James",
-        points: 52
+        points: 52,
+        assists: 5
     },
     {
         team: "Celtics",
         name: "Paul Pierce",
-        points: 30
+        points: 30,
+        assists: 10
     },
     {
         team: "Thunder",
         name: "Kevin Durant",
-        points: 42
+        points: 42,
+        assists: 7
     }
 ]

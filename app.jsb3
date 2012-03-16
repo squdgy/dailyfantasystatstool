@@ -1,6 +1,6 @@
 {
-    "projectName": "Ext JS 4 MVC Demo - Feed Viewer",
-    "licenseText": "Copyright(c) 2011 Sencha Inc.\nlicensing@sencha.com",
+    "projectName": "Daily Fantasy Stats Tool",
+    "licenseText": "Copyright(c) 2012 Maura Wilder",
     "builds": [
         {
             "name": "All Classes Needed",
@@ -596,20 +596,20 @@
                     "name": "Viewport.js"
                 },
                 {
-                    "path": "app/view/feed/",
+                    "path": "app/view/filter/",
                     "name": "List.js"
                 },
                 {
                     "path": "app/model/",
-                    "name": "Article.js"
+                    "name": "StatSet.js"
                 },
                 {
-                    "path": "app/view/article/",
+                    "path": "app/view/statset/",
                     "name": "Preview.js"
                 },
                 {
-                    "path": "app/lib/",
-                    "name": "FeedValidator.js"
+                    "path": "app/view/statset/",
+                    "name": "Grid.js"
                 },
                 {
                     "path": "../../../src/resizer/",
@@ -649,7 +649,7 @@
                 },
                 {
                     "path": "app/store/",
-                    "name": "Articles.js"
+                    "name": "Stats.js"
                 },
                 {
                     "path": "../../../src/layout/container/",
@@ -704,16 +704,8 @@
                     "name": "Panel.js"
                 },
                 {
-                    "path": "app/view/article/",
-                    "name": "Grid.js"
-                },
-                {
                     "path": "app/controller/",
-                    "name": "Articles.js"
-                },
-                {
-                    "path": "app/view/feed/",
-                    "name": "Show.js"
+                    "name": "Stat.js"
                 },
                 {
                     "path": "app/view/",
@@ -725,11 +717,7 @@
                 },
                 {
                     "path": "app/model/",
-                    "name": "Feed.js"
-                },
-                {
-                    "path": "app/store/",
-                    "name": "Feeds.js"
+                    "name": "StatSet.js"
                 },
                 {
                     "path": "../../../src/form/",
@@ -852,12 +840,8 @@
                     "name": "ComboBox.js"
                 },
                 {
-                    "path": "app/view/feed/",
-                    "name": "Add.js"
-                },
-                {
                     "path": "app/controller/",
-                    "name": "Feeds.js"
+                    "name": "Stats.js"
                 },
                 {
                     "path": "../../../src/resizer/",

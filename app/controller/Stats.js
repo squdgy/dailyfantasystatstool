@@ -1,4 +1,4 @@
-Ext.define('FV.controller.Stats', {
+Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
     stores: ['Stats'],
@@ -33,9 +33,6 @@ Ext.define('FV.controller.Stats', {
                 itemdblclick: this.loadStatSet,
                 refresh: this.selectStatSet
             },
-            'statsetgrid button[action=openall]': {
-                click: this.openAllStats
-            },
             'statsetpreview button[action=viewintab]': {
                 click: this.viewStatSet
             },
@@ -54,13 +51,13 @@ Ext.define('FV.controller.Stats', {
 
     /**
      * Loads the given statset into the preview panel
-     * @param {FV.model.StatSet} statset The statset to load
+     * @param {DFST.model.StatSet} statset The statset to load
      */
     previewStatSet: function(grid, statsets) {
         var statset = statsets[0],
-            statsetPreview = this.getStatSetPreview();
+            statsetPreview = this.getStatsetPreview();
 
-        if (statset) {
+        if (statset && statsetPreview) {
             statsetPreview.statset = statset;
     		statsetPreview.update(statset.data);
         }
@@ -69,18 +66,6 @@ Ext.define('FV.controller.Stats', {
     openStatSet: function(btn) {
         window.open(btn.up('statsetpreview').statset.get('link'));
     },
-    
-    openAllStats: function() {
-        var stats = [],
-            viewer = this.getViewer();
-            
-        this.getStatsStore().each(function(statset) {
-            stats.push(this.loadStatSet(null, statset, true));
-        }, this);
-        
-        viewer.add(stats);
-        viewer.setActiveTab(stats[stats.length-1]);
-    },
 
     viewStatSet: function(btn) {
         this.loadStatSet(null, btn.up('statsetpreview').statset);
@@ -88,7 +73,7 @@ Ext.define('FV.controller.Stats', {
 
     /**
      * Loads the given statset into a new tab
-     * @param {FV.model.StatSet} statset The statset to load into a new tab
+     * @param {DFST.model.StatSet} statset The statset to load into a new tab
      */
     loadStatSet: function(view, statset, preventAdd) {
         var viewer = this.getViewer(),

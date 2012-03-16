@@ -1,4 +1,4 @@
-Ext.define('FV.view.statset.Preview', {
+Ext.define('DFST.view.statset.Preview', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.statsetpreview',
 

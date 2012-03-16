@@ -82,7 +82,7 @@ http.createServer(function (req, res) {
             notifyNotFound(res);
         });       
     } else {
-        if (pathname === '/') pathname = '/feed-viewer.html';
+        if (pathname === '/') pathname = '/index.html';
         var filename = path.join(process.cwd(), pathname);
         path.exists(filename, function(exists) {
             if (exists) {
