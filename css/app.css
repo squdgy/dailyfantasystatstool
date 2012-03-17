@@ -5,3 +5,12 @@ body {
 .team {
     color: #CFC;
 }
+
+article {
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+li {
+    padding-left: 10px;
+}

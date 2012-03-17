@@ -10,14 +10,7 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'filterData', selector: 'filterlist dataview'},
         {ref: 'filterShow', selector: 'filtershow'},
         {ref: 'filterForm', selector: 'filterwindow form'},
-        {ref: 'filterCombo', selector: 'filterwindow combobox'},
-        {ref: 'articleGrid', selector: 'articlegrid'},
-        {
-            ref: 'filterWindow', 
-            selector: 'filterwindow', 
-            autoCreate: true,
-            xtype: 'filterwindow'
-        }
+        {ref: 'filterCombo', selector: 'filterwindow combobox'}
     ],
     
 //    requires: ['DFST.lib.FilterValidator'],
@@ -47,26 +40,6 @@ Ext.define('DFST.controller.Filters', {
             
         dataview.bindStore(store);
         dataview.getSelectionModel().select(store.getAt(0));
-    },
-    
-    /**
-     * Loads the given filter into the viewer
-     * @param {DFST.model.filter} filter The filter to load
-     */
-    loadFilter: function(selModel, selected) {
-        var grid = this.getArticleGrid(),
-            store = this.getArticlesStore(),
-            filter = selected[0];
-
-        if (filter) {
-            this.getFilterShow().setTitle(filter.get('name'));
-            grid.enable();
-            store.load({
-                params: {
-                    filter: filter.get('url')
-                }
-            });            
-        }
     },
     
     /**

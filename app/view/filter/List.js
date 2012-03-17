@@ -34,7 +34,11 @@ Ext.define('DFST.view.filter.List', {
                 name: 'game_date',
                 value: new Date(),   // defaults to today
                 minDate: new Date() // min date is today
-            },
+            }, {
+                html: '<p>Default Scoring based on Fanduel<ul>Hitters<li>1B = 1pt<li>2B = 2pts<li>3B = 3pts<li>HR = 4pts<li>RBI = 1pt<li>R = 1pt<li>BB = 1pt<li>SB = 2pts<li>HBP = 1<li>Out (calculated as at bats - hits) = -.25pt</ul><ul>Pitchers<li>W = 5pts<li>ER = -1pt<li>SO = 1pt<li>IP = 1pt*<li>* Fractional scoring per out.</ul</p>'
+            },{
+                html: '<article>This is DFST version 0.1. Other scoring options will be available in version 0.2</article>'
+            }/*,
             {   
                 xtype: 'slider',
                 width: 200,
@@ -78,7 +82,7 @@ Ext.define('DFST.view.filter.List', {
                         id        : 'radio3'
                     }
                 ]
-            }            
+            }*/            
             ]/*,
 
 			dockedItems: [{

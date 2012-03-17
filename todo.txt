@@ -20,24 +20,24 @@ x In drill down panel add details for player info.
 x Add store for player stats
 x Add date to filter players for game day
 x Format date in player grid
+x Add more data
+x Hide details panel until player selected
+x Fix bug on drill down panel - can't expand after collapse
+x Fix css to remove references to feed, etc.
+x move references to articlegrid, feedshow
 
+Add paging to players grid
+Add scoring column
+
+Add model for scoring
 Filter players by date: (server side)
 Create server side end point to generate player stats, randomly
 For pitcher detail only show pitcher stats columns
 For hitter detail, only show hitter stats columns?
-Fix bug on drill down panel - can't expand after collapse
 
 Change theme colors
-Fix css to remove references to feed, etc.
-remove references to articlegrid, feedshow
-Add copyrights to all files
+add copyrights to all files
 Figure out 1 typical interaction to code and then define tasks to get this in with dummy data
 
 Change server.js implementation to be cleaner - use some modules, but not sure which
 Figure out build process for Ext JS 4
-
-
-Fanduel baseball scoring:
-Hitters: 1B = 1pt, 2B = 2pts, 3B = 3pts, HR = 4pts, RBI = 1pt, R = 1pt, BB = 1pt, SB = 2pts,
-HBP = 1, Out (calculated as at bats - hits) = -.25pt
-Pitchers: W = 5pts, ER = -1pt, SO = 1pt, IP = 1pt*

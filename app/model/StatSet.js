@@ -7,9 +7,11 @@ Ext.define('DFST.model.StatSet', {
     extend: 'Ext.data.Model',
     
     fields: [
+        { name: 'id', type: 'int', defaultValue: 0 },
         { name: 'team', type: 'string' },
         { name: 'name', type: 'string' },
         { name: 'position', type: 'string' },
+        { name: 'ng', type: 'int', defaultsValue: 0 },        //number of games played
         
         //hitter stats
         { name: '1b', type: 'float', defaultValue: 0.0 },    //singles

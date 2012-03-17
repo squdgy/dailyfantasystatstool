@@ -40,11 +40,14 @@ Ext.define('DFST.controller.Stats', {
      */
     drillDown: function(grid, statsets) {
         var statset = statsets[0],
-            detailsView = this.getDrilldowninfo();
+            detailsInfoView = this.getDrilldowninfo(),
+            detailsView = this.getDrilldowndetails();
 
         if (statset && detailsView) {
-            detailsView.statset = statset;
-    		detailsView.update(statset.data);
+            detailsInfoView.statset = statset;
+    		detailsInfoView.update(statset.data);
+            detailsView.setTitle('Player Details: ' + statset.data.name);
+            detailsView.show();
         }
     },
 
