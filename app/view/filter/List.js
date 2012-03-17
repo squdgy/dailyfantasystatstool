@@ -28,6 +28,13 @@ Ext.define('DFST.view.filter.List', {
 				}
 			},
 */            
+            {
+                xtype: 'datefield',
+                fieldLabel: 'Date of Game', //this is the day we want to do estimates for
+                name: 'game_date',
+                value: new Date(),   // defaults to today
+                minDate: new Date() // min date is today
+            },
             {   
                 xtype: 'slider',
                 width: 200,

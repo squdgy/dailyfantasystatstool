@@ -1,26 +1,75 @@
 [
     {
-        team: "Lakers",
-        name: "Kobe Bryant",
-        points: 50,
-        assists: 3
+        team: "Red Sox",
+        name: "David Ortiz",
+        "1b": 60,
+        "2b": 10,
+        "3b": 5,
+        hr: 40,
+        r: 62,
+        rbi: 100,
+        bb: 26,
+        sb: 1,
+        hbp: 4,
+        out: 200
     },
     {
-        team: "Heat",
-        name: "LeBron James",
-        points: 52,
-        assists: 5
+        team: "Brewers",
+        name: "Ryan Braun",
+        "1b": 50,
+        "2b": 22,
+        "3b": 9,
+        hr: 35,
+        r: 78,
+        rbi: 120,
+        bb: 15,
+        sb: 12,
+        hbp: 2,
+        out: 45
     },
     {
-        team: "Celtics",
-        name: "Paul Pierce",
-        points: 30,
-        assists: 10
+        team: "Yankees",
+        name: "Derek Jeter",
+        "1b": 40,
+        "2b": 12,
+        "3b": 6,
+        hr: 27,
+        r: 54,
+        rbi: 96,
+        bb: 22,
+        sb: 2,
+        hbp: 0,
+        out: 97
     },
     {
-        team: "Thunder",
-        name: "Kevin Durant",
-        points: 42,
-        assists: 7
+        team: "Twins",
+        name: "Joe Mauer",
+        "1b": 46,
+        "2b": 29,
+        "3b": 13,
+        hr: 42,
+        r: 89,
+        rbi: 103,
+        bb: 35,
+        sb: 7,
+        hbp: 3,
+        out: 89
+    },
+    {
+        team: "Red Sox",
+        name: "Daniel Bard",
+        w: 4,
+        er: 2.45,
+        so: 36,
+        ip: 38
+    },
+    {
+        team: "Dodgers",
+        name: "Ted Lilly",
+        w: 6,
+        er: 3.03,
+        so: 42,
+        ip: 48
     }
+    
 ]

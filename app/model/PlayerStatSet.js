@@ -3,13 +3,12 @@
 Copyright (c) 2012 Maura Wilder
 
 */
-Ext.define('DFST.model.StatSet', {
+Ext.define('DFST.model.PlayerStatSet', {
     extend: 'Ext.data.Model',
     
     fields: [
-        { name: 'team', type: 'string' },
-        { name: 'name', type: 'string' },
-        { name: 'position', type: 'string' },
+        { name: 'date', type: 'date' },
+        { name: 'opp', type: 'string' },
         
         //hitter stats
         { name: '1b', type: 'float', defaultValue: 0.0 },    //singles

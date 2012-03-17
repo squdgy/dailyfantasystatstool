@@ -1,8 +1,8 @@
-Ext.define('DFST.view.statset.Grid', {
+Ext.define('DFST.view.statset.PlayerGrid', {
     extend: 'Ext.grid.Panel',
-	alias: 'widget.statsetgrid',
+	alias: 'widget.statsetplayergrid',
 
-	cls: 'statset-grid',
+	cls: 'player-grid',
 	disabled: false,
 
     requires: ['Ext.toolbar.Toolbar'],
@@ -11,17 +11,15 @@ Ext.define('DFST.view.statset.Grid', {
     
 	initComponent: function() {
 		Ext.apply(this, {
-		    store: 'Stats',
+		    store: 'PlayerStats',
 
 			columns: [{
-				text: 'Name',
-				dataIndex: 'name',
-				width: 100
-			}, {
-    			text: 'Team',
-				dataIndex: 'team',
-//				flex: 1,
-				renderer: this.formatTeam
+    			text: 'Date',
+				dataIndex: 'date',
+                renderer: Ext.util.Format.dateRenderer('m-d-Y')
+			},{
+        		text: 'Opp.',
+				dataIndex: 'opp'
 			},{
                 text: '1B',
                 dataIndex: '1b'
@@ -68,14 +66,6 @@ Ext.define('DFST.view.statset.Grid', {
 		});
 
 		this.callParent(arguments);
-	},
-
-	/**
-	 * Team renderer
-	 * @private
-	 */
-	formatTeam: function(value, p, record) {
-		return Ext.String.format('<span class="team">{0}</span>', value);
 	}
 
 });

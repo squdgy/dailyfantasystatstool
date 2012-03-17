@@ -1,4 +1,4 @@
-This is running at http://azure-nodejs.cloudapp.net!
+An earlier versio of this is running at http://azure-nodejs.cloudapp.net!
 
 Next steps:
 x Clean up directory - remove modules, non-used files
@@ -10,7 +10,34 @@ x Change left pane from Feeds to Filters and add a dummy filter
 x Move css into css file
 x Change theme
 x Change namespace from FV to DFST
-Figure out some typical interactions to code and then define tasks to get these
+x Change dummy data to baseball data
+x Add rest of relevant baseball stats to model (based on fanduel scoring), 
+x then grid, then dummy data
+x Create drill down panel
+x Add panel to layout
+x Add select logic to open up drilldown panel
+x In drill down panel add details for player info.
+x Add store for player stats
+x Add date to filter players for game day
+x Format date in player grid
+
+Filter players by date: (server side)
+Create server side end point to generate player stats, randomly
+For pitcher detail only show pitcher stats columns
+For hitter detail, only show hitter stats columns?
+Fix bug on drill down panel - can't expand after collapse
+
+Change theme colors
+Fix css to remove references to feed, etc.
+remove references to articlegrid, feedshow
+Add copyrights to all files
+Figure out 1 typical interaction to code and then define tasks to get this in with dummy data
 
 Change server.js implementation to be cleaner - use some modules, but not sure which
 Figure out build process for Ext JS 4
+
+
+Fanduel baseball scoring:
+Hitters: 1B = 1pt, 2B = 2pts, 3B = 3pts, HR = 4pts, RBI = 1pt, R = 1pt, BB = 1pt, SB = 2pts,
+HBP = 1, Out (calculated as at bats - hits) = -.25pt
+Pitchers: W = 5pts, ER = -1pt, SO = 1pt, IP = 1pt*

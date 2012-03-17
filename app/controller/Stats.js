@@ -1,43 +1,28 @@
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats'],
+    stores: ['Stats', 'PlayerStats'],
 
-    models: ['StatSet'],
+    models: ['StatSet', 'PlayerStatSet'],
 
-    views: ['statset.Grid', 'statset.Preview'],
+    views: ['statset.Grid', 'statset.PlayerGrid', 'drilldown.Details', 'drilldown.DetailInfo'],
 
     refs: [{
-        ref: 'feedShow',
-        selector: 'feedshow'
+    	ref: 'drilldowndetails',
+    	selector: 'drilldowndetails'
     }, {
-        ref: 'viewer',
-    	selector: 'viewer'
-    }, {
-    	ref: 'statsetPreview',
-    	selector: 'statsetpreview'
-    }, {
-        ref: 'statsetTab',
-        xtype: 'statsetpreview',
-        closable: true,
-        forceCreate: true,
-        selector: 'statsetpreview'
+        ref: 'drilldowninfo',
+    	selector: 'drilldowninfo'
     }],
 
     init: function() {
         this.control({
             'statsetgrid': {
-                selectionchange: this.previewStatSet
+                selectionchange: this.drillDown
             },
             'statsetgrid > tableview': {
                 itemdblclick: this.loadStatSet,
                 refresh: this.selectStatSet
-            },
-            'statsetpreview button[action=viewintab]': {
-                click: this.viewStatSet
-            },
-            'statsetpreview button[action=gotopost]': {
-                click: this.openStatSet
             }
         });
     },
@@ -50,16 +35,16 @@ Ext.define('DFST.controller.Stats', {
     },
 
     /**
-     * Loads the given statset into the preview panel
+     * Loads the given statset into the drilldown view
      * @param {DFST.model.StatSet} statset The statset to load
      */
-    previewStatSet: function(grid, statsets) {
+    drillDown: function(grid, statsets) {
         var statset = statsets[0],
-            statsetPreview = this.getStatsetPreview();
+            detailsView = this.getDrilldowninfo();
 
-        if (statset && statsetPreview) {
-            statsetPreview.statset = statset;
-    		statsetPreview.update(statset.data);
+        if (statset && detailsView) {
+            detailsView.statset = statset;
+    		detailsView.update(statset.data);
         }
     },
 
