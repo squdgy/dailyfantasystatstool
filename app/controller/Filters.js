@@ -1,45 +1,82 @@
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats'],
+    stores: ['Stats', 'PlayerStats'],
     models: ['StatSet'],
-//    views: ['filter.Add'],
+    views: ['filter.List'],
     
     refs: [
         {ref: 'filterList', selector: 'filterlist'},
+        {ref: 'dateFilter', selector: 'filterlist datefield'},
         {ref: 'filterData', selector: 'filterlist dataview'},
         {ref: 'filterShow', selector: 'filtershow'},
         {ref: 'filterForm', selector: 'filterwindow form'},
         {ref: 'filterCombo', selector: 'filterwindow combobox'}
     ],
     
-//    requires: ['DFST.lib.FilterValidator'],
-
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
     // is executed on the Application
     init: function() {
         this.control({
-            'filterlist dataview': {
-                selectionchange: this.loadFilter
+            'filterlist datefield':{
+                change: this.changeDate
             },
-            'filterlist button[action=add]': {
-                click: this.addFilter
+            'filterlist checkbox#probables':{
+                change: this.changeProbables
             },
-            'filterlist button[action=remove]': {
-                click: this.removeFilter
+            'filterlist fieldcontainer#positions checkbox':{
+                change: this.changePositions
             },
-            'filterwindow button[action=create]': {
-                click: this.createFilter
-            }
+            'filterlist fieldcontainer radio':{
+                change: this.changeScoring
+            }            
         });
     },
     
+    changeDate: function(datefield, newValue, oldValue, options) {
+        var statsStore = this.getStatsStore();
+        statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+    },
+    
+    changeProbables: function(checkbox, newValue, oldValue, options) {
+        var statsStore = this.getStatsStore();
+        statsStore.filter([{id:'probables', property: 'probables', value: newValue}]);
+    },
+
+    changePositions: function(checkbox, newValue, oldValue, options) {
+        var statsStore = this.getStatsStore();
+        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer checkbox');
+        var value = '';
+        for (var i=0; i<positionCheckboxes.length; i++) {
+            var checkbox = positionCheckboxes[i];
+            if (checkbox.getRawValue()) { //is checked
+                if (value !== '') {
+                    value += ':';
+                }
+                value += checkbox.inputValue;
+            }
+        }
+        statsStore.filter([{id:'pos', property: 'pos', value: value}]);
+    },
+    
+    changeScoring: function(radiobutton, newValue, oldValue, options) {
+        if (newValue) {
+            var statsStore = this.getStatsStore();
+            statsStore.filter([{id:'scoring', property: 'scoring', value: radiobutton.inputValue}]);
+            
+            var playerStatsStore = this.getPlayerStatsStore();
+            playerStatsStore.filter([{id:'scoring', property: 'scoring', value: radiobutton.inputValue}]);
+        }
+    },
+
     onLaunch: function() {
+        /*
         var dataview = this.getFilterData(),
-            store = this.getFiltersStore();
+            store = this.getFilterStore();
             
         dataview.bindStore(store);
         dataview.getSelectionModel().select(store.getAt(0));
+        */
     },
     
     /**

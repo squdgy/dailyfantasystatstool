@@ -16,6 +16,11 @@ Ext.define('DFST.controller.Stats', {
     }],
 
     init: function() {
+        var statsStore = this.getStatsStore();
+        //TODO: Server side, we need to filter by another table
+        var today = new Date();
+        statsStore.filter([{id: "gameDate", property: "gameDate", 
+            value: (new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0)).toJSON()}]);
         this.control({
             'statsetgrid': {
                 selectionchange: this.drillDown
@@ -26,7 +31,7 @@ Ext.define('DFST.controller.Stats', {
             }
         });
     },
-
+    
     selectStatSet: function(view) {
         var first = this.getStatsStore().getAt(0);
         if (first) {
@@ -41,12 +46,15 @@ Ext.define('DFST.controller.Stats', {
     drillDown: function(grid, statsets) {
         var statset = statsets[0],
             detailsInfoView = this.getDrilldowninfo(),
-            detailsView = this.getDrilldowndetails();
+            detailsView = this.getDrilldowndetails(),
+            store;
 
         if (statset && detailsView) {
+            store = this.getPlayerStatsStore();
+            store.filter([{id:'id', property: 'id', value: statset.data.id}]);
             detailsInfoView.statset = statset;
-    		detailsInfoView.update(statset.data);
-            detailsView.setTitle('Player Details: ' + statset.data.name);
+            detailsInfoView.update(statset.data);
+            detailsView.setTitle('Game Details: ' + statset.data.name);
             detailsView.show();
         }
     },

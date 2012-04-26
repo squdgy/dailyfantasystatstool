@@ -14,8 +14,9 @@ Ext.define('DFST.view.drilldown.DetailInfo', {
 			    '<div class="post-data">',
     		        '<h1 class="player-name">{name}</h1>',
     		        '<h3 class="player-team">{team}</h3>',
+        	        '<h3 class="player-team">{pos}</h3>',
 			    '</div>',
-			    '<div class="filter-description">applied filters: ...TODO...</div>', {
+			    '<div class="filter-description"></div>', {
 			})
 		});
 

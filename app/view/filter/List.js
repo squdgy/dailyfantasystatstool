@@ -35,10 +35,98 @@ Ext.define('DFST.view.filter.List', {
                 value: new Date(),   // defaults to today
                 minDate: new Date() // min date is today
             }, {
+                xtype: 'checkbox',
+                boxLabel: 'Include Probable Pitchers Only',
+                id: 'probables',
+                name: 'probables',
+                checked: false
+            },
+            {
+                xtype: 'fieldcontainer',
+                id: 'positions',
+                fieldLabel: 'Positions to Include',
+                defaultType: 'checkboxfield',
+                layout: {
+                    type: 'table',
+                    columns: 3
+                },
+                items: [
+                    {
+                        boxLabel: 'P',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'P'
+                    },
+                    {
+                        boxLabel: 'C',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'C'
+                    },
+                    {
+                        boxLabel: '1B',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: '1B'
+                    },
+                    {
+                        boxLabel: '2B',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: '2B'
+                    },
+                    {
+                        boxLabel: 'SS',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'SS'
+                    },
+                    {
+                        boxLabel: '3B',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: '3B'
+                    },
+                    {
+                        boxLabel: 'RF',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'RF'
+                    },
+                    {
+                        boxLabel: 'CF',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'CF'
+                    },
+                    {
+                        boxLabel: 'LF',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'LF'
+                    }                    
+                ]
+            },
+            {
+                xtype: 'radiogroup',
+                fieldLabel: 'Scoring',
+                layout: {
+                    type: 'table',
+                    columns: 2
+                },
+                items: [
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true }/*,
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'}*/
+                ]
+            },            
+            {
+                html: '<hr height=10px; width=250px;/>'
+            }/*,
+            {
                 html: '<p>Default Scoring based on Fanduel<ul>Hitters<li>1B = 1pt<li>2B = 2pts<li>3B = 3pts<li>HR = 4pts<li>RBI = 1pt<li>R = 1pt<li>BB = 1pt<li>SB = 2pts<li>HBP = 1<li>Out (calculated as at bats - hits) = -.25pt</ul><ul>Pitchers<li>W = 5pts<li>ER = -1pt<li>SO = 1pt<li>IP = 1pt*<li>* Fractional scoring per out.</ul</p>'
             },{
                 html: '<article>This is DFST version 0.1. Other scoring options will be available in version 0.2</article>'
-            }/*,
+            },
             {   
                 xtype: 'slider',
                 width: 200,
@@ -55,47 +143,8 @@ Ext.define('DFST.view.filter.List', {
                 value: 99,
                 maxValue: 99,
                 minValue: 0
-            },            
-            {
-                xtype      : 'fieldcontainer',
-                fieldLabel : 'Radio',
-                defaultType: 'radiofield',
-                defaults: {
-                    flex: 1
-                },
-                layout: 'hbox',
-                items: [
-                    {
-                        boxLabel  : 'M',
-                        name      : 'size',
-                        inputValue: 'm',
-                        id        : 'radio1'
-                    }, {
-                        boxLabel  : 'L',
-                        name      : 'size',
-                        inputValue: 'l',
-                        id        : 'radio2'
-                    }, {
-                        boxLabel  : 'XL',
-                        name      : 'size',
-                        inputValue: 'xl',
-                        id        : 'radio3'
-                    }
-                ]
-            }*/            
-            ]/*,
-
-			dockedItems: [{
-				xtype: 'toolbar',
-				items: [{
-					text: 'Add Filter',
-					action: 'add'
-				}, {
-					text: 'Remove Filter',
-					disabled: true,
-					action: 'remove'
-				}]
-			}]*/
+            },*/
+            ]
 		});
 
 		this.callParent(arguments);

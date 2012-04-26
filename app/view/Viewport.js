@@ -6,6 +6,8 @@ Ext.define('DFST.view.Viewport', {
         'DFST.view.drilldown.Details',
         'Ext.layout.container.Border'
     ],
+    
+    stores: ['Stats'],
 
 	layout: 'border',
 
@@ -20,7 +22,7 @@ Ext.define('DFST.view.Viewport', {
         defaults:{margins:'0 0 5 0'},
         items: [{
         	xtype: 'statsetgrid',
-            flex: 1
+            flex: 2
         },{
             xtype: 'drilldowndetails',
             flex: 1,

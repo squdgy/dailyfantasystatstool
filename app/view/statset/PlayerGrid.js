@@ -14,84 +14,89 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 		    store: 'PlayerStats',
 
 			columns: [{
-    			text: 'Date',
-				dataIndex: 'date',
-                renderer: Ext.util.Format.dateRenderer('m-d-Y')
+                text: 'Date',
+				dataIndex: 'gd',
+                renderer: Ext.util.Format.dateRenderer('m-d'),
+                width: 120
 			},{
-        		text: 'Opp.',
-				dataIndex: 'opp'
+                text: 'Opp.',
+				dataIndex: 'opp',
+                renderer: this.formatOpponent,
+                width: 120
 			},{
-                text: 'FP',
-                renderer: this.fantasyPointsRenderer
-            },{
                 text: '1B',
-                dataIndex: '1b'
+                dataIndex: 'x1b',
+                width: 40
             }, {
                 text: '2B',
-                dataIndex: '2b'
+                dataIndex: 'x2b',
+                width: 40
             },{
                 text: '3B',
-                dataIndex: '3b'
+                dataIndex: 'x3b',
+                width: 40
             },{
-    			text: 'HR',
-				dataIndex: 'hr'
+                text: 'HR',
+				dataIndex: 'hr',
+                width: 40
 			},{
                 text: 'R',
-                dataIndex: 'r'
+                dataIndex: 'r',
+                width: 40
             },{
                 text: 'RBI',
-                dataIndex: 'rbi'
+                dataIndex: 'rbi',
+                width: 40
             },{
                 text: 'BB',
-                dataIndex: 'bb'
+                dataIndex: 'bb',
+                width: 40
             },{
                 text: 'SB',
-                dataIndex: 'sb'
+                dataIndex: 'sb',
+                width: 40
             },{
                 text: 'HBP',
-                dataIndex: 'hbp'
+                dataIndex: 'hbp',
+                width: 40
             },{
                 text: 'OUT',
-                dataIndex: 'out'
+                dataIndex: 'o',
+                width: 40
             },{
                 text: 'W',
-                dataIndex: 'w'
+                dataIndex: 'w',
+                width: 40
             },{
                 text: 'ER',
-                dataIndex: 'er'
+                dataIndex: 'er',
+                width: 40
             },{
                 text: 'SO',
-                dataIndex: 'so'
+                dataIndex: 'so',
+                width: 40
             },{
                 text: 'IP',
-                dataIndex: 'ip'
+                dataIndex: 'ip',
+                width: 40
+            },{
+                text: 'FP',
+                dataIndex: 'fp',
+                width: 60
             }]
 		});
 
 		this.callParent(arguments);
 	},
     
-    fantasyPointsRenderer: function(value, p, record) {
-//Hitters: 1B = 1pt, 2B = 2pts, 3B = 3pts, HR = 4pts, RBI = 1pt, R = 1pt, BB = 1pt, SB = 2pts,
-//HBP = 1, Out (calculated as at bats - hits) = -.25pt
-//Pitchers: W = 5pts, ER = -1pt, SO = 1pt, IP = 1pt*
-        var data = record.data;
-        var pts = 1 * data["1b"];
-        pts += 2 * data["2b"];
-        pts += 3 * data["3b"];
-        pts += 4 * data.hr;
-        pts += 1 * data.rbi;
-        pts += 1 * data.r;
-        pts += 1 * data.bb;
-        pts += 2 * data.sb;
-        pts += 1 * data.hbp;
-        pts -= (.25 * data.out);
-        pts += 5 * data.w;
-        pts -= 1 * data.er;
-        pts += 1 * data.so;
-        pts += 1 * data.ip;
-        return Ext.String.format('<span class="avg-points">{0}</span>', pts);
-    }
+    /**
+	 * Team renderer
+	 * @private
+	 */
+	formatOpponent: function(value, p, record) {
+        var isHome = record.data.isHome;
+        return isHome ? record.data.opp : '@' + record.data.opp;
+	}
 
 });
 

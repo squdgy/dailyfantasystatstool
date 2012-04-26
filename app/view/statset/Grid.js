@@ -9,6 +9,13 @@ Ext.define('DFST.view.statset.Grid', {
     
     border: false,
     
+    dockedItems: [{
+        xtype: 'pagingtoolbar',
+        dock: 'bottom',
+	    store: 'Stats',
+        displayInfo: true
+    }],
+    
 	initComponent: function() {
 		Ext.apply(this, {
 		    store: 'Stats',
@@ -16,57 +23,81 @@ Ext.define('DFST.view.statset.Grid', {
 			columns: [{
 				text: 'Name',
 				dataIndex: 'name',
-				width: 100
+				width: 150
 			}, {
-    			text: 'Team',
+                text: 'Team',
 				dataIndex: 'team',
-//				flex: 1,
+                width: 50,
 				renderer: this.formatTeam
+    		}, {
+                text: 'Pos',
+				dataIndex: 'pos',
+                width: 40
 			},{
-                text: 'AFP',
-                renderer: this.formatAverageFantasyPoints
-            },{
+                text: 'G',
+				dataIndex: 'ng',
+                width: 40
+			},{
                 text: '1B',
-                dataIndex: '1b'
+                dataIndex: 'x1b',
+                width: 40
             }, {
                 text: '2B',
-                dataIndex: '2b'
+                dataIndex: 'x2b',
+                width: 40
             },{
                 text: '3B',
-                dataIndex: '3b'
+                dataIndex: 'x3b',
+                width: 40
             },{
-    			text: 'HR',
-				dataIndex: 'hr'
+                text: 'HR',
+				dataIndex: 'hr',
+                width: 40
 			},{
                 text: 'R',
-                dataIndex: 'r'
+                dataIndex: 'r',
+                width: 40
             },{
                 text: 'RBI',
-                dataIndex: 'rbi'
+                dataIndex: 'rbi',
+                width: 40
             },{
                 text: 'BB',
-                dataIndex: 'bb'
+                dataIndex: 'bb',
+                width: 40
             },{
                 text: 'SB',
-                dataIndex: 'sb'
+                dataIndex: 'sb',
+                width: 40
             },{
                 text: 'HBP',
-                dataIndex: 'hbp'
+                dataIndex: 'hbp',
+                width: 40
             },{
                 text: 'OUT',
-                dataIndex: 'out'
+                dataIndex: 'o',
+                width: 40
             },{
-                text: 'W',
-                dataIndex: 'w'
+                text: 'BB',
+                dataIndex: 'w',
+                width: 40
             },{
                 text: 'ER',
-                dataIndex: 'er'
+                dataIndex: 'er',
+                width: 40
             },{
                 text: 'SO',
-                dataIndex: 'so'
+                dataIndex: 'so',
+                width: 40
             },{
                 text: 'IP',
-                dataIndex: 'ip'
+                dataIndex: 'ip',
+                width: 40
+            },{
+                text: 'AFP',
+                dataIndex: 'afp',
+                width: 60,
+                renderer: Ext.util.Format.numberRenderer('0.00')
             }]
 		});
 
@@ -78,34 +109,7 @@ Ext.define('DFST.view.statset.Grid', {
 	 * @private
 	 */
 	formatTeam: function(value, p, record) {
-		return Ext.String.format('<span class="team">{0}</span>', value);
-	},
-    
-    /**
-	 * AFP renderer
-	 * @private
-	 */
-	formatAverageFantasyPoints: function(value, p, record) {
-//Hitters: 1B = 1pt, 2B = 2pts, 3B = 3pts, HR = 4pts, RBI = 1pt, R = 1pt, BB = 1pt, SB = 2pts,
-//HBP = 1, Out (calculated as at bats - hits) = -.25pt
-//Pitchers: W = 5pts, ER = -1pt, SO = 1pt, IP = 1pt*
-        var data = record.data;
-        var pts = 1 * data["1b"];
-        pts += 2 * data["2b"];
-        pts += 3 * data["3b"];
-        pts += 4 * data.hr;
-        pts += 1 * data.rbi;
-        pts += 1 * data.r;
-        pts += 1 * data.bb;
-        pts += 2 * data.sb;
-        pts += 1 * data.hbp;
-        pts -= (.25 * data.out);
-        pts += 5 * data.w;
-        pts -= 1 * data.er;
-        pts += 1 * data.so;
-        pts += 1 * data.ip;
-    	return Ext.String.format('<span class="avg-points">{0}</span>', pts/data.ng);
-	}    
-
+		return Ext.String.format('<span class="team">{0}</span>', value.toUpperCase());
+	}
 });
 
