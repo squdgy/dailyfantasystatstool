@@ -1,5 +1,3 @@
-An earlier versio of this is running at http://azure-nodejs.cloudapp.net!
-
 Next steps:
 x Clean up directory - remove modules, non-used files
 x get app to run with loader, remove classes.js
@@ -69,6 +67,7 @@ upgrade to extjs 4.1
 get rest of stats to fill in draft day scoring
 check in!
 document all db scripts
+deploy to azure
 
 Misc.
 ==========
