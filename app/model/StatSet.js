@@ -9,6 +9,8 @@ Ext.define('DFST.model.StatSet', {
     fields: [
         { name: 'id', type: 'int', defaultValue: 0 },
         { name: 'team', type: 'string' },
+        { name: 'opp', type: 'string' }, //opponent
+        { name: 'isHome', type: 'boolean', defaultValue: true },
         { name: 'name', type: 'string' },
         { name: 'lname', type: 'string', defaultValue: '' },
         { name: 'fname', type: 'string', defaultValue: '' },
@@ -29,9 +31,13 @@ Ext.define('DFST.model.StatSet', {
         
         //pitcher stats
         { name: 'w', type: 'int', defaultValue: 0 },     //wins
+        { name: 'aw', type: 'float', defaultValue: 0.0 },    //average wins
         { name: 'er', type: 'int', defaultValue: 0 },    //earned runs
+        { name: 'aer', type: 'float', defaultValue: 0.0 },    //average earned runs/game
         { name: 'so', type: 'int', defaultValue: 0 },    //strike outs
-        { name: 'ip', type: 'float', defaultValue: 0.0 },     //innings pitched
+        { name: 'aso', type: 'float', defaultValue: 0.0 },    //average strike outs
+        { name: 'ip', type: 'float', defaultValue: 0.0 }, //innings pitched
+        { name: 'aip', type: 'float', defaultValue: 0.0 }, //avg. innings pitched
         
         //derived stats
         { name: 'afp', type: 'float', defaultValue: 0.0}  //average fantasy points per game

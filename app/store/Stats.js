@@ -13,7 +13,9 @@ Ext.define('DFST.store.Stats', {
     autoLoad: false,
     proxy: {
 		type: 'ajax',
-        url: 'http://localhost:49533/api/players/',
+          url: 'http://dfst.cloudapp.net/api/players/',    //live azure
+//        url: 'http://localhost:81/api/players/',    //local azure dev.
+//        url: 'http://localhost:49533/api/players/', //local stand-alone
 //      url: 'app/data/stats.json', // This is hard-coded test data
 		reader: {
 			type: 'json',

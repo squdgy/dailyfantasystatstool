@@ -90,7 +90,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 	},
     
     /**
-	 * Team renderer
+	 * Opponent renderer
 	 * @private
 	 */
 	formatOpponent: function(value, p, record) {

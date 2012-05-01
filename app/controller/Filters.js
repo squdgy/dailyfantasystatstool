@@ -29,7 +29,10 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist fieldcontainer radio':{
                 change: this.changeScoring
-            }            
+            },
+            'filterlist splitbutton menu':{
+                click: this.changePositionGroups
+            }                        
         });
     },
     
@@ -44,11 +47,17 @@ Ext.define('DFST.controller.Filters', {
     },
 
     changePositions: function(checkbox, newValue, oldValue, options) {
+/*
+This next line shouldn't be needed work but is a work-around for the following bug:
+http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+*/
+        if (checkbox.eventsSuspended) return;
+        
         var statsStore = this.getStatsStore();
-        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer checkbox');
+        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var value = '';
         for (var i=0; i<positionCheckboxes.length; i++) {
-            var checkbox = positionCheckboxes[i];
+            checkbox = positionCheckboxes[i];
             if (checkbox.getRawValue()) { //is checked
                 if (value !== '') {
                     value += ':';
@@ -57,6 +66,65 @@ Ext.define('DFST.controller.Filters', {
             }
         }
         statsStore.filter([{id:'pos', property: 'pos', value: value}]);
+    },
+    
+    changePositionGroups: function(menu, menuItem, e, options) {
+        var statsStore = this.getStatsStore();
+        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
+        var len = positionCheckboxes.length;
+        var option = menuItem.text;
+        var checkbox, i, pos;
+        if (option === 'none') {
+            for (i=0; i<len; i++) {
+                checkbox = positionCheckboxes[i];
+                checkbox.suspendEvents(false);
+                checkbox.setValue(false);
+                checkbox.resumeEvents();                
+            }
+        } else if (option === 'all') {
+            for (i=0; i<len; i++) {
+                checkbox = positionCheckboxes[i];
+                checkbox.suspendEvents(false);
+                checkbox.setValue(true);
+                checkbox.resumeEvents();                
+            }
+        } else if (option === 'pitchers') {
+            for (i=0; i<len; i++) {
+                checkbox = positionCheckboxes[i];                
+                checkbox.suspendEvents(false);
+                if (checkbox.inputValue === 'P'){                 
+                    checkbox.setValue(true);
+                } else {
+                    checkbox.setValue(false);
+                }
+                checkbox.resumeEvents();                
+            }
+        } else if (option === 'outfielders') {
+            for (i=0; i<len; i++) {
+                checkbox = positionCheckboxes[i];                
+                checkbox.suspendEvents(false);
+                pos = checkbox.inputValue;
+                if (pos === 'LF' || pos === 'RF' || pos === 'CF' ){                 
+                    checkbox.setValue(true);
+                } else {
+                    checkbox.setValue(false);
+                }
+                checkbox.resumeEvents();                
+            }
+        } else if (option === 'infielders') {
+            for (i=0; i<len; i++) {
+                checkbox = positionCheckboxes[i];                
+                checkbox.suspendEvents(false);
+                pos = checkbox.inputValue;
+                if (pos === '1B' || pos === '2B' || pos === '3B' || pos === 'SS'){                 
+                    checkbox.setValue(true);
+                } else {
+                    checkbox.setValue(false);
+                }
+                checkbox.resumeEvents();                
+            }
+        }
+        this.changePositions(checkbox, false, false, null);
     },
     
     changeScoring: function(radiobutton, newValue, oldValue, options) {

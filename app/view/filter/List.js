@@ -42,6 +42,20 @@ Ext.define('DFST.view.filter.List', {
                 checked: false
             },
             {
+                xtype: 'splitbutton',
+                text: 'Position Subset',
+                menu: {
+                    xtype: 'menu',
+                    items: [
+                        {text: 'all'},
+                        {text: 'none'},
+                        {text: 'pitchers'},
+                        {text: 'outfielders'},
+                        {text: 'infielders'}
+                    ]
+                }
+            },
+            {
                 xtype: 'fieldcontainer',
                 id: 'positions',
                 fieldLabel: 'Positions to Include',
@@ -104,6 +118,12 @@ Ext.define('DFST.view.filter.List', {
                         name: 'pos',
                         checked: true,
                         inputValue: 'LF'
+                    },
+                    {
+                        boxLabel: 'DH',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'DH'
                     }                    
                 ]
             },

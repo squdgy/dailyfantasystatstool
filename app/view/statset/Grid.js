@@ -30,6 +30,11 @@ Ext.define('DFST.view.statset.Grid', {
                 width: 50,
 				renderer: this.formatTeam
     		}, {
+                text: 'OPP',
+				dataIndex: 'opp',
+                width: 60,
+                renderer: this.formatOpponent,
+    		}, {
                 text: 'Pos',
 				dataIndex: 'pos',
                 width: 40
@@ -78,20 +83,39 @@ Ext.define('DFST.view.statset.Grid', {
                 dataIndex: 'o',
                 width: 40
             },{
-                text: 'BB',
+                text: 'W',
                 dataIndex: 'w',
                 width: 40
+            },{
+                text: 'W/G',
+                dataIndex: 'aw',
+                width: 40,
+                renderer: Ext.util.Format.numberRenderer('0.00')
             },{
                 text: 'ER',
                 dataIndex: 'er',
                 width: 40
             },{
+                text: 'ER/G',
+                dataIndex: 'aer',
+                width: 40,
+                renderer: Ext.util.Format.numberRenderer('0.00')
+            },{
                 text: 'SO',
                 dataIndex: 'so',
                 width: 40
             },{
+                text: 'SO/G',
+                dataIndex: 'aso',
+                width: 40,
+                renderer: Ext.util.Format.numberRenderer('0.00')                
+            },{
                 text: 'IP',
                 dataIndex: 'ip',
+                width: 40
+            },{
+                text: 'IP/G',
+                dataIndex: 'aip',
                 width: 40
             },{
                 text: 'AFP',
@@ -110,6 +134,16 @@ Ext.define('DFST.view.statset.Grid', {
 	 */
 	formatTeam: function(value, p, record) {
 		return Ext.String.format('<span class="team">{0}</span>', value.toUpperCase());
+	},
+    /**
+     * TODO: Used in 2 grids - refactor!!
+     * Opponent renderer
+	 * @private
+	 */
+	formatOpponent: function(value, p, record) {
+        var isHome = record.data.isHome;
+        return isHome ? record.data.opp : '@' + record.data.opp;
 	}
+    
 });
 
