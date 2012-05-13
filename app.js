@@ -25,3 +25,16 @@ Ext.application({
     
 });
 
+/* Fix for ExtJS 4.1.0 bug */
+Ext.override(Ext.view.AbstractView, {
+    onRender: function() 
+    {
+        var me = this;
+        
+        this.callOverridden();
+        
+        if (me.mask && Ext.isObject(me.store)) {
+            me.setMaskBind(me.store);
+        }
+    }
+});

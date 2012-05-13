@@ -32,6 +32,7 @@ Ext.define('DFST.view.filter.List', {
                 xtype: 'datefield',
                 fieldLabel: 'Date of Game', //this is the day we want to do estimates for
                 name: 'game_date',
+                width: 230,
                 value: new Date(),   // defaults to today
                 minDate: new Date() // min date is today
             }, 
@@ -47,6 +48,9 @@ Ext.define('DFST.view.filter.List', {
                     { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'}*/
                 ]
             },            
+            {
+                html: '<hr height=10px; width=250px;/>'
+            },
             {
                 xtype: 'checkbox',
                 boxLabel: 'Include Probable Pitchers Only',
@@ -141,7 +145,7 @@ Ext.define('DFST.view.filter.List', {
                     },
                     {
                         boxLabel: 'DH',
-                        name: 'pos',
+                        name: 'pos', 
                         checked: true,
                         inputValue: 'DH'
                     }                    
@@ -149,6 +153,52 @@ Ext.define('DFST.view.filter.List', {
             },
             {
                 html: '<hr height=10px; width=250px;/>'
+            },
+            {
+                xtype: 'checkbox',
+                id: 'injured',
+                boxLabel: 'Exclude Injured',
+                checked: false
+            },
+            {
+                fieldLabel: 'Filter $',
+                xtype: 'multislider',
+                id: 'salRange',
+                width: 260,
+                values: [0, 10000],
+                increment: 500,
+                minValue: 0,
+                maxValue: 10000
+            },
+            {
+                fieldLabel: 'Filter $/Pt',
+                xtype: 'multislider',
+                id: 'cppRange',
+                width: 260,
+                values: [0, 1500],
+                increment: 50,
+                minValue: 0,
+                maxValue: 1500
+            },
+            {
+                fieldLabel: 'Filter Avg Pts',
+                xtype: 'multislider',
+                id: 'afpRange',
+                width: 260,
+                values: [0, 20],
+                increment: 1,
+                minValue: 0,
+                maxValue: 20
+            },
+            {
+                fieldLabel: 'Filter # Games',
+                xtype: 'multislider',
+                id: 'ngRange',
+                width: 260,
+                values: [0, 50],
+                increment: 5,
+                minValue: 0,
+                maxValue: 50
             }/*,
             {
                 html: '<p>Default Scoring based on Fanduel<ul>Hitters<li>1B = 1pt<li>2B = 2pts<li>3B = 3pts<li>HR = 4pts<li>RBI = 1pt<li>R = 1pt<li>BB = 1pt<li>SB = 2pts<li>HBP = 1<li>Out (calculated as at bats - hits) = -.25pt</ul><ul>Pitchers<li>W = 5pts<li>ER = -1pt<li>SO = 1pt<li>IP = 1pt*<li>* Fractional scoring per out.</ul</p>'

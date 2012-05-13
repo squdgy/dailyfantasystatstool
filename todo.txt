@@ -82,13 +82,20 @@ x add client-side paging to game grid (bottom one), 5 per page?
 x need to double check the update script, the dates don't seem to be correct - fixed bug
 x add icon for injured players
 x filter out players with no price - they must not be available to choose from on site
+x upgrade to extjs 4.1 
+x add filter for injured players
+x add commented out columns back, just as hidden
+x add sliding filter for prices
+x add sliding filter for cost per point
+x add sliding filter for avg pts & # games
+x fix loading icon on grid - extjs 4.1 bug
 
 Next.
 ==========
+add timing info - performance is starting to lag
 Find out if I can legally check the db scripts in...
 check in db scripts to github?
-upgrade to extjs 4.1 
-add filter for injured players
+add version information to ui
 
 Misc.
 ==========
@@ -98,6 +105,7 @@ more logging
 
 UI:
 ==========
+add probable pitcher icon to pitchers
 Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF, so need to catch event on radio button to set checkboxes
 get rest of stats to fill in draft day scoring, buzz draft scoring
 scrolling broken on top grid

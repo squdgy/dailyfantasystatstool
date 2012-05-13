@@ -24,6 +24,9 @@ Ext.define('DFST.controller.Filters', {
             'filterlist checkbox#probables':{
                 change: this.changeProbables
             },
+            'filterlist checkbox#injured':{
+                change: this.changeInjured
+            },
             'filterlist fieldcontainer#positions checkbox':{
                 change: this.changePositions
             },
@@ -32,10 +35,26 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist splitbutton menu':{
                 click: this.changePositionGroups
-            }                        
+            },
+            'filterlist multislider':{
+                changecomplete: this.changeRange
+            }            
         });
     },
-    
+
+    changeRange: function(slider, newValue, thumb, options) {
+        var filterId = slider.id.substring(0, slider.id.indexOf('Range'));
+        var statsStore = this.getStatsStore();
+        var min = slider.thumbs[0].value;
+        var max = slider.thumbs[1].value;
+        if (min === slider.minValue && max === slider.maxValue) {
+            statsStore.filters.removeAtKey(filterId);
+            statsStore.filter();
+            return;
+        }
+        statsStore.filter([{id: filterId, property: filterId, value: min + '|' + max}]);
+    },
+
     changeDate: function(datefield, newValue, oldValue, options) {
         var statsStore = this.getStatsStore();
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
@@ -46,9 +65,20 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filter([{id:'probables', property: 'probables', value: newValue}]);
     },
 
+    changeInjured: function(checkbox, newValue, oldValue, options) {
+        var statsStore = this.getStatsStore();
+        if (newValue) {
+            statsStore.filter([{id:'inj', property: 'inj', value: false}]);
+        } else {
+            statsStore.filters.removeAtKey('inj');
+            statsStore.filter();
+            return;
+        }
+    },
+
     changePositions: function(checkbox, newValue, oldValue, options) {
 /*
-This next line shouldn't be needed work but is a work-around for the following bug:
+This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
 http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
 */
         if (checkbox.eventsSuspended) return;
