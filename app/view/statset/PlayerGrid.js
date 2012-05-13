@@ -8,7 +8,14 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     requires: ['Ext.toolbar.Toolbar'],
     
     border: false,
-    
+
+    dockedItems: [{
+        xtype: 'pagingtoolbar',
+        dock: 'bottom',
+        store: 'PlayerStats',
+        displayInfo: true
+    }],
+
 	initComponent: function() {
 		Ext.apply(this, {
 		    store: 'PlayerStats',

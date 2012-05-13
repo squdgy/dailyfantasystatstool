@@ -75,28 +75,35 @@ x double check scoring for fanduel -diffs: jose altuve (I have him with 20 games
 x Change UI to show team code, not team id
 x deploy web service to azure
 x Fix server.js bug that doesn't send out correct content-type header (doesn't work on safari/mac) - switched to using node-static
+x accidentally double loaded some data... check for duplicate dates...
+x may not have loaded data for 5/5 or 5/6 - double check those dates
+x start saving off daily pricing data from fanduel - manual process every day, right now
+x add client-side paging to game grid (bottom one), 5 per page?
+x need to double check the update script, the dates don't seem to be correct - fixed bug
+x add icon for injured players
+x filter out players with no price - they must not be available to choose from on site
 
 Next.
 ==========
 Find out if I can legally check the db scripts in...
 check in db scripts to github?
 upgrade to extjs 4.1 
+add filter for injured players
 
 Misc.
 ==========
 add games list somewhere on page
-start saving off daily pricing data from fanduel?
 create state manager for grids
 more logging
 
 UI:
 ==========
+Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF, so need to catch event on radio button to set checkboxes
 get rest of stats to fill in draft day scoring, buzz draft scoring
-add client-side paging to game grid (bottom one), 10 per page?
 scrolling broken on top grid
 add teams filters
-add column with most recent position played in top grid
-add column with position played in bottom grid
+add column with fd position played in top grid?
+add column with position played in bottom grid?
 Add scoring column(s) dynamically
 Add model for scoring to save in db?
 need glossary or tooltips for column headers
@@ -118,7 +125,7 @@ common proxy for them to all use or fix the server side to accept the default
 
 Loader/Data:
 ===========
-need to double check the update script, the dates don't seem to be correct
+check fanduel pricing - how often does it change... can I hit same url for updates every day - NO
 recheck all stats against an external source - particularly games played and appearances for pitchers
 double check pitching stats in mlb load scripts - might be more stats we're interested in
 double check fielding stats in mlb load scripts? - don't need to yet

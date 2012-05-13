@@ -23,7 +23,8 @@ Ext.define('DFST.view.statset.Grid', {
 			columns: [{
 				text: 'Name',
 				dataIndex: 'name',
-				width: 150
+				width: 150,
+                renderer: this.formatName
 			}, {
                 text: 'Team',
 				dataIndex: 'team',
@@ -36,13 +37,13 @@ Ext.define('DFST.view.statset.Grid', {
                 renderer: this.formatOpponent,
     		}, {
                 text: 'Pos',
-				dataIndex: 'pos',
+				dataIndex: 'spos',
                 width: 40
 			},{
                 text: 'G',
 				dataIndex: 'ng',
                 width: 40
-			},{
+/*			},{
                 text: '1B',
                 dataIndex: 'x1b',
                 width: 40
@@ -82,7 +83,7 @@ Ext.define('DFST.view.statset.Grid', {
                 text: 'OUT',
                 dataIndex: 'o',
                 width: 40
-            },{
+           },{
                 text: 'W',
                 dataIndex: 'w',
                 width: 40
@@ -104,30 +105,65 @@ Ext.define('DFST.view.statset.Grid', {
                 text: 'SO',
                 dataIndex: 'so',
                 width: 40
-            },{
+*/             },{
                 text: 'SO/G',
                 dataIndex: 'aso',
                 width: 40,
                 renderer: Ext.util.Format.numberRenderer('0.00')                
-            },{
+/*            },{
                 text: 'IP',
                 dataIndex: 'ip',
                 width: 40
-            },{
+*/            },{
                 text: 'IP/G',
                 dataIndex: 'aip',
                 width: 40
             },{
-                text: 'AFP',
+                text: 'Avg Pts',
                 dataIndex: 'afp',
                 width: 60,
                 renderer: Ext.util.Format.numberRenderer('0.00')
-            }]
+            },{
+                text: '$',
+                dataIndex: 'sal',
+                width: 60
+            },{
+                text: '$/Pt',
+                dataIndex: 'cpp',
+                width: 60,
+                renderer: this.costPerPointRenderer
+            }
+            ]
 		});
 
 		this.callParent(arguments);
 	},
 
+    /**
+     * Cost Per Point renderer
+	 * @private
+	 */
+    costPerPointRenderer: function(value, p, record) {
+        if (value == -999999) {
+            return "&infin;";
+        } else {
+            return Ext.util.Format.number(value, '0');
+        }
+    },
+    
+    /**
+	 * Name renderer
+	 * @private
+	 */
+	formatName: function(value, p, record) {
+        var isInjured = record.data.inj;
+        if (isInjured) {
+            return value + "<img src='images/16px-Injury_icon_2.svg.png' />";
+        } else {
+            return value;
+        }
+	},
+    
 	/**
 	 * Team renderer
 	 * @private

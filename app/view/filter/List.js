@@ -34,7 +34,20 @@ Ext.define('DFST.view.filter.List', {
                 name: 'game_date',
                 value: new Date(),   // defaults to today
                 minDate: new Date() // min date is today
-            }, {
+            }, 
+            {
+                xtype: 'radiogroup',
+                fieldLabel: 'Scoring',
+                layout: {
+                    type: 'table',
+                    columns: 2
+                },
+                items: [
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true }/*,
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'}*/
+                ]
+            },            
+            {
                 xtype: 'checkbox',
                 boxLabel: 'Include Probable Pitchers Only',
                 id: 'probables',
@@ -90,16 +103,16 @@ Ext.define('DFST.view.filter.List', {
                         inputValue: '2B'
                     },
                     {
-                        boxLabel: 'SS',
-                        name: 'pos',
-                        checked: true,
-                        inputValue: 'SS'
-                    },
-                    {
                         boxLabel: '3B',
                         name: 'pos',
                         checked: true,
                         inputValue: '3B'
+                    },
+                    {
+                        boxLabel: 'SS',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'SS'
                     },
                     {
                         boxLabel: 'RF',
@@ -120,6 +133,13 @@ Ext.define('DFST.view.filter.List', {
                         inputValue: 'LF'
                     },
                     {
+                        boxLabel: 'OF',
+                        name: 'pos',
+                        checked: true,
+                        inputValue: 'OF',
+                        hidden: true
+                    },
+                    {
                         boxLabel: 'DH',
                         name: 'pos',
                         checked: true,
@@ -127,18 +147,6 @@ Ext.define('DFST.view.filter.List', {
                     }                    
                 ]
             },
-            {
-                xtype: 'radiogroup',
-                fieldLabel: 'Scoring',
-                layout: {
-                    type: 'table',
-                    columns: 2
-                },
-                items: [
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true }/*,
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'}*/
-                ]
-            },            
             {
                 html: '<hr height=10px; width=250px;/>'
             }/*,

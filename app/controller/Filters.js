@@ -57,12 +57,13 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
         var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var value = '';
         for (var i=0; i<positionCheckboxes.length; i++) {
-            checkbox = positionCheckboxes[i];
-            if (checkbox.getRawValue()) { //is checked
+            var checkbox2 = positionCheckboxes[i];
+            
+            if (checkbox2.getRawValue()) { //is checked
                 if (value !== '') {
                     value += ':';
                 }
-                value += checkbox.inputValue;
+                value += checkbox2.inputValue;
             }
         }
         statsStore.filter([{id:'pos', property: 'pos', value: value}]);
@@ -104,7 +105,7 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
                 checkbox = positionCheckboxes[i];                
                 checkbox.suspendEvents(false);
                 pos = checkbox.inputValue;
-                if (pos === 'LF' || pos === 'RF' || pos === 'CF' ){                 
+                if (pos === 'LF' || pos === 'RF' || pos === 'CF' || pos === 'OF' ){                 
                     checkbox.setValue(true);
                 } else {
                     checkbox.setValue(false);
