@@ -16,7 +16,17 @@ Ext.define('DFST.controller.Stats', {
     }],
 
     init: function() {
+        // Set up service URLs
+        var host = 'http://localhost:49533';    //local
+        if (location.hostname.indexOf('cloudapp.net') > 0) {
+            host = 'http://dfst.cloudapp.net';  //live azure
+        }
+//        host = 'http://localhost:81';       //local azure dev fabric 
         var statsStore = this.getStatsStore();
+        var playerStatsStore = this.getPlayerStatsStore();
+        statsStore.proxy.url = host + '/api/players/';
+        playerStatsStore.proxy.url = host + '/api/playerstats/';
+
         //TODO: Server side, we need to filter by another table
         var today = new Date();
         statsStore.filter([{id: "gameDate", property: "gameDate", 

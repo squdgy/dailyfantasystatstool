@@ -18,16 +18,16 @@ Ext.define('DFST.model.StatSet', {
         { name: 'ng', type: 'int', defaultValue: 0 },        //number of games played
         
         //hitter stats
-        { name: 'x1b', type: 'int', defaultValue: 0 },    //singles
-        { name: 'x2b', type: 'int', defaultValue: 0 },    //doubles
-        { name: 'x3b', type: 'int', defaultValue: 0 },    //triples
+        { name: 'x1b', type: 'int', defaultValue: 0 },   //singles
+        { name: 'x2b', type: 'int', defaultValue: 0 },   //doubles
+        { name: 'x3b', type: 'int', defaultValue: 0 },   //triples
         { name: 'hr', type: 'int', defaultValue: 0 },    //home runs
         { name: 'r', type: 'int', defaultValue: 0 },     //runs scored
         { name: 'rbi', type: 'int', defaultValue: 0 },   //runs batted in
         { name: 'bb', type: 'int', defaultValue: 0 },    //walks
         { name: 'sb', type: 'int', defaultValue: 0 },    //stolen bases
         { name: 'hbp', type: 'int', defaultValue: 0 },   //hit by pitch
-        { name: 'o', type: 'int', defaultValue: 0 },   //(calculated as at bats - hits)
+        { name: 'o', type: 'int', defaultValue: 0 },     //(calculated as at bats - hits)
         
         //pitcher stats
         { name: 'w', type: 'int', defaultValue: 0 },     //wins

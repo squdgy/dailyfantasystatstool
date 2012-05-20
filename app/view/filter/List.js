@@ -41,11 +41,12 @@ Ext.define('DFST.view.filter.List', {
                 fieldLabel: 'Scoring',
                 layout: {
                     type: 'table',
-                    columns: 2
+                    columns: 1
                 },
                 items: [
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true }/*,
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'}*/
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true },
+                    { boxLabel: 'DailyJoust', name: 'rb', inputValue: 'dj'}/*,
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'},*/
                 ]
             },            
             {

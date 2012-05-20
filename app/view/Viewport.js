@@ -32,7 +32,10 @@ Ext.define('DFST.view.Viewport', {
 		region: 'west',
 		width: 270,
         xtype: 'filterlist'
-	}
+	}, {
+        region: 'south',
+        html: '<footer>Daily Fantasy Stats Tool, Version 0.2, Copyright 2012 Development Partners Software</footer>'
+    }
     ]
 });
 

@@ -71,7 +71,9 @@ x fix wins header
 x add columns for pitcher averages (strike outs, earned runs, walks, innings pitched)
 x add opponent column
 x double check scoring for fanduel -diffs: jose altuve (I have him with 20 games(4.0), fd with 17 (3.7))
+
   - It is definitely wrong. The bottom grid does have 19 games and looks correct - db had duplicate rows for 4-24-2012
+x check fanduel pricing - how often does it change... can I hit same url for updates every day - NO
 x Change UI to show team code, not team id
 x deploy web service to azure
 x Fix server.js bug that doesn't send out correct content-type header (doesn't work on safari/mac) - switched to using node-static
@@ -89,13 +91,20 @@ x add sliding filter for prices
 x add sliding filter for cost per point
 x add sliding filter for avg pts & # games
 x fix loading icon on grid - extjs 4.1 bug
+x check performance issue - fixed fanduel price sql
+x 5-14 : check Scott Van Slyke prices
+x 5-15 : set up paid github account
+x check in db scripts to github
+x check in webapi to github
+x add version information to ui
+x Put the data urls in 1 location
+x refresh the Azure install
+x added in-Azure check to CorsHandler
+x write scraper for daily joust
 
 Next.
-==========
-add timing info - performance is starting to lag
-Find out if I can legally check the db scripts in...
-check in db scripts to github?
-add version information to ui
+=========
+Change filters based on the site (ranges for $, positions, etc.)
 
 Misc.
 ==========
@@ -105,14 +114,13 @@ more logging
 
 UI:
 ==========
+Add @sign to home team in top grid?
 add probable pitcher icon to pitchers
 Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF, so need to catch event on radio button to set checkboxes
 get rest of stats to fill in draft day scoring, buzz draft scoring
 scrolling broken on top grid
 add teams filters
-add column with fd position played in top grid?
 add column with position played in bottom grid?
-Add scoring column(s) dynamically
 Add model for scoring to save in db?
 need glossary or tooltips for column headers
 add scoring for other sites besides FanDuel
@@ -133,19 +141,21 @@ common proxy for them to all use or fix the server side to accept the default
 
 Loader/Data:
 ===========
-check fanduel pricing - how often does it change... can I hit same url for updates every day - NO
 recheck all stats against an external source - particularly games played and appearances for pitchers
 double check pitching stats in mlb load scripts - might be more stats we're interested in
 double check fielding stats in mlb load scripts? - don't need to yet
 Clean up logging - don't exit on errors, just log and continue
 schedule the db update scripts to run regularly
 create script to roll up player data?
+What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices?
+look at ian kinsler, he didn't play in a couple of games that I'm giving him credit for: 4/20, 5/9
+zobrist not showing up as 2nd baseman in filter, even though he's listed as 2nd baseman
 
 Maintenance:
 ===========
 add copyrights to all files
-Need to check in Web API solution
-Need to check in loader scripts
+combine webapi and load projects into one github repo?
+need backup strategy for Azure db.
 
 useful urls:
 http://stackoverflow.com/questions/7447325/how-to-set-default-sort-column-in-extjs4-grid-and-change-date-format
