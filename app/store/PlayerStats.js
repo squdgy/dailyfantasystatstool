@@ -6,7 +6,7 @@ Copyright (c) 2012 Maura Wilder
 Ext.define('DFST.store.PlayerStats', {
     extend: 'Ext.data.Store',
 
-    requires: ['Ext.data.reader.Xml'],
+    requires: ['Ext.data.reader.Json'],
 
     model: 'DFST.model.PlayerStatSet',
 

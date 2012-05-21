@@ -111,6 +111,7 @@ Misc.
 add games list somewhere on page
 create state manager for grids
 more logging
+why doesn't sitedetailsstore make ajax call when filtered()
 
 UI:
 ==========

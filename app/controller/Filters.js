@@ -1,7 +1,7 @@
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats'],
+    stores: ['Stats', 'PlayerStats', 'SiteDetails'],
     models: ['StatSet'],
     views: ['filter.List'],
     
@@ -17,6 +17,13 @@ Ext.define('DFST.controller.Filters', {
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
     // is executed on the Application
     init: function() {
+        
+        var host = 'http://localhost:49533';
+        var siteDetailsStore = this.getSiteDetailsStore();
+        siteDetailsStore.proxy.url = host + '/api/site/';
+        siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
+        siteDetailsStore.load();
+        
         this.control({
             'filterlist datefield':{
                 change: this.changeDate
@@ -160,6 +167,10 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
     
     changeScoring: function(radiobutton, newValue, oldValue, options) {
         if (newValue) {
+            var siteDetailsStore = this.getSiteDetailsStore();
+            siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: radiobutton.inputValue}]);
+            siteDetailsStore.load();
+            
             var statsStore = this.getStatsStore();
             statsStore.filter([{id:'scoring', property: 'scoring', value: radiobutton.inputValue}]);
             
