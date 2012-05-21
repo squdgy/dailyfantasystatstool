@@ -38,7 +38,7 @@ Ext.define('DFST.view.filter.List', {
             }, 
             {
                 xtype: 'radiogroup',
-                fieldLabel: 'Scoring',
+                fieldLabel: 'Scoring (resets filters below)',
                 layout: {
                     type: 'table',
                     columns: 1
@@ -57,7 +57,7 @@ Ext.define('DFST.view.filter.List', {
                 boxLabel: 'Include Probable Pitchers Only',
                 id: 'probables',
                 name: 'probables',
-                checked: false
+                checked: true
             },
             {
                 xtype: 'splitbutton',
@@ -81,14 +81,8 @@ Ext.define('DFST.view.filter.List', {
                 layout: {
                     type: 'table',
                     columns: 3
-                },
+                }/*,
                 items: [
-                    {
-                        boxLabel: 'P',
-                        name: 'pos',
-                        checked: true,
-                        inputValue: 'P'
-                    },
                     {
                         boxLabel: 'C',
                         name: 'pos',
@@ -149,8 +143,8 @@ Ext.define('DFST.view.filter.List', {
                         name: 'pos', 
                         checked: true,
                         inputValue: 'DH'
-                    }                    
-                ]
+                    }     
+                ]*/
             },
             {
                 html: '<hr height=10px; width=250px;/>'

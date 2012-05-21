@@ -101,24 +101,26 @@ x Put the data urls in 1 location
 x refresh the Azure install
 x added in-Azure check to CorsHandler
 x write scraper for daily joust
+x Change filters based on the site (ranges for $, positions, etc.)
+x Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF
 
 Next.
 =========
-Change filters based on the site (ranges for $, positions, etc.)
+5/22 - make sure hbp stats are being updated
 
 Misc.
 ==========
 add games list somewhere on page
 create state manager for grids
 more logging
-why doesn't sitedetailsstore make ajax call when filtered()
+why doesn't sitedetailsstore make ajax call when filtered()?
 
 UI:
 ==========
+need to figure out how to deal with sites where player can play multiple positions (for position filters)
 Add @sign to home team in top grid?
 add probable pitcher icon to pitchers
-Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF, so need to catch event on radio button to set checkboxes
-get rest of stats to fill in draft day scoring, buzz draft scoring
+get rest of stats to fill in daily joust scoring, draft day scoring, buzz draft scoring
 scrolling broken on top grid
 add teams filters
 add column with position played in bottom grid?
@@ -142,6 +144,7 @@ common proxy for them to all use or fix the server side to accept the default
 
 Loader/Data:
 ===========
+probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
 double check pitching stats in mlb load scripts - might be more stats we're interested in
 double check fielding stats in mlb load scripts? - don't need to yet
@@ -151,6 +154,7 @@ create script to roll up player data?
 What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices?
 look at ian kinsler, he didn't play in a couple of games that I'm giving him credit for: 4/20, 5/9
 zobrist not showing up as 2nd baseman in filter, even though he's listed as 2nd baseman
+capuano showing as started on 5/9?
 
 Maintenance:
 ===========

@@ -6,12 +6,14 @@ Ext.define('DFST.controller.Filters', {
     views: ['filter.List'],
     
     refs: [
-        {ref: 'filterList', selector: 'filterlist'},
         {ref: 'dateFilter', selector: 'filterlist datefield'},
-        {ref: 'filterData', selector: 'filterlist dataview'},
-        {ref: 'filterShow', selector: 'filtershow'},
-        {ref: 'filterForm', selector: 'filterwindow form'},
-        {ref: 'filterCombo', selector: 'filterwindow combobox'}
+        {ref: 'probablesFilter', selector: 'filterlist checkbox#probables'},
+        {ref: 'injuredFilter', selector: 'filterlist checkbox#injured'},
+        {ref: 'positionFilters', selector: 'filterlist fieldcontainer#positions'},
+        {ref: 'salRangeFilter', selector: 'filterlist multislider#salRange'},
+        {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
+        {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
+        {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -22,6 +24,7 @@ Ext.define('DFST.controller.Filters', {
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
         siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
+        siteDetailsStore.on('load', this.onScoringChanged, this);
         siteDetailsStore.load();
         
         this.control({
@@ -68,11 +71,23 @@ Ext.define('DFST.controller.Filters', {
     },
     
     changeProbables: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
+        
         var statsStore = this.getStatsStore();
         statsStore.filter([{id:'probables', property: 'probables', value: newValue}]);
     },
 
     changeInjured: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
+        
         var statsStore = this.getStatsStore();
         if (newValue) {
             statsStore.filter([{id:'inj', property: 'inj', value: false}]);
@@ -84,10 +99,10 @@ Ext.define('DFST.controller.Filters', {
     },
 
     changePositions: function(checkbox, newValue, oldValue, options) {
-/*
-This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
-http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
-*/
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
         if (checkbox.eventsSuspended) return;
         
         var statsStore = this.getStatsStore();
@@ -103,11 +118,10 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
                 value += checkbox2.inputValue;
             }
         }
-        statsStore.filter([{id:'pos', property: 'pos', value: value}]);
+        statsStore.filter([{id:'spos', property: 'spos', value: value}]);
     },
     
     changePositionGroups: function(menu, menuItem, e, options) {
-        var statsStore = this.getStatsStore();
         var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var len = positionCheckboxes.length;
         var option = menuItem.text;
@@ -130,7 +144,7 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
             for (i=0; i<len; i++) {
                 checkbox = positionCheckboxes[i];                
                 checkbox.suspendEvents(false);
-                if (checkbox.inputValue === 'P'){                 
+                if (checkbox.inputValue === 'P' || checkbox.inputValue === 'SP'){                 
                     checkbox.setValue(true);
                 } else {
                     checkbox.setValue(false);
@@ -170,16 +184,75 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
             var siteDetailsStore = this.getSiteDetailsStore();
             siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: radiobutton.inputValue}]);
             siteDetailsStore.load();
-            
-            var statsStore = this.getStatsStore();
-            statsStore.filter([{id:'scoring', property: 'scoring', value: radiobutton.inputValue}]);
-            
-            var playerStatsStore = this.getPlayerStatsStore();
-            playerStatsStore.filter([{id:'scoring', property: 'scoring', value: radiobutton.inputValue}]);
         }
     },
 
-    onLaunch: function() {
+    onScoringChanged: function(store, records, wasSuccessful, options) {
+        if (records.length === 0) return;
+        var site = records[0];
+        
+        // Change the list of position filters
+        // All positions will reset to checked
+        var posContainer = this.getPositionFilters();
+        posContainer.removeAll(true);
+        var positions = site.get('pos');
+        for (var i=0, mlen=positions.length; i < mlen; i++) {
+            var pos = positions[i];
+            posContainer.add(new Ext.form.field.Checkbox({
+                        boxLabel: pos,
+                        name: 'pos',
+                        checked: true,
+                        inputValue: pos
+                    }));
+        }
+        
+        // change the values for all range filters
+        var salFilter = this.getSalRangeFilter();
+        salFilter.setMinValue(site.get('salmin'));
+        salFilter.setMaxValue(site.get('salmax'));
+        salFilter.increment = site.get('salstep');
+        salFilter.setValue(0, site.get('salmin'));
+        salFilter.setValue(1, site.get('salmax'));
+
+        var cppFilter = this.getCppRangeFilter();
+        cppFilter.setMinValue(site.get('cppmin'));
+        cppFilter.setMaxValue(site.get('cppmax'));
+        cppFilter.increment = site.get('cppstep');
+        cppFilter.setValue(0, site.get('cppmin'));
+        cppFilter.setValue(1, site.get('cppmax'));
+
+        var afpFilter = this.getAfpRangeFilter();
+        afpFilter.setMinValue(site.get('afpmin'));
+        afpFilter.setMaxValue(site.get('afpmax'));
+        afpFilter.increment = site.get('afpstep');
+        afpFilter.setValue(0, site.get('afpmin'));
+        afpFilter.setValue(1, site.get('afpmax'));
+        
+        // set all other filters to default values
+        var probablesFilter = this.getProbablesFilter();
+        probablesFilter.suspendEvents(false);
+        probablesFilter.setValue(true);
+        probablesFilter.resumeEvents();    
+        var injuredFilter = this.getInjuredFilter();
+        injuredFilter.suspendEvents(false);
+        injuredFilter.setValue(false);
+        injuredFilter.resumeEvents();
+        var ngRangeFilter = this.getNgRangeFilter();
+        ngRangeFilter.setValue(0, ngRangeFilter.minValue);
+        ngRangeFilter.setValue(1, ngRangeFilter.maxValue);
+        
+        
+        // refresh player store
+        var statsStore = this.getStatsStore();
+        statsStore.clearFilter(true);
+        statsStore.filter([
+            {id: "gameDate", property: "gameDate", value: this.getDateFilter().value.toJSON()},
+            {id:'scoring', property: 'scoring', value: site.get('siteId')},
+            {id:'probables', property: 'probables', value: true}
+            ]);
+    },
+    
+    onLaunch: function() { //TODO: do we need to do anything in here?
         /*
         var dataview = this.getFilterData(),
             store = this.getFilterStore();
@@ -187,54 +260,6 @@ http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-t
         dataview.bindStore(store);
         dataview.getSelectionModel().select(store.getAt(0));
         */
-    },
-    
-    /**
-     * Shows the add filter dialog window
-     */
-    addFilter: function() {
-        this.getFilterWindow().show();
-    },
-    
-    /**
-     * Removes the given filter from the Filters store
-     * @param {DFST.model.Filter} filter The filter to remove
-     */
-    removeFilter: function() {
-        this.getFiltersStore().remove(this.getFilterData().getSelectionModel().getSelection()[0]);
-    },
-    
-    /**
-     * @private
-     * Creates a new filter in the store based on a given url. First validates that the filter is well formed
-     * using DFST.lib.FilterValidator.
-     * @param {String} name The name of the Filter to create
-     * @param {String} url The url of the Filter to create
-     */
-    createFilter: function() {
-        var win   = this.getFilterWindow(),
-            form  = this.getFilterForm(),
-            combo = this.getFilterCombo(),
-            store = this.getFiltersStore(),
-            filter  = this.getFilterModel().create({
-                name: combo.getDisplayValue(),
-                url: combo.getValue()
-            });
-
-        form.setLoading({
-            msg: 'Validating filter...'
-        });
-        
-        DFST.lib.FilterValidator.validate(filter, {
-            success: function() {
-                store.add(filter);
-                form.setLoading(false);
-                win.hide();
-            },
-            failure: function() {
-                form.setLoading(false);
-                form.down('[name=filter]').markInvalid('The URL specified is not a valid RSS2 filter.');
-            }
-        });
     }
+    
 });
