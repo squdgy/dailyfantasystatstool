@@ -103,6 +103,8 @@ x added in-Azure check to CorsHandler
 x write scraper for daily joust
 x Change filters based on the site (ranges for $, positions, etc.)
 x Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF
+x write scraper for draft day
+x get rest of stats to fill in daily joust scoring, draft day scoring
 
 Next.
 =========
@@ -120,7 +122,7 @@ UI:
 need to figure out how to deal with sites where player can play multiple positions (for position filters)
 Add @sign to home team in top grid?
 add probable pitcher icon to pitchers
-get rest of stats to fill in daily joust scoring, draft day scoring, buzz draft scoring
+get rest of stats to fill in buzz draft scoring
 scrolling broken on top grid
 add teams filters
 add column with position played in bottom grid?

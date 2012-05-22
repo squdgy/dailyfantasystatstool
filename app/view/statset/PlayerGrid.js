@@ -85,11 +85,13 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             },{
                 text: 'IP',
                 dataIndex: 'ip',
-                width: 40
+                width: 40,
+                renderer: Ext.util.Format.numberRenderer('0.0')
             },{
                 text: 'FP',
                 dataIndex: 'fp',
-                width: 60
+                width: 60,
+                renderer: Ext.util.Format.numberRenderer('0.00')
             }]
 		});
 
