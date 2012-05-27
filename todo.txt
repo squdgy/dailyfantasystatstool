@@ -105,33 +105,47 @@ x Change filters based on the site (ranges for $, positions, etc.)
 x Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF
 x write scraper for draft day
 x get rest of stats to fill in daily joust scoring, draft day scoring
+x add probable pitcher icon to pitchers
+x zobrist not showing up as 2nd baseman in filter, even though he's listed as 2nd baseman - now shows main position from site
+x Add $formatting to salary and cpp columns
+x add scoring for other sites besides FanDuel
+x look at ian kinsler, he didn't play in a couple of games that I'm giving him credit for: 4/20, 5/9
+ -- interesting... game was postponed, how do I find those and delete the data?! - wrote new script, update the update script
+x Jerry Hairston Jr. & Tony Gwynn Jr. at dailyjoust
+x Manual update for Cole DeVries/De Vries
+x 5/25 - check updates of eliasids for hairston Jr. and gwynn Jr.
+x scrape and include starting lineup data & filters
+x duplicate player 133225 on 5/24 - bug in load lineups script,fixed
 
 Next.
 =========
-5/22 - make sure hbp stats are being updated
+5/25 - keep an eye on rainouts and make sure update_db.pl updates them
+change all load scripts to update the whenupdated table
 
 Misc.
 ==========
+export top grid to csv
 add games list somewhere on page
 create state manager for grids
 more logging
 why doesn't sitedetailsstore make ajax call when filtered()?
+Can't pick a player that has no stats yet, since they don't show up
 
 UI:
 ==========
 need to figure out how to deal with sites where player can play multiple positions (for position filters)
 Add @sign to home team in top grid?
-add probable pitcher icon to pitchers
 get rest of stats to fill in buzz draft scoring
 scrolling broken on top grid
 add teams filters
 add column with position played in bottom grid?
 Add model for scoring to save in db?
 need glossary or tooltips for column headers
-add scoring for other sites besides FanDuel
 need player filters - use generic grid filters?
 Change theme colors
-use Ext.ux.grid.FiltersFeatureView for grid filters??
+Clean up header for bottom grid - full team name, full mlb position name, other?
+need reset filters button
+need filter summary (or summaries?)
 
 NodeJS:
 ===========
@@ -146,17 +160,26 @@ common proxy for them to all use or fix the server side to accept the default
 
 Loader/Data:
 ===========
+complete buzzdraft scraper/scoring
 probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
-double check pitching stats in mlb load scripts - might be more stats we're interested in
-double check fielding stats in mlb load scripts? - don't need to yet
 Clean up logging - don't exit on errors, just log and continue
 schedule the db update scripts to run regularly
 create script to roll up player data?
 What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices?
-look at ian kinsler, he didn't play in a couple of games that I'm giving him credit for: 4/20, 5/9
-zobrist not showing up as 2nd baseman in filter, even though he's listed as 2nd baseman
 capuano showing as started on 5/9?
+2 Chris Carpenters - How to tell difference in data loader scripts
+fanduel - David Winfree, dailyjoust too
+Cole DeVries - MLB has him as "Cole De Vries"
+draft day - Nate Adcock?
+buzz draft: need a couple more stats for pitcher, need to figure out how to post and not get flagged for CSRF
+add use strict;,use warnings; to all perl scripts
+tim hudson 5/23 - didn't pitch?
+FanDuel/no ids/ - Cole Devries, David Winfree, Fausto Carmona, Steve Hill, William Smith
+Dailyjoust/no ids - David Winfree
+draftday/no ids - stu pomeranz, nate adcock
+
+
 
 Maintenance:
 ===========

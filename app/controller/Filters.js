@@ -1,7 +1,7 @@
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats', 'SiteDetails'],
+    stores: ['Stats', 'PlayerStats', 'SiteDetails', 'Games'],
     models: ['StatSet'],
     views: ['filter.List'],
     
@@ -13,7 +13,9 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'salRangeFilter', selector: 'filterlist multislider#salRange'},
         {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
         {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
-        {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'}
+        {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'},
+        {ref: 'notInLineupFilter', selector: 'filterlist checkbox#notinlineup'},
+        {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -21,12 +23,23 @@ Ext.define('DFST.controller.Filters', {
     init: function() {
         
         var host = 'http://localhost:49533';
+        if (location.hostname.indexOf('cloudapp.net') > 0) {
+            host = 'http://dfst.cloudapp.net';  //live azure
+        }
+        
+        // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
         siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
         siteDetailsStore.on('load', this.onScoringChanged, this);
         siteDetailsStore.load();
         
+        // Set things up to update games filters when we switch sites
+        var gamesStore = this.getGamesStore();
+        gamesStore.proxy.url = host + '/api/games/';
+        gamesStore.on('load', this.onGamesChanged, this);
+        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()}]);
+
         this.control({
             'filterlist datefield':{
                 change: this.changeDate
@@ -36,6 +49,12 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist checkbox#injured':{
                 change: this.changeInjured
+            },
+            'filterlist checkbox#notinlineup':{
+                change: this.changeByLineup
+            },
+            'filterlist fieldcontainer#battingorderFilter checkbox':{
+                change: this.changeLineupSpots
             },
             'filterlist fieldcontainer#positions checkbox':{
                 change: this.changePositions
@@ -48,10 +67,50 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist multislider':{
                 changecomplete: this.changeRange
-            }            
+            },
+            'filterlist fieldcontainer#games button':{
+                click: this.changeGames
+            }/*, use a go button to change the filter on games, instead of this
+            'filterlist fieldcontainer#games checkbox':{
+                change: this.changeGames
+            }*/          
         });
     },
 
+    changeGames: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
+        
+        var statsStore = this.getStatsStore();
+        var gameCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#games checkbox');
+        var value = '';
+        var allChecked = true;
+        for (var i=0; i<gameCheckboxes.length; i++) {
+            var checkbox2 = gameCheckboxes[i];
+            
+            if (checkbox2.getRawValue()) { //is checked
+                if (value !== '') {
+                    value += ':';
+                }
+                var gameId = checkbox2.inputValue;
+                var team1 = this.getTeamCode(gameId.substring(11, 14));
+                var team2 = this.getTeamCode(gameId.substring(18, 21));
+                value += team1 + ":" + team2;
+            } else {
+                allChecked = false;
+            }
+        }
+        if (allChecked) {
+            statsStore.filters.removeAtKey('team');
+            statsStore.filter();
+        } else {
+            statsStore.filter([{id:'team', property: 'team', value: value}]);
+        }
+    },
+        
     changeRange: function(slider, newValue, thumb, options) {
         var filterId = slider.id.substring(0, slider.id.indexOf('Range'));
         var statsStore = this.getStatsStore();
@@ -68,6 +127,8 @@ Ext.define('DFST.controller.Filters', {
     changeDate: function(datefield, newValue, oldValue, options) {
         var statsStore = this.getStatsStore();
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+        var gamesStore = this.getGamesStore();
+        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
     },
     
     changeProbables: function(checkbox, newValue, oldValue, options) {
@@ -97,7 +158,63 @@ Ext.define('DFST.controller.Filters', {
             return;
         }
     },
+    
+    /* Hide or show players that are known to be in or out of the day's starting lineup */
+    changeByLineup: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
 
+        this.changeLineupSpots(checkbox, newValue, oldValue, options);
+        return;
+        var statsStore = this.getStatsStore();
+        if (newValue) {
+            var value = '1:2:3:4:5:6:7:8:9:10'; //all spots in lineup
+            statsStore.filter([{id:'border', property: 'border', value: value}]);
+        } else {
+            statsStore.filters.removeAtKey('border');
+            statsStore.filter();
+            return;
+        }
+    },
+    
+    /* Hide or show players that are batting in a particular spot in the lineup (1-9) */
+    changeLineupSpots: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
+
+        var statsStore = this.getStatsStore();
+        var bOrderCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#battingorderFilter checkbox');
+        var filteringOutNonStarters = this.getNotInLineupFilter().getRawValue();      
+        var value = filteringOutNonStarters ? '' : 0;
+        for (var i=0; i<bOrderCheckboxes.length; i++) {
+            var checkbox2 = bOrderCheckboxes[i];
+            
+            if (checkbox2.getRawValue()) { //is checked
+                if (value !== '') {
+                    value += ':';
+                }
+                value += checkbox2.inputValue;
+            }
+        }
+        if (value !== '') {
+            value += ':';
+        }
+        value += "10"; // always include pitcher
+        
+        if (value === '0:1:2:3:4:5:6:7:8:9:10') {
+            statsStore.filters.removeAtKey('border');
+            statsStore.filter();
+            return;
+        } 
+        statsStore.filter([{id:'border', property: 'border', value: value}]);
+    },
+    
     changePositions: function(checkbox, newValue, oldValue, options) {
         /*
         This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
@@ -206,7 +323,7 @@ Ext.define('DFST.controller.Filters', {
                     }));
         }
         
-        // change the values for all range filters
+        // change the values for all value range filters
         var salFilter = this.getSalRangeFilter();
         salFilter.setMinValue(site.get('salmin'));
         salFilter.setMaxValue(site.get('salmax'));
@@ -228,6 +345,7 @@ Ext.define('DFST.controller.Filters', {
         afpFilter.setValue(0, site.get('afpmin'));
         afpFilter.setValue(1, site.get('afpmax'));
         
+/*        
         // set all other filters to default values
         var probablesFilter = this.getProbablesFilter();
         probablesFilter.suspendEvents(false);
@@ -241,15 +359,93 @@ Ext.define('DFST.controller.Filters', {
         ngRangeFilter.setValue(0, ngRangeFilter.minValue);
         ngRangeFilter.setValue(1, ngRangeFilter.maxValue);
         
-        
+        // reset the filters for batting order
+        var notinlineupFilter = this.getNotInLineupFilter();
+        notinlineupFilter.suspendEvents(false);
+        notinlineupFilter.setValue(false);
+        notinlineupFilter.resumeEvents();
+        var bOrderCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#battingorderFilter checkbox');
+        for (i=0; i<bOrderCheckboxes.length; i++) {
+            var cb = bOrderCheckboxes[i];
+            cb.suspendEvents(false);
+            cb.setValue(true);
+            cb.resumeEvents();
+        }        
+*/        
         // refresh player store
         var statsStore = this.getStatsStore();
-        statsStore.clearFilter(true);
+        statsStore.filters.removeAtKey('pos');
+        statsStore.filters.removeAtKey('afp');
+        statsStore.filters.removeAtKey('cpp');
+        statsStore.filters.removeAtKey('sal');
+                
         statsStore.filter([
             {id: "gameDate", property: "gameDate", value: this.getDateFilter().value.toJSON()},
-            {id:'scoring', property: 'scoring', value: site.get('siteId')},
-            {id:'probables', property: 'probables', value: true}
+            {id:'scoring', property: 'scoring', value: site.get('siteId')}
             ]);
+    },
+    
+    onGamesChanged: function(store, records, wasSuccessful, options) {
+        if (records.length === 0) return;
+        // Change the list of all games
+        // All games will reset to checked
+        var gamesContainer = this.getGamesFilters();
+        gamesContainer.removeAll(true);
+        for (var i=0, mlen=records.length; i < mlen; i++) {
+            var game = records[i];
+            var gameTime = game.get('gtime');
+            gameTime = Ext.Date.parse(gameTime, 'MS');
+            gameTime = Ext.Date.format(gameTime, 'g:i a');
+            var alin = game.get('alin') ? '*' : '';
+            var hlin = game.get('hlin') ? '*' : '';
+            var gameString = this.getTeamCode(game.get('away')) + 
+                alin + ' @' + this.getTeamCode(game.get('home')) + 
+                hlin + ' ' + gameTime;
+            gamesContainer.add(new Ext.form.field.Checkbox({
+                        boxLabel: gameString.toUpperCase(),
+                        name: 'game',
+                        checked: true,
+                        inputValue: game.get('gid')
+                    }));
+        }
+        gamesContainer.add(Ext.create('Ext.Button', {
+            text: 'Apply Game Filters',
+            id: 'gamesGo'
+        }));
+        
+        //TODO: set a timer to get updates to lineup data periodically
+    },
+    
+    /* a team id is the 3 character identifier used by mlb;
+    a team code is a more recognizeable 2-3 character identifier used at many sites */
+    getTeamCode: function(teamId) {
+        switch (teamId.toUpperCase())
+        {
+            case "ANA":
+                return "laa";
+            case "CHA":
+                return "cws";
+            case "CHN":
+                return "chc";
+            case "KCA":
+                return "kc";
+            case "LAN":
+                return "lad";
+            case "NYA":
+                return "nyy";
+            case "NYN":
+                return "nym";
+            case "SDN":
+                return "sd";
+            case "SFN":
+                return "sf";
+            case "TBA":
+                return "tb";
+            case "WAS":
+                return "wsh";
+            default:
+                return teamId.toLowerCase();
+        }
     },
     
     onLaunch: function() { //TODO: do we need to do anything in here?

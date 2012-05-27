@@ -20,79 +20,73 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 		Ext.apply(this, {
 		    store: 'PlayerStats',
 
-			columns: [{
-                text: 'Date',
-				dataIndex: 'gd',
-                renderer: Ext.util.Format.dateRenderer('m-d'),
-                width: 120
-			},{
-                text: 'Opp.',
-				dataIndex: 'opp',
-                renderer: this.formatOpponent,
-                width: 120
-			},{
-                text: '1B',
-                dataIndex: 'x1b',
-                width: 40
-            }, {
-                text: '2B',
-                dataIndex: 'x2b',
-                width: 40
-            },{
-                text: '3B',
-                dataIndex: 'x3b',
-                width: 40
-            },{
-                text: 'HR',
-				dataIndex: 'hr',
-                width: 40
-			},{
-                text: 'R',
-                dataIndex: 'r',
-                width: 40
-            },{
-                text: 'RBI',
-                dataIndex: 'rbi',
-                width: 40
-            },{
-                text: 'BB',
-                dataIndex: 'bb',
-                width: 40
-            },{
-                text: 'SB',
-                dataIndex: 'sb',
-                width: 40
-            },{
-                text: 'HBP',
-                dataIndex: 'hbp',
-                width: 40
-            },{
-                text: 'OUT',
-                dataIndex: 'o',
-                width: 40
-            },{
-                text: 'W',
-                dataIndex: 'w',
-                width: 40
-            },{
-                text: 'ER',
-                dataIndex: 'er',
-                width: 40
-            },{
-                text: 'SO',
-                dataIndex: 'so',
-                width: 40
-            },{
-                text: 'IP',
-                dataIndex: 'ip',
-                width: 40,
-                renderer: Ext.util.Format.numberRenderer('0.0')
-            },{
-                text: 'FP',
-                dataIndex: 'fp',
-                width: 60,
-                renderer: Ext.util.Format.numberRenderer('0.00')
-            }]
+			columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items:
+                [{
+                    text: 'Date',
+                    dataIndex: 'gd',
+                    renderer: Ext.util.Format.dateRenderer('m-d'),
+                    width: 60
+    			},{
+                    text: 'Opp.',
+                    dataIndex: 'opp',
+                    renderer: this.formatOpponent,
+                    width: 60
+                },{
+                    text: '1B',
+                    dataIndex: 'x1b'
+                }, {
+                    text: '2B',
+                    dataIndex: 'x2b'
+                },{
+                    text: '3B',
+                    dataIndex: 'x3b'
+                },{
+                    text: 'HR',
+                    dataIndex: 'hr'
+                },{
+                    text: 'R',
+                    dataIndex: 'r'
+                },{
+                    text: 'RBI',
+                    dataIndex: 'rbi'
+                },{
+                    text: 'BB',
+                    dataIndex: 'bb'
+                },{
+                    text: 'SB',
+                    dataIndex: 'sb'
+                },{
+                    text: 'HBP',
+                    dataIndex: 'hbp'
+                },{
+                    text: 'OUT',
+                    dataIndex: 'o'
+                },{
+                    text: 'W',
+                    dataIndex: 'w'
+                },{
+                    text: 'ER',
+                    dataIndex: 'er'
+                },{
+                    text: 'SO',
+                    dataIndex: 'so'
+                },{
+                    text: 'IP',
+                    dataIndex: 'ip',
+                    renderer: Ext.util.Format.numberRenderer('0.0')
+                },{
+                    text: 'FP',
+                    dataIndex: 'fp',
+                    width: 60,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                }]
+            }
 		});
 
 		this.callParent(arguments);
@@ -104,7 +98,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 	 */
 	formatOpponent: function(value, p, record) {
         var isHome = record.data.isHome;
-        return isHome ? record.data.opp : '@' + record.data.opp;
+        return (isHome ? record.data.opp : '@' + record.data.opp).toUpperCase();
 	}
 
 });

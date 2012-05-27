@@ -46,7 +46,9 @@ Ext.define('DFST.model.StatSet', {
         { name: 'sal', type: 'float', defaultValue: 0.0},  //salary at site
         { name: 'cpp', type: 'float', defaultValue: 0.0},  //cost per point
         { name: 'spos', type: 'string', defaultValue: '' },//position (as site reports it)
-        { name: 'inj', type: 'boolean', defaultValue: false}  //whether player is injured?
+        { name: 'inj', type: 'boolean', defaultValue: false},  //whether player is injured?
+        { name: 'pp', type: 'boolean', defaultValue: false},  //whether player is probable starter?
         
+        { name: 'border', type: 'int', defaultValue: 0}  //batting order if known, else 0
     ]
 });

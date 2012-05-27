@@ -2,7 +2,7 @@
 Ext.Loader.setConfig({ 
     enabled: true,
     paths: {
-        Ext: 'ext-4.0.7-gpl/src'
+        Ext: 'ext-4.1.0/src'
     }
 });
 
@@ -12,7 +12,7 @@ Ext.application({
 
     // Set up paths for custom classes
     paths: {
-          'Ext.ux': 'ext-4.0.7-gpl/examples/ux'
+          'Ext.ux': 'ext-4.1.0/examples/ux'
     },
 
     // Define all the controllers that should initialize at boot up of your application

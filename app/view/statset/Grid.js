@@ -20,143 +20,153 @@ Ext.define('DFST.view.statset.Grid', {
 		Ext.apply(this, {
 		    store: 'Stats',
 
-			columns: [{
-				text: 'Name',
-				dataIndex: 'name',
-				width: 150,
-                renderer: this.formatName
-			}, {
-                text: 'Team',
-				dataIndex: 'team',
-                width: 50,
-				renderer: this.formatTeam
-    		}, {
-                text: 'OPP',
-				dataIndex: 'opp',
-                width: 60,
-                renderer: this.formatOpponent,
-    		}, {
-                text: 'Pos',
-				dataIndex: 'spos',
-                width: 40
-			},{
-                text: 'G',
-				dataIndex: 'ng',
-                width: 40
-			},{
-                text: '1B',
-                dataIndex: 'x1b',
-                width: 40,
-                hidden: true
-            }, {
-                text: '2B',
-                dataIndex: 'x2b',
-                width: 40,
-                hidden: true
-            },{
-                text: '3B',
-                dataIndex: 'x3b',
-                width: 40,
-                hidden: true
-            },{
-                text: 'HR',
-				dataIndex: 'hr',
-                width: 40,
-                hidden: true
-			},{
-                text: 'R',
-                dataIndex: 'r',
-                width: 40,
-                hidden: true
-            },{
-                text: 'RBI',
-                dataIndex: 'rbi',
-                width: 40,
-                hidden: true
-            },{
-                text: 'BB',
-                dataIndex: 'bb',
-                width: 40,
-                hidden: true
-            },{
-                text: 'SB',
-                dataIndex: 'sb',
-                width: 40,
-                hidden: true
-            },{
-                text: 'HBP',
-                dataIndex: 'hbp',
-                width: 40,
-                hidden: true
-            },{
-                text: 'OUT',
-                dataIndex: 'o',
-                width: 40,
-                hidden: true
-           },{
-                text: 'W',
-                dataIndex: 'w',
-                width: 40,
-                hidden: true
-            },{
-                text: 'W/G',
-                dataIndex: 'aw',
-                width: 40,
-                hidden: true,
-                renderer: Ext.util.Format.numberRenderer('0.00')
-            },{
-                text: 'ER',
-                dataIndex: 'er',
-                width: 40,
-                hidden: true
-            },{
-                text: 'ER/G',
-                dataIndex: 'aer',
-                width: 40,
-                hidden: true,
-                renderer: Ext.util.Format.numberRenderer('0.00')
-            },{
-                text: 'SO',
-                dataIndex: 'so',
-                width: 40,
-                hidden: true
-            },{
-                text: 'SO/G',
-                dataIndex: 'aso',
-                width: 40,
-                hidden: true,
-                renderer: Ext.util.Format.numberRenderer('0.00')                
-            },{
-                text: 'IP',
-                dataIndex: 'ip',
-                width: 40,
-                hidden: true
-            },{
-                text: 'IP/G',
-                dataIndex: 'aip',
-                width: 40,
-                hidden: true
-            },{
-                text: 'Avg Pts',
-                dataIndex: 'afp',
-                width: 60,
-                renderer: Ext.util.Format.numberRenderer('0.00')
-            },{
-                text: '$',
-                dataIndex: 'sal',
-                width: 60
-            },{
-                text: '$/Pt',
-                dataIndex: 'cpp',
-                width: 60,
-                renderer: this.costPerPointRenderer
-            }
-            ]
+			columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: 'Team',
+                    dataIndex: 'team',
+                    align: 'left',
+                    width: 50,
+                    renderer: this.formatTeam
+                },{
+                    text: 'OPP',
+                    dataIndex: 'opp',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatOpponent
+                },{
+                    text: 'Pos',
+                    dataIndex: 'spos',
+                    align: 'left'
+                },{
+                    text: 'B-Order',
+                    dataIndex: 'border',
+                    renderer: this.formatBattingOrder
+                },{
+                    text: 'G',
+                    dataIndex: 'ng'
+                },{
+                    text: '1B',
+                    dataIndex: 'x1b',
+                    hidden: true
+                },{
+                    text: '2B',
+                    dataIndex: 'x2b',
+                    hidden: true
+                },{
+                    text: '3B',
+                    dataIndex: 'x3b',
+                    hidden: true
+                },{
+                    text: 'HR',
+                    dataIndex: 'hr',
+                    hidden: true
+                },{
+                    text: 'R',
+                    dataIndex: 'r',
+                    hidden: true
+                },{
+                    text: 'RBI',
+                    dataIndex: 'rbi',
+                    hidden: true
+                },{
+                    text: 'BB',
+                    dataIndex: 'bb',
+                    hidden: true
+                },{
+                    text: 'SB',
+                    dataIndex: 'sb',
+                    hidden: true
+                },{
+                    text: 'HBP',
+                    dataIndex: 'hbp',
+                    hidden: true
+                },{
+                    text: 'OUT',
+                    dataIndex: 'o',
+                    hidden: true
+               },{
+                    text: 'W',
+                    dataIndex: 'w',
+                    hidden: true
+                },{
+                    text: 'W/G',
+                    dataIndex: 'aw',
+                    hidden: true,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'ER',
+                    dataIndex: 'er',
+                    hidden: true
+                },{
+                    text: 'ER/G',
+                    dataIndex: 'aer',
+                    hidden: true,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'SO',
+                    dataIndex: 'so',
+                    hidden: true
+                },{
+                    text: 'SO/G',
+                    dataIndex: 'aso',
+                    hidden: true,
+                    renderer: Ext.util.Format.numberRenderer('0.00')                
+                },{
+                    text: 'IP',
+                    dataIndex: 'ip',
+                    hidden: true
+                },{
+                    text: 'IP/G',
+                    dataIndex: 'aip',
+                    hidden: true
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    renderer: this.moneyRenderer
+                },{
+                    text: '$/Pt',
+                    dataIndex: 'cpp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
+                }
+                ]
+			}
 		});
 
 		this.callParent(arguments);
 	},
 
+    formatBattingOrder: function(value, p, record) {
+        if (value === 0) {
+            return "";
+        } else if (value === 10) { //pitcher
+            return "N/A";
+        } else {
+            return value;
+        }
+    },
+    
+    moneyRenderer: function(value, p, record) {
+        return Ext.util.Format.currency(value, '$', -1); 
+    },
+    
     /**
      * Cost Per Point renderer
      * @private
@@ -165,7 +175,7 @@ Ext.define('DFST.view.statset.Grid', {
         if (value === 999999) {
             return "&infin;";
         } else {
-            return Ext.util.Format.number(value, '0');
+            return this.moneyRenderer(value, p, record);
         }
     },
     
@@ -175,8 +185,13 @@ Ext.define('DFST.view.statset.Grid', {
      */
 	formatName: function(value, p, record) {
         var isInjured = record.data.inj;
+        var isProbable = record.data.pp;
+        value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
+            record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
         if (isInjured) {
-            return value + "<img src='images/16px-Injury_icon_2.svg.png' />";
+            return value + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator"/>';
+        } else if (isProbable) {
+            return value + '<img src="images/starting_pitcher.png" class="icon-indicator"/>';
         } else {
             return value;
         }
@@ -196,7 +211,7 @@ Ext.define('DFST.view.statset.Grid', {
      */
 	formatOpponent: function(value, p, record) {
         var isHome = record.data.isHome;
-        return isHome ? record.data.opp : '@' + record.data.opp;
+        return (isHome ? record.data.opp : '@' + record.data.opp).toUpperCase();
 	}
     
 });
