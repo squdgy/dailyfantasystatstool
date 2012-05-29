@@ -22,24 +22,6 @@ Ext.define('DFST.controller.Filters', {
     // is executed on the Application
     init: function() {
         
-        var host = 'http://localhost:49533';
-        if (location.hostname.indexOf('cloudapp.net') > 0) {
-            host = 'http://dfst.cloudapp.net';  //live azure
-        }
-        
-        // Set things up to update filters when we switch sites
-        var siteDetailsStore = this.getSiteDetailsStore();
-        siteDetailsStore.proxy.url = host + '/api/site/';
-        siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
-        siteDetailsStore.on('load', this.onScoringChanged, this);
-        siteDetailsStore.load();
-        
-        // Set things up to update games filters when we switch sites
-        var gamesStore = this.getGamesStore();
-        gamesStore.proxy.url = host + '/api/games/';
-        gamesStore.on('load', this.onGamesChanged, this);
-        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()}]);
-
         this.control({
             'filterlist datefield':{
                 change: this.changeDate
@@ -381,7 +363,8 @@ Ext.define('DFST.controller.Filters', {
                 
         statsStore.filter([
             {id: "gameDate", property: "gameDate", value: this.getDateFilter().value.toJSON()},
-            {id:'scoring', property: 'scoring', value: site.get('siteId')}
+            {id:'scoring', property: 'scoring', value: site.get('siteId')},
+            {id: 'probables', property: 'probables', value: this.getProbablesFilter().value}
             ]);
     },
     
@@ -390,6 +373,17 @@ Ext.define('DFST.controller.Filters', {
         // Change the list of all games
         // All games will reset to checked
         var gamesContainer = this.getGamesFilters();
+        
+        // save list of checked games, so we can recheck them
+        var checkedGames = {};
+        var len = gamesContainer.items.length;
+        for (var i = 0; i < len; i++) {
+            var item = gamesContainer.items.getAt(i);
+            if (item.xtype === 'checkboxfield' && item.getValue()) { //is checked
+                checkedGames[item.inputValue] = 1;
+            }
+        }
+        
         gamesContainer.removeAll(true);
         for (var i=0, mlen=records.length; i < mlen; i++) {
             var game = records[i];
@@ -401,19 +395,19 @@ Ext.define('DFST.controller.Filters', {
             var gameString = this.getTeamCode(game.get('away')) + 
                 alin + ' @' + this.getTeamCode(game.get('home')) + 
                 hlin + ' ' + gameTime;
+            var gameId = game.get('gid');
+            var isChecked = len === 0 ? true : checkedGames[gameId] === 1; // true on first load of games list
             gamesContainer.add(new Ext.form.field.Checkbox({
                         boxLabel: gameString.toUpperCase(),
                         name: 'game',
-                        checked: true,
-                        inputValue: game.get('gid')
+                        checked: isChecked,
+                        inputValue: gameId
                     }));
         }
         gamesContainer.add(Ext.create('Ext.Button', {
             text: 'Apply Game Filters',
             id: 'gamesGo'
         }));
-        
-        //TODO: set a timer to get updates to lineup data periodically
     },
     
     /* a team id is the 3 character identifier used by mlb;
@@ -448,14 +442,36 @@ Ext.define('DFST.controller.Filters', {
         }
     },
     
-    onLaunch: function() { //TODO: do we need to do anything in here?
-        /*
-        var dataview = this.getFilterData(),
-            store = this.getFilterStore();
-            
-        dataview.bindStore(store);
-        dataview.getSelectionModel().select(store.getAt(0));
-        */
+    onLaunch: function() {
+        var host = 'http://localhost:49533';
+        if (location.hostname.indexOf('cloudapp.net') > 0) {
+            host = 'http://dfst.cloudapp.net';  //live azure
+        }
+        
+        // Set things up to update filters when we switch sites
+        var siteDetailsStore = this.getSiteDetailsStore();
+        siteDetailsStore.proxy.url = host + '/api/site/';
+        siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
+        siteDetailsStore.on('load', this.onScoringChanged, this);
+        siteDetailsStore.load();
+        
+        // Set things up to update games filters when we switch sites
+        var gamesStore = this.getGamesStore();
+        gamesStore.proxy.url = host + '/api/games/';
+        gamesStore.on('load', this.onGamesChanged, this);
+        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()}]);
+        
+        // Set up a timer to update the games store periodically, so we can
+        // show a visual indicator that the lineup is ready
+        var task = {
+            run: function(){
+                var gamesStore = this.getGamesStore();
+                gamesStore.load();
+            },
+            scope: this,
+            interval: 1000 * 60 // every 60 seconds
+        };
+        Ext.TaskManager.start(task);        
     }
     
 });

@@ -155,7 +155,8 @@ Ext.define('DFST.view.filter.List', {
                         ]                
                     },            
                     {
-                        html: '<article>Notes: Starting lineups are updated periodically.<br/>The checkbox that excludes them may hide players<br/> that actually do play. <br/>TODO: Indicate which teams have known starting lineups.</article>'
+                        width: '100%',
+                        html: 'Notes: Starting lineups are updated periodically.<br/>To see which teams\' lineups are in, look at the Games Filters.<br/>Teams with lineups are marked with a *.'
                 }]
             },
             {

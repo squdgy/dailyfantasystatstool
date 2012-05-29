@@ -116,24 +116,34 @@ x Manual update for Cole DeVries/De Vries
 x 5/25 - check updates of eliasids for hairston Jr. and gwynn Jr.
 x scrape and include starting lineup data & filters
 x duplicate player 133225 on 5/24 - bug in load lineups script,fixed
+x add games list somewhere on page
+x add use strict;,use warnings; to all perl scripts
+x What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices? - changed his name to Roberto Hernandez in fanduel tables
+x Cole DeVries - MLB has him as "Cole De Vries" - Change his name in all site tables to De Vries
+
 
 Next.
 =========
 5/25 - keep an eye on rainouts and make sure update_db.pl updates them
 change all load scripts to update the whenupdated table
+make call to check lineup status 1/minute?
+5.29 - draft day - Nate Adcock?
+5.29 - draftday/no ids - stu pomeranz, nate adcock
 
 Misc.
 ==========
+need to check out project to new area -to make sure I can do everything I need to
 export top grid to csv
-add games list somewhere on page
 create state manager for grids
 more logging
 why doesn't sitedetailsstore make ajax call when filtered()?
 Can't pick a player that has no stats yet, since they don't show up
+need to figure out how to deal with sites where player can play multiple positions (for position filters)
 
 UI:
 ==========
-need to figure out how to deal with sites where player can play multiple positions (for position filters)
+add time of update for starting lineup
+better favicon
 Add @sign to home team in top grid?
 get rest of stats to fill in buzz draft scoring
 scrolling broken on top grid
@@ -160,26 +170,19 @@ common proxy for them to all use or fix the server side to accept the default
 
 Loader/Data:
 ===========
+lineups for doubleheaders? 5/28/2012
 complete buzzdraft scraper/scoring
 probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
 Clean up logging - don't exit on errors, just log and continue
 schedule the db update scripts to run regularly
 create script to roll up player data?
-What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices?
-capuano showing as started on 5/9?
-2 Chris Carpenters - How to tell difference in data loader scripts
-fanduel - David Winfree, dailyjoust too
-Cole DeVries - MLB has him as "Cole De Vries"
-draft day - Nate Adcock?
 buzz draft: need a couple more stats for pitcher, need to figure out how to post and not get flagged for CSRF
-add use strict;,use warnings; to all perl scripts
+capuano showing as started on 5/9?
 tim hudson 5/23 - didn't pitch?
-FanDuel/no ids/ - Cole Devries, David Winfree, Fausto Carmona, Steve Hill, William Smith
-Dailyjoust/no ids - David Winfree
-draftday/no ids - stu pomeranz, nate adcock
+2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
 
-
+David Winfree: eliasId = 456406 (minor league player - can ignore for now)
 
 Maintenance:
 ===========
