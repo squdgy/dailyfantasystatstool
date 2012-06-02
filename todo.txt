@@ -120,15 +120,14 @@ x add games list somewhere on page
 x add use strict;,use warnings; to all perl scripts
 x What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices? - changed his name to Roberto Hernandez in fanduel tables
 x Cole DeVries - MLB has him as "Cole De Vries" - Change his name in all site tables to De Vries
-
+x make call to check lineup status 1/minute?
+x change all load scripts to update the whenupdated table
+x DraftDay: andrelton simmons (6/2) - wrote code to get unknown players from mlb.com search
+x 5/25 - keep an eye on rainouts and make sure update_db.pl updates them confirmed with 6/21 rainout wash vs atl
+x added scraping/info for draftkings.com
 
 Next.
 =========
-5/25 - keep an eye on rainouts and make sure update_db.pl updates them
-change all load scripts to update the whenupdated table
-make call to check lineup status 1/minute?
-5.29 - draft day - Nate Adcock?
-5.29 - draftday/no ids - stu pomeranz, nate adcock
 
 Misc.
 ==========
@@ -171,7 +170,7 @@ common proxy for them to all use or fix the server side to accept the default
 Loader/Data:
 ===========
 lineups for doubleheaders? 5/28/2012
-complete buzzdraft scraper/scoring
+complete buzzdraft scraper/scoring? or is it even worth it?
 probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
 Clean up logging - don't exit on errors, just log and continue
@@ -181,7 +180,6 @@ buzz draft: need a couple more stats for pitcher, need to figure out how to post
 capuano showing as started on 5/9?
 tim hudson 5/23 - didn't pitch?
 2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
-
 David Winfree: eliasId = 456406 (minor league player - can ignore for now)
 
 Maintenance:

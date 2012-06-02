@@ -371,32 +371,45 @@ Ext.define('DFST.controller.Filters', {
     onGamesChanged: function(store, records, wasSuccessful, options) {
         if (records.length === 0) return;
         // Change the list of all games
-        // All games will reset to checked
-        var gamesContainer = this.getGamesFilters();
+        // All games on a new date will reset to checked
+        var i, mlen, game, gameTime, alin, hlin, gameString;
+        var gameCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#games checkbox');
+        var len = gameCheckboxes.length;
+        var isNewDate = len === 0;
         
-        // save list of checked games, so we can recheck them
+        // If the game date has not changed, keep track of already checked games
         var checkedGames = {};
-        var len = gamesContainer.items.length;
-        for (var i = 0; i < len; i++) {
-            var item = gamesContainer.items.getAt(i);
-            if (item.xtype === 'checkboxfield' && item.getValue()) { //is checked
-                checkedGames[item.inputValue] = 1;
+        if (len > 0) { // yyyy_mm_dd
+            var gameDateFromFilter = Ext.Date.format(this.getDateFilter().value, 'Y_m_d');
+            var gameDateFromCheckboxes = gameCheckboxes[0].inputValue.substring(0,10);
+            if (gameDateFromFilter === gameDateFromCheckboxes) {
+                for (var i = 0; i < len; i++) {
+                    var item = gameCheckboxes[i];
+                    if (item.getValue()) { //is checked
+                        checkedGames[item.inputValue] = 1;
+                    }
+                }
+                isNewDate = false;
+            } else {
+                isNewDate = true;
             }
         }
         
+        //Now, remove all existing games, and add em all back
+        var gamesContainer = this.getGamesFilters();
         gamesContainer.removeAll(true);
-        for (var i=0, mlen=records.length; i < mlen; i++) {
-            var game = records[i];
-            var gameTime = game.get('gtime');
+        for (i=0, mlen=records.length; i < mlen; i++) {
+            game = records[i];
+            gameTime = game.get('gtime');
             gameTime = Ext.Date.parse(gameTime, 'MS');
             gameTime = Ext.Date.format(gameTime, 'g:i a');
-            var alin = game.get('alin') ? '*' : '';
-            var hlin = game.get('hlin') ? '*' : '';
-            var gameString = this.getTeamCode(game.get('away')) + 
+            alin = game.get('alin') ? '*' : '';
+            hlin = game.get('hlin') ? '*' : '';
+            gameString = this.getTeamCode(game.get('away')) + 
                 alin + ' @' + this.getTeamCode(game.get('home')) + 
                 hlin + ' ' + gameTime;
             var gameId = game.get('gid');
-            var isChecked = len === 0 ? true : checkedGames[gameId] === 1; // true on first load of games list
+            var isChecked = isNewDate ? true : checkedGames[gameId] === 1; // true on first load of games list
             gamesContainer.add(new Ext.form.field.Checkbox({
                         boxLabel: gameString.toUpperCase(),
                         name: 'game',
