@@ -197,14 +197,9 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filter([{id:'border', property: 'border', value: value}]);
     },
     
-    changePositions: function(checkbox, newValue, oldValue, options) {
-        /*
-        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
-        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
-        */
-        if (checkbox.eventsSuspended) return;
-        
-        var statsStore = this.getStatsStore();
+    getPositionsFilterValue: function() {
+        /* Return the value that will be sent to the server as the position
+        filter value, filter id = spos */
         var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var value = '';
         for (var i=0; i<positionCheckboxes.length; i++) {
@@ -217,7 +212,19 @@ Ext.define('DFST.controller.Filters', {
                 value += checkbox2.inputValue;
             }
         }
-        statsStore.filter([{id:'spos', property: 'spos', value: value}]);
+        return value;
+    },
+    
+    changePositions: function(checkbox, newValue, oldValue, options) {
+        /*
+        This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
+        http://www.sencha.com/forum/showthread.php?171525-suspendEvents-did-not-affect-to-Ext.app.Controller.control                
+        */
+        if (checkbox.eventsSuspended) return;
+        
+        this.getStatsStore()
+            .filter([{id:'spos', property: 'spos', 
+            value: this.getPositionsFilterValue()}]);
     },
     
     changePositionGroups: function(menu, menuItem, e, options) {
@@ -362,9 +369,10 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('sal');
                 
         statsStore.filter([
-            {id: "gameDate", property: "gameDate", value: this.getDateFilter().value.toJSON()},
+            {id:'gameDate', property: 'gameDate', value: this.getDateFilter().value.toJSON()},
             {id:'scoring', property: 'scoring', value: site.get('siteId')},
-            {id: 'probables', property: 'probables', value: this.getProbablesFilter().value}
+            {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
+            {id:'spos', property: 'spos', value: this.getPositionsFilterValue()}
             ]);
     },
     

@@ -1,0 +1,143 @@
+x Clean up directory - remove modules, non-used files
+x get app to run with loader, remove classes.js
+x Add extjs directories
+x Create dummy stats data, stats record, stats store, grid for stats
+x Move dummy data to middle pane and remove feed list from middle
+x Change left pane from Feeds to Filters and add a dummy filter
+x Move css into css file
+x Change theme
+x Change namespace from FV to DFST
+x Change dummy data to baseball data
+x Add rest of relevant baseball stats to model (based on fanduel scoring), 
+x then grid, then dummy data
+x Create drill down panel
+x Add panel to layout
+x Add select logic to open up drilldown panel
+x In drill down panel add details for player info.
+x Add store for player stats
+x Add date to filter players for game day
+x Format date in player grid
+x Add more data
+x Hide details panel until player selected
+x Fix bug on drill down panel - can't expand after collapse
+x Fix css to remove references to feed, etc.
+x move references to articlegrid, feedshow
+x find data source - done mlb gameday api via updated Baseball Hacks scripts writing data to SQL Azure
+x choose web api technology - done .net web api
+x create initial web apis for teams/players
+x try to hit web apis from cloud9 page (via localhost) - enable CORS support on Web API
+x run upload scripts to get more data from mlb
+x fill in more data for main grid
+x change properties of single, double, triple to not have a leading digit
+x Add paging to players grid - simple paging done, always gets all from db, but pages in controller layer
+x Add server side sorting (OR client side paging and let extjs do sorting)
+x Change all stats to include totals and not averages
+x fix runs stats - not there???
+x add games played to grid
+x move afp calculation to server
+x create script to clean out duplicate games
+x get rest of available stats from web service
+x get real data
+x save data in sql azure
+x innings pitched as whole number or .1 or .2 (1 out, 2 out)
+x create web api for individual players/game data
+x get hit by pitch stat
+x double check batting stats in mlb load scripts
+x get schedule data
+x add sorting to per game grid
+x add filter by game date
+x why does .filter() add the same filter value from stats controller and filters controller? - bug in filter code, worked around it
+x capitalize team names
+x create team and player tables
+x get team lists and roster data!!!
+x create upload script for players
+x add player position!
+x need option to hide all but probable pitchers
+x add filters for all positions?
+x rebuild db from scratch :-(
+x make sure update script properly puts in the teamID for the roster (nymets is wrong!)
+x change scoring to be selectable
+x Add interface for scoring
+x apply selectable scoring to pergameplayerstats; player stats getting retrieved 3 times - fix!!
+x Document how load scripts work - in About.txt of load project
+x change schedule update to load from yesterday to 5 days from now... don't need rest of season
+x db: remove gameinfo from game table, remove gameinfo column
+x db load scripts: Need to move connection strings to an external file
+x Get scripts to work with mysql again, so CAN check in those connection strings...
+x position DH?? - hacked a solution by grabbing all players from rosters that are not listed in players and adding them to players
+x need all/none link for position filters
+x fix wins header
+x add columns for pitcher averages (strike outs, earned runs, walks, innings pitched)
+x add opponent column
+x double check scoring for fanduel -diffs: jose altuve (I have him with 20 games(4.0), fd with 17 (3.7))
+
+  - It is definitely wrong. The bottom grid does have 19 games and looks correct - db had duplicate rows for 4-24-2012
+x check fanduel pricing - how often does it change... can I hit same url for updates every day - NO
+x Change UI to show team code, not team id
+x deploy web service to azure
+x Fix server.js bug that doesn't send out correct content-type header (doesn't work on safari/mac) - switched to using node-static
+x accidentally double loaded some data... check for duplicate dates...
+x may not have loaded data for 5/5 or 5/6 - double check those dates
+x start saving off daily pricing data from fanduel - manual process every day, right now
+x add client-side paging to game grid (bottom one), 5 per page?
+x need to double check the update script, the dates don't seem to be correct - fixed bug
+x add icon for injured players
+x filter out players with no price - they must not be available to choose from on site
+x upgrade to extjs 4.1 
+x add filter for injured players
+x add commented out columns back, just as hidden
+x add sliding filter for prices
+x add sliding filter for cost per point
+x add sliding filter for avg pts & # games
+x fix loading icon on grid - extjs 4.1 bug
+x check performance issue - fixed fanduel price sql
+x 5-14 : check Scott Van Slyke prices
+x 5-15 : set up paid github account
+x check in db scripts to github
+x check in webapi to github
+x add version information to ui
+x Put the data urls in 1 location
+x refresh the Azure install
+x added in-Azure check to CorsHandler
+x write scraper for daily joust
+x Change filters based on the site (ranges for $, positions, etc.)
+x Position filters - should vary by site ex. for fanduel - should have outfield, instead of LF, CF, RF
+x write scraper for draft day
+x get rest of stats to fill in daily joust scoring, draft day scoring
+x add probable pitcher icon to pitchers
+x zobrist not showing up as 2nd baseman in filter, even though he's listed as 2nd baseman - now shows main position from site
+x Add $formatting to salary and cpp columns
+x add scoring for other sites besides FanDuel
+x look at ian kinsler, he didn't play in a couple of games that I'm giving him credit for: 4/20, 5/9
+ -- interesting... game was postponed, how do I find those and delete the data?! - wrote new script, update the update script
+x Jerry Hairston Jr. & Tony Gwynn Jr. at dailyjoust
+x Manual update for Cole DeVries/De Vries
+x 5/25 - check updates of eliasids for hairston Jr. and gwynn Jr.
+x scrape and include starting lineup data & filters
+x duplicate player 133225 on 5/24 - bug in load lineups script,fixed
+x add games list somewhere on page
+x add use strict;,use warnings; to all perl scripts
+x What to do about Fausto Carmona aka Roberto Hernandez, re: fanduel prices? - changed his name to Roberto Hernandez in fanduel tables
+x Cole DeVries - MLB has him as "Cole De Vries" - Change his name in all site tables to De Vries
+x make call to check lineup status 1/minute?
+x change all load scripts to update the whenupdated table
+x DraftDay: andrelton simmons (6/2) - wrote code to get unknown players from mlb.com search
+x 5/25 - keep an eye on rainouts and make sure update_db.pl updates them confirmed with 6/21 rainout wash vs atl
+x added scraping/info for draftkings.com
+x scrolling broken on top grid - gones since extjs upgrade
+x better favicon
+x Work on theme, Finish adding one liners for filters and fix the formatting
+x changed dailyjoust, draftday, draftkings script to not need any manual work, still need to do this with fanduel
+x Add @sign to home team in top grid?
+x fix bug - reduce # of pos, change site, all items checked, but not in request filters
+x Get Fanduel script to not need manual work - use mechanize to log user in
+x fix bug - loading lineup hides players until the eliasId is updated, made better... didn't really fix
+x got perl scripts running in azure dev. environment
+x try each of the load scripts from within the perl on azure solution to see what other perl modules are needed
+x move azure perl install to startup task - research
+x fix echo time in .bat files
+x move perl zip to blob storage and change powershell script to get from there
+x research quartz.net in azure - I am going to use this
+x change the loader scripts that are updated 1x/day to double check that they haven't been run yet, before continuing (check whenupdated table)
+
+

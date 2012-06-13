@@ -36,7 +36,7 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'Team',
                     dataIndex: 'team',
                     align: 'left',
-                    width: 50,
+                    width: 60,
                     renderer: this.formatTeam
                 },{
                     text: 'OPP',
@@ -202,10 +202,11 @@ Ext.define('DFST.view.statset.Grid', {
      * @private
      */
 	formatTeam: function(value, p, record) {
-		return Ext.String.format('<span class="team">{0}</span>', value.toUpperCase());
+        var isHome = record.data.isHome;
+        return (isHome ? '@' + value : value).toUpperCase();
 	},
+    
     /**
-     * TODO: Used in 2 grids - refactor!!
      * Opponent renderer
      * @private
      */
