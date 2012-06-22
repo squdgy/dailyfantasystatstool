@@ -53,6 +53,10 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'border',
                     renderer: this.formatBattingOrder
                 },{
+                    text: 'MR',
+                    dataIndex: 'mr1',
+                    hidden: true
+                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{

@@ -139,5 +139,17 @@ x fix echo time in .bat files
 x move perl zip to blob storage and change powershell script to get from there
 x research quartz.net in azure - I am going to use this
 x change the loader scripts that are updated 1x/day to double check that they haven't been run yet, before continuing (check whenupdated table)
+x Bradley Boxberger - not showing up from?
+x Fix load scripts for dailyjoust and draftday
+x pull scripts from blob storage
+x generate matchup ratings - need to tweak
+x Move all scripts into blob storage
+x Add shared access signature, so someone else can't download my scripts
+x put perl install as a background task - ok if job fails first time
+x Configure jobs for all scripts
+x Fix hard-coding of blob storage connection string
+x use quartz to schedule all daily scripts and run all daily jobs/load_lineups
+
+
 
 

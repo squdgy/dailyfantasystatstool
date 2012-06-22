@@ -49,6 +49,7 @@ Ext.define('DFST.model.StatSet', {
         { name: 'inj', type: 'boolean', defaultValue: false},  //whether player is injured?
         { name: 'pp', type: 'boolean', defaultValue: false},  //whether player is probable starter?
         
-        { name: 'border', type: 'int', defaultValue: 0}  //batting order if known, else 0
+        { name: 'border', type: 'int', defaultValue: 0},  //batting order if known, else 0
+        { name: 'mr1', type: 'int', defaultValue: 0}      //matchup rating
     ]
 });
