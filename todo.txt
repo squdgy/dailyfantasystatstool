@@ -1,17 +1,18 @@
 Next steps:
 =========
-move quartz working code back into the WEBAPI solution
+Figure out new deployment of the front end now that pro version of c9 is gone
 Get a domain name
-Move from temp. account to own azure-insiders account?
-WordPress!
-fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
+Attach domain name to wordpress site
+embed azure app within wordpress site
+start adding headers, logos, themes, affiliate links etc. to wordpress site
+target soft-launch for July 9th, early morning
+Move azure-nodejs? from temp. account to own azure-insiders account?
 
 Misc.
 ==========
 Find weather data
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to expain the section
-uncheck games that have already occurred in the day, and make not chooseable
 need to check out project to new area -to make sure I can do everything I need to
 export top grid to csv
 create state manager for grids
@@ -36,6 +37,10 @@ Clean up header for bottom grid - full team name, full mlb position name, other?
 need reset filters button
 need filter summary (or summaries?)
 hide players not known to be playing - shouldn't hide starting pitchers
+need to clear or set all games
+need to be able to sort by multiple columns
+need to be able to choose individual teams, not just games
+uncheck games that have already occurred in the day, and make not chooseable
 
 NodeJS:
 ===========
@@ -53,9 +58,12 @@ WEBAPI:
 ===========
 Use cache, instead of going to db everytime?
 Bug - game sometimes don't show up in games list even when players do
+Add Trace Logging and Save trace logs and iis logs to azure storage
 
 Loader/Data:
 ===========
+check for strict and warnings in all perl scripts (updatedb.pl +)
+move quartz working code back into the WEBAPI solution
 transactions!
 capuano showing as started on 5/9? tim hudson 5/23 - didn't pitch? - pitchers show up if they pitch hit - how to deal with this
 add backup to lineups script to look for other games from another site?
@@ -68,18 +76,21 @@ create script to roll up player data?
 buzz draft: need a couple more stats for pitcher, need to figure out how to post and not get flagged for CSRF
 2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
 David Winfree: eliasId = 456406 (minor league player - can ignore for now)
-keep jobs (script lists and schedules) in a db table?
 Can replace Config::Tiny with something that normally ships with strawberry perl?
+change load_teamrosters to ignore players that are already ok?
+fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 
 Perl/Azure:
 ============
 Add blob lease checking
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
-Try these jobs out for a few days and then move them into the WEBAPI project
+Try these jobs out for a few days and then move them into the WEBAPI project -worked the whole time I was away!! :-)
 Create some sort of deploy script (post-commit hook?) that will deploy the load scripts to blob storage
 Figure out the best way to send the errors from the load scripts to me (email?)
-calling cpan.bat - any options that will make this faster, like skipping tests?
 Figure out how to transfer startup logs to storage
+Write file with db connection?
+calling cpan.bat - any options that will make this faster, like skipping tests?
+keep jobs (script lists and schedules) in a db table?
 
 Maintenance:
 ===========

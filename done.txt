@@ -149,7 +149,9 @@ x put perl install as a background task - ok if job fails first time
 x Configure jobs for all scripts
 x Fix hard-coding of blob storage connection string
 x use quartz to schedule all daily scripts and run all daily jobs/load_lineups
-
-
+x Kevin Youkilis 6/29 - doesn't show up in lineup for cws, even though he played (because of trade?) - need to reload rosters daily, move roster load script to cron job to runt daily
+x Install wordpress somewhere (on azure?) - on azure insiders account
+x if loadlineups runs after 8PM, looks like time might be in UTC, so no lineups ready on baseballpress.com - change script to calc date from time - 6 hours
+x bug - when filtering by games and change date, games filter still applies - fix by clearing filter value for 'team'
 
 
