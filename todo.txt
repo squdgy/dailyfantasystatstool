@@ -58,7 +58,7 @@ WEBAPI:
 ===========
 Use cache, instead of going to db everytime?
 Bug - game sometimes don't show up in games list even when players do
-Add Trace Logging and Save trace logs and iis logs to azure storage
+(Bill) Add Trace Logging and Save trace logs and iis logs to azure storage
 
 Loader/Data:
 ===========
@@ -83,12 +83,12 @@ yahoo player matchups, match dejesus to de jesus? How
 
 Perl/Azure:
 ============
-Add blob lease checking
+(Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
 Try these jobs out for a few days and then move them into the WEBAPI project -worked the whole time I was away!! :-)
-Create some sort of deploy script (post-commit hook?) that will deploy the load scripts to blob storage
-Figure out the best way to send the errors from the load scripts to me (email?)
-Figure out how to transfer startup logs to storage
+(Bill) Create some sort of deploy script (post-commit hook?) that will deploy the perl load scripts to blob storage
+(Bill) Figure out the best way to send the errors from the load scripts to me (email?) - note: currently running perl/azure scripts not checked in
+(Bill) Figure out how to transfer startup logs to storage - these are Perl logs, want to capture
 Write file with db connection?
 calling cpan.bat - any options that will make this faster, like skipping tests?
 keep jobs (script lists and schedules) in a db table?
