@@ -79,6 +79,7 @@ David Winfree: eliasId = 456406 (minor league player - can ignore for now)
 Can replace Config::Tiny with something that normally ships with strawberry perl?
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
+yahoo player matchups, match dejesus to de jesus? How
 
 Perl/Azure:
 ============
