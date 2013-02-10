@@ -1,12 +1,28 @@
-Next steps:
+NBA:
 =========
-Figure out new deployment of the front end now that pro version of c9 is gone
-Get a domain name
+deal with duplicate Chris Johnsons in NBA!!
+dealing with positions and mappings is still less than ideal
+figure out how to deal with aggregates for games played in ui
+upgrade generate schema script to capture pks and not null attributes!!!
+upgrade extjs?
+Figure out build process for Ext JS 4 - slow now
+clean up buzzdraft scraper - remove get stuff
+siteDetails store should only need to filter by gameId
+
+
+LEFT OVER FROM MLB:
+=========
+Double check new lineup script!
+Move MLB stuff to a todo-list for 2013 season
+Double check all azure accounts - write down when they expire
+Redeploy all projects to Azure to make sure I can do this, especially the front end, now that cloud 9 support is gone.
+Write a detailed document with information on all projects, deployments, accounts etc.
+disable draftaid.com/twitter until nfl ready
+
+Figure out new deployment of the front end now that pro version of c9 is gone - upgrade to pro?
 Attach domain name to wordpress site
 embed azure app within wordpress site
 start adding headers, logos, themes, affiliate links etc. to wordpress site
-target soft-launch for July 9th, early morning
-Move azure-nodejs? from temp. account to own azure-insiders account?
 
 Misc.
 ==========
@@ -48,7 +64,6 @@ use express?
 
 ExtJS:
 ===========
-Figure out build process for Ext JS 4
 Clean up theme
 On stores, encodeFilters, encodeSorters are all copy-paste: Either create a
 common proxy for them to all use or fix the server side to accept the default
@@ -80,6 +95,7 @@ Can replace Config::Tiny with something that normally ships with strawberry perl
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 yahoo player matchups, match dejesus to de jesus? How
+scrape of yahoo matchups ended up with 2 values for some players breaking the query - may need to revisit yahoo scrape
 
 Perl/Azure:
 ============

@@ -153,5 +153,16 @@ x Kevin Youkilis 6/29 - doesn't show up in lineup for cws, even though he played
 x Install wordpress somewhere (on azure?) - on azure insiders account
 x if loadlineups runs after 8PM, looks like time might be in UTC, so no lineups ready on baseballpress.com - change script to calc date from time - 6 hours
 x bug - when filtering by games and change date, games filter still applies - fix by clearing filter value for 'team'
-
-
+x Get a domain name - draftaid.com
+x Add site playerid to dfspricing table
+x write code to retrieve files from draftkings amazon bucket
+x upgrade mvc and web api in web api solution
+x update getGames to support nba
+x update getPlayers to support nba - added new player repo and game repo using EF
+x switch? to EF for player data - needed to add pks and change some cols to not-null
+x fix import of JJ Barea and Luc Richard Mbah a Moute in fanduel
+x Fix buzzdraft getting wrong prices.
+x Fix buzzdraft prices that are not getting caught: JJ Hickson, JR Smith, etc.
+x figure out why several buzzdraft players show 0 avg. pts - added more nicknames
+x add ppg from scrape to ui
+x fix position id in roster import
