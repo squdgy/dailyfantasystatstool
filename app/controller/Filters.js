@@ -483,7 +483,7 @@ Ext.define('DFST.controller.Filters', {
     onLaunch: function() {
         var host = 'http://localhost:49533';
         if (location.hostname.indexOf('azurewebsites') > 0) {
-            host = 'http://dfst.cloudapp.net';  //live azure
+            host = 'http://dfstapi.cloudapp.net';  //live azure
         }
         
         // Set things up to update filters when we switch sites

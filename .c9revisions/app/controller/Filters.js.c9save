@@ -36,3 +36,4 @@
 {"contributors":[],"silentsave":false,"ts":1360514859123,"patch":[[{"diffs":[[0,"sGameId = 1;"],[1," //buzzdraft\n            if (siteId == 1) dfsGameId = 3; //dk"],[0,"\n           "]],"start1":12779,"start2":12779,"length1":24,"length2":85}]],"length":22172,"saved":false}
 {"ts":1360515509336,"patch":[[{"diffs":[[0,"ndexOf('"],[-1,"cloudapp.net"],[1,"azurewebites"],[0,"') > 0) "]],"start1":20633,"start2":20633,"length1":28,"length2":28}]],"length":22172,"saved":false}
 {"ts":1360515555704,"patch":[[{"diffs":[[0,"azureweb"],[1,"s"],[0,"ites') >"]],"start1":20641,"start2":20641,"length1":16,"length2":17}]],"length":22173,"saved":false}
+{"ts":1360516427161,"patch":[[{"diffs":[[0,"p://dfst"],[1,"api"],[0,".cloudap"]],"start1":20687,"start2":20687,"length1":16,"length2":19}]],"length":22176,"saved":false}
