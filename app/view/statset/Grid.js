@@ -57,9 +57,11 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'MR',
                     dataIndex: 'mr1',
                     hidden: true
+                /* TODO
                 },{
                     text: 'G',
                     dataIndex: 'ng'
+                */
                 },{
                     text: '1B',
                     dataIndex: 'x1b',

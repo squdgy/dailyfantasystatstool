@@ -1,3 +1,10 @@
+NEXT:
+=========
+- DEPLOY solution so it's public
+- Add DraftKings scraper/scoring for NBA
+- Upgrade ExtJS
+- JS build for faster load times
+
 NBA:
 =========
 deal with duplicate Chris Johnsons in NBA!!
@@ -6,8 +13,8 @@ figure out how to deal with aggregates for games played in ui
 upgrade generate schema script to capture pks and not null attributes!!!
 upgrade extjs?
 Figure out build process for Ext JS 4 - slow now
-clean up buzzdraft scraper - remove get stuff
-siteDetails store should only need to filter by gameId
+siteDetails store should only need to filter by gameId & not site id
+capture injury information
 
 LEFT OVER FROM MLB:
 =========
@@ -16,7 +23,7 @@ Move MLB stuff to a todo-list for 2013 season
 Double check all azure accounts - write down when they expire
 Redeploy all projects to Azure to make sure I can do this, especially the front end, now that cloud 9 support is gone.
 Write a detailed document with information on all projects, deployments, accounts etc.
-disable draftaid.com/twitter until nfl ready
+disable draftaid.com/twitter until ready
 
 Figure out new deployment of the front end now that pro version of c9 is gone - upgrade to pro?
 Attach domain name to wordpress site
@@ -41,10 +48,8 @@ UI:
 ==========
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 add time of update for starting lineup
-get rest of stats to fill in buzz draft scoring
-add teams filters
+get rest of stats to fill in buzz draft scoring for mlb
 add column with position played in bottom grid?
-Add model for scoring to save in db?
 need glossary or tooltips for column headers
 need player filters - use generic grid filters?
 Change theme colors
@@ -55,11 +60,7 @@ hide players not known to be playing - shouldn't hide starting pitchers
 need to clear or set all games
 need to be able to sort by multiple columns
 need to be able to choose individual teams, not just games
-uncheck games that have already occurred in the day, and make not chooseable
-
-NodeJS:
-===========
-use express?
+uncheck games that have already occurred in the day on page load, and make not chooseable?
 
 ExtJS:
 ===========
@@ -70,27 +71,26 @@ common proxy for them to all use or fix the server side to accept the default
 
 WEBAPI:
 ===========
-Use cache, instead of going to db everytime?
-Bug - game sometimes don't show up in games list even when players do
+Bug - game sometimes don't show up in games list even when players do (MLB)
 (Bill) Add Trace Logging and Save trace logs and iis logs to azure storage
 
-Loader/Data:
+Loader/Data - generic:
 ===========
-check for strict and warnings in all perl scripts (updatedb.pl +)
 move quartz working code back into the WEBAPI solution
 transactions!
-capuano showing as started on 5/9? tim hudson 5/23 - didn't pitch? - pitchers show up if they pitch hit - how to deal with this
+Can replace Config::Tiny with something that normally ships with strawberry perl?
+
+Loader/Data - baseball
+===========
+capuano showing as started on 5/9? tim hudson 5/23 - didn't pitch? - pitchers show up if they pinch hit - how to deal with this
 add backup to lineups script to look for other games from another site?
-complete buzzdraft scraper/scoring? or is it even worth it?
 probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
-schedule the db update scripts to run regularly
 create script to roll up player data?
-buzz draft: need a couple more stats for pitcher, need to figure out how to post and not get flagged for CSRF
+buzz draft: need a couple more stats for pitcher,
 2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
 David Winfree: eliasId = 456406 (minor league player - can ignore for now)
-Can replace Config::Tiny with something that normally ships with strawberry perl?
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 yahoo player matchups, match dejesus to de jesus? How
@@ -100,7 +100,7 @@ Perl/Azure:
 ============
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
-Try these jobs out for a few days and then move them into the WEBAPI project -worked the whole time I was away!! :-)
+Move quartz jobs into the WEBAPI project?
 (Bill) Create some sort of deploy script (post-commit hook?) that will deploy the perl load scripts to blob storage
 (Bill) Figure out the best way to send the errors from the load scripts to me (email?) - note: currently running perl/azure scripts not checked in
 (Bill) Figure out how to transfer startup logs to storage - these are Perl logs, want to capture

@@ -167,3 +167,10 @@ x figure out why several buzzdraft players show 0 avg. pts - added more nickname
 x add ppg from scrape to ui
 x fix position id in roster import
 x nba player stats - add minutes
+x clean up buzzdraft scraper - remove get stuff
+x add buzzdraft and fanduel scoring to player stats grid
+x Add model for scoring to save in db - but not being used yet
+x Use cache, instead of going to db everytime - did this for players, games, but not game stats
+x schedule the db update scripts to run regularly
+x need to figure out how to post and not get flagged for CSRF - this is in the load_buzzdraftprices_nba script
+
