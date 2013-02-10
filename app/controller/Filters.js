@@ -78,18 +78,18 @@ Ext.define('DFST.controller.Filters', {
                     value += ':';
                 }
                 var gameId = checkbox2.inputValue;
-                var team1 = this.getTeamCode(gameId.substring(11, 14));
-                var team2 = this.getTeamCode(gameId.substring(18, 21));
-                value += team1 + ":" + team2;
+                //var team1 = this.getTeamCode(gameId.substring(11, 14));
+                //var team2 = this.getTeamCode(gameId.substring(18, 21));
+                value += gameId;
             } else {
                 allChecked = false;
             }
         }
         if (allChecked) {
-            statsStore.filters.removeAtKey('team');
+            statsStore.filters.removeAtKey('gameId');
             statsStore.filter();
         } else {
-            statsStore.filter([{id:'team', property: 'team', value: value}]);
+            statsStore.filter([{id:'gameId', property: 'gameId', value: value}]);
         }
     },
         
@@ -108,10 +108,11 @@ Ext.define('DFST.controller.Filters', {
 
     changeDate: function(datefield, newValue, oldValue, options) {
         var statsStore = this.getStatsStore();
-        statsStore.filters.removeAtKey('team'); // clear all game filters
+        statsStore.filters.removeAtKey('gameId'); // clear all game filters
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
         var gamesStore = this.getGamesStore();
-        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+        gamesStore.filter([{id:'gameDate', sport: DFST.AppSettings.sport, property: 'gameDate', value: newValue.toJSON()},
+                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
     },
     
     changeProbables: function(checkbox, newValue, oldValue, options) {
@@ -200,7 +201,7 @@ Ext.define('DFST.controller.Filters', {
     
     getPositionsFilterValue: function() {
         /* Return the value that will be sent to the server as the position
-        filter value, filter id = spos */
+        filter value, filter id = posId*/
         var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var value = '';
         for (var i=0; i<positionCheckboxes.length; i++) {
@@ -224,7 +225,7 @@ Ext.define('DFST.controller.Filters', {
         if (checkbox.eventsSuspended) return;
         
         this.getStatsStore()
-            .filter([{id:'spos', property: 'spos', 
+            .filter([{id:'posId', property: 'posId', 
             value: this.getPositionsFilterValue()}]);
     },
     
@@ -289,7 +290,14 @@ Ext.define('DFST.controller.Filters', {
     changeScoring: function(radiobutton, newValue, oldValue, options) {
         if (newValue) {
             var siteDetailsStore = this.getSiteDetailsStore();
-            siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: radiobutton.inputValue}]);
+            var dfsGameId = DFST.AppSettings.sport == "mlb" ? 2 : 2;//def.fd game
+            //TODO: siteDetails store should only need to filter by gameId
+            var siteId = radiobutton.inputValue;
+            if (siteId == 5) dfsGameId = 1;
+            siteDetailsStore.filter([
+                {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
+                {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
+                ]);
             siteDetailsStore.load();
         }
     },
@@ -306,10 +314,10 @@ Ext.define('DFST.controller.Filters', {
         for (var i=0, mlen=positions.length; i < mlen; i++) {
             var pos = positions[i];
             posContainer.add(new Ext.form.field.Checkbox({
-                        boxLabel: pos,
+                        boxLabel: pos.name,
                         name: 'pos',
                         checked: true,
-                        inputValue: pos
+                        inputValue: pos.id
                     }));
         }
         
@@ -371,9 +379,9 @@ Ext.define('DFST.controller.Filters', {
                 
         statsStore.filter([
             {id:'gameDate', property: 'gameDate', value: this.getDateFilter().value.toJSON()},
-            {id:'scoring', property: 'scoring', value: site.get('siteId')},
+            {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
-            {id:'spos', property: 'spos', value: this.getPositionsFilterValue()}
+            {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
             ]);
     },
     
@@ -410,7 +418,11 @@ Ext.define('DFST.controller.Filters', {
         for (i=0, mlen=records.length; i < mlen; i++) {
             game = records[i];
             gameTime = game.get('gtime');
-            gameTime = Ext.Date.parse(gameTime, 'MS');
+            gameTime = new Date(gameTime); 
+            // this time is actually utc, but new Date treats
+            // it like local time, so add the timeoffset : 
+            var tzo = gameTime.getTimezoneOffset();
+            gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, tzo);
             gameTime = Ext.Date.format(gameTime, 'g:i a');
             alin = game.get('alin') ? '*' : '';
             hlin = game.get('hlin') ? '*' : '';
@@ -435,33 +447,36 @@ Ext.define('DFST.controller.Filters', {
     /* a team id is the 3 character identifier used by mlb;
     a team code is a more recognizeable 2-3 character identifier used at many sites */
     getTeamCode: function(teamId) {
-        switch (teamId.toUpperCase())
-        {
-            case "ANA":
-                return "laa";
-            case "CHA":
-                return "cws";
-            case "CHN":
-                return "chc";
-            case "KCA":
-                return "kc";
-            case "LAN":
-                return "lad";
-            case "NYA":
-                return "nyy";
-            case "NYN":
-                return "nym";
-            case "SDN":
-                return "sd";
-            case "SFN":
-                return "sf";
-            case "TBA":
-                return "tb";
-            case "WAS":
-                return "wsh";
-            default:
-                return teamId.toLowerCase();
+        if (DFST.AppSettings.sport == "mlb") {
+            switch (teamId.toUpperCase())
+            {
+                case "ANA":
+                    return "laa";
+                case "CHA":
+                    return "cws";
+                case "CHN":
+                    return "chc";
+                case "KCA":
+                    return "kc";
+                case "LAN":
+                    return "lad";
+                case "NYA":
+                    return "nyy";
+                case "NYN":
+                    return "nym";
+                case "SDN":
+                    return "sd";
+                case "SFN":
+                    return "sf";
+                case "TBA":
+                    return "tb";
+                case "WAS":
+                    return "wsh";
+                default:
+                    return teamId.toLowerCase();
+            }
         }
+        return teamId.toLowerCase();
     },
     
     onLaunch: function() {
@@ -473,7 +488,10 @@ Ext.define('DFST.controller.Filters', {
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
-        siteDetailsStore.filter([{id:'siteId', property: 'siteId', value: 'fd'}]);
+        siteDetailsStore.filter([
+            {id:'siteId', property: 'siteId', value: '2'},
+            {id:'dfsGameId', property: 'dfsGameId', value: '2'}
+            ]);
         siteDetailsStore.on('load', this.onScoringChanged, this);
         siteDetailsStore.load();
         
@@ -481,19 +499,23 @@ Ext.define('DFST.controller.Filters', {
         var gamesStore = this.getGamesStore();
         gamesStore.proxy.url = host + '/api/games/';
         gamesStore.on('load', this.onGamesChanged, this);
-        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()}]);
+        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
+                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
         
         // Set up a timer to update the games store periodically, so we can
         // show a visual indicator that the lineup is ready
-        var task = {
-            run: function(){
-                var gamesStore = this.getGamesStore();
-                gamesStore.load();
-            },
-            scope: this,
-            interval: 1000 * 60 // every 60 seconds
-        };
-        Ext.TaskManager.start(task);        
+        if (DFST.AppSettings.sport == "mlb")
+        {
+            var task = {
+                run: function(){
+                    var gamesStore = this.getGamesStore();
+                    gamesStore.load();
+                },
+                scope: this,
+                interval: 1000 * 60 // every 60 seconds
+            };
+            Ext.TaskManager.start(task);        
+        }
     }
     
 });

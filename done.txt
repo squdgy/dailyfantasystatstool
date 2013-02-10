@@ -166,3 +166,4 @@ x Fix buzzdraft prices that are not getting caught: JJ Hickson, JR Smith, etc.
 x figure out why several buzzdraft players show 0 avg. pts - added more nicknames
 x add ppg from scrape to ui
 x fix position id in roster import
+x nba player stats - add minutes

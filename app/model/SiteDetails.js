@@ -13,6 +13,7 @@ Ext.define('DFST.model.SiteDetails', {
         { name: 'cppmin', type: 'int', defaultValue: 0 },
         { name: 'cppmax', type: 'int', defaultValue: 1500 },
         { name: 'cppstep', type: 'int', defaultValue: 50 },
-        { name: 'siteId', type: 'string', defaultValue: 'fd' }
+        { name: 'siteId', type: 'int', defaultValue: 2 },
+        { name: 'dfsGameId', type: 'int', defaultValue: 2 } // default to Fanduel salary cap 2013 - change this
     ]
 });

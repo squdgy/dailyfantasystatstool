@@ -1,0 +1,2 @@
+{"ts":1359295909429,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1359296012332,"patch":[[{"diffs":[[1,"Ext.define('DFST.ApplicationSettings', {\r\n    singleton: true,\r\n\r\n    sport: 'nba' // for now, the application will support just one sport\r\n});  "]],"start1":0,"start2":0,"length1":0,"length2":145}]],"length":145,"saved":false}

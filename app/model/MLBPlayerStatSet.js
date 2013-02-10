@@ -11,7 +11,6 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'opp', type: 'string', defaultValue: '' },
         { name: 'isHome', type: 'boolean', defaultValue: true },
         
-/*        
         //hitter stats
         { name: 'x1b', type: 'int', defaultValue: 0 },    //singles
         { name: 'x2b', type: 'int', defaultValue: 0 },    //doubles
@@ -29,23 +28,7 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'er', type: 'int', defaultValue: 0 },    //earned runs
         { name: 'so', type: 'int', defaultValue: 0 },    //strike outs
         { name: 'ip', type: 'float', defaultValue: 0.0 },     //innings pitched
-*/
-        //nba stats
-        { name: 'p', type: 'int', defaultValue: 0 },   //points
-        { name: 'a', type: 'int', defaultValue: 0 },   //assists
-        { name: 'rb', type: 'int', defaultValue: 0 },   //rebounds
-        { name: 'b', type: 'int', defaultValue: 0 },    //blocks
-        { name: 's', type: 'int', defaultValue: 0 },    //steals
-        { name: 'to', type: 'int', defaultValue: 0 },   //turn overs
-        { name: 'fgm', type: 'int', defaultValue: 0 },  //field goals made
-        { name: 'fga', type: 'int', defaultValue: 0 },  //field goals att.
-        { name: 'ftm', type: 'int', defaultValue: 0 },  //free throws made
-        { name: 'fta', type: 'int', defaultValue: 0 },  //free throws attempted
-        { name: 'tpm', type: 'int', defaultValue: 0 },  //free throws made
-        { name: 'tpa', type: 'int', defaultValue: 0 },  //free throws attempted
-        { name: 'm', type: 'int', defaultValue: 0 },    //free throws attempted
-        { name: 'start', type: 'int', defaultValue: 0 },  //free throws attempted
-        
+
         //derived stats
         { name: 'fp', type: 'float', defaultValue: 0.0}  //fantasy points per game
     ]

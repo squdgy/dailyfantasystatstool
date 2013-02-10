@@ -2,6 +2,7 @@ Ext.define('DFST.view.Viewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
+        'DFST.AppSettings',
         'DFST.view.filter.List',
         'DFST.view.drilldown.Details',
         'Ext.layout.container.Border'
@@ -34,7 +35,7 @@ Ext.define('DFST.view.Viewport', {
         xtype: 'filterlist'
 	}, {
         region: 'south',
-        html: '<footer>Daily Fantasy Stats Tool, Version 0.5.5, Copyright 2012 Development Partners Software</footer>'
+        html: '<footer>Daily Fantasy Stats Tool, Version 0.6, Copyright 2012-2013 Development Partners Software</footer>'
     }
     ]
 });

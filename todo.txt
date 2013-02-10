@@ -9,7 +9,6 @@ Figure out build process for Ext JS 4 - slow now
 clean up buzzdraft scraper - remove get stuff
 siteDetails store should only need to filter by gameId
 
-
 LEFT OVER FROM MLB:
 =========
 Double check new lineup script!

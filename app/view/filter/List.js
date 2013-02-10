@@ -36,11 +36,11 @@ Ext.define('DFST.view.filter.List', {
                     columns: 4
                 },
                 items: [
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: 'fd', checked: true },
-                    { boxLabel: 'DailyJoust', name: 'rb', inputValue: 'dj'},
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: 'dd'},
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: 'dk'}/*,
-                    { boxLabel: 'BuzzDraft', name: 'rb', inputValue: 'bd'}*/
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },/*
+                    { boxLabel: 'DailyJoust', name: 'rb', inputValue: '4'},
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '3'},
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},*/
+                    { boxLabel: 'BuzzDraft', name: 'rb', inputValue: '5'}
                 ]
             },            
             {
@@ -53,20 +53,22 @@ Ext.define('DFST.view.filter.List', {
                 collapsed: true,
                 animCollapse: true,
                 layout: 'vbox',
-                title: 'Position Filters',
+                title: 'Roster Position Filters',
                 items: [
                 {
-                    html: 'Positions may vary among sites.<br/>If you change sites, all position filters will reset to checked.'
+                    html: 'Roster positions may vary among sites.<br/>If you change sites, all roster position filters will reset to checked.'
                 },    
                 {
                     xtype: 'checkbox',
                     boxLabel: 'Exclude Pitchers Not Expected To Start',
                     id: 'probables',
                     name: 'probables',
+                    hidden: DFST.AppSettings.sport !== 'mlb',
                     checked: true
                 },{
                     xtype: 'splitbutton',
                     text: 'Position Subset',
+                    hidden: DFST.AppSettings.sport !== 'mlb',                    
                     menu: {
                         xtype: 'menu',
                         items: [
@@ -81,16 +83,17 @@ Ext.define('DFST.view.filter.List', {
                 {
                     xtype: 'fieldcontainer',
                     id: 'positions',
-                    fieldLabel: 'Positions to Include',
+                    fieldLabel: 'Include:',
                     defaultType: 'checkboxfield',
                     layout: {
                         type: 'table',
-                        columns: 4
+                        columns: 5
                     }
                 }]
             },
             {
                 xtype: 'panel',
+                hidden: DFST.AppSettings.sport !== 'mlb',                    
                 collapsible: true,
                 collapsed: true,
                 animCollapse: true,

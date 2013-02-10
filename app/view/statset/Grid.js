@@ -17,8 +17,9 @@ Ext.define('DFST.view.statset.Grid', {
     }],
     
 	initComponent: function() {
-		Ext.apply(this, {
-		    store: 'Stats',
+        var gridConfig = {};
+        gridConfig["mlb"] = {
+    	    store: 'Stats',
 
 			columns: {
                 defaults: {
@@ -152,7 +153,61 @@ Ext.define('DFST.view.statset.Grid', {
                 }
                 ]
 			}
-		});
+		}; 
+        gridConfig["nba"] = {
+            store: 'Stats',
+
+			columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: 'Team',
+                    dataIndex: 'team',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatTeam
+                },{
+                    text: 'OPP',
+                    dataIndex: 'opp',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatOpponent
+                },{
+                    text: 'Pos',
+                    dataIndex: 'spos',
+                    align: 'left'
+                },{
+                    text: 'G',
+                    dataIndex: 'ng'
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    renderer: this.moneyRenderer
+                },{
+                    text: '$/Pt',
+                    dataIndex: 'cpp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
+                }
+                ]
+			}
+		}; 
+		Ext.apply(this, gridConfig[DFST.AppSettings.sport]);
 
 		this.callParent(arguments);
 	},
@@ -190,8 +245,11 @@ Ext.define('DFST.view.statset.Grid', {
 	formatName: function(value, p, record) {
         var isInjured = record.data.inj;
         var isProbable = record.data.pp;
-        value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
-            record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
+        if (DFST.AppSettings.sport == "mlb")
+        {
+            value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
+                record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
+        }
         if (isInjured) {
             return value + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator"/>';
         } else if (isProbable) {

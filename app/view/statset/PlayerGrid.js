@@ -38,6 +38,49 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     renderer: this.formatOpponent,
                     width: 60
                 },{
+                    text: 'MIN',
+                    dataIndex: 'm'
+                },{
+                    text: 'START',
+                    dataIndex: 'start'
+                },{
+                    text: 'P',
+                    dataIndex: 'p'
+                },{
+                    text: 'A',
+                    dataIndex: 'a'
+                },{
+                    text: 'Rb',
+                    dataIndex: 'rb'
+                }, {
+                    text: 'B',
+                    dataIndex: 'b'
+                }, {
+                    text: 'St',
+                    dataIndex: 's'
+                }, {
+                    text: 'TO',
+                    dataIndex: 'to'
+                }, {
+                    text: 'FGM',
+                    dataIndex: 'fgm'
+                }, {
+                    text: 'FGA',
+                    dataIndex: 'fga'
+                }, {
+                    text: 'FTM',
+                    dataIndex: 'ftm'
+                }, {
+                    text: 'FTA',
+                    dataIndex: 'fta'
+                }, {
+                    text: '3M',
+                    dataIndex: 'tpm'
+                }, {
+                    text: '3A',
+                    dataIndex: 'tpa'
+                }, {
+/*                    
                     text: '1B',
                     dataIndex: 'x1b'
                 }, {
@@ -81,6 +124,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     dataIndex: 'ip',
                     renderer: Ext.util.Format.numberRenderer('0.0')
                 },{
+*/                
                     text: 'FP',
                     dataIndex: 'fp',
                     width: 60,

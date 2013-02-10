@@ -8,7 +8,6 @@ Ext.define('DFST.model.StatSet', {
     
     fields: [
         { name: 'id', type: 'int', defaultValue: 0 },
-        { name: 'gameId', type: 'int', defaultValue: 0 },
         { name: 'team', type: 'string' },
         { name: 'opp', type: 'string' }, //opponent
         { name: 'isHome', type: 'boolean', defaultValue: true },
