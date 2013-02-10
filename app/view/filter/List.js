@@ -36,10 +36,10 @@ Ext.define('DFST.view.filter.List', {
                     columns: 4
                 },
                 items: [
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },/*
                     { boxLabel: 'DailyJoust', name: 'rb', inputValue: '4'},
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '3'},
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},*/
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '3'}*/,
                     { boxLabel: 'BuzzDraft', name: 'rb', inputValue: '5'}
                 ]
             },            
