@@ -18,7 +18,7 @@ Ext.define('DFST.controller.Stats', {
     init: function() {
         // Set up service URLs
         var host = 'http://localhost:49533';    //local
-        if (location.hostname.indexOf('cloudapp.net') > 0) {
+        if (location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://dfst.cloudapp.net';  //live azure
         }
 //        host = 'http://localhost:81';       //local azure dev fabric 

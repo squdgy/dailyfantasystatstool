@@ -482,7 +482,7 @@ Ext.define('DFST.controller.Filters', {
     
     onLaunch: function() {
         var host = 'http://localhost:49533';
-        if (location.hostname.indexOf('cloudapp.net') > 0) {
+        if (location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://dfst.cloudapp.net';  //live azure
         }
         

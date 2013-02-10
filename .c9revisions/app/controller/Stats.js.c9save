@@ -5,3 +5,5 @@
 {"contributors":[],"silentsave":false,"ts":1359830608016,"patch":[[{"diffs":[[0,"ue: site"],[-1,"Abb"],[1,"Id"],[0,"}\n      "]],"start1":2059,"start2":2059,"length1":19,"length2":18}]],"length":2308,"saved":false}
 {"ts":1359830868474,"patch":[[{"diffs":[[0,"site"],[-1,"Abb"],[1,"Id"],[0,"=thi"]],"start1":1745,"start2":1745,"length1":11,"length2":10},{"diffs":[[0,"value: s"],[-1,"ite"],[1,"tat"],[0,"Id}\n    "]],"start1":2055,"start2":2055,"length1":19,"length2":19}]],"length":2307,"saved":false}
 {"ts":1359830884158,"patch":[[{"diffs":[[0,"value: s"],[-1,"tat"],[1,"ite"],[0,"Id}\n    "]],"start1":2055,"start2":2055,"length1":19,"length2":19}]],"length":2307,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1360515498751,"patch":[[{"diffs":[[0,"ndexOf('"],[-1,"cloudapp.net"],[1,"azurewebites"],[0,"') > 0) "]],"start1":549,"start2":549,"length1":28,"length2":28}]],"length":2307,"saved":false}
+{"ts":1360515544015,"patch":[[{"diffs":[[0,"azureweb"],[1,"s"],[0,"ites') >"]],"start1":557,"start2":557,"length1":16,"length2":17}]],"length":2308,"saved":false}
