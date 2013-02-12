@@ -173,4 +173,6 @@ x Add model for scoring to save in db - but not being used yet
 x Use cache, instead of going to db everytime - did this for players, games, but not game stats
 x schedule the db update scripts to run regularly
 x need to figure out how to post and not get flagged for CSRF - this is in the load_buzzdraftprices_nba script
-
+x Figure out new deployment of the front end now that pro version of c9 is gone - use windows azure websites with pull from github
+x DEPLOY solution so it's public - http://draftaidapp.azurewebsites.net/
+x Add DraftKings scraper/scoring for NBA

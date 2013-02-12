@@ -1,12 +1,16 @@
 NEXT:
 =========
-- DEPLOY solution so it's public
-- Add DraftKings scraper/scoring for NBA
+- import new roster, write code to do updates via EF, copy into boxes job
 - Upgrade ExtJS
+- go back to old theme?
+- fix? in Firefox
 - JS build for faster load times
+- need action + scheduled task to refresh caches in webapi
 
 NBA:
 =========
+import roster every day?
+injuries
 deal with duplicate Chris Johnsons in NBA!!
 dealing with positions and mappings is still less than ideal
 figure out how to deal with aggregates for games played in ui
@@ -25,7 +29,6 @@ Redeploy all projects to Azure to make sure I can do this, especially the front 
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
 
-Figure out new deployment of the front end now that pro version of c9 is gone - upgrade to pro?
 Attach domain name to wordpress site
 embed azure app within wordpress site
 start adding headers, logos, themes, affiliate links etc. to wordpress site
@@ -79,6 +82,7 @@ Loader/Data - generic:
 move quartz working code back into the WEBAPI solution
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?
+write some perl logic to not look for whenupdated when run locally
 
 Loader/Data - baseball
 ===========

@@ -1,3 +1,4 @@
+/*
 article {
     margin-top: 20px;
     font-size: 10px;
@@ -19,7 +20,7 @@ footer {
 .x-table-layout-cell  {
     padding-left: 3px;
 }
-/*
+
 a:link, a:visited {
     color: #CFC;
 }
