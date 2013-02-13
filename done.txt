@@ -176,3 +176,4 @@ x need to figure out how to post and not get flagged for CSRF - this is in the l
 x Figure out new deployment of the front end now that pro version of c9 is gone - use windows azure websites with pull from github
 x DEPLOY solution so it's public - http://draftaidapp.azurewebsites.net/
 x Add DraftKings scraper/scoring for NBA
+x Add DailyJoust scraper/scoring for NBA

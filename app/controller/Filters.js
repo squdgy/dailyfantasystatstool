@@ -295,6 +295,7 @@ Ext.define('DFST.controller.Filters', {
             var siteId = radiobutton.inputValue;
             if (siteId == 5) dfsGameId = 1; //buzzdraft
             if (siteId == 1) dfsGameId = 3; //dk
+            if (siteId == 6) dfsGameId = 6; //dj
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
