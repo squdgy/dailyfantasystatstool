@@ -20,6 +20,10 @@ Ext.define('DFST.store.PlayerStats', {
             root: 'stats',
             totalProperty: 'total'            
 		},
+        sorters: {
+            property : 'gd',
+            direction: 'DESC'
+        },        
         encodeSorters: function(sorters) {
             // ASP.Net WEB API can't handle the json-ized sort url param?
              var length   = sorters.length,
