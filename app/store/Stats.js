@@ -12,6 +12,10 @@ Ext.define('DFST.store.Stats', {
 
     autoLoad: false,
     pageSize: 20,
+    sorters: [{
+        property : 'afp',
+        direction: 'DESC'
+    }],
     proxy: {
 		type: 'ajax',
         url: 'app/data/stats.json', //test data, url overridden in controller
@@ -20,10 +24,6 @@ Ext.define('DFST.store.Stats', {
             root: 'players',
             totalProperty: 'total'            
 		},
-        sorters: {
-            property : 'afp',
-            direction: 'DESC'
-        },
         encodeSorters: function(sorters) {
             // ASP.Net WEB API can't handle the json-ized sort url param?
              var length   = sorters.length,
