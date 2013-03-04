@@ -188,9 +188,6 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'spos',
                     align: 'left'
                 },{
-                    text: 'G',
-                    dataIndex: 'ng'
-                },{
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,
@@ -205,6 +202,10 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'cpp',
                     width: 75,
                     renderer: this.costPerPointRenderer
+                },{
+                    text: 'ODR/5',
+                    dataIndex: 'odr',
+                    width: 75
                 }
                 ]
 			}

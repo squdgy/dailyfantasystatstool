@@ -6,6 +6,11 @@ NEXT:
 - fix? in Firefox
 - JS build for faster load times
 - need action + scheduled task to refresh caches in webapi
+- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
+ -- so top grid can have multiple sports but action is generic
+- Add glossary
+- injury information
+- baseball!
 
 NBA:
 =========

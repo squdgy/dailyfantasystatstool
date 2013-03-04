@@ -18,6 +18,9 @@ Ext.define('DFST.model.StatSet', {
         { name: 'pos', type: 'string', defaultValue: '' },
         { name: 'ng', type: 'int', defaultValue: 0 },        //number of games played
         
+        //nba: 
+        { name: 'odr', type: 'int', defaultValue: 0 },        //opponent defensive efficiency
+
         //hitter stats
         { name: 'x1b', type: 'int', defaultValue: 0 },   //singles
         { name: 'x2b', type: 'int', defaultValue: 0 },   //doubles
