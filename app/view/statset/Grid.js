@@ -178,10 +178,11 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 60,
                     renderer: this.formatTeam
                 },{
-                    text: 'OPP',
+                    text: 'Opp',
                     dataIndex: 'opp',
                     align: 'left',
                     width: 60,
+                    tooltip: 'Opponent',
                     renderer: this.formatOpponent
                 },{
                     text: 'Pos',
@@ -191,11 +192,13 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,
+                    tooltip: 'average fantasy points as reported by the selected site',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
                     text: '$',
                     dataIndex: 'sal',
                     width: 75,
+                    tooltip: 'player salary at the selected site',
                     renderer: this.moneyRenderer
                 },{
                     text: '$/Pt',
@@ -203,9 +206,10 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     renderer: this.costPerPointRenderer
                 },{
-                    text: 'ODR/5',
+                    text: 'odr/5',
                     dataIndex: 'odr',
-                    width: 75
+                    width: 75,
+                    tooltip: 'opponent defensive efficiency rank over the last 5 games. A higher number indicates a better matchup for the player.'
                 }
                 ]
 			}
@@ -254,7 +258,7 @@ Ext.define('DFST.view.statset.Grid', {
                 record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
         }
         if (isInjured) {
-            return value + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator"/>';
+            return value + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         } else if (isProbable) {
             return value + '<img src="images/starting_pitcher.png" class="icon-indicator"/>';
         } else {

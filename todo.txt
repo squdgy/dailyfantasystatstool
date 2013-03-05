@@ -1,27 +1,23 @@
 NEXT:
 =========
+- Figure out build process for Ext JS 4 - slow now!!
+- need action + scheduled task to refresh caches in webapi
+- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - import new roster, write code to do updates via EF, copy into boxes job
 - Upgrade ExtJS
 - go back to old theme?
 - fix? in Firefox
-- JS build for faster load times
-- need action + scheduled task to refresh caches in webapi
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
  -- so top grid can have multiple sports but action is generic
 - Add glossary
-- injury information
 - baseball!
 
 NBA:
 =========
 import roster every day?
-injuries - capture injury information
 deal with duplicate Chris Johnsons in NBA!!
 dealing with positions and mappings is still less than ideal
-figure out how to deal with aggregates for games played in ui
 upgrade generate schema script to capture pks and not null attributes!!!
-upgrade extjs?
-Figure out build process for Ext JS 4 - slow now
 siteDetails store should only need to filter by gameId & not site id
 
 LEFT OVER FROM MLB:
@@ -29,7 +25,6 @@ LEFT OVER FROM MLB:
 Double check new lineup script!
 Move MLB stuff to a todo-list for 2013 season
 Double check all azure accounts - write down when they expire
-Redeploy all projects to Azure to make sure I can do this, especially the front end, now that cloud 9 support is gone.
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
 
