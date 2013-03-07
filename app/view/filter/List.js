@@ -193,6 +193,16 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 20
+                },
+                {
+                    fieldLabel: 'Filter odr/5',
+                    xtype: 'multislider',
+                    id: 'odrRange',
+                    width: 350,
+                    values: [0, 30],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 30
                 }]
             },
             {
