@@ -57,11 +57,9 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'MR',
                     dataIndex: 'mr1',
                     hidden: true
-                /* TODO
                 },{
                     text: 'G',
                     dataIndex: 'ng'
-                */
                 },{
                     text: '1B',
                     dataIndex: 'x1b',
@@ -189,11 +187,27 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'spos',
                     align: 'left'
                 },{
-                    text: 'Avg Pts',
+                    text: 'Avg FP',
                     dataIndex: 'afp',
-                    width: 60,
+                    width: 70,
                     tooltip: 'average fantasy points as reported by the selected site',
                     renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-C',
+                    dataIndex: 'afpc',
+                    width: 70,
+                    hidden: true,
+                    tooltip: 'average fantasy points as computed by this site',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 70,
+                    tooltip: 'average fantasy points over last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'G',
+                    dataIndex: 'ng'
                 },{
                     text: '$',
                     dataIndex: 'sal',

@@ -44,7 +44,9 @@ Ext.define('DFST.model.StatSet', {
         { name: 'aip', type: 'float', defaultValue: 0.0 }, //avg. innings pitched
         
         //derived stats
-        { name: 'afp', type: 'float', defaultValue: 0.0},  //average fantasy points per game
+        { name: 'afp', type: 'float', defaultValue: 0.0},  //average fantasy points per game (collected from dfssite)
+        { name: 'afpc', type: 'float', defaultValue: 0.0},  //average fantasy points per game corrected (site computed)
+        { name: 'afp5', type: 'float', defaultValue: 0.0},  //average fantasy points per game over last 5
         
         //site stats
         { name: 'sal', type: 'float', defaultValue: 0.0},  //salary at site

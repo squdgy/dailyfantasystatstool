@@ -185,7 +185,7 @@ Ext.define('DFST.view.filter.List', {
                     maxValue: 1500
                 },
                 {
-                    fieldLabel: 'Filter Avg Pts',
+                    fieldLabel: 'Filter Avg FP',
                     xtype: 'multislider',
                     id: 'afpRange',
                     width: 350,
@@ -193,6 +193,16 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 20
+                },
+                {
+                    fieldLabel: 'Filter Avg FP-5',
+                    xtype: 'multislider',
+                    id: 'afp5Range',
+                    width: 350,
+                    values: [0, 70],
+                    increment: 5,
+                    minValue: 0,
+                    maxValue: 70
                 },
                 {
                     fieldLabel: 'Filter odr/5',
