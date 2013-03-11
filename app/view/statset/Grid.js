@@ -215,12 +215,13 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'player salary at the selected site',
                     renderer: this.moneyRenderer
                 },{
-                    text: '$/Pt',
-                    dataIndex: 'cpp',
+                    text: '$/FP-5',
+                    dataIndex: 'cpp5',
                     width: 75,
+                    tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
                 },{
-                    text: 'odr/5',
+                    text: 'ODR-5',
                     dataIndex: 'odr',
                     width: 75,
                     tooltip: 'opponent defensive efficiency rank over the last 5 games. A higher number indicates a better matchup for the player.'

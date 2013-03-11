@@ -200,7 +200,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'afp5Range',
                     width: 350,
                     values: [0, 70],
-                    increment: 5,
+                    increment: 2,
                     minValue: 0,
                     maxValue: 70
                 },
