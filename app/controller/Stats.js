@@ -13,7 +13,11 @@ Ext.define('DFST.controller.Stats', {
     }, {
         ref: 'drilldowninfo',
     	selector: 'drilldowninfo'
-    }],
+    }, {
+        ref: 'drilldownnextopp',
+        selector: 'drilldowndetails checkbox#nextopp'
+    }
+    ],
 
     init: function() {
         // Set up service URLs
@@ -34,8 +38,21 @@ Ext.define('DFST.controller.Stats', {
             'statsetgrid > tableview': {
                 itemdblclick: this.loadStatSet,
                 refresh: this.selectStatSet
+            },
+            'drilldowninfo checkbox#nextopp':{
+                change: this.loadStatSetData
             }
-        });
+            });
+    },
+    
+    loadStatSetData: function() {
+        var limit = this.getDrilldownnextopp().getValue();
+        var store = this.getPlayerStatsStore();
+        store.filter([
+            {id:'id', property: 'id', value: this.playerId},
+            {id:'scoring', property: 'scoring', value: this.siteId},
+            {id:'nextopp', property: 'nextopp', value: limit ? this.gameId : limit},
+        ]);
     },
     
     selectStatSet: function(view) {
@@ -53,15 +70,14 @@ Ext.define('DFST.controller.Stats', {
         var statset = statsets[0],
             detailsInfoView = this.getDrilldowninfo(),
             detailsView = this.getDrilldowndetails(),
-            siteId=this.getStatsStore().filters.get("scoring").value,
             store;
-
+            
+        this.playerId = statset.data.id;
+        this.siteId = this.getStatsStore().filters.get("scoring").value;
+        this.gameId = statset.data.gameId;
+        
         if (statset && detailsView) {
-            store = this.getPlayerStatsStore();
-            store.filter([
-                {id:'id', property: 'id', value: statset.data.id},
-                {id:'scoring', property: 'scoring', value: siteId}
-            ]);
+            this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
             detailsView.setTitle('Game Details: ' + statset.data.name);

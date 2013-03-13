@@ -19,7 +19,7 @@ Ext.define('DFST.view.drilldown.Details', {
 		Ext.apply(this, {
             items: [{   
                 xtype: 'drilldowninfo',
-                width: 200
+                width: 300
             }, {
                 xtype: 'statsetplayergrid'
             }]
