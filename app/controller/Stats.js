@@ -71,12 +71,12 @@ Ext.define('DFST.controller.Stats', {
             detailsInfoView = this.getDrilldowninfo(),
             detailsView = this.getDrilldowndetails(),
             store;
-            
-        this.playerId = statset.data.id;
-        this.siteId = this.getStatsStore().filters.get("scoring").value;
-        this.gameId = statset.data.gameId;
-        
+                    
         if (statset && detailsView) {
+            this.playerId = statset.data.id;
+            this.siteId = this.getStatsStore().filters.get("scoring").value;
+            this.gameId = statset.data.gameId;
+
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);

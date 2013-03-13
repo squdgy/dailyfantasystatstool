@@ -5,3 +5,4 @@
 {"ts":1359294817277,"patch":[[{"diffs":[[0,"n 0."],[-1,"5.5"],[1,"6"],[0,", Co"]],"start1":787,"start2":787,"length1":11,"length2":9}]],"length":871,"saved":false}
 {"ts":1359296084684,"patch":[[{"diffs":[[0,"ires: [\n"],[1,"        'DFST.appsettings',\n"],[0,"        "]],"start1":82,"start2":82,"length1":16,"length2":44}]],"length":899,"saved":false}
 {"ts":1359296139993,"patch":[[{"diffs":[[0,"FST."],[-1,"apps"],[1,"AppS"],[0,"etti"]],"start1":100,"start2":100,"length1":12,"length2":12}]],"length":899,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1363182557657,"patch":[[{"diffs":[[0,"n 0."],[-1,"6"],[1,"7"],[0,", Co"]],"start1":815,"start2":815,"length1":9,"length2":9}]],"length":899,"saved":false}
