@@ -175,16 +175,15 @@ Ext.define('DFST.view.filter.List', {
                     maxValue: 10000
                 },
                 {
-                    fieldLabel: 'Filter $/Pt',
+                    fieldLabel: 'Filter $/FP',
                     xtype: 'multislider',
                     id: 'cppRange',
                     width: 350,
                     values: [0, 1500],
-                    increment: 50,
+                    increment: 0,
                     minValue: 0,
                     maxValue: 1500
-                },
-                {
+                },{
                     fieldLabel: 'Filter Avg FP',
                     xtype: 'multislider',
                     id: 'afpRange',
@@ -203,16 +202,15 @@ Ext.define('DFST.view.filter.List', {
                     increment: 2,
                     minValue: 0,
                     maxValue: 70
-                },
-                {
-                    fieldLabel: 'Filter odr/5',
+                },{
+                    fieldLabel: 'Filter $/FP-5',
                     xtype: 'multislider',
-                    id: 'odrRange',
+                    id: 'cpp5Range',
                     width: 350,
-                    values: [0, 30],
-                    increment: 1,
+                    values: [0, 800],
+                    increment: 0,
                     minValue: 0,
-                    maxValue: 30
+                    maxValue: 800
                 }]
             },
             {
@@ -223,23 +221,32 @@ Ext.define('DFST.view.filter.List', {
                 layout: 'vbox',
                 title: 'Miscellaneous Filters',
                 items: [
-                    {
-                        xtype: 'checkbox',
-                        id: 'injured',
-                        boxLabel: 'Hide Injured Players',
-                        checked: false
-                    },
-                    {
-                        fieldLabel: 'Filter # Games',
-                        xtype: 'multislider',
-                        id: 'ngRange',
-                        width: 350,
-                        values: [0, 50],
-                        increment: 5,
-                        minValue: 0,
-                        maxValue: 50
-                    }
-                ]
+                {
+                    xtype: 'checkbox',
+                    id: 'injured',
+                    boxLabel: 'Hide Injured Players',
+                    checked: false
+                },
+                {
+                    fieldLabel: 'Filter # Games',
+                    xtype: 'multislider',
+                    id: 'ngRange',
+                    width: 350,
+                    values: [0, 50],
+                    increment: 5,
+                    minValue: 0,
+                    maxValue: 50
+                },
+                {
+                    fieldLabel: 'Filter ODR-5',
+                    xtype: 'multislider',
+                    id: 'odrRange',
+                    width: 350,
+                    values: [0, 30],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 30
+                }]
             }]
 		});
 
