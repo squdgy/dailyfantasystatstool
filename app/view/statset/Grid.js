@@ -267,17 +267,18 @@ Ext.define('DFST.view.statset.Grid', {
 	formatName: function(value, p, record) {
         var isInjured = record.data.inj;
         var isProbable = record.data.pp;
+        var name = record.data.fname + " " + record.data.lname;
         if (DFST.AppSettings.sport == "mlb")
         {
             value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
                 record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
         }
         if (isInjured) {
-            return value + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
+            return name + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         } else if (isProbable) {
-            return value + '<img src="images/starting_pitcher.png" class="icon-indicator"/>';
+            return name + '<img src="images/starting_pitcher.png" class="icon-indicator"/>';
         } else {
-            return value;
+            return name;
         }
 	},
     
