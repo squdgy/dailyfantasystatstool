@@ -1,7 +1,7 @@
 //FOR DEBUG PURPOSES, LET EXTJS FIGURE OUT WHERE SCRIPTS ARE AND LOAD THEM
 Ext.Loader.setConfig({ 
     enabled: true,
-    paths: {
+    paths: { 
         Ext: 'ext-4.1.0/src'
     }
 });
