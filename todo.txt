@@ -1,16 +1,21 @@
 NEXT:
 =========
-- Figure out build process for Ext JS 4 - slow now!!
-- need action + scheduled task to refresh caches in webapi
-- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
+- credit card for azure account(s)
+- consolidate accounts, know which account stuf is under
+- make sure appropriate scrapers are working and deployed
+- figure out which are missing
+- fix bottom grid for mlb
+- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 - import new roster, write code to do updates via EF, copy into boxes job
+- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
+- need action + scheduled task to refresh caches in webapi
+- back up DB again: schema + domain data
+
+==============
 - Upgrade ExtJS
 - go back to old theme?
 - fix? in Firefox
-- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
- -- so top grid can have multiple sports but action is generic
 - Add glossary
-- baseball!
 
 NBA:
 =========
@@ -34,6 +39,7 @@ start adding headers, logos, themes, affiliate links etc. to wordpress site
 
 Misc.
 ==========
+- Figure out build process for Ext JS 4 - slow now!!
 Find weather data
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to expain the section

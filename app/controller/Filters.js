@@ -290,7 +290,7 @@ Ext.define('DFST.controller.Filters', {
     changeScoring: function(radiobutton, newValue, oldValue, options) {
         if (newValue) {
             var siteDetailsStore = this.getSiteDetailsStore();
-            var dfsGameId = DFST.AppSettings.sport == "mlb" ? 2 : 2;//def.fd game
+            var dfsGameId = DFST.AppSettings.sport == "mlb" ? 102 : 2;//def.fd game
             //TODO: siteDetails store should only need to filter by gameId
             var siteId = radiobutton.inputValue;
             //if (siteId == 5) dfsGameId = 1; //buzzdraft
@@ -487,12 +487,14 @@ Ext.define('DFST.controller.Filters', {
             host = 'http://dfstapi.cloudapp.net';  //live azure
         }
         
+        var defaultGameId = 2;
+        if (DFST.AppSettings.sport == "mlb") defaultGameId = 102;
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
         siteDetailsStore.filter([
             {id:'siteId', property: 'siteId', value: '2'},
-            {id:'dfsGameId', property: 'dfsGameId', value: '2'}
+            {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
             ]);
         siteDetailsStore.on('load', this.onScoringChanged, this);
         siteDetailsStore.load();

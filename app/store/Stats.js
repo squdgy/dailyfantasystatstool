@@ -49,6 +49,8 @@ Ext.define('DFST.store.Stats', {
     
                  str[i] = filter.property + '#' + filter.value;
              }
+             // add sport filter to all requests
+             str[i] = "sport" + '#' + DFST.AppSettings.sport;
 
             return str.join(",");
          }         

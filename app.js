@@ -21,8 +21,22 @@ Ext.application({
         'Filters'
     ],
     
-    autoCreateViewport: true //to automatically load and instantiate DFST.view.Viewport
+    autoCreateViewport: true, //to automatically load and instantiate DFST.view.Viewport
     
+    init : function(application) {
+        var cururl = document.URL;
+        console.log(cururl);
+        var lqs = cururl.lastIndexOf("?");
+        if (lqs >= 0) {
+            var qs = cururl.substring(lqs+1);
+            if (qs.indexOf("sport=") >= 0) {
+                var sport = qs.substring(6);
+                if (sport === "nba" || sport === "mlb") { //supported sports
+                    DFST.AppSettings.sport = sport;
+                }
+            }
+        }
+    }    
 });
 
 /* Fix for ExtJS 4.1.0 bug */
