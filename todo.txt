@@ -1,21 +1,28 @@
 NEXT:
 =========
-- credit card for azure account(s)
-- consolidate accounts, know which account stuf is under
-- make sure appropriate scrapers are working and deployed
-- figure out which are missing
+- fix scoring for dailyjoust, missing a few stats
+- draftkings price scraper
 - fix bottom grid for mlb
+- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
+- consolidate azure accounts, know which account stuff is under
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 - import new roster, write code to do updates via EF, copy into boxes job
-- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - need action + scheduled task to refresh caches in webapi
-- back up DB again: schema + domain data
+- back up DB again: schema + domain data, not just backup file
 
 ==============
 - Upgrade ExtJS
 - go back to old theme?
 - fix? in Firefox
 - Add glossary
+
+MLB:
+=========
+Write a detailed document with information on all projects, deployments, accounts etc.
+disable draftaid.com/twitter until ready
+Attach domain name to wordpress site
+embed azure app within wordpress site?
+start adding headers, logos, themes, affiliate links etc. to wordpress site
 
 NBA:
 =========
@@ -24,18 +31,6 @@ deal with duplicate Chris Johnsons in NBA!!
 dealing with positions and mappings is still less than ideal
 upgrade generate schema script to capture pks and not null attributes!!!
 siteDetails store should only need to filter by gameId & not site id
-
-LEFT OVER FROM MLB:
-=========
-Double check new lineup script!
-Move MLB stuff to a todo-list for 2013 season
-Double check all azure accounts - write down when they expire
-Write a detailed document with information on all projects, deployments, accounts etc.
-disable draftaid.com/twitter until ready
-
-Attach domain name to wordpress site
-embed azure app within wordpress site
-start adding headers, logos, themes, affiliate links etc. to wordpress site
 
 Misc.
 ==========
@@ -56,7 +51,6 @@ UI:
 ==========
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 add time of update for starting lineup
-get rest of stats to fill in buzz draft scoring for mlb
 add column with position played in bottom grid?
 need glossary or tooltips for column headers
 need player filters - use generic grid filters?
@@ -84,7 +78,7 @@ Bug - game sometimes don't show up in games list even when players do (MLB)
 
 Loader/Data - generic:
 ===========
-move quartz working code back into the WEBAPI solution
+move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?
 write some perl logic to not look for whenupdated when run locally
@@ -97,9 +91,7 @@ probably need to double check probable pitchers filter for dailyjoust
 recheck all stats against an external source - particularly games played and appearances for pitchers
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
 create script to roll up player data?
-buzz draft: need a couple more stats for pitcher,
 2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
-David Winfree: eliasId = 456406 (minor league player - can ignore for now)
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 yahoo player matchups, match dejesus to de jesus? How

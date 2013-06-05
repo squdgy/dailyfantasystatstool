@@ -6,6 +6,7 @@ Ext.Loader.setConfig({
     }
 });
 
+
 Ext.application({
     name: 'DFST',
     appFolder: 'app', // this is the default, but I'm being explicit
