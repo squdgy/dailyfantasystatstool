@@ -180,3 +180,6 @@ x Add DailyJoust scraper/scoring for NBA
 x Redeploy all projects to Azure to make sure I can do this, especially the front end, now that cloud 9 support is gone. - Cloud 9 project uses
     auto-deploy to azure websites from github :-). Just commit and it deploys.
 x Import injury information using DK stats feed (NBA)
+x fix scoring for dailyjoust, missing a few stats
+x draftkings price scraper
+x fix dk import and lots of id mappings

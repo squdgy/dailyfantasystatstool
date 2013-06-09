@@ -293,7 +293,7 @@ Ext.define('DFST.controller.Filters', {
             var dfsGameId = 2;//default fd game
             //TODO: siteDetails store should only need to filter by gameId
             var siteId = radiobutton.inputValue;
-            if (siteId == 1) dfsGameId = 3; //dk
+            if (siteId == 1) dfsGameId = 1; //dk
             if (siteId == 6) dfsGameId = 6; //dj
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             siteDetailsStore.filter([
@@ -400,8 +400,8 @@ Ext.define('DFST.controller.Filters', {
         var checkedGames = {};
         if (len > 0) { // yyyy_mm_dd
             var gameDateFromFilter = Ext.Date.format(this.getDateFilter().value, 'Y_m_d');
-            var gameDateFromCheckboxes = gameCheckboxes[0].inputValue.substring(0,10);
-            if (gameDateFromFilter === gameDateFromCheckboxes) {
+            var gameDateFromServer = records[0].get('gtime').substring(0, 10).replace(/-/g,'_');
+            if (gameDateFromFilter === gameDateFromServer) {
                 for (var i = 0; i < len; i++) {
                     var item = gameCheckboxes[i];
                     if (item.getValue()) { //is checked

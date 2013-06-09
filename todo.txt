@@ -1,7 +1,8 @@
 NEXT:
 =========
-- fix scoring for dailyjoust, missing a few stats
-- draftkings price scraper
+- deal with 2 Henry Rodriguez
+- show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
+- fix lineups from dailyjoust - clearing out lineups?
 - fix bottom grid for mlb
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - consolidate azure accounts, know which account stuff is under

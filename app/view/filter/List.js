@@ -36,7 +36,7 @@ Ext.define('DFST.view.filter.List', {
                     columns: 4
                 },
                 items: [
-                    /*{ boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},*/
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },
                     { boxLabel: 'DailyJoust', name: 'rb', inputValue: '6'}/*,
                     { boxLabel: 'DraftDay', name: 'rb', inputValue: '3'},
@@ -236,7 +236,17 @@ Ext.define('DFST.view.filter.List', {
                     increment: 5,
                     minValue: 0,
                     maxValue: 50
-                }/* NBA specific,
+                },
+                {//mlb specific
+                    fieldLabel: 'Filter MR Value',
+                    xtype: 'multislider',
+                    id: 'mr1Range',
+                    width: 350,
+                    values: [0, 5],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 5
+                }                /* NBA specific,
                 {
                     fieldLabel: 'Filter ODR-5',
                     xtype: 'multislider',

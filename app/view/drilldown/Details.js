@@ -5,8 +5,7 @@ Ext.define('DFST.view.drilldown.Details', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.drilldowndetails',
 
-//    requires: ['Ext.toolbar.Toolbar'],
-
+//    requires: ['Ext.toolbar.Toolbar'], 
 	cls: 'drilldown',
 	autoScroll: true,
 	border: false,
