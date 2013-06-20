@@ -2,6 +2,7 @@
 
 Copyright (c) 2012 Maura Wilder
 
+
 */
 Ext.define('DFST.model.StatSet', {
     extend: 'Ext.data.Model',
@@ -39,7 +40,7 @@ Ext.define('DFST.model.StatSet', {
         { name: 'er', type: 'int', defaultValue: 0 },    //earned runs
         { name: 'aer', type: 'float', defaultValue: 0.0 },    //average earned runs/game
         { name: 'so', type: 'int', defaultValue: 0 },    //strike outs
-        { name: 'aso', type: 'float', defaultValue: 0.0 },    //average strike outs
+        { name: 'aso', type: 'float', defaultValue: 0.0 },//average strike outs
         { name: 'ip', type: 'float', defaultValue: 0.0 }, //innings pitched
         { name: 'aip', type: 'float', defaultValue: 0.0 }, //avg. innings pitched
         

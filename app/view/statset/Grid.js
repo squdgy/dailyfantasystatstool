@@ -1,3 +1,4 @@
+
 Ext.define('DFST.view.statset.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetgrid',

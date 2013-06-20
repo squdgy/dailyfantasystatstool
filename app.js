@@ -5,7 +5,6 @@ Ext.Loader.setConfig({
         Ext: 'ext-4.1.0/src'
     }
 });
-
  
 Ext.application({
     name: 'DFST',

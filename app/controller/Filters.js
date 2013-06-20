@@ -1,3 +1,4 @@
+
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
@@ -388,6 +389,7 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
+        if (records)
         if (records.length === 0) return;
         // Change the list of all games
         // All games on a new date will reset to checked

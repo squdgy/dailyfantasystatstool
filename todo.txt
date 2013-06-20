@@ -1,9 +1,13 @@
 NEXT:
 =========
+- fix bottom grid for mlb
+- double check injuries import
+- major code cleanup - scoring, introduce enums, remove obsolete controller actions
 - deal with 2 Henry Rodriguez
 - show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
 - fix lineups from dailyjoust - clearing out lineups?
-- fix bottom grid for mlb
+- weather
+- betting line
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - consolidate azure accounts, know which account stuff is under
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 

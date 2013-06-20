@@ -2,6 +2,7 @@
 
 Copyright (c) 2012 Maura Wilder
 
+
 */
 Ext.define('DFST.model.PlayerStatSet', {
     extend: 'Ext.data.Model',
@@ -10,8 +11,8 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'gd', type: 'date' },   //gamedate
         { name: 'opp', type: 'string', defaultValue: '' },
         { name: 'isHome', type: 'boolean', defaultValue: true },
+        { name: 'pos', type: 'string', defaultValue: '' },
         
-/*        
         //hitter stats
         { name: 'x1b', type: 'int', defaultValue: 0 },    //singles
         { name: 'x2b', type: 'int', defaultValue: 0 },    //doubles
@@ -29,7 +30,12 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'er', type: 'int', defaultValue: 0 },    //earned runs
         { name: 'so', type: 'int', defaultValue: 0 },    //strike outs
         { name: 'ip', type: 'float', defaultValue: 0.0 },     //innings pitched
-*/
+        { name: 'ha', type: 'int', defaultValue: 0 },     //hits against
+        { name: 'hb', type: 'int', defaultValue: 0 },     //hits batsman
+        { name: 'bba', type: 'int', defaultValue: 0 },     //walks allowed
+        { name: 'l', type: 'int', defaultValue: 0 },     //loss
+        
+/*
         //nba stats
         { name: 'p', type: 'int', defaultValue: 0 },   //points
         { name: 'a', type: 'int', defaultValue: 0 },   //assists
@@ -45,7 +51,7 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'tpa', type: 'int', defaultValue: 0 },  //free throws attempted
         { name: 'm', type: 'int', defaultValue: 0 },    //free throws attempted
         { name: 'start', type: 'int', defaultValue: 0 },  //free throws attempted
-        
+*/        
         //derived stats
         { name: 'fp', type: 'float', defaultValue: 0.0}  //fantasy points per game
     ]

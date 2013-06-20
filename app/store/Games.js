@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2012 Maura Wilder
+Copyright (c) 2012-2013 Maura Wilder
 
 */
 Ext.define('DFST.store.Games', {

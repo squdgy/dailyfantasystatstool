@@ -7,17 +7,12 @@ Ext.define('DFST.controller.Stats', {
 
     views: ['statset.Grid', 'statset.PlayerGrid', 'drilldown.Details', 'drilldown.DetailInfo'],
 
-    refs: [{
-    	ref: 'drilldowndetails',
-    	selector: 'drilldowndetails'
-    }, {
-        ref: 'drilldowninfo',
-    	selector: 'drilldowninfo'
-    }, {
-        ref: 'drilldownnextopp',
-        selector: 'drilldowndetails checkbox#nextopp'
-    }
-    ],
+    refs: [
+        { ref: 'playerGrid', selector: 'statsetplayergrid' },
+        { ref: 'drilldowndetails',  selector: 'drilldowndetails'},
+        { ref: 'drilldowninfo', selector: 'drilldowninfo' },
+        { ref: 'drilldownnextopp', selector: 'drilldowndetails checkbox#nextopp'}
+        ],
 
     init: function() {
         // Set up service URLs
@@ -77,6 +72,12 @@ Ext.define('DFST.controller.Stats', {
             this.siteId = this.getStatsStore().filters.get("scoring").value;
             this.gameId = statset.data.gameId;
 
+            var pos = statset.data.spos;
+            var pgrid = this.getPlayerGrid();
+            if (pos == 'P')
+                pgrid.reconfigure(null, pgrid.mlbpCols)
+            else
+                pgrid.reconfigure(null, pgrid.mlbhCols)
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
