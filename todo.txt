@@ -1,13 +1,16 @@
 NEXT:
 =========
-- fix bottom grid for mlb
+- bottom grid - why not getting last game?
 - double check injuries import
+- update bottom grid on scoring change (ex. dailyjoust to fd)
+- problem with game ids of double headers in stats?
+- area for game info:
+- weather
+- betting line
 - major code cleanup - scoring, introduce enums, remove obsolete controller actions
 - deal with 2 Henry Rodriguez
 - show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
 - fix lineups from dailyjoust - clearing out lineups?
-- weather
-- betting line
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - consolidate azure accounts, know which account stuff is under
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
@@ -16,7 +19,6 @@ NEXT:
 - back up DB again: schema + domain data, not just backup file
 
 ==============
-- Upgrade ExtJS
 - go back to old theme?
 - fix? in Firefox
 - Add glossary

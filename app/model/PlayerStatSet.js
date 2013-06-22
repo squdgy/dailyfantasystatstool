@@ -14,6 +14,8 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'pos', type: 'string', defaultValue: '' },
         
         //hitter stats
+        { name: 'ab', type: 'int', defaultValue: 0 },    //at bats
+        { name: 'h', type: 'int', defaultValue: 0 },    //hits
         { name: 'x1b', type: 'int', defaultValue: 0 },    //singles
         { name: 'x2b', type: 'int', defaultValue: 0 },    //doubles
         { name: 'x3b', type: 'int', defaultValue: 0 },     //triples
@@ -21,8 +23,12 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'r', type: 'int', defaultValue: 0 },     //runs scored
         { name: 'rbi', type: 'int', defaultValue: 0 },   //runs batted in
         { name: 'bb', type: 'int', defaultValue: 0 },    //walks
+        { name: 'bso', type: 'int', defaultValue: 0 },    //strike out (H)
+        { name: 'hidp', type: 'int', defaultValue: 0 },    //ground into dp
         { name: 'sb', type: 'int', defaultValue: 0 },    //stolen bases
+        { name: 'cs', type: 'int', defaultValue: 0 },    //caught stealing
         { name: 'hbp', type: 'int', defaultValue: 0 },   //hit by pitch
+        { name: 'sac', type: 'int', defaultValue: 0 },    //sacrifices       
         { name: 'o', type: 'int', defaultValue: 0 },   //(calculated as at bats - hits)
         
         //pitcher stats

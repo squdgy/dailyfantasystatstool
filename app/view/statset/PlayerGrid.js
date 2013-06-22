@@ -36,7 +36,14 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
-        this.mlbhCols = firstCols.concat([{
+        this.mlbhCols = firstCols.concat([
+                {
+                    text: 'AB',
+                    dataIndex: 'ab'
+                }, {
+                    text: 'H',
+                    dataIndex: 'h'
+                }, {
                     text: '1B',
                     dataIndex: 'x1b'
                 }, {
@@ -58,13 +65,26 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     text: 'BB',
                     dataIndex: 'bb'
                 },{
+                    text: 'SO',
+                    dataIndex: 'bso'
+                },{
                     text: 'SB',
                     dataIndex: 'sb'
+                },{
+                    text: 'CS',
+                    dataIndex: 'cs'
                 },{
                     text: 'HBP',
                     dataIndex: 'hbp'
                 },{
-                    text: 'OUT',
+                    text: 'GIDP',
+                    dataIndex: 'hidp'
+                },{
+                    text: 'SAC',
+                    dataIndex: 'sac'
+                },
+                {
+                    text: 'OUTS',
                     dataIndex: 'o'
                 }], lastCols);
         this.mlbpCols = firstCols.concat([{

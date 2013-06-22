@@ -3,3 +3,9 @@ x mlb injuries
 x double check injuries import 
 x need action + scheduled task to refresh caches in webapi
 x back up DB again: schema + domain data, not just backup file
+x fix bottom grid for mlb
+x upgrade extjs - point to new version of cdn, but did not update local (for custom theme)
+x fix perl job logging - upgraded to use 2.0 Azure SDK
+x fix retrieval of caught stealing stat
+x check stats on bottom grid for hitters and some pitchers, checked and adjusted scoring for all supported sites
+
