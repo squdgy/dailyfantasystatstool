@@ -1,4 +1,4 @@
-
+/*global Ext, DFST*/
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
@@ -22,6 +22,9 @@ Ext.define('DFST.controller.Filters', {
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
     // is executed on the Application
     init: function() {
+        
+        //local variables
+        this.gameDateIsChanging = false;
         
         this.control({
             'filterlist datefield':{
@@ -108,6 +111,7 @@ Ext.define('DFST.controller.Filters', {
     },
 
     changeDate: function(datefield, newValue, oldValue, options) {
+        this.gameDateIsChanging = true;
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('gameId'); // clear all game filters
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
@@ -154,6 +158,7 @@ Ext.define('DFST.controller.Filters', {
 
         this.changeLineupSpots(checkbox, newValue, oldValue, options);
         return;
+        /*
         var statsStore = this.getStatsStore();
         if (newValue) {
             var value = '1:2:3:4:5:6:7:8:9:10'; //all spots in lineup
@@ -163,6 +168,7 @@ Ext.define('DFST.controller.Filters', {
             statsStore.filter();
             return;
         }
+        */
     },
     
     /* Hide or show players that are batting in a particular spot in the lineup (1-9) */
@@ -251,9 +257,9 @@ Ext.define('DFST.controller.Filters', {
             }
         } else if (option === 'pitchers') {
             for (i=0; i<len; i++) {
-                checkbox = positionCheckboxes[i];                
+                checkbox = positionCheckboxes[i];
                 checkbox.suspendEvents(false);
-                if (checkbox.inputValue === 'P' || checkbox.inputValue === 'SP'){                 
+                if (checkbox.boxLabel === 'P' || checkbox.boxLabel === 'SP'){                 
                     checkbox.setValue(true);
                 } else {
                     checkbox.setValue(false);
@@ -264,7 +270,7 @@ Ext.define('DFST.controller.Filters', {
             for (i=0; i<len; i++) {
                 checkbox = positionCheckboxes[i];                
                 checkbox.suspendEvents(false);
-                pos = checkbox.inputValue;
+                pos = checkbox.boxLabel;
                 if (pos === 'LF' || pos === 'RF' || pos === 'CF' || pos === 'OF' ){                 
                     checkbox.setValue(true);
                 } else {
@@ -276,7 +282,7 @@ Ext.define('DFST.controller.Filters', {
             for (i=0; i<len; i++) {
                 checkbox = positionCheckboxes[i];                
                 checkbox.suspendEvents(false);
-                pos = checkbox.inputValue;
+                pos = checkbox.boxLabel;
                 if (pos === '1B' || pos === '2B' || pos === '3B' || pos === 'SS'){                 
                     checkbox.setValue(true);
                 } else {
@@ -389,7 +395,6 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
-        if (records)
         if (records.length === 0) return;
         // Change the list of all games
         // All games on a new date will reset to checked
@@ -401,18 +406,17 @@ Ext.define('DFST.controller.Filters', {
         // If the game date has not changed, keep track of already checked games
         var checkedGames = {};
         if (len > 0) { // yyyy_mm_dd
-            var gameDateFromFilter = Ext.Date.format(this.getDateFilter().value, 'Y_m_d');
-            var gameDateFromServer = records[0].get('gtime').substring(0, 10).replace(/-/g,'_');
-            if (gameDateFromFilter === gameDateFromServer) {
-                for (var i = 0; i < len; i++) {
+            if (this.gameDateIsChanging) {
+                this.gameDateIsChanging = false;
+                isNewDate = true;
+            } else {
+                for (i = 0; i < len; i++) {
                     var item = gameCheckboxes[i];
                     if (item.getValue()) { //is checked
                         checkedGames[item.inputValue] = 1;
                     }
                 }
                 isNewDate = false;
-            } else {
-                isNewDate = true;
             }
         }
         

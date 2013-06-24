@@ -8,4 +8,6 @@ x upgrade extjs - point to new version of cdn, but did not update local (for cus
 x fix perl job logging - upgraded to use 2.0 Azure SDK
 x fix retrieval of caught stealing stat
 x check stats on bottom grid for hitters and some pitchers, checked and adjusted scoring for all supported sites
+x show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
+
 

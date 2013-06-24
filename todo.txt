@@ -1,15 +1,19 @@
 NEXT:
 =========
-- bottom grid - why not getting last game?
+- fix active flag on player! - 
+update player set active = 1 where playerId in
+(
+select distinct d.playerId from dfspricing d inner join player p on (d.playerId = p.playerId)
+where active = 0 and captureDate > '2013-06-24')
 - double check injuries import
 - update bottom grid on scoring change (ex. dailyjoust to fd)
 - problem with game ids of double headers in stats?
+- check for fixes for extjs checkbox bug
 - area for game info:
 - weather
 - betting line
 - major code cleanup - scoring, introduce enums, remove obsolete controller actions
 - deal with 2 Henry Rodriguez
-- show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
 - fix lineups from dailyjoust - clearing out lineups?
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - consolidate azure accounts, know which account stuff is under
@@ -37,7 +41,7 @@ import roster every day?
 deal with duplicate Chris Johnsons in NBA!!
 dealing with positions and mappings is still less than ideal
 upgrade generate schema script to capture pks and not null attributes!!!
-siteDetails store should only need to filter by gameId & not site id
+siteDetails store should only need to filter by gameId & not site id  
 
 Misc.
 ==========
