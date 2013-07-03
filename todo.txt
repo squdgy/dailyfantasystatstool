@@ -1,34 +1,34 @@
 NEXT:
 =========
-- fix active flag on player! - 
-update player set active = 1 where playerId in
-(
-select distinct d.playerId from dfspricing d inner join player p on (d.playerId = p.playerId)
-where active = 0 and captureDate > '2013-06-24')
-- double check injuries import
-- update bottom grid on scoring change (ex. dailyjoust to fd)
-- problem with game ids of double headers in stats?
-- check for fixes for extjs checkbox bug
-- area for game info:
-- weather
-- betting line
-- major code cleanup - scoring, introduce enums, remove obsolete controller actions
-- deal with 2 Henry Rodriguez
-- fix lineups from dailyjoust - clearing out lineups?
-- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
-- consolidate azure accounts, know which account stuff is under
-- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
-- import new roster, write code to do updates via EF, copy into boxes job
+- work on deprecating gamerepository for schedule repository
+- performance on top grid degraded again
 - need action + scheduled task to refresh caches in webapi
-- back up DB again: schema + domain data, not just backup file
+- import new roster, write code to do updates via EF, copy into feeds job
+- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 
+misc
 ==============
+- major code cleanup - scoring, introduce enums, remove obsolete controller actions
 - go back to old theme?
 - fix? in Firefox
 - Add glossary
 
 MLB:
 =========
+- deal with 2 Henry Rodriguez
+- back up DB again: schema + domain data, not just backup file
+- problem with game ids of double headers in stats?
+- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
+- fix lineups from dailyjoust - clearing out lineups?
+- area for game info:
+- weather
+- betting line
+- fix active flag on player - when they are in a starting lineup, probably
+means they just came off of the DL. This is not the query, but it's a start:
+update player set active = 1 where playerId in
+(
+select distinct d.playerId from dfspricing d inner join player p on (d.playerId = p.playerId)
+where active = 0 and captureDate > '2013-06-24')
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
 Attach domain name to wordpress site
@@ -69,7 +69,6 @@ Change theme colors
 Clean up header for bottom grid - full team name, full mlb position name, other?
 need reset filters button
 need filter summary (or summaries?)
-hide players not known to be playing - shouldn't hide starting pitchers
 need to clear or set all games
 need to be able to sort by multiple columns
 need to be able to choose individual teams, not just games
@@ -77,6 +76,7 @@ uncheck games that have already occurred in the day on page load, and make not c
 
 ExtJS:
 ===========
+check for fixes for extjs checkbox bug - STILL not fixed as of 4.2.1
 Clean up theme
 On stores, encodeFilters, encodeSorters are all copy-paste: Either create a
 common proxy for them to all use or fix the server side to accept the default
@@ -84,7 +84,6 @@ common proxy for them to all use or fix the server side to accept the default
 
 WEBAPI:
 ===========
-Bug - game sometimes don't show up in games list even when players do (MLB)
 (Bill) Add Trace Logging and Save trace logs and iis logs to azure storage
 
 Loader/Data - generic:
@@ -96,12 +95,11 @@ write some perl logic to not look for whenupdated when run locally
 
 Loader/Data - baseball
 ===========
-capuano showing as started on 5/9? tim hudson 5/23 - didn't pitch? - pitchers show up if they pinch hit - how to deal with this
+Zach Wheeler did not get assigned player id in mlbplayer table
+get throwing/batting values (left right switch)
 add backup to lineups script to look for other games from another site?
 probably need to double check probable pitchers filter for dailyjoust
-recheck all stats against an external source - particularly games played and appearances for pitchers
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
-create script to roll up player data?
 2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
@@ -110,6 +108,7 @@ scrape of yahoo matchups ended up with 2 values for some players breaking the qu
 
 Perl/Azure:
 ============
+Why aren't all Trace.TraceInformation in WebRole.cs ending up in the WadLogsTable?
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
 Move quartz jobs into the WEBAPI project?
@@ -122,6 +121,7 @@ keep jobs (script lists and schedules) in a db table?
 
 Maintenance:
 ===========
+consolidate azure accounts, know which account stuff is under
 add copyrights to all files
 combine webapi and load projects into one github repo?
 need backup strategy for Azure db.

@@ -378,7 +378,10 @@ Ext.define('DFST.controller.Filters', {
             cb.setValue(true);
             cb.resumeEvents();
         }        
-*/        
+*/
+        // clear the selection in the top grid
+        // 6/29/13 - kludge because of extjs behavior change introduced in 4.2.1
+        
         // refresh player store
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('pos');
