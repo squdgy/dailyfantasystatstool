@@ -1,5 +1,6 @@
 NEXT:
 =========
+- weather
 - import new roster, write code to do updates via EF, copy into feeds job
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 
@@ -18,7 +19,6 @@ MLB:
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - fix lineups from dailyjoust - clearing out lineups?
 - area for game info:
-- weather
 - betting line
 - fix active flag on player - when they are in a starting lineup, probably
 means they just came off of the DL. This is not the query, but it's a start:
