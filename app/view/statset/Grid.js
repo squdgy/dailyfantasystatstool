@@ -35,6 +35,16 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 150,
                     renderer: this.formatName
                 },{
+                    text: 'B.',
+                    dataIndex: 'bats',
+                    align: 'left',
+                    renderer: this.formatHandedness
+                },{
+                    text: 'Th.',
+                    dataIndex: 'throws',
+                    align: 'left',
+                    renderer: this.formatHandedness
+                },{
                     text: 'Team',
                     dataIndex: 'team',
                     align: 'left',
@@ -293,7 +303,18 @@ Ext.define('DFST.view.statset.Grid', {
             return name;
         }
 	},
-    
+
+    /**
+     * Handedness renderer
+     * @private
+     */
+    formatHandedness: function(value, p, record) {
+        if (value == 2) return 'R';
+        if (value == 1) return 'L';
+        if (value == 3) return 'S';
+        return 'UNK';
+	},
+
 	/**
      * Team renderer
      * @private

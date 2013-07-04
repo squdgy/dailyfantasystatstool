@@ -59,6 +59,10 @@ Ext.define('DFST.model.StatSet', {
         { name: 'pp', type: 'boolean', defaultValue: false},  //whether player is probable starter?
         
         { name: 'border', type: 'int', defaultValue: 0},  //batting order if known, else 0
-        { name: 'mr1', type: 'int', defaultValue: 0}      //matchup rating
+        { name: 'mr1', type: 'int', defaultValue: 0},      //matchup rating
+        
+        { name: 'bats', type: 'int', defaultValue: 0},  //handedness
+        { name: 'throws', type: 'int', defaultValue: 0} //handedness
+        
     ]
 });

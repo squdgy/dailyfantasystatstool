@@ -1,8 +1,5 @@
 NEXT:
 =========
-- work on deprecating gamerepository for schedule repository
-- performance on top grid degraded again
-- need action + scheduled task to refresh caches in webapi
 - import new roster, write code to do updates via EF, copy into feeds job
 - Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 

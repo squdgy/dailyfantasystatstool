@@ -13,4 +13,10 @@ x fix duplicate ids: Ishikawa and Oswalt, fix connection timeout in daily feeds 
 x double check injuries import - fixed issue with Azure container
 x more nickname updates, another timeout fix in the perl runner
 x deployed 8.1 - 7/3/2013
+x work on deprecating gamerepository for schedule repository - gone
+x performance on top grid degraded again - more caching for starting lineups, yahoo matchups etc.
+x need action + scheduled task to refresh caches in webapi
+x find and include batting/pitching handed-ness - sort of hacked this into player table, will need to revisit with football
+
+
 
