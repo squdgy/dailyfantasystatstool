@@ -1,0 +1,12 @@
+
+/* injury or starting pitcher icon */
+.icon-indicator {
+    margin-left: 3px;
+}
+
+/* radio button spacing - see site filters */
+.x-form-cb-label-after {
+margin-left: 4px;
+margin-right: 8px;
+vertical-align: top;
+}

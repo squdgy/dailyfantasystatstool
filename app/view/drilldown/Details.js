@@ -5,11 +5,10 @@ Ext.define('DFST.view.drilldown.Details', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.drilldowndetails',
 
-//    requires: ['Ext.toolbar.Toolbar'], 
 	cls: 'drilldown',
 	autoScroll: true,
 	border: false,
-    title: 'Player Details',
+    title: 'Game Log',
     collapsible: true,
 	animCollapse: true,    
     margins: '5 0 5 5',

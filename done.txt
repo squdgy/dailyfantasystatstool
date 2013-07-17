@@ -1,22 +1,2 @@
--Restart done list on 6/14/2013:
-x mlb injuries - added import to feeds job
-x need action + scheduled task to refresh caches in webapi - wrote action
-x back up DB again: schema + domain data, not just backup file
-x fix bottom grid for mlb
-x upgrade extjs - point to new version of cdn, but did not update local (for custom theme)
-x fix perl job logging - upgraded to use 2.0 Azure SDK
-x fix retrieval of caught stealing stat
-x check stats on bottom grid for hitters and some pitchers, checked and adjusted scoring for all supported sites
-x show lineup in indicator, broken with game id change - might need to update lineups to include actual gameid
-x update bottom grid on scoring change (ex. dailyjoust to fd) - downgraded extjs, 4.2.1 breaks a couple of things
-x fix duplicate ids: Ishikawa and Oswalt, fix connection timeout in daily feeds job
-x double check injuries import - fixed issue with Azure container
-x more nickname updates, another timeout fix in the perl runner
-x deployed 8.1 - 7/3/2013
-x work on deprecating gamerepository for schedule repository - gone
-x performance on top grid degraded again - more caching for starting lineups, yahoo matchups etc.
-x need action + scheduled task to refresh caches in webapi
-x find and include batting/pitching handed-ness - sort of hacked this into player table, will need to revisit with football
-
-
-
+-Restart done list on 7/17/2013:
+- weather - show in UI :-)

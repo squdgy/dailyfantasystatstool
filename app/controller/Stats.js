@@ -1,17 +1,20 @@
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats'],
+    stores: ['Stats', 'PlayerStats', 'Games'],
 
-    models: ['StatSet', 'PlayerStatSet'],
+    models: ['StatSet', 'PlayerStatSet', 'Game'],
 
-    views: ['statset.Grid', 'statset.PlayerGrid', 'drilldown.Details', 'drilldown.DetailInfo'],
+    views: ['statset.Grid', 'statset.PlayerGrid', 
+    'drilldown.Details', 'drilldown.DetailInfo',
+    'weather.Display'],
 
     refs: [
         { ref: 'playerGrid', selector: 'statsetplayergrid' },
         { ref: 'drilldowndetails',  selector: 'drilldowndetails'},
         { ref: 'drilldowninfo', selector: 'drilldowninfo' },
-        { ref: 'drilldownnextopp', selector: 'drilldowndetails checkbox#nextopp'}
+        { ref: 'drilldownnextopp', selector: 'drilldowndetails checkbox#nextopp'},
+        { ref: 'weatherdisplay', selector: 'weatherdisplay' }
         ],
 
     init: function() {
@@ -28,7 +31,7 @@ Ext.define('DFST.controller.Stats', {
 
         this.control({
             'statsetgrid': {
-                selectionchange: this.drillDown
+                selectionchange: this.onPlayerChanged
             },
             'statsetgrid > tableview': {
                 itemdblclick: this.loadStatSet,
@@ -57,6 +60,11 @@ Ext.define('DFST.controller.Stats', {
         }
     },
 
+    onPlayerChanged: function(grid, statsets) {
+        this.showGameDetail(grid, statsets);
+        this.drillDown(grid, statsets); 
+    },
+    
     /**
      * Loads the given statset into the drilldown view
      * @param {DFST.model.StatSet} statset The statset to load
@@ -76,13 +84,51 @@ Ext.define('DFST.controller.Stats', {
             var pgrid = this.getPlayerGrid();
             if (pos == 'P')
                 pgrid.reconfigure(null, pgrid.mlbpCols)
-            else
+            else 
                 pgrid.reconfigure(null, pgrid.mlbhCols)
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
-            detailsView.setTitle('Game Details: ' + statset.data.name);
+            detailsView.setTitle('Past Game Statistics for ' + statset.data.fname +
+            ' ' + statset.data.lname);
             detailsView.show();
         }
-    }});
+    },
+    
+    /**
+     * Load game data into the WeatherDisplay view
+     * @param {DFST.model.StatSet} statset The statset to load
+     */
+    showGameDetail: function(grid, statsets) {        
+        var statset = statsets[0],
+            gameView = this.getWeatherdisplay(),
+            gamesStore = this.getGamesStore();
+
+        if (statset && gameView) {
+            var gameId = statset.data.gameId;
+            var game = gamesStore.findRecord('gid', gameId);
+            if (game) {
+                var weather = game.getAssociatedData().weather;
+                var hourViews = Ext.ComponentQuery.query('weatherhour');
+                var wi = weather.length;
+                var hrs = gameView.items;
+                for (var i=0; i < wi; i++) {
+                    var hourView = hourViews[i];
+                    if (hourView) {
+                        hourView.update(weather[i]);
+                        var hour = new Date(weather[i].time);
+                        hour = Ext.Date.add(hour, Ext.Date.MINUTE, hour.getTimezoneOffset());
+                        hourView.setTitle(Ext.Date.format(hour, 'g:i a'));
+                    }
+                }
+                var gameTime = new Date(game.get('gtime'));
+                gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, gameTime.getTimezoneOffset());
+                var title = 'Weather for ' + game.get('away') + ' @ ' + 
+                    game.get('home') + ' ' + Ext.Date.format(gameTime, 'm/d/Y g:i a');
+                gameView.setTitle(title);
+                gameView.show();
+            }
+        }
+    }    
+    });
 

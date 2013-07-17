@@ -1,6 +1,9 @@
 /* Describes one game */
 Ext.define('DFST.model.Game', {
     extend: 'Ext.data.Model',
+    requires: [
+        'DFST.model.Weather'
+    ],
     
     fields: [ // default values assume from fanduel
         { name: 'gid', type: 'string', defaultValue: '' },
@@ -13,5 +16,7 @@ Ext.define('DFST.model.Game', {
         { name: 'apid', type: 'int', defaultValue: 0 },
         { name: 'apname', type: 'string', defaultValue: '' },
         { name: 'alin', type: 'bool', defaultValue: false }
-    ]
+    ],
+    
+    hasMany  : {model: 'DFST.model.Weather', name: 'weather', associationKey: 'vw'}
 });

@@ -1,31 +1,29 @@
 NEXT:
 =========
-- weather
-- import new roster, write code to do updates via EF, copy into feeds job
-- Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
+- manually import friday's weather every day
+- hide weather and player game log if no data at all (like 7/17)
+- add pitchers info to game view
+- clean up weather display
+- check injury import and actives
+- another round of perl cleanup
+- make sure webapi can deploy to 2012 and get geodata - set osfamily=3 and include sqlserver types dll
 
 misc
 ==============
-- major code cleanup - scoring, introduce enums, remove obsolete controller actions
+- major code cleanup - scoring, introduce enums, remove obsolete controller actions, Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 - go back to old theme?
 - fix? in Firefox
 - Add glossary
 
 MLB:
 =========
-- deal with 2 Henry Rodriguez
-- back up DB again: schema + domain data, not just backup file
+- show venue and show better indication of wind speed etc.
 - problem with game ids of double headers in stats?
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
-- fix lineups from dailyjoust - clearing out lineups?
 - area for game info:
 - betting line
 - fix active flag on player - when they are in a starting lineup, probably
 means they just came off of the DL. This is not the query, but it's a start:
-update player set active = 1 where playerId in
-(
-select distinct d.playerId from dfspricing d inner join player p on (d.playerId = p.playerId)
-where active = 0 and captureDate > '2013-06-24')
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
 Attach domain name to wordpress site
@@ -42,8 +40,8 @@ siteDetails store should only need to filter by gameId & not site id
 
 Misc.
 ==========
+- add venue information to game data
 - Figure out build process for Ext JS 4 - slow now!!
-Find weather data
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to expain the section
 need to check out project to new area -to make sure I can do everything I need to
@@ -73,7 +71,8 @@ uncheck games that have already occurred in the day on page load, and make not c
 
 ExtJS:
 ===========
-check for fixes for extjs checkbox bug - STILL not fixed as of 4.2.1
+check for fixes for extjs checkbox bug - STILL not fixed as of 4.2.1, chose not to upgrade because 4.2.1 
+ introduced new bug - bottom grid doesn't update on site change
 Clean up theme
 On stores, encodeFilters, encodeSorters are all copy-paste: Either create a
 common proxy for them to all use or fix the server side to accept the default
@@ -88,20 +87,22 @@ Loader/Data - generic:
 move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?
-write some perl logic to not look for whenupdated when run locally
+move nickname stuff to db
+how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA)
+fix exceptions with using Trace in a non-cloud environment
 
 Loader/Data - baseball
 ===========
-Zach Wheeler did not get assigned player id in mlbplayer table
-get throwing/batting values (left right switch)
+Hairston Jr. - not getting mapped correctly because of the Jr.
 add backup to lineups script to look for other games from another site?
 probably need to double check probable pitchers filter for dailyjoust
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
-2 Chris Carpenters - BOS player is in minors. - How to tell difference in data loader scripts, need fanduel teamid mapping table
 change load_teamrosters to ignore players that are already ok?
 fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 yahoo player matchups, match dejesus to de jesus? How
 scrape of yahoo matchups ended up with 2 values for some players breaking the query - may need to revisit yahoo scrape
+add flag to all scripts to prepare it for a reload of data, ex. when importing fanduel scores delete the pricing data
+for fanduel for the current day from both the fanduel table and the dfspricing table.
 
 Perl/Azure:
 ============

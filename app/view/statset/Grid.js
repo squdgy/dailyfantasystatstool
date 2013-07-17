@@ -35,14 +35,16 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 150,
                     renderer: this.formatName
                 },{
-                    text: 'B.',
+                    text: 'B',
                     dataIndex: 'bats',
                     align: 'left',
+                    width: 25,
                     renderer: this.formatHandedness
                 },{
-                    text: 'Th.',
+                    text: 'Th',
                     dataIndex: 'throws',
                     align: 'left',
+                    width: 25,
                     renderer: this.formatHandedness
                 },{
                     text: 'Team',
@@ -51,7 +53,7 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 60,
                     renderer: this.formatTeam
                 },{
-                    text: 'OPP',
+                    text: 'Opp',
                     dataIndex: 'opp',
                     align: 'left',
                     width: 60,
@@ -267,6 +269,8 @@ Ext.define('DFST.view.statset.Grid', {
     },
     
     moneyRenderer: function(value, p, record) {
+        if (value === 0)
+            return 'N/A';
         return Ext.util.Format.currency(value, '$', -1); 
     },
     
@@ -276,7 +280,7 @@ Ext.define('DFST.view.statset.Grid', {
      */
     costPerPointRenderer: function(value, p, record) {
         if (value === 999999) {
-            return "&infin;";
+            return "N/A";
         } else {
             return this.moneyRenderer(value, p, record);
         }
@@ -294,6 +298,9 @@ Ext.define('DFST.view.statset.Grid', {
         {
             value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
                 record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
+        }
+        if (isInjured && isProbable) {
+            return name + '<img src="images/starting_pitcher.png" class="icon-indicator"/><img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         }
         if (isInjured) {
             return name + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';

@@ -1,5 +1,6 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
-
-    sport: 'mlb' // for now, the application will support just one sport, options: mlb, nba
+    
+    sport: 'mlb', // for now, the application will support just one sport, options: mlb, nba
+    version: '0.9'
 });  
