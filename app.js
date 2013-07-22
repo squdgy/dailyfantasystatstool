@@ -1,3 +1,4 @@
+/*global Ext: false, DFST: false */
 //FOR DEBUG PURPOSES, LET EXTJS FIGURE OUT WHERE SCRIPTS ARE AND LOAD THEM
 Ext.Loader.setConfig({ 
     enabled: true,
@@ -8,24 +9,19 @@ Ext.Loader.setConfig({
  
 Ext.application({
     name: 'DFST',
-    appFolder: 'app', // this is the default, but I'm being explicit
 
-    // Set up paths for custom classes
-    paths: {
-          'Ext.ux': 'ext-4.1.0/examples/ux'
-    },
-
-    // Define all the controllers that should initialize at boot up of your application
+    // All controllers that should initialize
     controllers: [
         'Stats',
         'Filters'
     ],
     
-    autoCreateViewport: true, //to automatically load and instantiate DFST.view.Viewport
+    //automatically load and instantiate DFST.view.Viewport
+    autoCreateViewport: true,
     
-    init : function(application) {
+    init : function(application) { // configure for sport
         var cururl = document.URL;
-        console.log(cururl);
+        //console.log(cururl);
         var lqs = cururl.lastIndexOf("?");
         if (lqs >= 0) {
             var qs = cururl.substring(lqs+1);

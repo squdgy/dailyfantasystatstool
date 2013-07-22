@@ -1,3 +1,4 @@
+/*global Ext: false, DFST:false*/
 Ext.define('DFST.view.filter.List', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.filterlist',
@@ -23,7 +24,7 @@ Ext.define('DFST.view.filter.List', {
                 name: 'game_date',
                 width: 230,
                 value: new Date(),   // defaults to today
-                minDate: new Date() // min date is today
+                minValue: new Date() // min date is today
             }, 
             {
                 xtype: 'label',

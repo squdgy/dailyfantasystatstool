@@ -1,16 +1,16 @@
 NEXT:
 =========
-- manually import friday's weather every day
-- hide weather and player game log if no data at all (like 7/17)
 - add pitchers info to game view
-- clean up weather display
-- check injury import and actives
+- need venue information: city, roofType, direction, then add wind direction
+- check actives
 - another round of perl cleanup
-- make sure webapi can deploy to 2012 and get geodata - set osfamily=3 and include sqlserver types dll
+- add jshint warnings when applicable: /*global Ext: false */
+- extra OPTIONS requests when getting games info?
 
 misc
 ==============
 - major code cleanup - scoring, introduce enums, remove obsolete controller actions, Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
+- completely separate ViewModels from Domain Models - increase use of AutoMapper, make sure ViewModels in view layer
 - go back to old theme?
 - fix? in Firefox
 - Add glossary

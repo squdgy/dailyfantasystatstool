@@ -1,4 +1,4 @@
-
+/*global Ext: false */
 Ext.define('DFST.view.statset.PlayerGrid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetplayergrid',
@@ -23,7 +23,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     dataIndex: 'gd',
                     renderer: Ext.util.Format.dateRenderer('m-d'),
                     width: 60
-            	},{
+                },{
                     text: 'Opp.',
                     dataIndex: 'opp',
                     renderer: this.formatOpponent,
@@ -159,7 +159,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 }], lastCols); 
 
 		Ext.apply(this, {
-		    store: 'PlayerStats',
+            store: 'PlayerStats',
 			columns: {
                 defaults: {
                     align: 'right',

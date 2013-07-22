@@ -1,2 +1,8 @@
 -Restart done list on 7/17/2013:
-- weather - show in UI :-)
+x weather - show in UI :-)
+x make sure webapi can deploy to 2012 and get geodata - set osfamily=3 and include sqlserver types dll
+x hide weather and player game log if no data at all (like 7/17)
+x clean up weather display, does time properly include minutes? better date format in title (leave out year), format probability
+x only load weather for today forward (not all time)
+x change date picker to not allow picking dates in the past
+x how to exclude data from download in json - start using AutoMapper, mapping domain objects to DTOs

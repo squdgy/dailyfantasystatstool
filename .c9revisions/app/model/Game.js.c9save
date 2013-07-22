@@ -10,3 +10,6 @@
 {"ts":1373972764834,"patch":[[{"diffs":[[0,"model: '"],[1,"DFST.model."],[0,"Weather'"]],"start1":841,"start2":841,"length1":16,"length2":27}]],"length":904,"saved":false}
 {"ts":1373973040531,"patch":[[{"diffs":[[0,"'vw'"],[-1,", autoLoad: true"],[0,"}\r\n}"]],"start1":876,"start2":876,"length1":24,"length2":8}]],"length":888,"saved":false}
 {"ts":1373974708721,"patch":[[{"diffs":[[0,"', name:"],[1," 'weather', associationKey:"],[0," 'vw'}\r\n"]],"start1":867,"start2":867,"length1":16,"length2":43}]],"length":915,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1374147496580,"patch":[[{"diffs":[[0,"  ],\r\n    \r\n"],[1,"    hasOne : {model: 'DFST.Model.Venue', name: 'venue', associationKey: 'venue'},\r\n"],[0,"    hasMany "]],"start1":813,"start2":813,"length1":24,"length2":107}]],"length":998,"saved":false}
+{"ts":1374147508974,"patch":[[{"diffs":[[0,"Weather'"],[1,",\r\n        'DFST.model.Venu'"],[0,"\r\n    ],"]],"start1":127,"start2":127,"length1":16,"length2":44}]],"length":1026,"saved":false}
+{"ts":1374147514918,"patch":[[{"diffs":[[0,"del.Venu"],[1,"e"],[0,"'\r\n    ]"]],"start1":154,"start2":154,"length1":16,"length2":17}]],"length":1027,"saved":false}

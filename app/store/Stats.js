@@ -1,7 +1,6 @@
+/*global Ext: false, DFST: false */
 /*
-
 Copyright (c) 2012-2013 Maura Wilder
-
 */
 Ext.define('DFST.store.Stats', {
     extend: 'Ext.data.Store',

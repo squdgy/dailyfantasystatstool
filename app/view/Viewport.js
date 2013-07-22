@@ -1,3 +1,4 @@
+/*global Ext: false */
 Ext.define('DFST.view.Viewport', {
     extend: 'Ext.container.Viewport',
 
@@ -27,10 +28,11 @@ Ext.define('DFST.view.Viewport', {
             },
         items: [{
             xtype: 'statsetgrid',
-            flex: 2
+            flex: 3
         },{
             xtype: 'drilldowndetails',
-            hidden: true
+            hidden: true,
+            flex:2
         },{
             xtype: 'weatherdisplay',
             hidden: true
@@ -41,7 +43,7 @@ Ext.define('DFST.view.Viewport', {
         xtype: 'filterlist'
 	}, {
         region: 'south',
-        html: '<footer>Daily Fantasy Stats Tool, Version 0.9, Copyright 2012-2013 Development Partners Software. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a></footer>'
+        html: '<footer>Daily Fantasy Stats Tool, Version 0.9, Copyright 2012-2013 Development Partners Software Corp. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a></footer>'
     }
     ]
 });

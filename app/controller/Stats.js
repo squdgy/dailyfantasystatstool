@@ -1,3 +1,4 @@
+/*global Ext: false */
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
@@ -61,8 +62,8 @@ Ext.define('DFST.controller.Stats', {
     },
 
     onPlayerChanged: function(grid, statsets) {
-        this.showGameDetail(grid, statsets);
         this.drillDown(grid, statsets); 
+        this.showGameDetail(grid, statsets);
     },
     
     /**
@@ -72,8 +73,7 @@ Ext.define('DFST.controller.Stats', {
     drillDown: function(grid, statsets) {
         var statset = statsets[0],
             detailsInfoView = this.getDrilldowninfo(),
-            detailsView = this.getDrilldowndetails(),
-            store;
+            detailsView = this.getDrilldowndetails();
                     
         if (statset && detailsView) {
             this.playerId = statset.data.id;
@@ -83,9 +83,9 @@ Ext.define('DFST.controller.Stats', {
             var pos = statset.data.spos;
             var pgrid = this.getPlayerGrid();
             if (pos == 'P')
-                pgrid.reconfigure(null, pgrid.mlbpCols)
+                pgrid.reconfigure(null, pgrid.mlbpCols);
             else 
-                pgrid.reconfigure(null, pgrid.mlbhCols)
+                pgrid.reconfigure(null, pgrid.mlbhCols);
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
@@ -109,22 +109,23 @@ Ext.define('DFST.controller.Stats', {
             var game = gamesStore.findRecord('gid', gameId);
             if (game) {
                 var weather = game.getAssociatedData().weather;
+                var venue = game.getAssociatedData().venue;
                 var hourViews = Ext.ComponentQuery.query('weatherhour');
                 var wi = weather.length;
-                var hrs = gameView.items;
                 for (var i=0; i < wi; i++) {
                     var hourView = hourViews[i];
                     if (hourView) {
                         hourView.update(weather[i]);
-                        var hour = new Date(weather[i].time);
+                        var hour = new Date(weather[i].ti);
                         hour = Ext.Date.add(hour, Ext.Date.MINUTE, hour.getTimezoneOffset());
                         hourView.setTitle(Ext.Date.format(hour, 'g:i a'));
                     }
                 }
                 var gameTime = new Date(game.get('gtime'));
                 gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, gameTime.getTimezoneOffset());
-                var title = 'Weather for ' + game.get('away') + ' @ ' + 
-                    game.get('home') + ' ' + Ext.Date.format(gameTime, 'm/d/Y g:i a');
+                var title = 'Game data for ' + game.get('away').toUpperCase() + ' @ ' + 
+                    game.get('home').toUpperCase() + ' ' + Ext.Date.format(gameTime, 'm-d g:i a') +
+                    ' ' + venue.name;
                 gameView.setTitle(title);
                 gameView.show();
             }

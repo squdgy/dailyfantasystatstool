@@ -1,4 +1,4 @@
-/*global Ext, DFST*/
+/*global Ext: false, DFST: false*/
 Ext.define('DFST.controller.Filters', {
     extend: 'Ext.app.Controller',
 
@@ -16,7 +16,9 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
         {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'},
         {ref: 'notInLineupFilter', selector: 'filterlist checkbox#notinlineup'},
-        {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'}
+        {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'},
+        {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
+        {ref: 'weatherdisplay', selector: 'weatherdisplay'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -398,7 +400,7 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
-        if (records === null || records.length === 0) return;
+        if (records === null) return;
         // Change the list of all games
         // All games on a new date will reset to checked
         var i, mlen, game, gameTime, alin, hlin, gameString;
@@ -449,10 +451,15 @@ Ext.define('DFST.controller.Filters', {
                         inputValue: gameId
                     }));
         }
-        gamesContainer.add(Ext.create('Ext.Button', {
-            text: 'Apply Game Filters',
-            id: 'gamesGo'
-        }));
+        if (records.length > 0) {
+            gamesContainer.add(Ext.create('Ext.Button', {
+                text: 'Apply Game Filters',
+                id: 'gamesGo'
+            }));
+        } else {
+            this.getWeatherdisplay().hide();
+            this.getDrilldowndetails().hide();
+        }
     },
     
     /* a team id is the 3 character identifier used by mlb;
