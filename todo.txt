@@ -1,19 +1,19 @@
 NEXT:
 =========
+- fix? in Firefox
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
 - check actives
-- another round of perl cleanup
-- add jshint warnings when applicable: /*global Ext: false */
 - extra OPTIONS requests when getting games info?
 
 misc
 ==============
-- major code cleanup - scoring, introduce enums, remove obsolete controller actions, Fix NBAPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
-- completely separate ViewModels from Domain Models - increase use of AutoMapper, make sure ViewModels in view layer
+- add jshint warnings when applicable: /*global Ext: false */
+- more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
+- some view models still in the data layer, move to view layer
 - go back to old theme?
-- fix? in Firefox
 - Add glossary
+- another round of perl cleanup
 
 MLB:
 =========

@@ -48,3 +48,9 @@ Ext.override(Ext.view.AbstractView, {
         }
     }
 });
+
+/* Fix for ajax requests not sending json request header in Firefox */
+Ext.Ajax.defaultHeaders = {              
+    'Accept' : 'application/json',  
+    'Content-Type' : 'application/json'
+};

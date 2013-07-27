@@ -12,3 +12,5 @@
 {"ts":1374408728835,"patch":[[{"diffs":[[0,"  //"],[-1,"to "],[0,"auto"]],"start1":360,"start2":360,"length1":11,"length2":8}]],"length":1220,"saved":false}
 {"ts":1374408767360,"patch":[[{"diffs":[[0,"ation) {"],[1," // configure for sport"],[0,"\n       "]],"start1":479,"start2":479,"length1":16,"length2":39}]],"length":1243,"saved":false}
 {"ts":1374408791500,"patch":[[{"diffs":[[0,"        "],[1,"//"],[0,"console."]],"start1":546,"start2":546,"length1":16,"length2":18}]],"length":1245,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1374931418585,"patch":[[{"diffs":[[0,"    }\n    }\n});\n"],[1,"\n/* Fix for ajax requests not sending json request header */\nExt.Ajax.defaultHeaders = {              \n    'Accept' : 'application/json',  \n    'Content-Type' : 'application/json'\n};\n"]],"start1":1229,"start2":1229,"length1":16,"length2":199}]],"length":1428,"saved":false}
+{"ts":1374931499691,"patch":[[{"diffs":[[0," header "],[1,"in Firefox "],[0,"*/\nExt.A"]],"start1":1295,"start2":1295,"length1":16,"length2":27}]],"length":1439,"saved":false}
