@@ -1,10 +1,7 @@
 NEXT:
 =========
-- fix? in Firefox
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
-- check actives
-- extra OPTIONS requests when getting games info?
 
 misc
 ==============

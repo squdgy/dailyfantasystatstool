@@ -7,3 +7,4 @@ x only load weather for today forward (not all time)
 x change date picker to not allow picking dates in the past
 x how to exclude data from download in json - start using AutoMapper, mapping domain objects to DTOs
 x more controller level code cleanup - remove unused actions, use enums, use JSONProperty, automapper
+x fix in Firefox - ExtJS bug - fixed by setting default ajax headers for all ajax requests
