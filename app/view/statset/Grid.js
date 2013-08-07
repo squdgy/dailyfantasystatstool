@@ -1,4 +1,4 @@
-
+/*global Ext: false, DFST: false */
 Ext.define('DFST.view.statset.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetgrid',
@@ -13,15 +13,14 @@ Ext.define('DFST.view.statset.Grid', {
     dockedItems: [{
         xtype: 'pagingtoolbar',
         dock: 'bottom',
-	    store: 'Stats',
+        store: 'Stats',
         displayInfo: true
     }],
     
 	initComponent: function() {
         var gridConfig = {};
-        gridConfig["mlb"] = {
-    	    store: 'Stats',
-
+        gridConfig.mlb = {
+            store: 'Stats',
 			columns: {
                 defaults: {
                     align: 'right',
@@ -178,7 +177,74 @@ Ext.define('DFST.view.statset.Grid', {
                 }]
 			}
 		}; 
-        gridConfig["nba"] = {
+        gridConfig.nfl = {
+            store: 'Stats',
+    		columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: 'Team',
+                    dataIndex: 'team',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatTeam
+                },{
+                    text: 'Opp',
+                    dataIndex: 'opp',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatOpponent
+                },{
+                    text: 'Pos',
+                    dataIndex: 'spos',
+                    align: 'left'
+                },{
+                    text: 'B-Order',
+                    dataIndex: 'border',
+                    renderer: this.formatBattingOrder
+                },{
+                    text: 'G',
+                    dataIndex: 'ng'
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 70,
+                    tooltip: 'average fantasy points over last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    renderer: this.moneyRenderer
+                },{
+                    text: '$/Pt',
+                    dataIndex: 'cpp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
+                },{
+                    text: '$/FP-5',
+                    dataIndex: 'cpp5',
+                    width: 75,
+                    tooltip: 'cost per point over last 5 games',
+                    renderer: this.costPerPointRenderer
+                }]
+			}
+		}; 
+        gridConfig.nba = {
             store: 'Stats',
 
 			columns: {

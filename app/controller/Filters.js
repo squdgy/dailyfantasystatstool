@@ -303,8 +303,9 @@ Ext.define('DFST.controller.Filters', {
             //TODO: siteDetails store should only need to filter by gameId
             var siteId = radiobutton.inputValue;
             if (siteId == 1) dfsGameId = 1; //dk
-            if (siteId == 6) dfsGameId = 6; //dj
+            if (siteId == 4) dfsGameId = 4; //dd
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
+            if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}

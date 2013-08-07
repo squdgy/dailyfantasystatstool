@@ -38,10 +38,8 @@ Ext.define('DFST.view.filter.List', {
                 },
                 items: [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true }/*,
-                    { boxLabel: 'DailyJoust', name: 'rb', inputValue: '6'},
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '3'},
-                    { boxLabel: 'BuzzDraft', name: 'rb', inputValue: '5'}*/
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
                 ]
             },            
             {
@@ -246,7 +244,8 @@ Ext.define('DFST.view.filter.List', {
                     values: [0, 5],
                     increment: 1,
                     minValue: 0,
-                    maxValue: 5
+                    maxValue: 5,
+                    hidden: DFST.AppSettings.sport !== 'mlb'
                 }                /* NBA specific,
                 {
                     fieldLabel: 'Filter ODR-5',

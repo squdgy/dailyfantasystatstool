@@ -1,4 +1,4 @@
-/*global Ext: false */
+/*global Ext: false DFST: false*/
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
@@ -82,10 +82,12 @@ Ext.define('DFST.controller.Stats', {
 
             var pos = statset.data.spos;
             var pgrid = this.getPlayerGrid();
+            if (DFST.AppSettings.sport === 'mlb') {
             if (pos == 'P')
                 pgrid.reconfigure(null, pgrid.mlbpCols);
             else 
                 pgrid.reconfigure(null, pgrid.mlbhCols);
+            }
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);

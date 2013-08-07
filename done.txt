@@ -8,3 +8,26 @@ x change date picker to not allow picking dates in the past
 x how to exclude data from download in json - start using AutoMapper, mapping domain objects to DTOs
 x more controller level code cleanup - remove unused actions, use enums, use JSONProperty, automapper
 x fix in Firefox - ExtJS bug - fixed by setting default ajax headers for all ajax requests
+x (Bill) Create some sort of deploy script (post-commit hook?) that will deploy the perl load scripts to blob storage - post-receive hook!
+x 8/1 removed dailyjoust and dailyjoust lineups from perl jobs (RIP dailyjoust)
+x Created yet another lineup import (1 was baseballpress, 2 was dailyjoust, 3 is rotowire) - this is in .Net
+x rewrite draftday scraper and start scraping draftday salaries
+x delete dailyjoust tables, buzzdraft tables, dailyjoust and buzzdraft game definition data
+x add mlb draftday game definition information
+x add mlb draftday to UI
+x Why aren't all Trace.TraceInformation in WebRole.cs ending up in the WadLogsTable - reworked logging and everything is ok now
+x (Bill) Figure out how to transfer startup logs to storage - these are Perl logs, want to capture -goes to wad-startup-logs
+x schedule lineups .net job
+x backup db - set schedule if possible did a snapshot backup and scheduled to backup every week
+x check accuracy of draftday data
+x NFL- manually add stats team idmappings and position definitions
+x NFL- write roster importer - wrote & scheduled
+x On player and injury updates, update whenupdated to show the sport - put delete clause in output of tablename
+x fix mlb injury importer - indicates a problem on src site, not mine, fixed to deal with this
+x NFL- injury importer
+
+
+
+
+
+
