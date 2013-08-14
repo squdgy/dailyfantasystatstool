@@ -12,3 +12,6 @@
 {"ts":1374407715805,"patch":[[{"diffs":[[0,"/*global"],[-1,"s"],[0," Ext: fa"]],"start1":0,"start2":0,"length1":17,"length2":16}]],"length":1609,"saved":false}
 {"ts":1374407824279,"patch":[[{"diffs":[[0,"bal Ext:"],[1," false, DFST:"],[0," false *"]],"start1":5,"start2":5,"length1":16,"length2":29}]],"length":1622,"saved":false}
 {"ts":1374407845315,"patch":[[{"diffs":[[0,"e */\n/*\n"],[-1,"\n"],[0,"Copyrigh"]],"start1":31,"start2":31,"length1":17,"length2":16},{"diffs":[[0," Wilder\n"],[-1,"\n"],[0,"*/\nExt.d"]],"start1":68,"start2":68,"length1":17,"length2":16}]],"length":1620,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1376395892668,"patch":[[{"diffs":[[0," : '"],[-1,"afp"],[1,"sal"],[0,"',\n "]],"start1":289,"start2":289,"length1":11,"length2":11}]],"length":1620,"saved":false}
+{"ts":1376395943346,"patch":[[{"diffs":[[0,"ageSize:"],[1," DFST.AppSettings.sport == \"nfl\" ? 30 :"],[0," 20,\n   "]],"start1":244,"start2":244,"length1":16,"length2":55}]],"length":1659,"saved":false}
+{"ts":1376395989825,"patch":[[{"diffs":[[0,"ize:"],[-1," DFST.AppSettings.sport == \"nfl\" ? 30 :"],[0," 20,"]],"start1":248,"start2":248,"length1":47,"length2":8}]],"length":1620,"saved":false}

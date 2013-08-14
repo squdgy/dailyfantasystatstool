@@ -43,7 +43,7 @@ Ext.define('DFST.view.Viewport', {
         xtype: 'filterlist'
 	}, {
         region: 'south',
-        html: '<footer>Daily Fantasy Stats Tool, Version 0.9, Copyright 2012-2013 Development Partners Software Corp. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a></footer>'
+        html: '<footer>Daily Fantasy Stats Tool, Version 1.0, Copyright 2012-2013 Development Partners Software Corp. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a></footer>'
     }
     ]
 });

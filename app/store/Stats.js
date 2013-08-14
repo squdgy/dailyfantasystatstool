@@ -12,7 +12,7 @@ Ext.define('DFST.store.Stats', {
     autoLoad: false,
     pageSize: 20,
     sorters: [{
-        property : 'afp',
+        property : 'sal',
         direction: 'DESC'
     }],
     proxy: {

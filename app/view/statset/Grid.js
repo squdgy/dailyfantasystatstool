@@ -179,7 +179,7 @@ Ext.define('DFST.view.statset.Grid', {
 		}; 
         gridConfig.nfl = {
             store: 'Stats',
-    		columns: {
+            columns: {
                 defaults: {
                     align: 'right',
                     style: 'text-align:center',
@@ -208,10 +208,6 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'spos',
                     align: 'left'
                 },{
-                    text: 'B-Order',
-                    dataIndex: 'border',
-                    renderer: this.formatBattingOrder
-                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{
@@ -219,17 +215,20 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'afp',
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
+/*                    
                 },{
                     text: 'Avg FP-5',
                     dataIndex: 'afp5',
                     width: 70,
                     tooltip: 'average fantasy points over last 5 games',
                     renderer: Ext.util.Format.numberRenderer('0.00')
+*/                    
                 },{
                     text: '$',
                     dataIndex: 'sal',
                     width: 75,
                     renderer: this.moneyRenderer
+/*                    
                 },{
                     text: '$/Pt',
                     dataIndex: 'cpp',
@@ -241,6 +240,7 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
+*/                    
                 }]
 			}
 		}; 

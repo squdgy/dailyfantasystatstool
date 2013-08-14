@@ -25,8 +25,16 @@ x NFL- write roster importer - wrote & scheduled
 x On player and injury updates, update whenupdated to show the sport - put delete clause in output of tablename
 x fix mlb injury importer - indicates a problem on src site, not mine, fixed to deal with this
 x NFL- injury importer
-
-
+x NFL- add dfs stats, game definition for fd
+x NFL- fanduel scraper map player ids
+x Added dfs scoring for fd
+x Can't pick a player that has no stats yet, since they don't show up - update to CalculateFantasyPoints sproc
+x Make sure fd prices show up - copy latest price and fppg from site (will use fppg from site if there is no locally computed fppg - in CalculateFantasyPoints sproc)
+x Disable player stats view until after week 1 and until after there are stats (NFL)
+x Roster imports: import team into player table so we can track team points
+x FD Prices for defenses
+x Review slider filters for NFL - changed game count: these aren't that important so could use more revisions in future
+x change version to 1.0!
 
 
 

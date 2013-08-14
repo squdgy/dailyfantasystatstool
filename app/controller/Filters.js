@@ -8,6 +8,7 @@ Ext.define('DFST.controller.Filters', {
     
     refs: [
         {ref: 'dateFilter', selector: 'filterlist datefield'},
+        {ref: 'weekFilter', selector: 'filterlist combobox'},
         {ref: 'probablesFilter', selector: 'filterlist checkbox#probables'},
         {ref: 'injuredFilter', selector: 'filterlist checkbox#injured'},
         {ref: 'positionFilters', selector: 'filterlist fieldcontainer#positions'},
@@ -31,6 +32,9 @@ Ext.define('DFST.controller.Filters', {
         this.control({
             'filterlist datefield':{
                 change: this.changeDate
+            },
+            'filterlist combobox':{
+                change: this.changeWeek
             },
             'filterlist checkbox#probables':{
                 change: this.changeProbables
@@ -121,7 +125,20 @@ Ext.define('DFST.controller.Filters', {
         gamesStore.filter([{id:'gameDate', sport: DFST.AppSettings.sport, property: 'gameDate', value: newValue.toJSON()},
                            {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
     },
-    
+
+    changeWeek: function(combobox, newValue, oldValue, options) {
+        this.gameDateIsChanging = true;
+        var statsStore = this.getStatsStore();
+        statsStore.filters.removeAtKey('gameId'); // clear all game filters
+        var weekRecord = combobox.findRecordByValue(newValue);
+        var gameDateStart = weekRecord.get('startdate');
+        var gameDateEnd = weekRecord.get('enddate');
+        statsStore.filter([{id: 'gameDate', property: 'gameDate', value: gameDateStart.toJSON()}]);
+        var gamesStore = this.getGamesStore();
+        gamesStore.filter([{id:'gameDate', sport: DFST.AppSettings.sport, property: 'gameDate', value: gameDateStart.toJSON()},
+                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+    },
+
     changeProbables: function(checkbox, newValue, oldValue, options) {
         /*
         This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
@@ -392,8 +409,16 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
                 
+        var gameDate = new Date();
+        var dateFilter = this.getDateFilter();
+        var weekFilter = this.getWeekFilter();
+        if (dateFilter) {
+            gameDate = dateFilter.value;
+        } else {
+            gameDate = weekFilter.findRecordByValue(weekFilter.value).get('startdate');
+        }
         statsStore.filter([
-            {id:'gameDate', property: 'gameDate', value: this.getDateFilter().value.toJSON()},
+            {id:'gameDate', property: 'gameDate', value: gameDate.toJSON()},
             {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
             {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
@@ -505,7 +530,10 @@ Ext.define('DFST.controller.Filters', {
         }
         
         var defaultGameId = 2;
-        if (DFST.AppSettings.sport == "mlb") defaultGameId = 102;
+        if (DFST.AppSettings.sport == "mlb") 
+            defaultGameId = 102;
+        else if (DFST.AppSettings.sport == "nfl")
+            defaultGameId = 202;
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';

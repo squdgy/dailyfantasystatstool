@@ -1,10 +1,12 @@
 NEXT:
 =========
-- double check mlb and nfl roster & injury imports
-- Compare scoring stats for NFL from fanduel, draftstreet, draftkings, draftday - make sure we can score in a common way
-- NFL- fanduel scraper map player ids
-- NFL- add fanduel game definition
-- NFL- add to UI
+- Change date picking for NFL to pick by weeks
+- Change game controller to return games from day range
+- Change player controller to return players from day range
+- Change game display for nFL to show game day
+- deploy nfl scrapers
+- game counts wrong in mlb
+- implement getNearestNFLWeek
 
 misc
 ==============
@@ -35,6 +37,7 @@ start adding headers, logos, themes, affiliate links etc. to wordpress site
 
 NBA:
 =========
+game detail? - stadiums, etc.
 import roster every day?
 deal with duplicate Chris Johnsons in NBA!!
 dealing with positions and mappings is still less than ideal
@@ -44,6 +47,8 @@ siteDetails store should only need to filter by gameId & not site id
 NFL:
 ==========
 depth chart
+game details - stadiums
+double check to make sure linebackers etc. not being loaded in memory
 
 Misc.
 ==========
@@ -56,12 +61,12 @@ export top grid to csv
 create state manager for grids
 more logging
 why doesn't sitedetailsstore make ajax call when filtered()?
-Can't pick a player that has no stats yet, since they don't show up
 need to figure out how to deal with sites where player can play multiple positions (for position filters)
 create team ui/drag + drop for players
 
 UI:
 ==========
+all game definitions pre-loaded 1x, instead of ajax calls for each change?
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 add time of update for starting lineup
 add column with position played in bottom grid?
@@ -102,6 +107,7 @@ Can replace Config::Tiny with something that normally ships with strawberry perl
 move nickname stuff to db
 how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA)
 fix exceptions with using Trace in a non-cloud environment
+stop at collecting 1 feed file - just be smart and try to get the latest before copying - makes import take a long time to go through multiple
 
 Loader/Data - baseball
 ===========
