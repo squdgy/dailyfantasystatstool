@@ -122,7 +122,7 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('gameId'); // clear all game filters
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
         var gamesStore = this.getGamesStore();
-        gamesStore.filter([{id:'gameDate', sport: DFST.AppSettings.sport, property: 'gameDate', value: newValue.toJSON()},
+        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()},
                            {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
     },
 
@@ -135,8 +135,11 @@ Ext.define('DFST.controller.Filters', {
         var gameDateEnd = weekRecord.get('enddate');
         statsStore.filter([{id: 'gameDate', property: 'gameDate', value: gameDateStart.toJSON()}]);
         var gamesStore = this.getGamesStore();
-        gamesStore.filter([{id:'gameDate', sport: DFST.AppSettings.sport, property: 'gameDate', value: gameDateStart.toJSON()},
-                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+        gamesStore.filter([
+            {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+            {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
+            {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
+        ]);
     },
 
     changeProbables: function(checkbox, newValue, oldValue, options) {
@@ -399,30 +402,27 @@ Ext.define('DFST.controller.Filters', {
             cb.resumeEvents();
         }        
 */
-        // clear the selection in the top grid
-        // 6/29/13 - kludge because of extjs behavior change introduced in 4.2.1
-        
-        // refresh player store
+        // reset player store filters
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('pos');
         statsStore.filters.removeAtKey('afp');
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
                 
-        var gameDate = new Date();
-        var dateFilter = this.getDateFilter();
-        var weekFilter = this.getWeekFilter();
-        if (dateFilter) {
-            gameDate = dateFilter.value;
-        } else {
-            gameDate = weekFilter.findRecordByValue(weekFilter.value).get('startdate');
-        }
-        statsStore.filter([
-            {id:'gameDate', property: 'gameDate', value: gameDate.toJSON()},
+        statsStore.filters.addAll([
             {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
             {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
-            ]);
+        ]);
+
+        // call the changedate methods which will also refresh the player store
+        var dateFilter = this.getDateFilter();
+        if (dateFilter) {
+            this.changeDate(dateFilter, dateFilter.value);
+        } else {
+            var weekFilter = this.getWeekFilter();
+            this.changeWeek(weekFilter, weekFilter.value);
+        }
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
