@@ -54,6 +54,7 @@ Ext.define('DFST.view.filter.List', {
         datesConfig.nfl = {
                 xtype: 'combobox',
                 fieldLabel: '1. Pick a week',
+                labelWidth: 105,
                 name: 'game_week',
                 store: nflweeks,
                 queryMode: 'local',

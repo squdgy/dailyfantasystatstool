@@ -1,13 +1,9 @@
 NEXT:
 =========
-- Change date picking for NFL to pick by weeks
-- Change game controller to return games from day range
-- Change player controller to return players from day range
-- Change game display for nFL to show game day
 - deploy nfl scrapers
 - game counts wrong in mlb
 - implement getNearestNFLWeek
--whenupdated row for lineups
+- whenupdated row for lineups
 
 misc
 ==============

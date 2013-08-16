@@ -35,7 +35,9 @@ x Roster imports: import team into player table so we can track team points
 x FD Prices for defenses
 x Review slider filters for NFL - changed game count: these aren't that important so could use more revisions in future
 x change version to 1.0!
-
-
+x Change date picking for NFL to pick by weeks - in UI use combobox with weeks, instead of date picker
+x Change game controller to return games from day range
+x Change game display for nFL to show game day - in JS, add day abbrev in date display
+x Change player controller to return players from day range
 
 

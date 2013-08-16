@@ -133,7 +133,10 @@ Ext.define('DFST.controller.Filters', {
         var weekRecord = combobox.findRecordByValue(newValue);
         var gameDateStart = weekRecord.get('startdate');
         var gameDateEnd = weekRecord.get('enddate');
-        statsStore.filter([{id: 'gameDate', property: 'gameDate', value: gameDateStart.toJSON()}]);
+        statsStore.filter([
+            {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+            {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
+        ]);
         var gamesStore = this.getGamesStore();
         gamesStore.filter([
             {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
@@ -462,11 +465,16 @@ Ext.define('DFST.controller.Filters', {
             // it like local time, so add the timeoffset : 
             var tzo = gameTime.getTimezoneOffset();
             gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, tzo);
-            gameTime = Ext.Date.format(gameTime, 'g:i a');
+            if (DFST.AppSettings.sport === "nfl") {
+                gameTime = Ext.Date.format(gameTime, 'g:i ') +
+                    Ext.Date.format(gameTime, 'D').substring(0, 2);
+            } else {
+                gameTime = Ext.Date.format(gameTime, 'g:i a');
+            }
             alin = game.get('alin') ? '*' : '';
             hlin = game.get('hlin') ? '*' : '';
             gameString = this.getTeamCode(game.get('away')) + 
-                alin + ' @' + this.getTeamCode(game.get('home')) + 
+                alin + ' @ ' + this.getTeamCode(game.get('home')) + 
                 hlin + ' ' + gameTime;
             var gameId = game.get('gid');
             var isChecked = isNewDate ? true : checkedGames[gameId] === 1; // true on first load of games list
