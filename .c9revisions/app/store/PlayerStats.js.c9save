@@ -6,3 +6,4 @@
 {"ts":1371294966911,"patch":[[{"diffs":[[0,"del."],[-1,"MLB"],[0,"Play"]],"start1":175,"start2":175,"length1":11,"length2":8}]],"length":1484,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1371467407435,"patch":[[{"diffs":[[0,"a Wilder"],[1," "],[0,"\n\n*/\nExt"]],"start1":32,"start2":32,"length1":16,"length2":17}]],"length":1485,"saved":false}
 {"ts":1371467440344,"patch":[[{"diffs":[[0,"a Wilder"],[-1," "],[1,"\n"],[0,"\n\n*/\nExt"]],"start1":32,"start2":32,"length1":17,"length2":17}]],"length":1485,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1376830161240,"patch":[[{"diffs":[[1,"/*global Ext: false */\n"],[0,"/*\n\nCopy"]],"start1":0,"start2":0,"length1":8,"length2":31}]],"length":1508,"saved":false}

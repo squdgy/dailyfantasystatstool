@@ -1,6 +1,4 @@
-/*
-Contains weather display for games
-*/
+/*global Ext: false */
 Ext.define('DFST.view.weather.Display', {
 	extend: 'Ext.panel.Panel',
     alias: 'widget.weatherdisplay',

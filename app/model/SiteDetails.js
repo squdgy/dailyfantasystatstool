@@ -1,3 +1,4 @@
+/*global Ext: false */
 /* Contains details that differ between sites that we need to use in the UI, such as available positions */
 Ext.define('DFST.model.SiteDetails', {
     extend: 'Ext.data.Model',

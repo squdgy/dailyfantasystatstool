@@ -1,3 +1,4 @@
+/*global Ext: false */
 /*
 
 Copyright (c) 2012 Maura Wilder

@@ -222,5 +222,48 @@ where active = 0 and captureDate > CONVERT (date, GETDATE()))
 x fix dj import to take into account changes they made
 x - weather - using forecast.io API, geodata from hackathon - finished import and relation to geodata
 
+-Restart done list on 7/17/2013:
+x weather - show in UI :-)
+x make sure webapi can deploy to 2012 and get geodata - set osfamily=3 and include sqlserver types dll
+x hide weather and player game log if no data at all (like 7/17)
+x clean up weather display, does time properly include minutes? better date format in title (leave out year), format probability
+x only load weather for today forward (not all time)
+x change date picker to not allow picking dates in the past
+x how to exclude data from download in json - start using AutoMapper, mapping domain objects to DTOs
+x more controller level code cleanup - remove unused actions, use enums, use JSONProperty, automapper
+x fix in Firefox - ExtJS bug - fixed by setting default ajax headers for all ajax requests
+x (Bill) Create some sort of deploy script (post-commit hook?) that will deploy the perl load scripts to blob storage - post-receive hook!
+x 8/1 removed dailyjoust and dailyjoust lineups from perl jobs (RIP dailyjoust)
+x Created yet another lineup import (1 was baseballpress, 2 was dailyjoust, 3 is rotowire) - this is in .Net
+x rewrite draftday scraper and start scraping draftday salaries
+x delete dailyjoust tables, buzzdraft tables, dailyjoust and buzzdraft game definition data
+x add mlb draftday game definition information
+x add mlb draftday to UI
+x Why aren't all Trace.TraceInformation in WebRole.cs ending up in the WadLogsTable - reworked logging and everything is ok now
+x (Bill) Figure out how to transfer startup logs to storage - these are Perl logs, want to capture -goes to wad-startup-logs
+x schedule lineups .net job
+x backup db - set schedule if possible did a snapshot backup and scheduled to backup every week
+x check accuracy of draftday data
+x NFL- manually add stats team idmappings and position definitions
+x NFL- write roster importer - wrote & scheduled
+x On player and injury updates, update whenupdated to show the sport - put delete clause in output of tablename
+x fix mlb injury importer - indicates a problem on src site, not mine, fixed to deal with this
+x NFL- injury importer
+x NFL- add dfs stats, game definition for fd
+x NFL- fanduel scraper map player ids
+x Added dfs scoring for fd
+x Can't pick a player that has no stats yet, since they don't show up - update to CalculateFantasyPoints sproc
+x Make sure fd prices show up - copy latest price and fppg from site (will use fppg from site if there is no locally computed fppg - in CalculateFantasyPoints sproc)
+x Disable player stats view until after week 1 and until after there are stats (NFL)
+x Roster imports: import team into player table so we can track team points
+x FD Prices for defenses
+x Review slider filters for NFL - changed game count: these aren't that important so could use more revisions in future
+x change version to 1.0!
+x Change date picking for NFL to pick by weeks - in UI use combobox with weeks, instead of date picker
+x Change game controller to return games from day range
+x Change game display for nFL to show game day - in JS, add day abbrev in date display
+x Change player controller to return players from day range
+
+
 
 

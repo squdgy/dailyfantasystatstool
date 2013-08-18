@@ -1,3 +1,4 @@
+/*global Ext: false */
 /*
 Contains drilldown details for individual players
 */
@@ -12,12 +13,12 @@ Ext.define('DFST.view.drilldown.DetailInfo', {
 		Ext.apply(this, {
             /* pre 3-13-2013
 			tpl: new Ext.XTemplate(
-			    '<div class="post-data">',
-    		        '<h1 class="player-name">{name}</h1>',
-    		        '<h3 class="player-team">{team}</h3>',
-        	        '<h3 class="player-team">{pos}</h3>',
-			    '</div>',
-			    '<div class="filter-description"></div>', {
+            '<div class="post-data">',
+                '<h1 class="player-name">{name}</h1>',
+                '<h3 class="player-team">{team}</h3>',
+                '<h3 class="player-team">{pos}</h3>',
+            '</div>',
+            '<div class="filter-description"></div>', {
 			}),
             */
             items: [

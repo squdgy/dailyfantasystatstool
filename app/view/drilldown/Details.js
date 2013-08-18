@@ -1,3 +1,4 @@
+/*global Ext: false */
 /*
 Contains drilldown details for individual players
 */

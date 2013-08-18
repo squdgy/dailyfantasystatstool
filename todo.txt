@@ -1,19 +1,17 @@
 NEXT:
 =========
-- deploy nfl scrapers
-- game counts wrong in mlb
-- implement getNearestNFLWeek
-- whenupdated row for lineups
+- implement getNearestNFLWeek (after week 1)
+- implement stats scraping (after game 1)
+- create a weekly job for nfl scraping
 
 misc
 ==============
-- add jshint warnings when applicable: /*global Ext: false */
 - more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 - some view models still in the data layer, move to view layer
 - go back to old theme?
 - Add glossary
 - another round of perl cleanup
-- check db backups after 8/12
+- check db backups after 8/12, 8/19
 
 MLB:
 =========
@@ -26,11 +24,7 @@ MLB:
 - betting line
 - fix active flag on player - when they are in a starting lineup, probably
 means they just came off of the DL. This is not the query, but it's a start:
-Write a detailed document with information on all projects, deployments, accounts etc.
-disable draftaid.com/twitter until ready
-Attach domain name to wordpress site
-embed azure app within wordpress site?
-start adding headers, logos, themes, affiliate links etc. to wordpress site
+- games played is slightly off, figure out why - need to bring in more stats?, see Cliff Lee, Dustin Pedroia
 
 NBA:
 =========
@@ -45,7 +39,7 @@ NFL:
 ==========
 depth chart
 game details - stadiums
-double check to make sure linebackers etc. not being loaded in memory
+double check to make sure linebackers etc. not being loaded in memory??
 
 Misc.
 ==========
@@ -60,6 +54,12 @@ more logging
 why doesn't sitedetailsstore make ajax call when filtered()?
 need to figure out how to deal with sites where player can play multiple positions (for position filters)
 create team ui/drag + drop for players
+Write a detailed document with information on all projects, deployments, accounts etc.
+disable draftaid.com/twitter until ready
+Attach domain name to wordpress site
+embed azure app within wordpress site?
+start adding headers, logos, themes, affiliate links etc. to wordpress site
+
 
 UI:
 ==========
@@ -102,9 +102,11 @@ move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?
 move nickname stuff to db
-how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA)
+how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA) - fixed with NFL, apply to other
+sports as applicable see update_da_ids_v2
 fix exceptions with using Trace in a non-cloud environment
 stop at collecting 1 feed file - just be smart and try to get the latest before copying - makes import take a long time to go through multiple
+move some more generic stuff from bulkdataimporter to baseimporter, remove dependency of lineup importer on buldataimporter
 
 Loader/Data - baseball
 ===========

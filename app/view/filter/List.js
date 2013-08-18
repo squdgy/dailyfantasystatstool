@@ -62,7 +62,6 @@ Ext.define('DFST.view.filter.List', {
                 valueField: 'week',
                 value: getNearestNFLWeek()
             };
-//        datesConfig.nfl = datesConfig.mlb; //TODO: replace with week combo when ready
 		Ext.apply(this, {
 			items: [
             datesConfig[DFST.AppSettings.sport],
@@ -78,6 +77,7 @@ Ext.define('DFST.view.filter.List', {
                 },
                 items: DFST.AppSettings.sport == "nfl" ?
                 [
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true }
                 ] :
                 [
@@ -130,7 +130,7 @@ Ext.define('DFST.view.filter.List', {
                     defaultType: 'checkboxfield',
                     layout: {
                         type: 'table',
-                        columns: 5
+                        columns: 4
                     }
                 }]
             },
