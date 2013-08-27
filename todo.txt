@@ -1,8 +1,18 @@
 NEXT:
 =========
-- implement getNearestNFLWeek (after week 1)
-- implement stats scraping (after game 1)
-- create a weekly job for nfl scraping
+- check newer players mlb
+- sencha cmd
+- fan throwdown, draftstreet, and or fantasy feud?
+- export top grid to csv
+
+NFL:
+==========
+implement getNearestNFLWeek (after week 1)
+implement stats scraping (after game 1)
+create a weekly job for nfl scraping
+depth chart?
+game details - stadiums
+double check to make sure linebackers etc. not being loaded in memory??
 
 misc
 ==============
@@ -10,11 +20,11 @@ misc
 - some view models still in the data layer, move to view layer
 - go back to old theme?
 - Add glossary
-- another round of perl cleanup
 - check db backups after 8/12, 8/19
 
 MLB:
 =========
+- every once in  a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
 - show venue and show better indication of wind speed etc.
@@ -26,6 +36,7 @@ MLB:
 means they just came off of the DL. This is not the query, but it's a start:
 - games played is slightly off, figure out why - need to bring in more stats?, see Cliff Lee, Dustin Pedroia
 
+
 NBA:
 =========
 game detail? - stadiums, etc.
@@ -35,12 +46,6 @@ dealing with positions and mappings is still less than ideal
 upgrade generate schema script to capture pks and not null attributes!!!
 siteDetails store should only need to filter by gameId & not site id  
 
-NFL:
-==========
-depth chart
-game details - stadiums
-double check to make sure linebackers etc. not being loaded in memory??
-
 Misc.
 ==========
 - add venue information to game data
@@ -48,7 +53,6 @@ Misc.
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to expain the section
 need to check out project to new area -to make sure I can do everything I need to
-export top grid to csv
 create state manager for grids
 more logging
 why doesn't sitedetailsstore make ajax call when filtered()?
@@ -59,7 +63,7 @@ disable draftaid.com/twitter until ready
 Attach domain name to wordpress site
 embed azure app within wordpress site?
 start adding headers, logos, themes, affiliate links etc. to wordpress site
-
+weather: schedule to retrieve it a little more often
 
 UI:
 ==========
@@ -107,6 +111,7 @@ sports as applicable see update_da_ids_v2
 fix exceptions with using Trace in a non-cloud environment
 stop at collecting 1 feed file - just be smart and try to get the latest before copying - makes import take a long time to go through multiple
 move some more generic stuff from bulkdataimporter to baseimporter, remove dependency of lineup importer on buldataimporter
+save_to_db is unwieldy - clean it up?
 
 Loader/Data - baseball
 ===========
@@ -119,9 +124,11 @@ yahoo player matchups, match dejesus to de jesus? How
 scrape of yahoo matchups ended up with 2 values for some players breaking the query - may need to revisit yahoo scrape
 add flag to all scripts to prepare it for a reload of data, ex. when importing fanduel scores delete the pricing data
 for fanduel for the current day from both the fanduel table and the dfspricing table.
+whenupdated table: add column for sport
 
 Perl/Azure:
 ============
+- figure out config problem in perl cloud project!
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
 Move quartz jobs into the WEBAPI project?

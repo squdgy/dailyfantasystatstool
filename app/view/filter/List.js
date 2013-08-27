@@ -75,11 +75,7 @@ Ext.define('DFST.view.filter.List', {
                     type: 'table',
                     columns: 4
                 },
-                items: DFST.AppSettings.sport == "nfl" ?
-                [
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true }
-                ] :
+                items: 
                 [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },

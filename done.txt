@@ -4,3 +4,16 @@ x deploy nfl scrapers for FD and DK
 x add DK game definition
 x whenupdated row for lineups
 x add jshint warnings when applicable: /*global Ext: false */ - finished checking all files
+x change mlbplayer eliasId to localId and cascade change through various joins
+x implement DD scraper
+x implement DD scoring, game definition
+x update load_teamrosters - changes to mlbplayer table to use local table, idmappings to be srcname ='mlbplayer' instead of 'mlb' etc.
+x finish: another round of perl cleanup
+x fix DD scraper after they updated their site
+x githook not working, possibly because of diagnostic connection string problem? - was connection string
+x fix? diagnostic connection string problem - hope this is fixed. Always do clean build and check package
+x fix whenupdated check to use sport
+x check weather, broken with some resharper changes
+x draft day nfl
+
+
