@@ -62,6 +62,15 @@ Ext.define('DFST.view.filter.List', {
                 valueField: 'week',
                 value: getNearestNFLWeek()
             };
+        var siteItems = [
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
+                ];
+        if (DFST.AppSettings.sport === 'nfl') {
+            siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
+        }
+
 		Ext.apply(this, {
 			items: [
             datesConfig[DFST.AppSettings.sport],
@@ -73,14 +82,9 @@ Ext.define('DFST.view.filter.List', {
                 xtype: 'radiogroup',
                 layout: {
                     type: 'table',
-                    columns: 4
+                    columns: 3
                 },
-                items: 
-                [
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
-                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
-                ]
+                items: siteItems
             },            
             {
                 xtype: 'label',

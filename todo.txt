@@ -1,9 +1,16 @@
 NEXT:
 =========
-- check newer players mlb
+- check for missing players, add team mappings for fd, dk
+- depthchart nfl!!
+- Hadoop!!!
 - sencha cmd
-- fan throwdown, draftstreet, and or fantasy feud?
 - export top grid to csv
+- players that might need nickname mappings:
+select * from player p
+inner join fanduel f on (f.namelast = p.namelast)
+where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
+order by p.position desc;
+select namelast from fanduel where playerId = 0 and sportId = 1 order by position desc
 
 NFL:
 ==========
@@ -20,7 +27,7 @@ misc
 - some view models still in the data layer, move to view layer
 - go back to old theme?
 - Add glossary
-- check db backups after 8/12, 8/19
+- new scrapers: - fan throwdown, draftstreet, and or fantasy feud?
 
 MLB:
 =========
@@ -142,7 +149,10 @@ Maintenance:
 consolidate azure accounts, know which account stuff is under
 add copyrights to all files
 combine webapi and load projects into one github repo?
-need backup strategy for Azure db.
+wuery to Find problems in mappings:
+select daId, srcName, count(*) from idmapping where tableName = 'player'
+group by daId, srcName 
+having count(*) > 1
 
 useful urls:
 http://stackoverflow.com/questions/7447325/how-to-set-default-sort-column-in-extjs4-grid-and-change-date-format

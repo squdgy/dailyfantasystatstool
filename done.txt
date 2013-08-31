@@ -13,7 +13,13 @@ x fix DD scraper after they updated their site
 x githook not working, possibly because of diagnostic connection string problem? - was connection string
 x fix? diagnostic connection string problem - hope this is fixed. Always do clean build and check package
 x fix whenupdated check to use sport
-x check weather, broken with some resharper changes
-x draft day nfl
-
+x check weather, broken with some resharper changes, now fixed
+x draft day nfl - added to UI
+x need backup strategy for Azure db - set up automatic weekly backup, saved to blob storage
+x check db backups after 8/12, 8/19 -automatic azure backups worked flawlessly :-)
+x check newer players mlb - some mapping errors from last round of changes
+x St Louis Rams vs. St. Louis Rams in fanduel table - check : Added nickname so it would map
+x remove badint trace message in perl project
+x still a duplicate issue in mlb - not sure if this was an artifact of changes or if still an issue - I fixed the current duplicates and we'll look again later
+x draftstreet scraper for NFL!
 
