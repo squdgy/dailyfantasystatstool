@@ -22,4 +22,10 @@ x St Louis Rams vs. St. Louis Rams in fanduel table - check : Added nickname so 
 x remove badint trace message in perl project
 x still a duplicate issue in mlb - not sure if this was an artifact of changes or if still an issue - I fixed the current duplicates and we'll look again later
 x draftstreet scraper for NFL!
+x check for missing players, add team mappings for fd, dk : added team mappings and some new nicknames
+x how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA) - fixed with NFL, MLB
+x implement stats scraping (after game 1)
+x import nfl stats
+x nfl player stats grid - pass 1
+
 

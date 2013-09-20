@@ -17,8 +17,75 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         displayInfo: true
     }],
 
+    getCols: function(sport, position) {
+        var colmap = this.nflPosStatMap[position];
+        var ncols = colmap.length;
+        var cols = this.firstCols.slice();
+        var statMap = this.statMap[sport];
+        for (var i=0; i<ncols; i++){
+            var stat = colmap[i];
+            cols.push({text: statMap[stat], dataIndex: stat, width:40});
+        }
+        return cols.concat(this.lastCols);
+    },
+    
 	initComponent: function() {
-        var firstCols = [
+        this.statMap = {
+            'nfl':{
+                si1: 'PTD',
+                si2: 'PYds',
+                si3: '300+',
+                si4: 'INT',
+                si5: 'RYds',
+                si6: 'RTD',
+                si7: '100+ Ru',
+                si8: 'RecY',
+                si9: 'Rec',
+                si10: 'ReTD',
+                si11: '100+ Rec',
+                si12: 'IPRTD',
+                si13: 'IKRTD',
+                si14: 'FL',
+                si15: 'OFRTD',
+                si16: '2PTP',
+                si17: '2PTS',
+                si18: 'SACK',
+                si19: 'INT',
+                si20: 'DFR',
+                si21: 'DPRTD',
+                si22: 'DKRTD',
+                si23: 'DFRTD',
+                si24: 'BK',
+                si25: 'BKTD',
+                si26: 'SAF',
+                si27: 'PA',
+                si28: 'PA0',
+                si29: 'PA1-6',
+                si30: 'PA7-13',
+                si31: 'PA14-20',
+                si32: 'PA21-27',
+                si33: 'PA28-34',
+                si34: 'PA35+',
+                si35: 'PAT',
+                si36: 'FG0-39',
+                si37: 'FG0-19',
+                si38: 'FG20-29',
+                si39: 'FG30-39',
+                si40: 'FG40-49',
+                si41: 'FG50+',
+                si42: 'P',
+                si43: 'ITD',
+                si44: 'FGYO30'
+        }};
+        this.nflPosStatMap = {
+            QB : ['si2', 'si1', 'si4', 'si3', 'si5', 'si6', 'si14'],
+            RB : ['si3', 'si5', 'si6', 'si14','si7', 'si8', 'si9', 'si10'],
+            WR : ['si5', 'si6', 'si14', 'si8', 'si9', 'si10'],
+            TE : ['si5', 'si6', 'si14', 'si8', 'si9', 'si10'],
+            K : ['si35', 'si37', 'si38', 'si39', 'si40', 'si41'],
+            D : ['si18', 'si43', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si27']
+        };
+        this.firstCols = [
                 {   text: 'Date',
                     dataIndex: 'gd',
                     renderer: Ext.util.Format.dateRenderer('m-d'),
@@ -29,14 +96,14 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     renderer: this.formatOpponent,
                     width: 60
                 }];
-        var lastCols = [
+        this.lastCols = [
                 {
                     text: 'FP',
                     dataIndex: 'fp',
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
-        this.mlbhCols = firstCols.concat([
+        this.mlbhCols = this.firstCols.concat([
                 {
                     text: 'AB',
                     dataIndex: 'ab'
@@ -86,8 +153,8 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 {
                     text: 'OUTS',
                     dataIndex: 'o'
-                }], lastCols);
-        this.mlbpCols = firstCols.concat([{
+                }], this.lastCols);
+        this.mlbpCols = this.firstCols.concat([{
                     text: 'Win',
                     dataIndex: 'w'
                 },{
@@ -112,8 +179,8 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 },{
                     text: 'SO',
                     dataIndex: 'so'
-                }], lastCols);
-        this.nbaCols = firstCols.concat([
+                }], this.lastCols);
+        this.nbaCols = this.firstCols.concat([
             {
                     text: 'MIN',
                     dataIndex: 'm'
@@ -156,7 +223,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 }, {
                     text: '3A',
                     dataIndex: 'tpa'
-                }], lastCols); 
+                }], this.lastCols); 
 
 		Ext.apply(this, {
             store: 'PlayerStats',

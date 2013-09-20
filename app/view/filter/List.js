@@ -39,7 +39,7 @@ Ext.define('DFST.view.filter.List', {
             ]
         });        
         var getNearestNFLWeek = function(){
-            return 1; //TODO
+            return 3; //TODO
         };
         var datesConfig = {};
         datesConfig.mlb = {

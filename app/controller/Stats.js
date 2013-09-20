@@ -62,7 +62,7 @@ Ext.define('DFST.controller.Stats', {
     },
 
     onPlayerChanged: function(grid, statsets) {
-        if (DFST.AppSettings.sport === 'nfl') return; // TODO: no stats yet
+        if (DFST.AppSettings.sport === 'nfl');// return; // TODO: no stats yet
         this.drillDown(grid, statsets); 
         if (DFST.AppSettings.sport === 'mlb') {
             this.showGameDetail(grid, statsets);
@@ -86,10 +86,12 @@ Ext.define('DFST.controller.Stats', {
             var pos = statset.data.spos;
             var pgrid = this.getPlayerGrid();
             if (DFST.AppSettings.sport === 'mlb') {
-            if (pos == 'P')
-                pgrid.reconfigure(null, pgrid.mlbpCols);
-            else 
-                pgrid.reconfigure(null, pgrid.mlbhCols);
+                if (pos == 'P')
+                    pgrid.reconfigure(null, pgrid.mlbpCols);
+                else 
+                    pgrid.reconfigure(null, pgrid.mlbhCols);
+            } else if (DFST.AppSettings.sport === 'nfl') {
+                pgrid.reconfigure(null, pgrid.getCols('nfl', pos));
             }
             this.loadStatSetData();
             detailsInfoView.statset = statset;
