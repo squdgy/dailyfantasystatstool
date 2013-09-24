@@ -39,7 +39,15 @@ Ext.define('DFST.view.filter.List', {
             ]
         });        
         var getNearestNFLWeek = function(){
-            return 3; //TODO
+            var seasonStart = new Date(2013, 8, 5); // Thu Wk 1
+            var today = new Date();
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var diff = today - seasonStart; // in ms
+            var daysSince = Math.abs(Math.round(diff/(1000*60*60*24)));
+            var weeksSince = Math.abs(Math.floor(diff/(1000*60*60*24*7)));
+            //Figure out what week to show based on day of week
+            var mod = daysSince % 7;
+            return (mod >= 5) ? weeksSince+2 : weeksSince+1;
         };
         var datesConfig = {};
         datesConfig.mlb = {
@@ -223,7 +231,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'cppRange',
                     width: 350,
                     values: [0, 1500],
-                    increment: 0,
+                    increment: 100,
                     minValue: 0,
                     maxValue: 1500
                 },{
@@ -235,6 +243,25 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 20
+                },
+                {
+                    fieldLabel: 'Filter $/Proj',
+                    xtype: 'multislider',
+                    id: 'cpprojpRange',
+                    width: 350,
+                    values: [0, 75000],
+                    increment: 1000,
+                    minValue: 0,
+                    maxValue: 75000
+                },{
+                    fieldLabel: 'Filter Proj',
+                    xtype: 'multislider',
+                    id: 'projpRange',
+                    width: 350,
+                    values: [0, 30],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 30
                 },
                 {
                     fieldLabel: 'Filter Avg FP-5',
@@ -276,7 +303,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'ngRange',
                     width: 350,
                     values: [0, DFST.AppSettings[DFST.AppSettings.sport].gameCnt],
-                    increment: DFST.AppSettings[DFST.AppSettings.sport].gameCnt/10,
+                    increment: DFST.AppSettings[DFST.AppSettings.sport].gameCnt/16,
                     minValue: 0,
                     maxValue: DFST.AppSettings[DFST.AppSettings.sport].gameCnt
                 },

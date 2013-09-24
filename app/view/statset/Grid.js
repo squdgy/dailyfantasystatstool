@@ -228,13 +228,22 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'sal',
                     width: 75,
                     renderer: this.moneyRenderer
-/*                    
                 },{
                     text: '$/Pt',
                     dataIndex: 'cpp',
                     width: 75,
                     renderer: this.costPerPointRenderer
                 },{
+                    text: 'Proj',
+                    dataIndex: 'projp',
+                    width: 75,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: '$/Proj',
+                    dataIndex: 'cpprojp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
+/*                },{
                     text: '$/FP-5',
                     dataIndex: 'cpp5',
                     width: 75,

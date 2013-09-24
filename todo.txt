@@ -1,12 +1,13 @@
 NEXT:
 =========
-- depthchart nfl!!
+- why Gronk not showing?
+- make nfl the default sport - add link for mlb
+- nfl stats grid pass 2 - genericise mlb stats to match (before mlb is over!)
+- show depthchart nfl!!
+- nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
 - Hadoop!!!
-- implement getNearestNFLWeek (after week 1)
 - sencha cmd
 - export top grid to csv
-- nfl stats grid pass 2 - make sure stats are accurate, fill in stats/position
-- nfl stats grid pass 3 - genericise mlb stats to match
 - players that might need nickname mappings:
 select * from player p
 inner join fanduel f on (f.namelast = p.namelast)

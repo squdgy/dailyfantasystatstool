@@ -16,6 +16,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
         {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
         {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'},
+        {ref: 'projpRangeFilter', selector: 'filterlist multislider#projpRange'},
+        {ref: 'cpprojpRangeFilter', selector: 'filterlist multislider#cpprojpRange'},
         {ref: 'notInLineupFilter', selector: 'filterlist checkbox#notinlineup'},
         {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'},
         {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
