@@ -35,3 +35,4 @@ x games filter for nfl should be granular by 1 game
 x fix avg pts, don't show site default anymore, show 0
 x implement getNearestNFLWeek (after week 1) - took until after week 3
 x deploy rpia (build errors?!) - needed to upgrade edm/odata/system.spatial dlls
+x show depthchart nfl!!

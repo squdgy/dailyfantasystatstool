@@ -63,6 +63,7 @@ Ext.define('DFST.model.StatSet', {
         { name: 'mr1', type: 'int', defaultValue: 0},      //matchup rating
         { name: 'projp', type: 'float', defaultValue: 0.0 }, //projected fantasy points
         { name: 'cpprojp', type: 'float', defaultValue: 0.0 }, //cost per projected fantasy points
+        { name: 'dep', type: 'int', defaultValue: 0 },  //depth chart value
         
         { name: 'bats', type: 'int', defaultValue: 0},  //handedness
         { name: 'throws', type: 'int', defaultValue: 0} //handedness

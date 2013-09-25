@@ -1,10 +1,8 @@
 NEXT:
 =========
-- why Gronk not showing?
-- make nfl the default sport - add link for mlb
-- nfl stats grid pass 2 - genericise mlb stats to match (before mlb is over!)
-- show depthchart nfl!!
+double check to make sure linebackers etc. not being loaded in memory??
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
+- make nfl the default sport - add link for mlb
 - Hadoop!!!
 - sencha cmd
 - export top grid to csv
@@ -18,12 +16,11 @@ select namelast from fanduel where playerId = 0 and sportId = 1 order by positio
 NFL:
 ==========
 create a weekly job for nfl scraping
-depth chart?
 game details - stadiums
-double check to make sure linebackers etc. not being loaded in memory??
 
 NBA - leave until season starts:
 =========
+stats grid pass 2 - genericise mlb/nba stats to match 
 add team idmappings so update_daids_v2 will work for nba (deal with duplicate Chris Johnsons in NBA!!)
 game detail? - stadiums, etc.
 import roster every day?

@@ -211,6 +211,9 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'G',
                     dataIndex: 'ng'
                 },{
+                    text: 'Depth',
+                    dataIndex: 'dep'
+                },{
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,
