@@ -12,3 +12,5 @@
 {"ts":1373024221860,"patch":[[{"diffs":[[-1,".x-grid-cell, .x-column-header, .x-grid-body {\n    border-color: #080808;\n}\n"],[0,"\n/* "]],"start1":0,"start2":0,"length1":80,"length2":4}]],"length":80,"saved":false}
 {"ts":1373024332800,"patch":[[{"diffs":[[0,": 3px;\n}"],[1,"\n\n/* radio button spacing - see site filters */\n.x-form-cb-label-after {\nmargin-left: 4px;\nmargin-right: 8px;\n}"]],"start1":72,"start2":72,"length1":8,"length2":119}]],"length":191,"saved":false}
 {"ts":1373024424863,"patch":[[{"diffs":[[0,"right: 8px;\n"],[1,"vertical-align: top;\n"],[0,"}"]],"start1":178,"start2":178,"length1":13,"length2":34}]],"length":212,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1380288227859,"patch":[[{"diffs":[[0,": top;\n}"],[1,"\n\n.sport-link { margin-left: 20px;}"]],"start1":204,"start2":204,"length1":8,"length2":43}]],"length":247,"saved":false}
+{"ts":1380288315748,"patch":[[{"diffs":[[0,"top;\n}\n\n"],[1,"footer a { color: white; }\nfooter a:visited {color: gray; }\n"],[0,".sport-l"]],"start1":206,"start2":206,"length1":16,"length2":76}]],"length":307,"saved":false}

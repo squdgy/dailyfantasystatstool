@@ -2,7 +2,7 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
     
-    sport: 'mlb', // application supports one sport at a time: mlb, nba, nfl
+    sport: 'nfl', // application supports one sport at a time: mlb, nba, nfl
     mlb: {
         gameCnt: 162
     },

@@ -10,3 +10,7 @@ margin-left: 4px;
 margin-right: 8px;
 vertical-align: top;
 }
+
+footer a { color: white; }
+footer a:visited {color: gray; }
+.sport-link { margin-left: 20px;}

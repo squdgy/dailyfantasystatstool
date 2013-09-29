@@ -36,3 +36,10 @@ x fix avg pts, don't show site default anymore, show 0
 x implement getNearestNFLWeek (after week 1) - took until after week 3
 x deploy rpia (build errors?!) - needed to upgrade edm/odata/system.spatial dlls
 x show depthchart nfl!!
+x make nfl the default sport - add link for mlb (and nba)
+x job for nfl stat collection: runs Fri/Mon/Tues
+x job for nfl prices: runs Mon/Tue/Wed
+
+
+x - figure out why depth and projections weren't downloaded from azure : it was a typo
+x double check to make sure linebackers etc. not being loaded in memory - they were add code to explicitly ignore nfl d positions and to ignore sports that are not active (playerrepo)

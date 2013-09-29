@@ -1,25 +1,21 @@
 NEXT:
 =========
-double check to make sure linebackers etc. not being loaded in memory??
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
-- make nfl the default sport - add link for mlb
+- monday check price scrapers, also tue and wed - make sure DK scrape used correct week
+- Monday - check that nfl scores job ran
+- Tues. PM - manually update DS scrape
 - Hadoop!!!
 - sencha cmd
-- export top grid to csv
-- players that might need nickname mappings:
-select * from player p
-inner join fanduel f on (f.namelast = p.namelast)
-where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
-order by p.position desc;
-select namelast from fanduel where playerId = 0 and sportId = 1 order by position desc
+- new UI!
 
 NFL:
 ==========
-create a weekly job for nfl scraping
 game details - stadiums
+more on projections: scrape more? or edit myself
 
 NBA - leave until season starts:
 =========
+add NBA to active sports in playerrepository/remove mlb
 stats grid pass 2 - genericise mlb/nba stats to match 
 add team idmappings so update_daids_v2 will work for nba (deal with duplicate Chris Johnsons in NBA!!)
 game detail? - stadiums, etc.
@@ -42,9 +38,10 @@ MLB - leave until 2014:
 means they just came off of the DL. This is not the query, but it's a start:
 - games played is slightly off, figure out why - need to bring in more stats?, see Cliff Lee, Dustin Pedroia
 
-
 Misc.
 ==========
+- export top grid to csv
+- drag/drop to lineup list
 - more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 - some view models still in the data layer, move to view layer
 - go back to old theme?
@@ -66,6 +63,12 @@ Attach domain name to wordpress site?
 embed azure app within wordpress site?
 start adding headers, logos, themes, affiliate links etc. to wordpress site
 weather: schedule to retrieve it a little more often
+- players that might need nickname mappings:
+select * from player p
+inner join fanduel f on (f.namelast = p.namelast)
+where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
+and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
+order by p.position desc;
 
 UI:
 ==========
@@ -124,6 +127,7 @@ whenupdated table: add column for sport
 
 Perl/Azure:
 ============
+- fix githook ip validation
 - figure out config problem in perl cloud project!
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
