@@ -1,15 +1,28 @@
 NEXT:
 =========
+- nhl injury import
+- add nhl stats
+- add nhl boxscore parse
+- add nhl scoring: fd
+- add nhl scoring: dk
+- add nhl scoring: dd
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
-- monday check price scrapers, also tue and wed - make sure DK scrape used correct week
-- Monday - check that nfl scores job ran
+- check scrapers on Mon 10/7
+- wed check price scrapers - make sure DK scrape used correct week
+- Friday - check that nfl scores job ran
 - Tues. PM - manually update DS scrape
 - Hadoop!!!
-- sencha cmd
 - new UI!
+
+NHL:
+==========
+Teams, positions
+roster import
 
 NFL:
 ==========
+fix hard-coding of projections week
+vegas betting line
 game details - stadiums
 more on projections: scrape more? or edit myself
 
@@ -72,6 +85,7 @@ order by p.position desc;
 
 UI:
 ==========
+- sencha cmd
 all game definitions pre-loaded 1x, instead of ajax calls for each change?
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 add time of update for starting lineup

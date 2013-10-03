@@ -39,7 +39,26 @@ x show depthchart nfl!!
 x make nfl the default sport - add link for mlb (and nba)
 x job for nfl stat collection: runs Fri/Mon/Tues
 x job for nfl prices: runs Mon/Tue/Wed
-
-
 x - figure out why depth and projections weren't downloaded from azure : it was a typo
-x double check to make sure linebackers etc. not being loaded in memory - they were add code to explicitly ignore nfl d positions and to ignore sports that are not active (playerrepo)
+x double check to make sure linebackers etc. not being loaded in memory - they were add code to explicitly ignore nfl d positions and todraftkings ignore sports that are not active (playerrepo)
+x projections not showing in UI? - week hard-coded: change week and add to todo list
+x fd nhl scraper
+x dd nhl scraper
+x dk nhl scraper
+x nhl nicknames
+x schedule fd, dd, dk nhl scrapers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x - nhl roster import, coded, scheduled - also added idmappings for teams/positions
