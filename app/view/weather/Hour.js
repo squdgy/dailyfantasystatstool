@@ -9,7 +9,7 @@ Ext.define('DFST.view.weather.Hour', {
 	autoScroll: true,
 	border: false,
     title: '',
-	
+
 	initComponent: function() {
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(

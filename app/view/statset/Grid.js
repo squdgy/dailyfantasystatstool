@@ -256,6 +256,57 @@ Ext.define('DFST.view.statset.Grid', {
                 }]
 			}
 		}; 
+        gridConfig.nhl = {
+            store: 'Stats',
+
+			columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: 'Team',
+                    dataIndex: 'team',
+                    align: 'left',
+                    width: 60,
+                    renderer: this.formatTeam
+                },{
+                    text: 'Opp',
+                    dataIndex: 'opp',
+                    align: 'left',
+                    width: 60,
+                    tooltip: 'Opponent',
+                    renderer: this.formatOpponent
+                },{
+                    text: 'Pos',
+                    dataIndex: 'spos',
+                    align: 'left'
+                },{
+                    text: 'Avg FP',
+                    dataIndex: 'afp',
+                    width: 70,
+                    tooltip: 'average fantasy points as reported by the selected site',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'G',
+                    dataIndex: 'ng'
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    tooltip: 'player salary at the selected site',
+                    renderer: this.moneyRenderer
+                }
+                ]
+			}
+		}; 
         gridConfig.nba = {
             store: 'Stats',
 
@@ -331,6 +382,7 @@ Ext.define('DFST.view.statset.Grid', {
                 ]
 			}
 		}; 
+		
 		Ext.apply(this, gridConfig[DFST.AppSettings.sport]);
 
 		this.callParent(arguments);

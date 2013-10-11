@@ -59,6 +59,7 @@ Ext.define('DFST.view.filter.List', {
                 minValue: new Date() // min date is today
             };
         datesConfig.nba = datesConfig.mlb;
+        datesConfig.nhl = datesConfig.mlb;
         datesConfig.nfl = {
                 xtype: 'combobox',
                 fieldLabel: '1. Pick a week',

@@ -12,5 +12,8 @@ Ext.define('DFST.AppSettings', {
     nfl: {
         gameCnt: 16
     },
+    nhl: {
+        gameCnt: 82
+    },
     version: '1.0'
 });  

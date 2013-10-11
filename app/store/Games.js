@@ -24,4 +24,3 @@ Ext.define('DFST.store.Games', {
 	},
     remoteFilter: true
 });
-

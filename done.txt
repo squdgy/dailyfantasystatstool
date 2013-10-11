@@ -1,64 +1,20 @@
--Restart done list on 8/16/2013:
-x DK NFL scraper
-x deploy nfl scrapers for FD and DK
-x add DK game definition
-x whenupdated row for lineups
-x add jshint warnings when applicable: /*global Ext: false */ - finished checking all files
-x change mlbplayer eliasId to localId and cascade change through various joins
-x implement DD scraper
-x implement DD scoring, game definition
-x update load_teamrosters - changes to mlbplayer table to use local table, idmappings to be srcname ='mlbplayer' instead of 'mlb' etc.
-x finish: another round of perl cleanup
-x fix DD scraper after they updated their site
-x githook not working, possibly because of diagnostic connection string problem? - was connection string
-x fix? diagnostic connection string problem - hope this is fixed. Always do clean build and check package
-x fix whenupdated check to use sport
-x check weather, broken with some resharper changes, now fixed
-x draft day nfl - added to UI
-x need backup strategy for Azure db - set up automatic weekly backup, saved to blob storage
-x check db backups after 8/12, 8/19 -automatic azure backups worked flawlessly :-)
-x check newer players mlb - some mapping errors from last round of changes
-x St Louis Rams vs. St. Louis Rams in fanduel table - check : Added nickname so it would map
-x remove badint trace message in perl project
-x still a duplicate issue in mlb - not sure if this was an artifact of changes or if still an issue - I fixed the current duplicates and we'll look again later
-x draftstreet scraper for NFL!
-x check for missing players, add team mappings for fd, dk : added team mappings and some new nicknames
-x how to deal with id mappings for multiple players in league with same name: (2012: Chris Carpenter, MLB, 2012-2013: Chris Johnson, NBA) - fixed with NFL, MLB
-x implement stats scraping (after game 1)
-x import nfl stats
-x nfl player stats grid - pass 1
-x scraper for depth chart
-x add back pts/$
-x scrape projections from pff
-x add in projected points, projected pts/$
-x games filter for nfl should be granular by 1 game
-x fix avg pts, don't show site default anymore, show 0
-x implement getNearestNFLWeek (after week 1) - took until after week 3
-x deploy rpia (build errors?!) - needed to upgrade edm/odata/system.spatial dlls
-x show depthchart nfl!!
-x make nfl the default sport - add link for mlb (and nba)
-x job for nfl stat collection: runs Fri/Mon/Tues
-x job for nfl prices: runs Mon/Tue/Wed
-x - figure out why depth and projections weren't downloaded from azure : it was a typo
-x double check to make sure linebackers etc. not being loaded in memory - they were add code to explicitly ignore nfl d positions and todraftkings ignore sports that are not active (playerrepo)
-x projections not showing in UI? - week hard-coded: change week and add to todo list
-x fd nhl scraper
-x dd nhl scraper
-x dk nhl scraper
-x nhl nicknames
-x schedule fd, dd, dk nhl scrapers
+-Restart done list on 10/03/2013
+- Friday - check that nfl scores job ran: YES!
+- nhl Teams, positions
+- nhl roster import
+- add nhl schedule
+- add nhl stats definitions
+- add nhl game definition: fd
+- add nhl game definition: dk
+- add nhl game definition: dd
+- add nhl scoring: fd
+- add nhl scoring: dk
+- add nhl scoring: dd
+- add nhl boxscore parse
+- add nhl to computedstats calculations
+- add nhl to UI: started, other tasks are itemized
+- schedule nhl boxscore to run daily
+- check nhl prices on dk/dd/fd
+- add nhl player stats grid
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-x - nhl roster import, coded, scheduled - also added idmappings for teams/positions

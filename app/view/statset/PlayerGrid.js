@@ -18,13 +18,14 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     }],
 
     getCols: function(sport, position) {
-        var colmap = this.nflPosStatMap[position];
+        var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
         var statMap = this.statMap[sport];
         for (var i=0; i<ncols; i++){
             var stat = colmap[i];
-            cols.push({text: statMap[stat], dataIndex: stat, width:40});
+            var width = (stat === 'si18') ? 60 : 40;
+            cols.push({text: statMap[stat], dataIndex: stat, width:width});
         }
         return cols.concat(this.lastCols);
     },
@@ -76,6 +77,28 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si42: 'P',
                 si43: 'ITD',
                 si44: 'FGYO30'
+            },
+            'nhl':{
+                si1: 'S',
+                si2: 'G',
+                si3: 'AST',
+                si4: 'PPG',
+                si5: 'PPA',
+                si6: 'SHG',
+                si7: 'SHA',
+                si8: 'GWG',
+                si9: 'SOG',
+                si10: '+/-',
+                si11: 'BS',
+                si12: 'HT',
+                si13: 'PIM',
+                si14: 'W',
+                si15: 'GA',
+                si16: 'SV',
+                si17: 'SO',
+                si18: 'MIN',
+                si19: 'PPM',
+                si20: 'SHM'
         }};
         this.nflPosStatMap = {
             QB : ['si2', 'si1', 'si4', 'si3', 'si5', 'si6', 'si14'],
@@ -84,6 +107,13 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             TE : ['si5', 'si6', 'si14', 'si8', 'si9', 'si10'],
             K : ['si35', 'si37', 'si38', 'si39', 'si40', 'si41'],
             D : ['si18', 'si43', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si27']
+        };
+        this.nhlPosStatMap = {
+            G : ['si16', 'si15', 'si14', 'si17', 'si3', 'si13', 'si18'],
+            RW : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
+            C : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
+            LW : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
+            D : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20']
         };
         this.firstCols = [
                 {   text: 'Date',

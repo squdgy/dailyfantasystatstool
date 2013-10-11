@@ -332,6 +332,7 @@ Ext.define('DFST.controller.Filters', {
             if (siteId == 4) dfsGameId = 4; //dd
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
+            if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
@@ -545,6 +546,8 @@ Ext.define('DFST.controller.Filters', {
             defaultGameId = 102;
         else if (DFST.AppSettings.sport == "nfl")
             defaultGameId = 202;
+        else if (DFST.AppSettings.sport == "nhl")
+            defaultGameId = 302;
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';

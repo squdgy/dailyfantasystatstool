@@ -1,23 +1,20 @@
 NEXT:
 =========
+- check nhl stats accuracy
+- check nhl scoring on dd/dk/fd
 - nhl injury import
-- add nhl stats
-- add nhl boxscore parse
-- add nhl scoring: fd
-- add nhl scoring: dk
-- add nhl scoring: dd
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
-- check scrapers on Mon 10/7
+- check scrapers on Mon 10/14
 - wed check price scrapers - make sure DK scrape used correct week
-- Friday - check that nfl scores job ran
 - Tues. PM - manually update DS scrape
-- Hadoop!!!
+- Hadoop?
 - new UI!
+- reimport NFL schedule?
+- turn off all baseball scrapers/calculations
 
 NHL:
 ==========
-Teams, positions
-roster import
+
 
 NFL:
 ==========
@@ -53,6 +50,7 @@ means they just came off of the DL. This is not the query, but it's a start:
 
 Misc.
 ==========
+-whenupdated table: increase tableName column/change column name
 - export top grid to csv
 - drag/drop to lineup list
 - more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
