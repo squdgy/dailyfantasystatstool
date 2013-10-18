@@ -218,14 +218,12 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'afp',
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
-/*                    
                 },{
                     text: 'Avg FP-5',
                     dataIndex: 'afp5',
                     width: 70,
                     tooltip: 'average fantasy points over last 5 games',
                     renderer: Ext.util.Format.numberRenderer('0.00')
-*/                    
                 },{
                     text: '$',
                     dataIndex: 'sal',
@@ -246,13 +244,12 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'cpprojp',
                     width: 75,
                     renderer: this.costPerPointRenderer
-/*                },{
+                },{
                     text: '$/FP-5',
                     dataIndex: 'cpp5',
                     width: 75,
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
-*/                    
                 }]
 			}
 		}; 
@@ -295,6 +292,12 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'average fantasy points as reported by the selected site',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 70,
+                    tooltip: 'average fantasy points over last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{
@@ -303,6 +306,12 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     tooltip: 'player salary at the selected site',
                     renderer: this.moneyRenderer
+                },{
+                    text: '$/FP-5',
+                    dataIndex: 'cpp5',
+                    width: 75,
+                    tooltip: 'cost per point over last 5 games',
+                    renderer: this.costPerPointRenderer
                 }
                 ]
 			}

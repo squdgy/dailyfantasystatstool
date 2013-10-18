@@ -16,5 +16,12 @@
 - schedule nhl boxscore to run daily
 - check nhl prices on dk/dd/fd
 - add nhl player stats grid
-
+- nhl injury import: coded and scheduled
+- more nhl names corrections
+- switch proj. ref to week 7 for nfl
+- switch ds prices to week 7
+- even more nhl nicknames
+- import nhl box scores
+- draftstreet dst filter : just needed to re-import new prices
+- figure out nhl box score failure : nfl files were in the unprocessed folder, ignore files, if they're the wrong sport
 
