@@ -3,7 +3,6 @@
 
 Copyright (c) 2012 Maura Wilder
 
-
 */
 Ext.define('DFST.model.StatSet', {
     extend: 'Ext.data.Model',

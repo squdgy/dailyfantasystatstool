@@ -119,32 +119,52 @@ Ext.define('DFST.controller.Filters', {
     },
 
     changeDate: function(datefield, newValue, oldValue, options) {
-        this.gameDateIsChanging = true;
+        this.gameDateIsChanging = oldValue !== undefined;
+
         var statsStore = this.getStatsStore();
-        statsStore.filters.removeAtKey('gameId'); // clear all game filters
-        statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
-        var gamesStore = this.getGamesStore();
-        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()},
-                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+        if (this.gameDateIsChanging) {
+            statsStore.filters.removeAtKey('gameId'); // clear all game filters
+            statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+            var gamesStore = this.getGamesStore();
+            gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()},
+                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+        } else {
+            statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+        }
     },
 
     changeWeek: function(combobox, newValue, oldValue, options) {
-        this.gameDateIsChanging = true;
+        this.gameDateIsChanging = oldValue !== undefined;
         var statsStore = this.getStatsStore();
-        statsStore.filters.removeAtKey('gameId'); // clear all game filters
         var weekRecord = combobox.findRecordByValue(newValue);
         var gameDateStart = weekRecord.get('startdate');
         var gameDateEnd = weekRecord.get('enddate');
-        statsStore.filter([
-            {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-            {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
-        ]);
         var gamesStore = this.getGamesStore();
-        gamesStore.filter([
-            {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-            {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
-            {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
-        ]);
+        
+        if (this.gameDateIsChanging) {
+            statsStore.filters.removeAtKey('gameId'); // clear all game filters
+            statsStore.filter([
+                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
+            ]);
+            gamesStore.filter([
+                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
+                {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
+            ]);
+        } else {
+            if (gamesStore.getTotalCount() === 0) {
+                gamesStore.filter([
+                    {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+                    {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
+                    {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
+                ]);
+            }
+            statsStore.filter([
+                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
+                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
+            ]);
+        }
     },
 
     changeProbables: function(checkbox, newValue, oldValue, options) {

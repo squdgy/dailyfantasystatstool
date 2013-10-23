@@ -24,4 +24,13 @@
 - import nhl box scores
 - draftstreet dst filter : just needed to re-import new prices
 - figure out nhl box score failure : nfl files were in the unprocessed folder, ignore files, if they're the wrong sport
+- rpia: logging messages 2x : with newer azure sdk, use config file and remove lots of code in webrole.cs
+- daily .net job not working : broken when ignoring files for sport, thought all importers were for nba - DOH!
+- turn off all baseball scrapers/calculations
+- Sunday morning pff projections flipped to week 7? when it's still week 6 : don't truncate table, just delete current week's data before inserting
+- Varlamov showing 0 fp for DK - 10/15, 9.3 for FD - 10/14 vs their 8.8 : dk resolved itself? fd doesn't give goalies credit for assists/penalty min. etc.
+- check nhl scoring/stats: remove offensive stats from scoring for goalies on both fd and dd
+- goalie scoring confirmed
+- skater scoring confirmed, some oddities with dd - looks like they were scoring gwg early in the season but not now
+- don't clear game filters when changing sites
 

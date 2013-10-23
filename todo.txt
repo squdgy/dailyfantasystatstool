@@ -1,17 +1,12 @@
 NEXT:
 =========
-- rpia: logging messages 2x
-- Varlamov showing 0 fp for DK - 10/15, 9.3 for FD - 10/14 vs their 8.8
-- Sunday morning pff projections flipped to week 7? when it's still week 6
-- check nhl stats accuracy
-- check nhl scoring on dd/dk/fd
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
-- check scrapers on Mon 10/14
-- wed check price scrapers - make sure DK scrape used correct week
-- Tues. PM - manually update DS scrape
 - new UI!
-- turn off all baseball scrapers/calculations
-- better way to configure bottom grid columns to be longer
+- refresh doesn't seem to pick up changes to individual games?
+- Tue: manually update DS scrape
+- Wed: check price scrapers - make sure DK/DS scrape used correct week
+- Sun: check: pff projections flipped to next week
+
 
 NHL:
 ==========
@@ -90,6 +85,7 @@ need to clear or set all games
 need to be able to sort by multiple columns
 need to be able to choose individual teams, not just games
 uncheck games that have already occurred in the day on page load, and make not chooseable?
+better way to configure bottom grid columns to be longer
 
 ExtJS:
 ===========
