@@ -1,12 +1,14 @@
 NEXT:
 =========
 - nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
+- nba nicknames
+- nba fix game definitions for dk
+- add nba game definition for dd
+- re-enable scrapes of nba roster/prices in quartz?
 - new UI!
-- refresh doesn't seem to pick up changes to individual games?
 - Tue: manually update DS scrape
 - Wed: check price scrapers - make sure DK/DS scrape used correct week
 - Sun: check: pff projections flipped to next week
-
 
 NHL:
 ==========
@@ -23,18 +25,14 @@ more on projections: scrape more? or edit myself
 
 NBA - leave until season starts:
 =========
-schedule, roster
-add NBA to active sports in playerrepository/remove mlb
 stats grid pass 2 - genericise mlb/nba stats to match 
-add team idmappings so update_daids_v2 will work for nba (deal with duplicate Chris Johnsons in NBA!!)
 game detail? - stadiums, etc.
-import roster every day?
-dealing with positions and mappings is still less than ideal
-upgrade generate schema script to capture pks and not null attributes!!!
-siteDetails store should only need to filter by gameId & not site id  
 
 Misc.
 ==========
+siteDetails store should only need to filter by gameId & not site id  
+import rosters every day?
+- if error when changing sites... clear grid
 - Hadoop?
 -fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
 -whenupdated table: increase tableName column/change column name
@@ -52,7 +50,9 @@ should put a help bar icon on the toolbar in the filters with a popup to expain 
 need to check out project to new area -to make sure I can do everything I need to
 create state manager for grids
 more logging
+upgrade generate schema script to capture pks and not null attributes!!!
 why doesn't sitedetailsstore make ajax call when filtered()?
+dealing with positions and mappings is still less than ideal
 need to figure out how to deal with sites where player can play multiple positions (for position filters)
 create team ui/drag + drop for players
 Write a detailed document with information on all projects, deployments, accounts etc.
