@@ -1,50 +1,45 @@
 NEXT:
-=========
-- nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
-- nba nicknames
-- nba fix game definitions for dk
-- add nba game definition for dd
-- re-enable scrapes of nba roster/prices in quartz?
-- new UI!
-- Tue: manually update DS scrape
+========
+- when season starts make sure dd, td, mfg, mft calc. correctly (double-double, missed fg)
+- ComputeBasketball stats: use merge condition
+- starting goalies in UI
+- vegas betting line
+- inttoboolrenderer (how to define on col)
 - Wed: check price scrapers - make sure DK/DS scrape used correct week
-- Sun: check: pff projections flipped to next week
+- Tue: manually update DS nfl scrape?
+
+NBA - leave until season starts:
+=========
+game detail? - stadiums, etc.
 
 NHL:
 ==========
 check all filters: do they make sense, are the sliders set adequately, etc.
-starting goalies?
 
 NFL:
 ==========
+nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
 reimport NFL schedule?
-fix hard-coding of projections week
-vegas betting line
 game details - stadiums
 more on projections: scrape more? or edit myself
-
-NBA - leave until season starts:
-=========
-stats grid pass 2 - genericise mlb/nba stats to match 
-game detail? - stadiums, etc.
 
 Misc.
 ==========
 siteDetails store should only need to filter by gameId & not site id  
 import rosters every day?
-- if error when changing sites... clear grid
+if error when changing sites... clear grid
 - Hadoop?
--fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
--whenupdated table: increase tableName column/change column name
-- export top grid to csv
-- drag/drop to lineup list
-- more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
-- some view models still in the data layer, move to view layer
-- go back to old theme?
-- Add glossary
-- new scrapers: - fan throwdown, draftstreet, and or fantasy feud?
-- add venue information to game data
-- Figure out build process for Ext JS 4 - slow now!!
+fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
+whenupdated table: increase tableName column/change column name : re-architect!
+export top grid to csv
+drag/drop to lineup list
+more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
+some view models still in the data layer, move to view layer
+theme
+Add glossary
+new scrapers: - fan throwdown, draftstreet, and or fantasy feud?
+add venue information to game data
+Figure out build process for Ext JS 4 - slow now!!
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to expain the section
 need to check out project to new area -to make sure I can do everything I need to
@@ -62,23 +57,23 @@ embed azure app within wordpress site?
 start adding headers, logos, themes, affiliate links etc. to wordpress site
 weather: schedule to retrieve it a little more often
 - players that might need nickname mappings:
-select * from player p
-inner join fanduel f on (f.namelast = p.namelast)
-where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
-and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
-order by p.position desc;
+    select * from player p
+    inner join fanduel f on (f.namelast = p.namelast)
+    where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
+    and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
+    order by p.position desc;
 
 UI:
 ==========
-- sencha cmd
+- new UI: plan for MLB season
+sencha cmd
 all game definitions pre-loaded 1x, instead of ajax calls for each change?
-lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 add time of update for starting lineup
 add column with position played in bottom grid?
 need glossary or tooltips for column headers
 need player filters - use generic grid filters?
 Change theme colors
-Clean up header for bottom grid - full team name, full mlb position name, other?
+Clean up header for bottom grid - full team name, full position name, other?
 need reset filters button
 need filter summary (or summaries?)
 need to clear or set all games
@@ -99,10 +94,7 @@ WEBAPI:
 
 Loader/Data - generic:
 ===========
-quota exception when transferring perl startup logs to storage
-System.ArgumentException: OverallQuotaInMB is 4096MB but sum of requested sub-quotas is 4106MB.
-Parameter name: newConfiguration
-   at Microsoft.WindowsAzure.Diagnostics.Management.RoleInstanceDiagnosticManager.SetCurrentConfiguration(DiagnosticMonitorConfiguration newConfiguration)
+change scrapers to not re-download a file if it's used for multiple sports
 move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?
@@ -146,6 +138,8 @@ query to Find problems in mappings: select daId, srcName, count(*) from idmappin
 
 MLB - leave until 2014:
 =========
+stats grid pass 2 - genericise mlb/nba stats to match 
+lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 - every once in  a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction

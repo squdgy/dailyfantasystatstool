@@ -263,7 +263,50 @@ x Change date picking for NFL to pick by weeks - in UI use combobox with weeks, 
 x Change game controller to return games from day range
 x Change game display for nFL to show game day - in JS, add day abbrev in date display
 x Change player controller to return players from day range
-
-
+-Restart done list on 10/03/2013
+- Friday - check that nfl scores job ran: YES!
+- nhl Teams, positions
+- nhl roster import
+- add nhl schedule
+- add nhl stats definitions
+- add nhl game definition: fd
+- add nhl game definition: dk
+- add nhl game definition: dd
+- add nhl scoring: fd
+- add nhl scoring: dk
+- add nhl scoring: dd
+- add nhl boxscore parse
+- add nhl to computedstats calculations
+- add nhl to UI: started, other tasks are itemized
+- schedule nhl boxscore to run daily
+- check nhl prices on dk/dd/fd
+- add nhl player stats grid
+- nhl injury import: coded and scheduled
+- more nhl names corrections
+- switch proj. ref to week 7 for nfl
+- switch ds prices to week 7
+- even more nhl nicknames
+- import nhl box scores
+- draftstreet dst filter : just needed to re-import new prices
+- figure out nhl box score failure : nfl files were in the unprocessed folder, ignore files, if they're the wrong sport
+- rpia: logging messages 2x : with newer azure sdk, use config file and remove lots of code in webrole.cs
+- daily .net job not working : broken when ignoring files for sport, thought all importers were for nba - DOH!
+- turn off all baseball scrapers/calculations
+- Sunday morning pff projections flipped to week 7? when it's still week 6 : don't truncate table, just delete current week's data before inserting
+- Varlamov showing 0 fp for DK - 10/15, 9.3 for FD - 10/14 vs their 8.8 : dk resolved itself? fd doesn't give goalies credit for assists/penalty min. etc.
+- check nhl scoring/stats: remove offensive stats from scoring for goalies on both fd and dd
+- goalie scoring confirmed
+- skater scoring confirmed, some oddities with dd - looks like they were scoring gwg early in the season but not now
+- don't clear game filters when changing sites
+- refresh doesn't seem to pick up changes to individual games : implement refresh on FantasyPointsRepository
+- import nba schedule
+- import nba rosters
+- schedule import of nba rosters : add to feeds job
+- make sure nba prices work : generic scrapers worked for all of dk/fd/dd!
+- add NBA to active sports in playerrepository/remove mlb
+- nba injury : enabled and added to feeds job
+- add team idmappings so update_daids_v2 will work for nba (deal with duplicate Chris Johnsons in NBA!!)
+- nba fix game definitions for dk
+- add nba game definition for dd
 
 
