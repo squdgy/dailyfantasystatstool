@@ -1,16 +1,15 @@
 NEXT:
 ========
-- when season starts make sure dd, td, mfg, mft calc. correctly (double-double, missed fg)
-- ComputeBasketball stats: use merge condition
+- check dk nba scoring
 - starting goalies in UI
 - vegas betting line
 - inttoboolrenderer (how to define on col)
-- Wed: check price scrapers - make sure DK/DS scrape used correct week
-- Tue: manually update DS nfl scrape?
+- Tue/Wed: manually update DS nfl scrape?
 
-NBA - leave until season starts:
+NBA:
 =========
 game detail? - stadiums, etc.
+check all filters: do they make sense, are the sliders set adequately, etc.
 
 NHL:
 ==========

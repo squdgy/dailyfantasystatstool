@@ -57,6 +57,7 @@ Ext.define('DFST.model.StatSet', {
         { name: 'inj', type: 'boolean', defaultValue: false},  //whether player is injured?
         { name: 'injd', type: 'string', defaultValue: ''},  //injury description
         { name: 'pp', type: 'boolean', defaultValue: false},  //whether player is probable starter?
+        { name: 'pd', type: 'string', defaultValue: ''},  //probable starter description if there is one
         
         { name: 'border', type: 'int', defaultValue: 0},  //batting order if known, else 0
         { name: 'mr1', type: 'int', defaultValue: 0},      //matchup rating

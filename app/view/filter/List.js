@@ -112,10 +112,10 @@ Ext.define('DFST.view.filter.List', {
                 },    
                 {
                     xtype: 'checkbox',
-                    boxLabel: 'Exclude Pitchers Not Expected To Start',
+                    boxLabel: DFST.AppSettings.sport === 'mlb' ? 'Exclude Pitchers Not Expected To Start' : 'Include only Confirmed &amp; Probable Goalies',
                     id: 'probables',
                     name: 'probables',
-                    hidden: DFST.AppSettings.sport !== 'mlb',
+                    hidden: DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl',
                     checked: true
                 },{
                     xtype: 'splitbutton',

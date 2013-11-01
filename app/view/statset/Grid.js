@@ -439,12 +439,12 @@ Ext.define('DFST.view.statset.Grid', {
                 record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
         }
         if (isInjured && isProbable) {
-            return name + '<img src="images/starting_pitcher.png" class="icon-indicator"/><img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
+            return name + '<img src="images/starter_016.png" class="icon-indicator" data-qtip="' + record.data.pd + '"/><img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         }
         if (isInjured) {
             return name + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         } else if (isProbable) {
-            return name + '<img src="images/starting_pitcher.png" class="icon-indicator"/>';
+            return name + '<img src="images/starter_016.png" class="icon-indicator" data-qtip="' + record.data.pd + '"/>';
         } else {
             return name;
         }
