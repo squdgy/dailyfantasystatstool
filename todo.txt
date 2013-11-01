@@ -1,9 +1,8 @@
 NEXT:
 ========
 - check dk nba scoring
-- starting goalies in UI
 - vegas betting line
-- inttoboolrenderer (how to define on col)
+- inttoboolrenderer (how to define on col) (change started in NBA gamelog)
 - Tue/Wed: manually update DS nfl scrape?
 
 NBA:

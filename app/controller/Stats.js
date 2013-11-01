@@ -97,7 +97,7 @@ Ext.define('DFST.controller.Stats', {
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
-            detailsView.setTitle('Past Game Statistics for ' + statset.data.fname +
+            detailsView.setTitle('Game Log for ' + statset.data.fname +
             ' ' + statset.data.lname);
             detailsView.show();
         }

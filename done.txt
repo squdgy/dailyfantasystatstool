@@ -10,3 +10,6 @@ x re-enable scrapes of nba stats in quartz
 x stats grid pass 2 - genericise nba stats to match 
 x ComputeBasketball stats: use merge condition
 x when season starts make sure dd, td, mfg, mft calc. correctly (double-double, missed fg)
+x starting goalies in UI
+x depth chart: need pk on player id for roster generator, but pk breaks import: fix for import, generator not really using this now anyway
+x more nicknames for NBA
