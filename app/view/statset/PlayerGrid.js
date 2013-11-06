@@ -23,15 +23,36 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
         var statMap = this.statMap[sport];
+        var colExtrasMap = this.colExtrasMap[sport];
         for (var i=0; i<ncols; i++){
             var stat = colmap[i];
             var width = (stat === 'si18') ? 60 : 40;
-            cols.push({text: statMap[stat], dataIndex: stat, width:width});
+            var colDef = {text: statMap[stat], dataIndex: stat, width:width};
+            if (colExtrasMap && colExtrasMap[stat]) {
+                Ext.apply(colDef, colExtrasMap[stat]);
+            }
+            cols.push(colDef);
         }
         return cols.concat(this.lastCols);
     },
     
 	initComponent: function() {
+        this.colExtrasMap = {
+            'nba': {
+                'si14': {renderer: this.intToBoolRenderer}
+            },
+            'nfl': {
+                'si3' : {renderer: this.intToBoolRenderer},
+                'si7' : {renderer: this.intToBoolRenderer, width: 70},
+                'si11' : {renderer: this.intToBoolRenderer, width: 70},
+                'si36' : {width: 60},
+                'si37' : {width: 60},
+                'si38' : {width: 60},
+                'si39' : {width: 60},
+                'si40' : {width: 60},
+                'si41' : {width: 60}
+            }
+        };
         this.statMap = {
             'nba':{
                 si1: 'P',
@@ -91,9 +112,13 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si39: 'FG30-39',
                 si40: 'FG40-49',
                 si41: 'FG50+',
-                si42: 'P',
-                si43: 'ITD',
-                si44: 'FGYO30'
+                si42: 'ITD',
+                si43: 'FGYO30',
+                si44: 'Att',
+                si45: 'Comp',
+                si46: 'Sck',
+                si47: 'Att',
+                si48: 'T'
             },
             'nhl':{
                 si1: 'S',
@@ -126,7 +151,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             F : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
             PF : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
             "F-C" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            C : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
+            C : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12']
         };
         this.nhlPosStatMap = {
             G : ['si16', 'si15', 'si14', 'si17', 'si3', 'si13', 'si18'],
@@ -136,10 +161,10 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             D : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20']
         };
         this.nflPosStatMap = {
-            QB : ['si2', 'si1', 'si4', 'si3', 'si5', 'si6', 'si14'],
-            RB : ['si3', 'si5', 'si6', 'si14','si7', 'si8', 'si9', 'si10'],
-            WR : ['si5', 'si6', 'si14', 'si8', 'si9', 'si10'],
-            TE : ['si5', 'si6', 'si14', 'si8', 'si9', 'si10'],
+            QB : ['si45', 'si44', 'si2', 'si1', 'si4', 'si46', 'si3', 'si5', 'si6', 'si14'],
+            RB : ['si47', 'si5', 'si6', 'si14','si7', 'si8', 'si9', 'si10'],
+            WR : ['si5', 'si6', 'si14', 'si48', 'si9', 'si8', 'si10', 'si11'],
+            TE : ['si5', 'si6', 'si14', 'si48', 'si9', 'si8', 'si10', 'si11'],
             K : ['si35', 'si37', 'si38', 'si39', 'si40', 'si41'],
             D : ['si18', 'si43', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si27']
         };
@@ -264,7 +289,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 	},
     
     intToBoolRenderer: function(value, p, record) {
-        if (value >= 0)
+        if (value > 0)
             return 'Y';
         return '';
 	}

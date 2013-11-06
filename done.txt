@@ -13,3 +13,14 @@ x when season starts make sure dd, td, mfg, mft calc. correctly (double-double, 
 x starting goalies in UI
 x depth chart: need pk on player id for roster generator, but pk breaks import: fix for import, generator not really using this now anyway
 x more nicknames for NBA
+x check dk nba scoring : fix 3pt scoring
+x inttoboolrenderer (how to define on col) (change started in NBA gamelog) : added rendererMap
+x nfl stats grid pass 3 - make sure stats are accurate, fix stats/position: column width, renderer etc.
+x nfl stats grid pass 4: add stats via importer: targets, rushing attempts, passing attempts, passing completions, qb sacks; and add to grid: done
+x fix DD url when there's a $ symbol in it
+x NFL: re-import all boxscores, season to date to get new stats
+x Tue/Wed, ever week: manually update DS nfl scrape - for wk 9
+x NBA: check all filters: do they make sense, are the sliders set adequately, etc.: Adjustments in server to set ranges by sport and site, not just site, show odr again etc. still need to fix $/FP
+
+
+

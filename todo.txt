@@ -1,22 +1,20 @@
 NEXT:
 ========
-- check dk nba scoring
+- NBA filters: $/FP
+- NHL: check all filters: do they make sense, are the sliders set adequately, etc.
 - vegas betting line
-- inttoboolrenderer (how to define on col) (change started in NBA gamelog)
-- Tue/Wed: manually update DS nfl scrape?
+- Tue/Wed, ever week: manually update DS nfl scrape?
+- Nullable sportId in view, get not null to stick when updating edmx 
 
 NBA:
 =========
 game detail? - stadiums, etc.
-check all filters: do they make sense, are the sliders set adequately, etc.
 
 NHL:
 ==========
-check all filters: do they make sense, are the sliders set adequately, etc.
 
 NFL:
 ==========
-nfl stats grid pass 3 - make sure stats are accurate, fill in stats/position
 reimport NFL schedule?
 game details - stadiums
 more on projections: scrape more? or edit myself

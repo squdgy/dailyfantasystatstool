@@ -217,7 +217,7 @@ Ext.define('DFST.view.filter.List', {
                     width: '100%',
                     html: 'Pricing varies among sites.<br/>If you change sites, these filters will reset.'
                 },{
-                    fieldLabel: 'Filter $',
+                    fieldLabel: '$',
                     xtype: 'multislider',
                     id: 'salRange',
                     width: 350,
@@ -225,18 +225,8 @@ Ext.define('DFST.view.filter.List', {
                     increment: 500,
                     minValue: 0,
                     maxValue: 10000
-                },
-                {
-                    fieldLabel: 'Filter $/FP',
-                    xtype: 'multislider',
-                    id: 'cppRange',
-                    width: 350,
-                    values: [0, 1500],
-                    increment: 100,
-                    minValue: 0,
-                    maxValue: 1500
                 },{
-                    fieldLabel: 'Filter Avg FP',
+                    fieldLabel: 'Avg FP',
                     xtype: 'multislider',
                     id: 'afpRange',
                     width: 350,
@@ -244,28 +234,8 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 20
-                },
-                {
-                    fieldLabel: 'Filter $/Proj',
-                    xtype: 'multislider',
-                    id: 'cpprojpRange',
-                    width: 350,
-                    values: [0, 75000],
-                    increment: 1000,
-                    minValue: 0,
-                    maxValue: 75000
                 },{
-                    fieldLabel: 'Filter Proj',
-                    xtype: 'multislider',
-                    id: 'projpRange',
-                    width: 350,
-                    values: [0, 30],
-                    increment: 1,
-                    minValue: 0,
-                    maxValue: 30
-                },
-                {
-                    fieldLabel: 'Filter Avg FP-5',
+                    fieldLabel: 'Avg FP-5',
                     xtype: 'multislider',
                     id: 'afp5Range',
                     width: 350,
@@ -274,7 +244,26 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 70
                 },{
-                    fieldLabel: 'Filter $/FP-5',
+                    fieldLabel: 'Proj',
+                    xtype: 'multislider',
+                    id: 'projpRange',
+                    width: 350,
+                    values: [0, 30],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 30,
+                    hidden: DFST.AppSettings.sport !== 'nfl'
+                },{
+                    fieldLabel: '$/FP',
+                    xtype: 'multislider',
+                    id: 'cppRange',
+                    width: 350,
+                    values: [0, 800],
+                    increment: 0,
+                    minValue: 0,
+                    maxValue: 800
+                },{
+                    fieldLabel: '$/FP-5',
                     xtype: 'multislider',
                     id: 'cpp5Range',
                     width: 350,
@@ -282,6 +271,16 @@ Ext.define('DFST.view.filter.List', {
                     increment: 0,
                     minValue: 0,
                     maxValue: 800
+                },{
+                    fieldLabel: '$/Proj',
+                    xtype: 'multislider',
+                    id: 'cpprojpRange',
+                    width: 350,
+                    values: [0, 75000],
+                    increment: 1000,
+                    minValue: 0,
+                    maxValue: 75000,
+                    hidden: DFST.AppSettings.sport !== 'nfl'
                 }]
             },
             {
@@ -299,7 +298,7 @@ Ext.define('DFST.view.filter.List', {
                     checked: false
                 },
                 {
-                    fieldLabel: 'Filter # Games',
+                    fieldLabel: '# Games',
                     xtype: 'multislider',
                     id: 'ngRange',
                     width: 350,
@@ -308,8 +307,8 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: DFST.AppSettings[DFST.AppSettings.sport].gameCnt
                 },
-                {//mlb specific
-                    fieldLabel: 'Filter MR Value',
+                {   //mlb specific
+                    fieldLabel: 'MR Value',
                     xtype: 'multislider',
                     id: 'mr1Range',
                     width: 350,
@@ -318,17 +317,18 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 5,
                     hidden: DFST.AppSettings.sport !== 'mlb'
-                }                /* NBA specific,
+                },
                 {
-                    fieldLabel: 'Filter ODR-5',
+                    fieldLabel: 'ODR-5',
                     xtype: 'multislider',
                     id: 'odrRange',
                     width: 350,
                     values: [0, 30],
                     increment: 1,
                     minValue: 0,
-                    maxValue: 30
-                }*/]
+                    maxValue: 30,
+                    hidden: DFST.AppSettings.sport !== 'nba'
+                }]
             }]
 		});
 

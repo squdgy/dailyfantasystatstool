@@ -58,6 +58,11 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'si41', type: 'float', defaultValue: 0.0 },
         { name: 'si42', type: 'float', defaultValue: 0.0 },
         { name: 'si43', type: 'float', defaultValue: 0.0 },
+        { name: 'si44', type: 'float', defaultValue: 0.0 },
+        { name: 'si45', type: 'float', defaultValue: 0.0 },
+        { name: 'si46', type: 'float', defaultValue: 0.0 },
+        { name: 'si47', type: 'float', defaultValue: 0.0 },
+        { name: 'si48', type: 'float', defaultValue: 0.0 },
 
         //hitter stats
         { name: 'ab', type: 'int', defaultValue: 0 },    //at bats
