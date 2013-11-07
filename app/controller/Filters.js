@@ -14,6 +14,7 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'positionFilters', selector: 'filterlist fieldcontainer#positions'},
         {ref: 'salRangeFilter', selector: 'filterlist multislider#salRange'},
         {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
+        {ref: 'cpp5RangeFilter', selector: 'filterlist multislider#cpp5Range'},
         {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
         {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'},
         {ref: 'projpRangeFilter', selector: 'filterlist multislider#projpRange'},
@@ -394,6 +395,13 @@ Ext.define('DFST.controller.Filters', {
         cppFilter.increment = site.get('cppstep');
         cppFilter.setValue(0, site.get('cppmin'));
         cppFilter.setValue(1, site.get('cppmax'));
+
+        var cpp5Filter = this.getCpp5RangeFilter();
+        cpp5Filter.setMinValue(site.get('cppmin'));
+        cpp5Filter.setMaxValue(site.get('cppmax'));
+        cpp5Filter.increment = site.get('cppstep');
+        cpp5Filter.setValue(0, site.get('cppmin'));
+        cpp5Filter.setValue(1, site.get('cppmax'));
 
         var afpFilter = this.getAfpRangeFilter();
         afpFilter.setMinValue(site.get('afpmin'));

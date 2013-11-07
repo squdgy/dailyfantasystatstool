@@ -303,7 +303,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'ngRange',
                     width: 350,
                     values: [0, DFST.AppSettings[DFST.AppSettings.sport].gameCnt],
-                    increment: DFST.AppSettings[DFST.AppSettings.sport].gameCnt/16,
+                    increment: 1,
                     minValue: 0,
                     maxValue: DFST.AppSettings[DFST.AppSettings.sport].gameCnt
                 },

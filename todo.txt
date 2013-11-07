@@ -1,10 +1,11 @@
 NEXT:
 ========
-- NBA filters: $/FP
-- NHL: check all filters: do they make sense, are the sliders set adequately, etc.
+- move whenupdate outside of bulkupdater for .net updates
+- nfl week 10 only checked Thursday's game (on 11/7 in the AM)?
+- if error when changing sites... clear grid
 - vegas betting line
 - Tue/Wed, ever week: manually update DS nfl scrape?
-- Nullable sportId in view, get not null to stick when updating edmx 
+- schedule weekly import of schedules for nba/nhl/nfl
 
 NBA:
 =========
@@ -12,10 +13,10 @@ game detail? - stadiums, etc.
 
 NHL:
 ==========
+game details - stadiums
 
 NFL:
 ==========
-reimport NFL schedule?
 game details - stadiums
 more on projections: scrape more? or edit myself
 
@@ -23,7 +24,6 @@ Misc.
 ==========
 siteDetails store should only need to filter by gameId & not site id  
 import rosters every day?
-if error when changing sites... clear grid
 - Hadoop?
 fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
 whenupdated table: increase tableName column/change column name : re-architect!
@@ -58,6 +58,13 @@ weather: schedule to retrieve it a little more often
     where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
     and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
     order by p.position desc;
+
+Major Schema related:
+=======
+Change salaries to be by game instead of game date
+Change everything to look for gameId not siteId
+Change entire position mapping to be more closely aligned with the way sites do it. (multiple position eligibility)
+Change to support double headers
 
 UI:
 ==========
@@ -99,10 +106,10 @@ fix exceptions with using Trace in a non-cloud environment
 stop at collecting 1 feed file - just be smart and try to get the latest before copying - makes import take a long time to go through multiple
 move some more generic stuff from bulkdataimporter to baseimporter, remove dependency of lineup importer on buldataimporter
 save_to_db is unwieldy - clean it up?
+- Nullable sportId in view, get not null to stick when updating edmx 
 
 Loader/Data - baseball
 ===========
-Hairston Jr. - not getting mapped correctly because of the Jr., Also Ginn Jr.
 add backup to lineups script to look for other games from another site?
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
 change load_teamrosters to ignore players that are already ok?

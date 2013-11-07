@@ -21,6 +21,9 @@ x fix DD url when there's a $ symbol in it
 x NFL: re-import all boxscores, season to date to get new stats
 x Tue/Wed, ever week: manually update DS nfl scrape - for wk 9
 x NBA: check all filters: do they make sense, are the sliders set adequately, etc.: Adjustments in server to set ranges by sport and site, not just site, show odr again etc. still need to fix $/FP
+x NBA filters: $/FP
+x NHL: check all filters: do they make sense, are the sliders set adequately, etc.
+x new import of schedules for NFL/NHL/NBA
 
 
 
