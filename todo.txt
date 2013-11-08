@@ -1,11 +1,12 @@
 NEXT:
 ========
-- move whenupdate outside of bulkupdater for .net updates
-- nfl week 10 only checked Thursday's game (on 11/7 in the AM)?
+- add support for multiple projection sets
 - if error when changing sites... clear grid
+- nfl week 10 only checked Thursday's game (on 11/7 in the AM)?
 - vegas betting line
 - Tue/Wed, ever week: manually update DS nfl scrape?
 - schedule weekly import of schedules for nba/nhl/nfl
+- fantasy feud scrape?
 
 NBA:
 =========
@@ -26,7 +27,7 @@ siteDetails store should only need to filter by gameId & not site id
 import rosters every day?
 - Hadoop?
 fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
-whenupdated table: increase tableName column/change column name : re-architect!
+whenupdated table: increase tableName column/change column name : minor re-architect!
 export top grid to csv
 drag/drop to lineup list
 more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 

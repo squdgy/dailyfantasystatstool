@@ -16,6 +16,7 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
         {ref: 'cpp5RangeFilter', selector: 'filterlist multislider#cpp5Range'},
         {ref: 'afpRangeFilter', selector: 'filterlist multislider#afpRange'},
+        {ref: 'afp5RangeFilter', selector: 'filterlist multislider#afp5Range'},
         {ref: 'ngRangeFilter', selector: 'filterlist multislider#ngRange'},
         {ref: 'projpRangeFilter', selector: 'filterlist multislider#projpRange'},
         {ref: 'cpprojpRangeFilter', selector: 'filterlist multislider#cpprojpRange'},
@@ -409,6 +410,13 @@ Ext.define('DFST.controller.Filters', {
         afpFilter.increment = site.get('afpstep');
         afpFilter.setValue(0, site.get('afpmin'));
         afpFilter.setValue(1, site.get('afpmax'));
+
+        var afp5Filter = this.getAfp5RangeFilter();
+        afp5Filter.setMinValue(site.get('afpmin'));
+        afp5Filter.setMaxValue(site.get('afpmax'));
+        afp5Filter.increment = site.get('afpstep');
+        afp5Filter.setValue(0, site.get('afpmin'));
+        afp5Filter.setValue(1, site.get('afpmax'));
         
 /*        
         // set all other filters to default values

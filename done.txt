@@ -24,6 +24,9 @@ x NBA: check all filters: do they make sense, are the sliders set adequately, et
 x NBA filters: $/FP
 x NHL: check all filters: do they make sense, are the sliders set adequately, etc.
 x new import of schedules for NFL/NHL/NBA
+x move whenupdate outside of bulkupdater for .net updates
+x Avg fp 5 filter should have same values as Avg fp - fixed!
+
 
 
 
