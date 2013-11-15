@@ -4,7 +4,7 @@ Copyright (c) 2012-2013 Maura Wilder
 */
 Ext.define('DFST.store.SiteDetails', {
     extend: 'Ext.data.Store',
-
+    
     requires: ['Ext.data.reader.Json'],
 
     model: 'DFST.model.SiteDetails',

@@ -1,5 +1,5 @@
 /*global Ext: false */
-/*
+/* 
 
 Copyright (c) 2012-2013 Maura Wilder
 
@@ -8,7 +8,7 @@ Ext.define('DFST.store.PlayerStats', {
     extend: 'Ext.data.Store',
 
     requires: ['Ext.data.reader.Json'],
-
+    
     model: 'DFST.model.PlayerStatSet',
 
     autoLoad: false,

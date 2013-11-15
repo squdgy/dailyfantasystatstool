@@ -3,6 +3,7 @@ Ext.define('DFST.view.weather.Display', {
 	extend: 'Ext.panel.Panel',
     alias: 'widget.weatherdisplay',
     requires: [
+        'DFST.view.bet.Display',
         'DFST.view.weather.Hour'
     ],
 
@@ -16,6 +17,8 @@ Ext.define('DFST.view.weather.Display', {
 	initComponent: function() {
 		Ext.apply(this, {
             items: [{
+                    xtype: 'betdisplay'
+                },{
                 xtype: 'container',
                 layout: {
                     type: 'hbox',

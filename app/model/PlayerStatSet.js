@@ -63,7 +63,7 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'si46', type: 'float', defaultValue: 0.0 },
         { name: 'si47', type: 'float', defaultValue: 0.0 },
         { name: 'si48', type: 'float', defaultValue: 0.0 },
-
+/*
         //hitter stats
         { name: 'ab', type: 'int', defaultValue: 0 },    //at bats
         { name: 'h', type: 'int', defaultValue: 0 },    //hits
@@ -91,23 +91,6 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'hb', type: 'int', defaultValue: 0 },     //hits batsman
         { name: 'bba', type: 'int', defaultValue: 0 },     //walks allowed
         { name: 'l', type: 'int', defaultValue: 0 },     //loss
-        
-/*
-        //nba stats
-        { name: 'p', type: 'int', defaultValue: 0 },   //points
-        { name: 'a', type: 'int', defaultValue: 0 },   //assists
-        { name: 'rb', type: 'int', defaultValue: 0 },   //rebounds
-        { name: 'b', type: 'int', defaultValue: 0 },    //blocks
-        { name: 's', type: 'int', defaultValue: 0 },    //steals
-        { name: 'to', type: 'int', defaultValue: 0 },   //turn overs
-        { name: 'fgm', type: 'int', defaultValue: 0 },  //field goals made
-        { name: 'fga', type: 'int', defaultValue: 0 },  //field goals att.
-        { name: 'ftm', type: 'int', defaultValue: 0 },  //free throws made
-        { name: 'fta', type: 'int', defaultValue: 0 },  //free throws attempted
-        { name: 'tpm', type: 'int', defaultValue: 0 },  //free throws made
-        { name: 'tpa', type: 'int', defaultValue: 0 },  //free throws attempted
-        { name: 'm', type: 'int', defaultValue: 0 },    //free throws attempted
-        { name: 'start', type: 'int', defaultValue: 0 },  //free throws attempted
 */        
         //derived stats
         { name: 'fp', type: 'float', defaultValue: 0.0}  //fantasy points per game

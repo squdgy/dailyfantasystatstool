@@ -598,8 +598,13 @@ Ext.define('DFST.controller.Filters', {
         var gamesStore = this.getGamesStore();
         gamesStore.proxy.url = host + '/api/games/';
         gamesStore.on('load', this.onGamesChanged, this);
-        gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
-                           {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+        if (DFST.AppSettings.sport === "nfl") {
+            var weekFilter = this.getWeekFilter();
+            this.changeWeek(weekFilter, weekFilter.value);
+        } else {
+            gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
+                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+        }
         
         // Set up a timer to update the games store periodically, so we can
         // show a visual indicator that the lineup is ready

@@ -24,8 +24,23 @@ x NBA: check all filters: do they make sense, are the sliders set adequately, et
 x NBA filters: $/FP
 x NHL: check all filters: do they make sense, are the sliders set adequately, etc.
 x new import of schedules for NFL/NHL/NBA
-x move whenupdate outside of bulkupdater for .net updates
+x move whenupdate outside of bulkupdater for .net updates / clean up
 x Avg fp 5 filter should have same values as Avg fp - fixed!
+x webapi code cleanup: resharper warnings/formatting
+x betting lines: find source - http://xml.pinnaclesports.com/pinnaclefeed.aspx : all sports in the 1 feed ! ok to call up to 1x/minute
+x betting lines: first half of parsing logic - got all data from source
+x betting lines: schema
+x betting lines: adjust points to be decimal, more team mappings, map to draftaid gameid, schedule to run pull every 2 hours
+x fix typo in new betting job
+x fix betting line scrape start time: it competes with other scripts for the settings file, change start offset to 3 minutes
+x add lines to UI in game detail (need to add game detail for all sports)
+x nfl week 10 only checked Thursday's game (on 11/7 in the AM)? - on load of nfl run, changeweek
+x betting lines: how often to run, should I merge into instead of having a pk with capturedate etc.: every 2 hours seems reasonable, leave as insert with view for UI
+x betting line: use team names, instead of home/away
+
+
+
+
 
 
 

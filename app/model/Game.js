@@ -4,7 +4,8 @@ Ext.define('DFST.model.Game', {
     extend: 'Ext.data.Model',
     requires: [
         'DFST.model.Weather',
-        'DFST.model.Venue'
+        'DFST.model.Venue',
+        'DFST.model.Bet'
     ],
     
     fields: [ // default values assume from fanduel
@@ -20,7 +21,9 @@ Ext.define('DFST.model.Game', {
         { name: 'alin', type: 'bool', defaultValue: false }
     ],
     idProperty: 'gid',
-    hasOne : {model: 'DFST.model.Venue', name: 'venue', associationKey: 'venue', getterName: 'getVenue', setterName: 'setVenue'},
+    hasOne : [
+        {model: 'DFST.model.Venue', name: 'venue', associationKey: 'venue', getterName: 'getVenue', setterName: 'setVenue'},
+        {model: 'DFST.model.Bet', name: 'bet', associationKey: 'bet', getterName: 'getBet', setterName: 'setBet'}
+    ],
     hasMany  : {model: 'DFST.model.Weather', name: 'weather', associationKey: 'vw', getterName: 'getWeather'}
-    
 });

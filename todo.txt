@@ -1,12 +1,13 @@
 NEXT:
 ========
+- fix annoying problem where perl scripts expect to be by sport
+- betting lines: finish id mappings for games/teams (need nfl team on bye week 10
+- schedule weekly import of schedules for nba/nhl/nfl
 - add support for multiple projection sets
 - if error when changing sites... clear grid
-- nfl week 10 only checked Thursday's game (on 11/7 in the AM)?
-- vegas betting line
-- Tue/Wed, ever week: manually update DS nfl scrape?
-- schedule weekly import of schedules for nba/nhl/nfl
+- Tue/Wed, every week: manually update DS nfl scrape?
 - fantasy feud scrape?
+- make change so settings.cnf only downloaded 1x/day?
 
 NBA:
 =========
@@ -66,6 +67,7 @@ Change salaries to be by game instead of game date
 Change everything to look for gameId not siteId
 Change entire position mapping to be more closely aligned with the way sites do it. (multiple position eligibility)
 Change to support double headers
+Convert all dates to UTC
 
 UI:
 ==========
@@ -95,6 +97,7 @@ On stores, encodeFilters, encodeSorters are all copy-paste: Either create a comm
 WEBAPI:
 ===========
 (Bill) Add Trace Logging and Save trace logs and iis logs to azure storage
+Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
@@ -142,6 +145,7 @@ query to Find problems in mappings: select daId, srcName, count(*) from idmappin
 
 MLB - leave until 2014:
 =========
+odds - add id mappings, tes
 stats grid pass 2 - genericise mlb/nba stats to match 
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 - every once in  a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';

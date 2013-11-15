@@ -62,12 +62,8 @@ Ext.define('DFST.controller.Stats', {
     },
 
     onPlayerChanged: function(grid, statsets) {
-        if (DFST.AppSettings.sport === 'nfl');// return; // TODO: no stats yet
-        if (DFST.AppSettings.sport === 'nhl');// return; // TODO: no stats yet
         this.drillDown(grid, statsets); 
-        if (DFST.AppSettings.sport === 'mlb') {
-            this.showGameDetail(grid, statsets);
-        }
+        this.showGameDetail(grid, statsets);
     },
     
     /**
@@ -116,9 +112,9 @@ Ext.define('DFST.controller.Stats', {
             var gameId = statset.data.gameId;
             var game = gamesStore.findRecord('gid', gameId);
             if (game) {
-                var weather = game.getAssociatedData().weather;
-                var venue = game.getAssociatedData().venue;
+                // weather display, if any
                 var hourViews = Ext.ComponentQuery.query('weatherhour');
+                var weather = game.getAssociatedData().weather;
                 var wi = weather.length;
                 for (var i=0; i < wi; i++) {
                     var hourView = hourViews[i];
@@ -129,12 +125,30 @@ Ext.define('DFST.controller.Stats', {
                         hourView.setTitle(Ext.Date.format(hour, 'g:i a'));
                     }
                 }
+                
+                var homeTeam = game.get('home').toUpperCase();
+                var awayTeam = game.get('away').toUpperCase();
+                // betting display
+                var bettingDisplay = Ext.ComponentQuery.query('betdisplay')[0];
+                var betting = game.getAssociatedData().bet;
+                if (betting === undefined) {
+                    bettingDisplay.hide();
+                } else {
+                    betting.home = homeTeam;
+                    betting.away = awayTeam;
+                    bettingDisplay.update(betting);
+                    bettingDisplay.show();
+                }
+                
+                // set game details title
+                var venue = game.getAssociatedData().venue;
                 var gameTime = new Date(game.get('gtime'));
                 gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, gameTime.getTimezoneOffset());
-                var title = 'Game data for ' + game.get('away').toUpperCase() + ' @ ' + 
-                    game.get('home').toUpperCase() + ' ' + Ext.Date.format(gameTime, 'm-d g:i a') +
-                    ' ' + venue.name;
+                var title = 'Game data for ' + awayTeam + ' @ ' + 
+                    homeTeam + ' ' + Ext.Date.format(gameTime, 'm-d g:i a');
+                if (venue !== undefined) title += ' ' + venue.name;
                 gameView.setTitle(title);
+                
                 gameView.show();
             }
         }

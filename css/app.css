@@ -14,3 +14,7 @@ vertical-align: top;
 footer a { color: white; }
 footer a:visited {color: gray; }
 .sport-link { margin-left: 20px;}
+
+.bet-display td,
+.bet-display th
+{ padding: 5px; font-size:14px; }
