@@ -308,5 +308,43 @@ x Change player controller to return players from day range
 - add team idmappings so update_daids_v2 will work for nba (deal with duplicate Chris Johnsons in NBA!!)
 - nba fix game definitions for dk
 - add nba game definition for dd
-
+-Restart done list on 10/26/2013
+x nba nicknames : add a couple/fix dk teamId for Charlotte/ignore those not on rosters
+x nfl algorithm to generate team : worked on this some more... got some decent looking teams
+x hoopsstats scrape : fix and re-enable col in UI
+x re-enable scrapes of nba roster in quartz : yep + injury report
+x starting goalies : write scrape and schedule it
+x schedule hoopsstats scrape
+x re-enable scrapes of nba prices in quartz
+x re-enable scrapes of nba stats in quartz
+x stats grid pass 2 - genericise nba stats to match 
+x ComputeBasketball stats: use merge condition
+x when season starts make sure dd, td, mfg, mft calc. correctly (double-double, missed fg)
+x starting goalies in UI
+x depth chart: need pk on player id for roster generator, but pk breaks import: fix for import, generator not really using this now anyway
+x more nicknames for NBA
+x check dk nba scoring : fix 3pt scoring
+x inttoboolrenderer (how to define on col) (change started in NBA gamelog) : added rendererMap
+x nfl stats grid pass 3 - make sure stats are accurate, fix stats/position: column width, renderer etc.
+x nfl stats grid pass 4: add stats via importer: targets, rushing attempts, passing attempts, passing completions, qb sacks; and add to grid: done
+x fix DD url when there's a $ symbol in it
+x NFL: re-import all boxscores, season to date to get new stats
+x Tue/Wed, ever week: manually update DS nfl scrape - for wk 9
+x NBA: check all filters: do they make sense, are the sliders set adequately, etc.: Adjustments in server to set ranges by sport and site, not just site, show odr again etc. still need to fix $/FP
+x NBA filters: $/FP
+x NHL: check all filters: do they make sense, are the sliders set adequately, etc.
+x new import of schedules for NFL/NHL/NBA
+x move whenupdate outside of bulkupdater for .net updates / clean up
+x Avg fp 5 filter should have same values as Avg fp - fixed!
+x webapi code cleanup: resharper warnings/formatting
+x betting lines: find source - http://xml.pinnaclesports.com/pinnaclefeed.aspx : all sports in the 1 feed ! ok to call up to 1x/minute
+x betting lines: first half of parsing logic - got all data from source
+x betting lines: schema
+x betting lines: adjust points to be decimal, more team mappings, map to draftaid gameid, schedule to run pull every 2 hours
+x fix typo in new betting job
+x fix betting line scrape start time: it competes with other scripts for the settings file, change start offset to 3 minutes
+x add lines to UI in game detail (need to add game detail for all sports)
+x nfl week 10 only checked Thursday's game (on 11/7 in the AM)? - on load of nfl run, changeweek
+x betting lines: how often to run, should I merge into instead of having a pk with capturedate etc.: every 2 hours seems reasonable, leave as insert with view for UI
+x betting line: use team names, instead of home/away
 

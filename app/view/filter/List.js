@@ -78,6 +78,7 @@ Ext.define('DFST.view.filter.List', {
                 ];
         if (DFST.AppSettings.sport === 'nfl') {
             siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
+            siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
         }
 
 		Ext.apply(this, {

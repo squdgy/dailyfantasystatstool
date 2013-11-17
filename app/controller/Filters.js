@@ -352,6 +352,7 @@ Ext.define('DFST.controller.Filters', {
             if (siteId == 1) dfsGameId = 1; //dk
             if (siteId == 3) dfsGameId = 3; //ds
             if (siteId == 4) dfsGameId = 4; //dd
+            if (siteId == 5) dfsGameId = 5; //ff
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
@@ -364,7 +365,12 @@ Ext.define('DFST.controller.Filters', {
     },
 
     onScoringChanged: function(store, records, wasSuccessful, options) {
-        if (records.length === 0) return;
+        if (!wasSuccessful || records.length === 0) {
+            this.getStatsStore().removeAll();
+            this.getWeatherdisplay().hide();
+            this.getDrilldowndetails().hide();            
+            return;
+        }
         var site = records[0];
         
         // Change the list of position filters
