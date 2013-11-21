@@ -55,8 +55,8 @@ Ext.define('DFST.view.filter.List', {
                 fieldLabel: '1. Pick a date', //this is the day we want to do estimates for
                 name: 'game_date',
                 width: 230,
-                value: new Date(),   // defaults to today
-                minValue: new Date() // min date is today
+                value: new Date()//,   // defaults to today
+                //minValue: new Date() // min date is today
             };
         datesConfig.nba = datesConfig.mlb;
         datesConfig.nhl = datesConfig.mlb;
@@ -74,11 +74,11 @@ Ext.define('DFST.view.filter.List', {
         var siteItems = [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2', checked: true },
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
+                    { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
                 ];
         if (DFST.AppSettings.sport === 'nfl') {
             siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
-            siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
         }
 
 		Ext.apply(this, {
