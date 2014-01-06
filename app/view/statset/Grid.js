@@ -318,6 +318,16 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
+                },{
+                    text: 'Proj',
+                    dataIndex: 'projp',
+                    width: 75,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: '$/Proj',
+                    dataIndex: 'cpprojp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
                 }]
 			}
 		}; 

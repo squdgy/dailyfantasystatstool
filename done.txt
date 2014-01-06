@@ -1,35 +1,13 @@
-- Restart 11/15
-- if error when changing sites... clear grid and hide player stats and game details
-- fix annoying problem where perl scripts expect to be by sport : new function
-- fantasy feud nfl scrape: whole thing took 1 hour!
-- write a whenupdated record at the end of CalulateFantasyPoints
-- schedule weekly import of schedules for nba/nhl/nfl : opted for daily instead
-- ff nfl scoring/game definition
-- ff nfl in UI
-- ff nfl: schedule import
-- games played is slightly off, figure out why: this was due to a bug at the src
-ff nba scrape : needed to adjust teamids to account for non-uniqueness across sports
-ff nhl scrape
-more work on name normalization
-need to add fumble to nfl roster scrape (for ff)! : done and re-imported all scores from beginning of season
-run ff stuff manually/ add more team ids for both ff and moneyline
-betting lines: finish id mappings for games/teams (need nfl teams on bye week 10)
-ff finish team id mappings as they come in for both nba/nhl
-ff nhl scoring/game definition
-ff nhl in UI
-ff nhl check scoring accuracy
-wed - run ff nfl loader
-verified ff nfl accuracy
-ff nba scoring/game definition
-ff nba in UI
-
-
-
-
-
-
-
-
-
-
-
+-restart 12/30/2013
+x installed strawberry perl on laptop, with needed modules, so can run locally again!
+x more nickname changes for hockey players
+x fix logging level to not show informational messages - changed to show warnings or worse
+x update osfamily to 4 in both cloud solutions
+x make change so base perl scripts download less frequently and don't cause exceptions - checks to see if file exists and if it does, doesn't download, then githook also downloads any updates
+x make sure I can build/deploy webapi from rebuilt laptop - after more lib/cors changes
+use advanced stats to create algorithm to generate projected points for hockey players
+generate median values of all team stats
+1st pass at generated goalie projections
+1st pass at generated skater projections
+schedule projection generation
+deploy front end, web api, data gatherer

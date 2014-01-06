@@ -1,17 +1,18 @@
 NEXT:
 ========
-ff - check fppg for all sports
-ff nba schedule import
-ff nba check scoring accuracy
-ff nhl schedule import
-make change so base perls scripts download less frequently and don't cause exceptions
-add support for multiple projection sets
+limit projection repository to future games
+pass 2 of nhl projections, pretty basic now; take into account opponent values
+goalie icon, different ones for probable/confirmed
+change hockey projections to use bulk insert?
+
+nfl over? - turn off everything nfl
 Tue/Wed, every week: manually update DS nfl scrape?
+Wed/Th - manually import Bales spreadsheet 
+update copyright, add 2014
 
 NBA:
 =========
 game detail? - stadiums, etc.
-
 
 NHL:
 ==========
@@ -23,11 +24,15 @@ NFL:
 game details - stadiums
 more on projections: scrape more? or edit myself
 
+MLB:
+==========
+set teamid in dfsgameplayerstats for MLB
+
 Misc.
 ==========
 siteDetails store should only need to filter by gameId & not site id  
 - Hadoop?
-fix delete problem in azure: loops through every file even though it was not just copied to find a source file to delete (after copy), take much longer than necessary
+fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
 whenupdated table: increase tableName column/change column name : minor re-architect!
 export top grid to csv
 drag/drop to lineup list
@@ -35,7 +40,7 @@ more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver
 some view models still in the data layer, move to view layer
 theme
 Add glossary
-new scrapers: - fan throwdown, draftstreet, and or fantasy feud?
+new scrapers: - fan throwdown, draftstreet, star street?
 add venue information to game data
 Figure out build process for Ext JS 4 - slow now!!
 Add who's hot option; do some daily computation and put in db
@@ -64,10 +69,11 @@ weather: schedule to retrieve it a little more often
 Major Schema related:
 =======
 Change salaries to be by game instead of game date
-Change everything to look for gameId not siteId
+Change everything to look for dfsgameId not siteId
 Change entire position mapping to be more closely aligned with the way sites do it. (multiple position eligibility)
 Change to support double headers
 Convert all dates to UTC
+add support for multiple projection sets
 
 UI:
 ==========
@@ -103,6 +109,7 @@ Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
+change githook to copy to local hard-drive too. Eventually, I can drop the constant download of files from azure storage every time a perl script is run.
 change scrapers to not re-download a file if it's used for multiple sports
 move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
@@ -127,8 +134,8 @@ whenupdated table: add column for sport
 
 Perl/Azure (rdp password is P3rlUser):
 ============
-- fix githook ip validation
-- get githook to work with new files too, not just updated ones
+- should change to worker role?
+- new trace provider or new web.config version, so don't have to comment out azure diagnostics trace provider when running locally?
 - figure out config problem in perl cloud project (11/15/2013 - is it gone?hasn't happened in a while)
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
 Fix cron trigger to compute UTC time, instead of hard-coding or switch to diff. trigger type
@@ -137,7 +144,7 @@ Move quartz jobs into the WEBAPI project?
 Write file with db connection?
 calling cpan.bat - any options that will make this faster, like skipping tests?
 keep jobs (script lists and schedules) in a db table?
-fix exceptions with using Trace in a non-cloud environment
+fix bad references when updating edmx file - runningperlinazure project
 
 Maintenance:
 ===========

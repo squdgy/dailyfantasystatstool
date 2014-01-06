@@ -253,7 +253,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 30,
-                    hidden: DFST.AppSettings.sport !== 'nfl'
+                    hidden: DFST.AppSettings.sport !== 'nhl'
                 },{
                     fieldLabel: '$/FP',
                     xtype: 'multislider',
@@ -281,7 +281,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1000,
                     minValue: 0,
                     maxValue: 75000,
-                    hidden: DFST.AppSettings.sport !== 'nfl'
+                    hidden: DFST.AppSettings.sport !== 'nhl'
                 }]
             },
             {

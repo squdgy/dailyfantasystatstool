@@ -15,5 +15,5 @@ Ext.define('DFST.AppSettings', {
     nhl: {
         gameCnt: 82
     },
-    version: '1.0'
+    version: '1.1.1'
 });  
