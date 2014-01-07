@@ -459,13 +459,14 @@ Ext.define('DFST.view.statset.Grid', {
             value = '<a href="http://mlb.mlb.com/team/player.jsp?player_id=' + 
                 record.get('id') + '" title="Click to view on MLB.com" target="mlb">' + value + '</a>';
         }
+        var probImg = (record.data.pd === 'Likely') ? 'images/probable_016.png' : 'images/starter_016.png';
         if (isInjured && isProbable) {
-            return name + '<img src="images/starter_016.png" class="icon-indicator" data-qtip="' + record.data.pd + '"/><img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
+            return name + '<img src="' + probImg +'" class="icon-indicator" data-qtip="' + record.data.pd + '"/><img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         }
         if (isInjured) {
             return name + '<img src="images/16px-Injury_icon_2.svg.png" class="icon-indicator" data-qtip="' + record.data.injd + '"/>';
         } else if (isProbable) {
-            return name + '<img src="images/starter_016.png" class="icon-indicator" data-qtip="' + record.data.pd + '"/>';
+            return name + '<img src="' + probImg + '" class="icon-indicator" data-qtip="' + record.data.pd + '"/>';
         } else {
             return name;
         }

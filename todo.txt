@@ -2,17 +2,16 @@ NEXT:
 ========
 limit projection repository to future games
 pass 2 of nhl projections, pretty basic now; take into account opponent values
-goalie icon, different ones for probable/confirmed
 change hockey projections to use bulk insert?
 
 nfl over? - turn off everything nfl
 Tue/Wed, every week: manually update DS nfl scrape?
 Wed/Th - manually import Bales spreadsheet 
-update copyright, add 2014
 
 NBA:
 =========
 game detail? - stadiums, etc.
+generate projecctions
 
 NHL:
 ==========
@@ -23,10 +22,12 @@ NFL:
 ==========
 game details - stadiums
 more on projections: scrape more? or edit myself
+move to generic projections table and key off of playerid/gameid (not week)
 
 MLB:
 ==========
 set teamid in dfsgameplayerstats for MLB
+generate projections
 
 Misc.
 ==========
@@ -77,6 +78,7 @@ add support for multiple projection sets
 
 UI:
 ==========
+much better icons for probable/likely/injured
 weather display should be renamed, since it contains other game details
 - new UI: plan for MLB season
 sencha cmd

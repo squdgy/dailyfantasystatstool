@@ -1,7 +1,7 @@
 -restart 12/30/2013
 x installed strawberry perl on laptop, with needed modules, so can run locally again!
 x more nickname changes for hockey players
-x fix logging level to not show informational messages - changed to show warnings or worse
+x fix logging level to not show informational messages - changed to show warnings or worse (azure settings)
 x update osfamily to 4 in both cloud solutions
 x make change so base perl scripts download less frequently and don't cause exceptions - checks to see if file exists and if it does, doesn't download, then githook also downloads any updates
 x make sure I can build/deploy webapi from rebuilt laptop - after more lib/cors changes
@@ -11,3 +11,7 @@ generate median values of all team stats
 1st pass at generated skater projections
 schedule projection generation
 deploy front end, web api, data gatherer
+update copyright, add 2014
+fix webapi cors and/or EF6 - was a combination, needed to upgrade web project to ef6, and re-enable CorsHandler support for cors
+goalie icon, different ones for probable/confirmed
+
