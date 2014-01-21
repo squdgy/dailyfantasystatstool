@@ -1,33 +1,42 @@
 NEXT:
 ========
-limit projection repository to future games
-pass 2 of nhl projections, pretty basic now; take into account opponent values
-change hockey projections to use bulk insert?
+Major schema related change #2: Change salaries to be by game instead of game date
+- Change calculateFantasyPoints sproc to use the gameid to find the salary, instead of the latestsalary view
+- need to change $/fppg calcs to use new salary, not latest
+- drop latest salary view?
+- change sproc code to use new table
+- change projections code to use new salary table
+- drop insert to old table from perl scripts
+- rename old table so it's not accidentally used (still want to keep data though)
+- schedule repository should have miss functionality and just load schedules for next week+
+- when local game id provided by site (fd/dd/dk) use an idmapping to get actual game id, could be important for double headers
 
-nfl over? - turn off everything nfl
-Tue/Wed, every week: manually update DS nfl scrape?
-Wed/Th - manually import Bales spreadsheet 
+export to excel
+apply webconfig transform to allow debugging locally without azure diagnostics
+need to be able to sort by multiple columns
+pass 2 of nhl projections, pretty basic now; take into account opponent values
 
 NBA:
 =========
 game detail? - stadiums, etc.
-generate projecctions
+generate projections
 
 NHL:
 ==========
 game details - stadiums
 add starting goalie to game view
 
+MLB:
+==========
+set teamid in dfsgameplayerstats for MLB
+generate projections
+had disabled yahoo matchups repo - need to re-enable/improve
+
 NFL:
 ==========
 game details - stadiums
 more on projections: scrape more? or edit myself
 move to generic projections table and key off of playerid/gameid (not week)
-
-MLB:
-==========
-set teamid in dfsgameplayerstats for MLB
-generate projections
 
 Misc.
 ==========
@@ -66,10 +75,10 @@ weather: schedule to retrieve it a little more often
     where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
     and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
     order by p.position desc;
+another performance check on the webapi
 
 Major Schema related:
 =======
-Change salaries to be by game instead of game date
 Change everything to look for dfsgameId not siteId
 Change entire position mapping to be more closely aligned with the way sites do it. (multiple position eligibility)
 Change to support double headers
@@ -92,7 +101,6 @@ Clean up header for bottom grid - full team name, full position name, other?
 need reset filters button
 need filter summary (or summaries?)
 need to clear or set all games
-need to be able to sort by multiple columns
 need to be able to choose individual teams, not just games
 uncheck games that have already occurred in the day on page load, and make not chooseable?
 better way to configure bottom grid columns to be longer
@@ -111,8 +119,6 @@ Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
-change githook to copy to local hard-drive too. Eventually, I can drop the constant download of files from azure storage every time a perl script is run.
-change scrapers to not re-download a file if it's used for multiple sports
 move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?

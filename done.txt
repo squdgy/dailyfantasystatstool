@@ -14,4 +14,21 @@ deploy front end, web api, data gatherer
 update copyright, add 2014
 fix webapi cors and/or EF6 - was a combination, needed to upgrade web project to ef6, and re-enable CorsHandler support for cors
 goalie icon, different ones for probable/confirmed
+fixed draftday scrape - after their latest site update, needed to login to set appropriate cookies
+projections not working? - an nba game in april used the id without a mapping, so nhl schedule not imported... not sure how this happened? (rescheduled game?)
+add new nickname mapping
+re-run dd imports that failed this morning, re-deploy updated dd script
+change hockey projections to use bulk insert!
+fixed azure tracing in perl project
+minor fix for dd scrape
+apply webconfig transform to allow debugging locally without azure diagnostics - didn't work!
+disable all nfl scrapes
+disable support for draftstreet in nfl/scrapes for now
+FOR GAMEID SCHEMA CHANGE:
+capture gameId from each site, if they have it, and save it to db: was already getting it for fd, added for dd/dk, n/a for ff, ignoring ds
+write algorithm to figure out da gameId : in sql or code? - done in code
+create new table for prices - dfsplayergamesalary
+add insert to new table to perl scripts - done
+change .net code to use new salary table - done
+check githook : needed to add application/vnd.github.raw Accepts header to the github request
 
