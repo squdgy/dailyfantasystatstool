@@ -1,17 +1,5 @@
 NEXT:
 ========
-Major schema related change #2: Change salaries to be by game instead of game date
-- Change calculateFantasyPoints sproc to use the gameid to find the salary, instead of the latestsalary view
-- need to change $/fppg calcs to use new salary, not latest
-- drop latest salary view?
-- change sproc code to use new table
-- change projections code to use new salary table
-- drop insert to old table from perl scripts
-- rename old table so it's not accidentally used (still want to keep data though)
-- schedule repository should have miss functionality and just load schedules for next week+
-- when local game id provided by site (fd/dd/dk) use an idmapping to get actual game id, could be important for double headers
-
-export to excel
 apply webconfig transform to allow debugging locally without azure diagnostics
 need to be able to sort by multiple columns
 pass 2 of nhl projections, pretty basic now; take into account opponent values
@@ -37,6 +25,10 @@ NFL:
 game details - stadiums
 more on projections: scrape more? or edit myself
 move to generic projections table and key off of playerid/gameid (not week)
+
+Roster Generation
+==========
+change code to use new salary table to get per/game
 
 Misc.
 ==========
@@ -75,14 +67,13 @@ weather: schedule to retrieve it a little more often
     where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
     and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
     order by p.position desc;
-another performance check on the webapi
+another performance check on the webapi (rosterpositions takes too long to load)
 
 Major Schema related:
 =======
-Change everything to look for dfsgameId not siteId
 Change entire position mapping to be more closely aligned with the way sites do it. (multiple position eligibility)
 Change to support double headers
-Convert all dates to UTC
+Convert all dates to UTC?
 add support for multiple projection sets
 
 UI:
@@ -105,7 +96,6 @@ need to be able to choose individual teams, not just games
 uncheck games that have already occurred in the day on page load, and make not chooseable?
 better way to configure bottom grid columns to be longer
 
-
 ExtJS:
 ===========
 check for fixes for extjs checkbox bug - STILL not fixed as of 4.2.1, chose not to upgrade because 4.2.1 introduced new bug - bottom grid doesn't update on site change
@@ -114,11 +104,15 @@ On stores, encodeFilters, encodeSorters are all copy-paste: Either create a comm
 
 WEBAPI:
 ===========
+revisit all cached repos for code changes/cleanup - fix to not cache as a chunk?
+schedule repository should have miss functionality and just load schedules for next week+
 (Bill) Add Trace Logging and Save trace logs and iis logs to azure storage
 Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
+when local game id provided by site (fd/dd/dk) use an idmapping to get actual game id, could be important for double headers!!
+deal with future days' contests and/or 2-day contests?
 move quartz working code back into the WEBAPI solution and into a worker role
 transactions!
 Can replace Config::Tiny with something that normally ships with strawberry perl?

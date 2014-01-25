@@ -23,7 +23,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'notInLineupFilter', selector: 'filterlist checkbox#notinlineup'},
         {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'},
         {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
-        {ref: 'weatherdisplay', selector: 'weatherdisplay'}
+        {ref: 'weatherdisplay', selector: 'weatherdisplay'},
+        {ref: 'export', selector: 'export'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -69,10 +70,40 @@ Ext.define('DFST.controller.Filters', {
             }/*, use a go button to change the filter on games, instead of this
             'filterlist fieldcontainer#games checkbox':{
                 change: this.changeGames
-            }*/          
+            }*/,
+            'filterlist button#export':{
+                click: this.exportPlayers
+            }            
         });
     },
 
+    exportPlayers: function() {
+        var statsStore = this.getStatsStore();
+
+        Ext.Ajax.request({
+            method: 'GET',
+            //cors: true,
+            url: this.host + '/api/players/',
+            headers: {
+                'Accept': 'text/csv'
+            },
+            params: {
+                page: 1, start: 0, limit: 999999, sort: '',
+                filter: statsStore.proxy.encodeFilters(statsStore.filters.items)
+            },
+            success: function(xhr) {
+                var encodedUri = encodeURI(xhr.responseText);
+                var link = document.createElement("a");
+                link.setAttribute("href", "data:," + encodedUri);
+                link.setAttribute("download", "players.csv");
+                link.click();                 
+            },
+            failure: function() {
+                alert('Unable to export players');
+            }
+        });        
+    },
+    
     changeGames: function(checkbox, newValue, oldValue, options) {
         /*
         This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
@@ -347,7 +378,6 @@ Ext.define('DFST.controller.Filters', {
         if (newValue) {
             var siteDetailsStore = this.getSiteDetailsStore();
             var dfsGameId = 2;//default fd game
-            //TODO: siteDetails store should only need to filter by gameId
             var siteId = radiobutton.inputValue;
             if (siteId == 1) dfsGameId = 1; //dk
             if (siteId == 3) dfsGameId = 3; //ds
@@ -582,6 +612,7 @@ Ext.define('DFST.controller.Filters', {
         if (location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://dfstapi.cloudapp.net';  //live azure
         }
+        this.host = host;
         
         var defaultGameId = 2;
         if (DFST.AppSettings.sport == "mlb") 

@@ -25,10 +25,22 @@ apply webconfig transform to allow debugging locally without azure diagnostics -
 disable all nfl scrapes
 disable support for draftstreet in nfl/scrapes for now
 FOR GAMEID SCHEMA CHANGE:
+--
 capture gameId from each site, if they have it, and save it to db: was already getting it for fd, added for dd/dk, n/a for ff, ignoring ds
 write algorithm to figure out da gameId : in sql or code? - done in code
 create new table for prices - dfsplayergamesalary
 add insert to new table to perl scripts - done
-change .net code to use new salary table - done
+change .net webapi code to use new salary table - done
+change sql views/sproc to no longer depend on dfspricing table
+change calculateFantasyPoints sproc to use the new table (via latestSalary view), also changes $/fppg calcs to use new salary, not latest
+rename old table so it's not accidentally used (still want to keep data though)
+drop insert to old table from perl scripts - done!
+fix force feature in perl scripts (broken with new salary table) - fixed by changing insert to merge
+--
 check githook : needed to add application/vnd.github.raw Accepts header to the github request
+changed some truncate/insert in calculate sproc to use merge into command
+fix minor bug in ff scrape
+export filters - front end
+export to excel - most common data from top grid - done
+
 

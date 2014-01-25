@@ -290,7 +290,7 @@ Ext.define('DFST.view.filter.List', {
                 collapsed: true,
                 animCollapse: true,
                 layout: 'vbox',
-                title: 'Miscellaneous Filters',
+                title: 'Miscellaneous',
                 items: [
                 {
                     xtype: 'checkbox',
@@ -329,6 +329,11 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 30,
                     hidden: DFST.AppSettings.sport !== 'nba'
+                },
+                {
+                    text: 'Export Player List',
+                    xtype: 'button',
+                    id: 'export'
                 }]
             }]
 		});
