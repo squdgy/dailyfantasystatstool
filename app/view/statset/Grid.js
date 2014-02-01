@@ -1,4 +1,23 @@
 /*global Ext: false, DFST: false */
+Ext.grid.header.Container.prototype.setSortState = function(val) {
+    var store   = this.up('[store]').store,
+        sorters = store.getSorters();
+
+    // adjust grid headers
+    var me = this;
+    if (sorters) {
+        this.clearOtherSortStates(null);
+        Ext.each(sorters, function(sorter) {
+            var hd = me.down('gridcolumn[dataIndex=' + sorter.property  +']');
+            if (hd) {
+                hd.setSortState(sorter.direction, true, true);
+            }
+        }, this);
+    } else {
+        this.clearOtherSortStates(null);
+    }
+};
+
 Ext.define('DFST.view.statset.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetgrid',
@@ -6,7 +25,15 @@ Ext.define('DFST.view.statset.Grid', {
 	cls: 'statset-grid',
 	disabled: false,
 
-    requires: ['Ext.toolbar.Toolbar'],
+    requires: [
+        'Ext.toolbar.Toolbar',
+        'Ext.data.*',
+        'Ext.grid.*',
+        'Ext.util.*',
+        //'Ext.toolbar.*',
+        'Ext.ux.ToolbarDroppable',
+        'Ext.ux.BoxReorderer'
+        ],
     
     border: false,    
     
@@ -415,9 +442,190 @@ Ext.define('DFST.view.statset.Grid', {
 		
 		Ext.apply(this, gridConfig[DFST.AppSettings.sport]);
 
+        var me = this;
+        me.on({
+            // wait for the first layout to access the headerCt (we only want this once):
+            single: true,
+            // tell the toolbar's droppable plugin that it accepts items from the columns' dragdrop group
+            afterlayout: function(grid) {
+                var headerCt = grid.child("headercontainer");
+                droppable.addDDGroup(headerCt.reorderer.dragZone.ddGroup);
+            }
+        });
+        me.on({
+            sortchange: function(headerCt, column, direction, eOpts) {
+                //alert('sortchange');
+            }
+        });        
+   
+        var reorderer = Ext.create('Ext.ux.BoxReorderer', {
+            listeners: {
+                Drop: function(r, c, button) { //update sort direction when button is dropped
+                    me.changeSortDirection(button, false);
+                }
+            }
+        });    
+        var droppable = Ext.create('Ext.ux.ToolbarDroppable', {
+            /**
+             * Creates the new toolbar item from the drop event
+             */
+            createItem: function(data) {
+                var header = data.header,
+                    headerCt = header.ownerCt,
+                    reorderer = headerCt.reorderer;
+
+                // Hide the drop indicators of the standard HeaderDropZone
+                // in case user had a pending valid drop in 
+                if (reorderer) {
+                    reorderer.dropZone.invalidateDrop();
+                }
+
+                me.down("#sortlabel").hide();
+                me.down("#clearsort").show();
+                return me.createSorterButtonConfig({
+                    text: header.text,
+                    sortData: {
+                        property: header.dataIndex,
+                        direction: "ASC"
+                    }
+                });
+            },
+
+            /**
+             * Custom canDrop implementation which returns true if a column can be added to the toolbar
+             * @param {Object} data Arbitrary data from the drag source. For a HeaderContainer, it will
+             * contain a header property which is the Header being dragged.
+             * @return {Boolean} True if the drop is allowed
+             */
+            canDrop: function(dragSource, event, data) {
+                var sorters = me.getSorters(),
+                    header  = data.header,
+                    length = sorters.length,
+                    entryIndex = this.calculateEntryIndex(event),
+                    targetItem = this.toolbar.getComponent(entryIndex),
+                    i;
+
+                // Group columns have no dataIndex and therefore cannot be sorted
+                // If target isn't reorderable it could not be replaced
+                if (!header.dataIndex || (targetItem && targetItem.reorderable === false)) {
+                    return false;
+                }
+
+                for (i = 0; i < length; i++) {
+                    if (sorters[i].property == header.dataIndex) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+
+            afterLayout: function () {
+                me.doSort();
+            }
+        });
+
+        //create the toolbar with the 2 plugins
+        this.tbar = {
+            itemId: 'tbar',
+            items  : [{
+                xtype: 'button',
+                text: 'Reset',
+                id: 'clearsort',
+                reorderable: false,
+                hidden: true,
+                listeners: {
+                    click : function(button) {
+                        me.clearSortButtons();
+                        me.store.sorters.clear();
+                        me.store.load();
+                    }
+                }
+            }, {
+                xtype: 'tbtext',
+                id: 'sortlabel',
+                text: 'Drag headers here to enable sorting by multiple columns. Click on header to sort by 1 column.'
+            }],
+            plugins: [reorderer, droppable]
+        };
+        
 		this.callParent(arguments);
 	},
 
+    /**
+     * Callback handler used when a sorter button is clicked or reordered
+     * @param {Ext.Button} button The button that was clicked
+     * @param {Boolean} changeDirection True to change direction (default). Set to false for reorder
+     * operations as we wish to preserve ordering there
+     */
+    changeSortDirection: function (button, changeDirection) {
+        var sortData = button.sortData,
+            iconCls  = button.iconCls;
+        
+        if (sortData) {
+            if (changeDirection !== false) {
+                button.sortData.direction = Ext.String.toggle(button.sortData.direction, "ASC", "DESC");
+                button.setIconCls(Ext.String.toggle(iconCls, "sort-direction-asc", "sort-direction-desc"));
+            }
+            this.doSort();
+        }
+    },
+    doSort: function () {
+        var sorters = this.getSorters();
+        this.store.sort(sorters);
+    },
+
+    /**
+     * Returns an array of sortData from the sorter buttons
+     * @return {Array} Ordered sort data from each of the sorter buttons
+     */
+    getSorters: function () {
+        var sorters = [];
+        var tbar = this.down('#tbar');
+ 
+        Ext.each(tbar.query('button'), function(button) {
+            if (button.sortData) {
+                sorters.push(button.sortData);
+            }
+        }, this);
+
+        return sorters;
+    },
+    
+    /**
+     * Convenience function for creating Toolbar Buttons that are tied to sorters
+     * @param {Object} config Optional config object
+     * @return {Object} The new Button configuration
+     */
+    createSorterButtonConfig: function (config) {
+        var me = this;
+        config = config || {};
+        Ext.applyIf(config, {
+            listeners: {
+                click: function(button, e) {
+                    if (button.sortData) {
+                        me.changeSortDirection(button, true);
+                    }
+                }
+            },
+            iconCls: 'sort-direction-' + config.sortData.direction.toLowerCase(),
+            reorderable: true,
+            xtype: 'button'
+        });
+        return config;
+    },
+
+    clearSortButtons: function() {
+        var tbar = this.down('#tbar');
+        this.down("#sortlabel").show();
+        this.down("#clearsort").hide();
+ 
+        Ext.each(tbar.query('button'), function(button) {
+            if (button.sortData) {
+                tbar.remove(button);
+            }
+        }, this);
+    },
+    
     formatBattingOrder: function(value, p, record) {
         if (value === 0) {
             return "";
@@ -428,6 +636,10 @@ Ext.define('DFST.view.statset.Grid', {
         }
     },
     
+    /**
+     * Money renderer
+     * @private
+     */
     moneyRenderer: function(value, p, record) {
         if (value === 0)
             return 'N/A';
@@ -502,4 +714,3 @@ Ext.define('DFST.view.statset.Grid', {
 	}
     
 });
-

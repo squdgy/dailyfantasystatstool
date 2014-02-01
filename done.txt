@@ -1,46 +1,6 @@
--restart 12/30/2013
-x installed strawberry perl on laptop, with needed modules, so can run locally again!
-x more nickname changes for hockey players
-x fix logging level to not show informational messages - changed to show warnings or worse (azure settings)
-x update osfamily to 4 in both cloud solutions
-x make change so base perl scripts download less frequently and don't cause exceptions - checks to see if file exists and if it does, doesn't download, then githook also downloads any updates
-x make sure I can build/deploy webapi from rebuilt laptop - after more lib/cors changes
-use advanced stats to create algorithm to generate projected points for hockey players
-generate median values of all team stats
-1st pass at generated goalie projections
-1st pass at generated skater projections
-schedule projection generation
-deploy front end, web api, data gatherer
-update copyright, add 2014
-fix webapi cors and/or EF6 - was a combination, needed to upgrade web project to ef6, and re-enable CorsHandler support for cors
-goalie icon, different ones for probable/confirmed
-fixed draftday scrape - after their latest site update, needed to login to set appropriate cookies
-projections not working? - an nba game in april used the id without a mapping, so nhl schedule not imported... not sure how this happened? (rescheduled game?)
-add new nickname mapping
-re-run dd imports that failed this morning, re-deploy updated dd script
-change hockey projections to use bulk insert!
-fixed azure tracing in perl project
-minor fix for dd scrape
-apply webconfig transform to allow debugging locally without azure diagnostics - didn't work!
-disable all nfl scrapes
-disable support for draftstreet in nfl/scrapes for now
-FOR GAMEID SCHEMA CHANGE:
---
-capture gameId from each site, if they have it, and save it to db: was already getting it for fd, added for dd/dk, n/a for ff, ignoring ds
-write algorithm to figure out da gameId : in sql or code? - done in code
-create new table for prices - dfsplayergamesalary
-add insert to new table to perl scripts - done
-change .net webapi code to use new salary table - done
-change sql views/sproc to no longer depend on dfspricing table
-change calculateFantasyPoints sproc to use the new table (via latestSalary view), also changes $/fppg calcs to use new salary, not latest
-rename old table so it's not accidentally used (still want to keep data though)
-drop insert to old table from perl scripts - done!
-fix force feature in perl scripts (broken with new salary table) - fixed by changing insert to merge
---
-check githook : needed to add application/vnd.github.raw Accepts header to the github request
-changed some truncate/insert in calculate sproc to use merge into command
-fix minor bug in ff scrape
-export filters - front end
-export to excel - most common data from top grid - done
-
+Restart 1/27/2014
+- changed theme
+- 'finished' multi-column sort, ui & server-side
+- minor text and css changes
+- apply upgrade to extjs 4.2.1
 

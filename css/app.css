@@ -4,6 +4,14 @@
     margin-left: 3px;
 }
 
+#filterlist label {
+    margin-left: 5px;
+}
+
+#filterlist .x-panel-body .x-panel-body {
+    padding: 5px;
+}
+
 /* radio button spacing - see site filters */
 .x-form-cb-label-after {
 margin-left: 4px;
@@ -18,3 +26,15 @@ footer a:visited {color: gray; }
 .bet-display td,
 .bet-display th
 { padding: 5px; font-size:14px; }
+
+/* for sort buttons above grid*/
+.x-btn .sort-direction-asc {
+background-image:  url('https://extjs.cachefly.net/ext/gpl/4.2.1/resources/themes/images/gray/grid/sort_asc.gif');
+background-position: 4px center;
+}
+.x-btn .sort-direction-desc {
+background-image:  url('https://extjs.cachefly.net/ext/gpl/4.2.1/resources/themes/images/gray/grid/sort_desc.gif');
+background-position: 4px center;
+}
+
+/* end sort buttons above grid*/

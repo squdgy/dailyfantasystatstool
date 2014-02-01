@@ -2,7 +2,7 @@
 Ext.define('DFST.view.filter.List', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.filterlist',
-
+    id: 'filterlist',
     requires: ['Ext.toolbar.Toolbar'],
 
 	title: 'Reduce the # of Players to Choose From',
@@ -98,7 +98,7 @@ Ext.define('DFST.view.filter.List', {
             },            
             {
                 xtype: 'label',
-                text: '3. Apply filters to narrow down the list of players to choose from:'
+                text: '3. Apply filters:'
             },
             {
                 xtype: 'panel',
@@ -109,7 +109,8 @@ Ext.define('DFST.view.filter.List', {
                 title: 'Roster Position Filters',
                 items: [
                 {
-                    html: 'Roster positions may vary among sites.<br/>If you change sites, all roster position filters will reset to checked.'
+                    html: 'Positions vary amongst sites. Changing sites resets these.',
+                    border: false
                 },    
                 {
                     xtype: 'checkbox',
@@ -140,7 +141,7 @@ Ext.define('DFST.view.filter.List', {
                     defaultType: 'checkboxfield',
                     layout: {
                         type: 'table',
-                        columns: 4
+                        columns: 6
                     }
                 }]
             },
@@ -216,7 +217,8 @@ Ext.define('DFST.view.filter.List', {
                 items: [
                 {
                     width: '100%',
-                    html: 'Pricing varies among sites.<br/>If you change sites, these filters will reset.'
+                    html: 'Salaries vary amongst sites.Changing sites resets these.',
+                    border: false
                 },{
                     fieldLabel: '$',
                     xtype: 'multislider',
@@ -291,14 +293,7 @@ Ext.define('DFST.view.filter.List', {
                 animCollapse: true,
                 layout: 'vbox',
                 title: 'Miscellaneous',
-                items: [
-                {
-                    xtype: 'checkbox',
-                    id: 'injured',
-                    boxLabel: 'Hide Injured Players',
-                    checked: false
-                },
-                {
+                items: [{
                     fieldLabel: '# Games',
                     xtype: 'multislider',
                     id: 'ngRange',
@@ -318,8 +313,7 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 5,
                     hidden: DFST.AppSettings.sport !== 'mlb'
-                },
-                {
+                }, {
                     fieldLabel: 'ODR-5',
                     xtype: 'multislider',
                     id: 'odrRange',
@@ -329,8 +323,12 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 30,
                     hidden: DFST.AppSettings.sport !== 'nba'
-                },
-                {
+                }, {
+                    xtype: 'checkbox',
+                    id: 'injured',
+                    boxLabel: 'Hide Injured Players',
+                    checked: false
+                }, {
                     text: 'Export Player List',
                     xtype: 'button',
                     id: 'export'

@@ -1,8 +1,9 @@
 NEXT:
 ========
-apply webconfig transform to allow debugging locally without azure diagnostics
-need to be able to sort by multiple columns
 pass 2 of nhl projections, pretty basic now; take into account opponent values
+apply webconfig transform to allow debugging locally without azure diagnostics
+
+Mobile!
 
 NBA:
 =========
