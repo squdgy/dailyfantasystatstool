@@ -57,6 +57,7 @@ Ext.define('DFST.controller.Stats', {
     selectStatSet: function(view) {
         var first = this.getStatsStore().getAt(0);
         if (first) {
+            view.getSelectionModel().deselectAll();
             view.getSelectionModel().select(first);
         }
     },
