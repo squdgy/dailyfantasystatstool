@@ -1,9 +1,11 @@
 NEXT:
 ========
-pass 2 of nhl projections, pretty basic now; take into account opponent values
+Roster Builder cleanup - play around and fix little things
+- disable picking up player that's already in roster or that has no available roster spots to go to
+- etc.
 
-Mobile!
 Create a full site!
+Mobile!
 
 NBA:
 =========
@@ -12,6 +14,7 @@ generate projections
 
 NHL:
 ==========
+pass 2 of nhl projections, pretty basic now; take into account opponent values
 game details - stadiums
 add starting goalie to game view
 

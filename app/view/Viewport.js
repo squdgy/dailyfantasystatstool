@@ -6,6 +6,7 @@ Ext.define('DFST.view.Viewport', {
         'DFST.AppSettings',
         'DFST.view.filter.List',
         'DFST.view.drilldown.Details',
+        'DFST.view.rosterbuilder.Panel',
         'DFST.view.weather.Display',
         'Ext.layout.container.Border'
     ],
@@ -44,6 +45,10 @@ Ext.define('DFST.view.Viewport', {
 	}, {
         region: 'south',
         html: '<footer>Daily Fantasy Stats Tool, Version 1.0, Copyright 2012-2014 Development Partners Software Corp. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a><span class="sport-link"><!--<a href="index.html?sport=mlb">MLB</a>-->MLB</span><span class="sport-link"><!--<a href="index.html?sport=nfl">NFL</a>-->NFL</span><span class="sport-link"><a href="index.html?sport=nba">NBA</a></span><span class="sport-link"><a href="index.html?sport=nhl">NHL</a></span></footer>'
+    }, {
+        region: 'east',
+        width: 340,
+        xtype: 'rosterbuilder'
     }
     ]
 });

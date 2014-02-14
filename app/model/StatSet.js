@@ -66,7 +66,9 @@ Ext.define('DFST.model.StatSet', {
         { name: 'dep', type: 'int', defaultValue: 0 },  //depth chart value
         
         { name: 'bats', type: 'int', defaultValue: 0},  //handedness
-        { name: 'throws', type: 'int', defaultValue: 0} //handedness
+        { name: 'throws', type: 'int', defaultValue: 0}, //handedness
         
+        { name: 'rpel' } // array of roster position ids that player is eligible for
     ]
+    
 });

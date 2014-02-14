@@ -14,7 +14,8 @@ Ext.application({
     // All controllers that should initialize
     controllers: [
         'Stats',
-        'Filters'
+        'Filters',
+        'Rosters'
     ],
     
     //automatically load and instantiate DFST.view.Viewport

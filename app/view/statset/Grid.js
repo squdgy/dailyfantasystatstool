@@ -31,8 +31,9 @@ Ext.define('DFST.view.statset.Grid', {
         'Ext.grid.*',
         'Ext.util.*',
         //'Ext.toolbar.*',
+        'Ext.ux.BoxReorderer',
         'Ext.ux.ToolbarDroppable',
-        'Ext.ux.BoxReorderer'
+        'Ext.ux.DFSTGridViewDragDrop'
         ],
     
     border: false,    
@@ -44,6 +45,17 @@ Ext.define('DFST.view.statset.Grid', {
         displayInfo: true
     }],
     
+    viewConfig: {
+        plugins: {
+            ptype: 'dfstgridviewdragdrop',
+            dragGroup: 'ddplayer',
+            enableDrop: false,
+            dragTextRenderer : function(record) {
+                return 'Drag ' + record.get('fname') + ' ' + record.get('lname') + ' to the lineup builder';
+            }
+        }
+    },
+
 	initComponent: function() {
         var gridConfig = {};
         gridConfig.mlb = {

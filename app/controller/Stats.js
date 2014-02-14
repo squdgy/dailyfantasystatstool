@@ -41,7 +41,7 @@ Ext.define('DFST.controller.Stats', {
             'drilldowninfo checkbox#nextopp':{
                 change: this.loadStatSetData
             }
-            });
+        });
     },
     
     loadStatSetData: function() {

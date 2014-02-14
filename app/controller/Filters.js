@@ -24,7 +24,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'},
         {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
         {ref: 'weatherdisplay', selector: 'weatherdisplay'},
-        {ref: 'export', selector: 'export'}
+        {ref: 'export', selector: 'export'},
+        {ref: 'rosterbuilder', selector: 'rosterbuilder'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -407,7 +408,7 @@ Ext.define('DFST.controller.Filters', {
         // All positions will reset to checked
         var posContainer = this.getPositionFilters();
         posContainer.removeAll(true);
-        var positions = site.get('pos');
+        var positions = site.getAssociatedData().positions;
         for (var i=0, mlen=positions.length; i < mlen; i++) {
             var pos = positions[i];
             posContainer.add(new Ext.form.field.Checkbox({

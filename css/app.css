@@ -1,3 +1,10 @@
+body {
+    font-family:tahoma,arial,verdana,sans-serif;
+}
+
+table {
+    font-size: 11px;
+}
 
 /* injury or starting pitcher icon */
 .icon-indicator {
@@ -10,6 +17,15 @@
 
 #filterlist .x-panel-body .x-panel-body {
     padding: 5px;
+}
+
+.siteinfo {
+    padding: 2px;
+    float: right;
+    margin-right: 43px;
+}
+.siteinfo table {
+    text-align: right;
 }
 
 /* radio button spacing - see site filters */
