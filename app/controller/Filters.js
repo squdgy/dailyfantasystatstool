@@ -4,11 +4,11 @@ Ext.define('DFST.controller.Filters', {
 
     stores: ['Stats', 'PlayerStats', 'SiteDetails', 'Games'],
     models: ['StatSet'],
-    views: ['filter.List'],
+    views: ['filter.List', 'site.Picker'],
     
     refs: [
-        {ref: 'dateFilter', selector: 'filterlist datefield'},
-        {ref: 'weekFilter', selector: 'filterlist combobox'},
+        {ref: 'dateFilter', selector: 'sitepicker datefield'},
+        {ref: 'weekFilter', selector: 'sitepicker combobox'},
         {ref: 'probablesFilter', selector: 'filterlist checkbox#probables'},
         {ref: 'injuredFilter', selector: 'filterlist checkbox#injured'},
         {ref: 'positionFilters', selector: 'filterlist fieldcontainer#positions'},
@@ -36,10 +36,10 @@ Ext.define('DFST.controller.Filters', {
         this.gameDateIsChanging = false;
         
         this.control({
-            'filterlist datefield':{
+            'sitepicker datefield':{
                 change: this.changeDate
             },
-            'filterlist combobox':{
+            'sitepicker combobox':{
                 change: this.changeWeek
             },
             'filterlist checkbox#probables':{

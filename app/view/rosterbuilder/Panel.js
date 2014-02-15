@@ -8,14 +8,18 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
 	border: false,
     title: 'Create a Lineup',
     collapsible: true,
-    //collapsed: true,
+    collapsed: true,
 	animCollapse: true,
-    
+
 	initComponent: function() {
 		Ext.apply(this, {
             items: [{
                 xtype: 'grid',
+                id: 'rostergrid',
                 store: 'Roster',
+                multiSelect: true,
+                title: '-',
+                titleAlign: 'center',
                 features: [{
                     ftype: 'summary'
                 }],                
@@ -58,20 +62,21 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                         },
                         onNodeDrop: function(target, dd, e, data ) {
                             var dragrec = data.records[0];
-                            var droprec = this.view.getRecord(target);
                             var store = this.view.store;
                             var playerId = dragrec.get('id');
                             
                             // make sure player not already in roster
                             var existingRec = store.findRecord('pid', playerId);
                             if (existingRec) { return false; }
-                            
+
+                            var droprec = this.view.getRecord(target);
                             if (Ext.Array.contains(dragrec.get('rpel'), droprec.get('rpid'))) {
+                                this.view.selModel.deselectAll();
                                 droprec.set('name', dragrec.get('fname') + ' ' + dragrec.get('lname'));
                                 droprec.set('pid', playerId);
                                 droprec.set('fppg', dragrec.get('afp'));
                                 droprec.set('salary', dragrec.get('sal'));
-                                store.commitChanges();
+                                this.view.store.commitChanges();
                                 return true;
                             }
                             return false;
@@ -95,11 +100,7 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
 
 		this.callParent(arguments);
 	},
-	
-	applyNewRosterDefinition: function() {
-        alert ('new roster');
-	},
-	
+
     /**
      * Salary renderer
      * @private

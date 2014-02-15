@@ -6,6 +6,7 @@ Ext.define('DFST.model.SiteDetails', {
     requires: ['DFST.model.RosterPosition'],
     
     fields: [ // default values assume fanduel MLB
+        { name: 'name', type: 'string', defaultValue: 'site' },
         { name: 'salmin', type: 'int', defaultValue: 0 },
         { name: 'salmax', type: 'int', defaultValue: 10000 },
         { name: 'salstep', type: 'int', defaultValue: 500 },

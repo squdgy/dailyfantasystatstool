@@ -19,6 +19,11 @@ Ext.define('Ext.ux.DFSTGridViewDragDrop', {
     dragTextRenderer : function(record) {
         return this.dragText;
     },
+    
+    /*funcs to override */
+    onNodeOver: function() {},
+    onNodeDrop: function() {},
+    doStartDrag: function(record) { return true; },
 
     init : function(view) {
         view.on('render', this.onViewRender, this, {single: true});
@@ -68,7 +73,7 @@ Ext.define('Ext.ux.DFSTGridViewDragDrop', {
                 onBeforeDrag: function(data, e) {
                     var record = data.view.getRecord(data.item);
                     this.dragText = me.dragTextRenderer(record);
-                    return true;
+                    return me.doStartDrag(record);
                 }
             });
         }

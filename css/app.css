@@ -28,6 +28,16 @@ table {
     text-align: right;
 }
 
+.sitepicker ul{
+    font-size: 11px;
+    font-weight: bold;
+    -webkit-padding-start: 20px;
+    -moz-padding-start: 20px;
+}
+.sitepicker li {
+    margin-top: 5px;
+}
+
 /* radio button spacing - see site filters */
 .x-form-cb-label-after {
 margin-left: 4px;

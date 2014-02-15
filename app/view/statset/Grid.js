@@ -52,6 +52,19 @@ Ext.define('DFST.view.statset.Grid', {
             enableDrop: false,
             dragTextRenderer : function(record) {
                 return 'Drag ' + record.get('fname') + ' ' + record.get('lname') + ' to the lineup builder';
+            },
+            doStartDrag: function(dragrec) {
+                var playerId = dragrec.get('id');
+                var rgrid = Ext.getCmp('rostergrid');
+                var store = rgrid.store;
+                          
+                // make sure player not already in roster
+                var existingRec = store.findRecord('pid', playerId);
+                if (existingRec) { 
+                    return false; 
+                }
+                
+                return true;
             }
         }
     },
