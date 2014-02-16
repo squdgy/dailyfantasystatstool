@@ -1,8 +1,5 @@
 NEXT:
 ========
-Roster Builder cleanup - play around and fix little things
-- disable picking up player that's already in roster or that has no available roster spots to go to
-- etc.
 
 Create a full site!
 Mobile!

@@ -48,6 +48,13 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                 }],
                 forceFit: true,
                 viewConfig: {
+                    getRowClass: function(record) {
+                        var pid = record.get('pid');
+                        if (pid > 0) {
+                            return 'roster-slot-filled';
+                        }
+                        return 'roster-slot-empty';
+                    },
                     plugins: {
                         ptype: 'dfstgridviewdragdrop',
                         enableDrag: false,

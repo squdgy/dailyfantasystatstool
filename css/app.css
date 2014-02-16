@@ -38,6 +38,12 @@ table {
     margin-top: 5px;
 }
 
+.sitepicker .x-form-item {
+    margin: 5px 0 3px 5px;
+}
+.sitepicker .x-form-trigger-wrap {
+    margin: 5px 0 10px 10px;
+}
 /* radio button spacing - see site filters */
 .x-form-cb-label-after {
 margin-left: 4px;
@@ -64,3 +70,10 @@ background-position: 4px center;
 }
 
 /* end sort buttons above grid*/
+
+/* start roster slot css */
+.rosterbuilder .x-grid-row-selected .x-grid-cell-inner {
+    background-color: rgb(255, 248, 0);
+}
+
+/* send roster slot css */

@@ -25,10 +25,6 @@ Ext.define('DFST.view.filter.List', {
                 title: 'Roster Position Filters',
                 items: [
                 {
-                    html: 'Positions vary amongst sites. Changing sites resets these.',
-                    border: false
-                },    
-                {
                     xtype: 'checkbox',
                     boxLabel: DFST.AppSettings.sport === 'mlb' ? 'Exclude Pitchers Not Expected To Start' : 'Include only Confirmed &amp; Probable Goalies',
                     id: 'probables',
@@ -55,6 +51,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'positions',
                     fieldLabel: 'Include:',
                     defaultType: 'checkboxfield',
+                    width: '100%',
                     layout: {
                         type: 'table',
                         columns: 6
@@ -127,12 +124,7 @@ Ext.define('DFST.view.filter.List', {
                 animCollapse: true,
                 layout: 'vbox',
                 title: 'Value Filters',
-                items: [
-                {
-                    width: '100%',
-                    html: 'Salaries vary amongst sites.Changing sites resets these.',
-                    border: false
-                },{
+                items: [{
                     fieldLabel: '$',
                     xtype: 'multislider',
                     id: 'salRange',

@@ -96,14 +96,24 @@ Ext.define('DFST.controller.Rosters', {
             playerRec = recs[0],
             rgrid = Ext.getCmp('rostergrid'),
             store = rgrid.store,
-            nrecs = store.count();
-            
-        for (var i=0; i<nrecs; i++) {
-            var rec = store.getAt(i);
-            if (Ext.Array.contains(playerRec.get('rpel'), rec.get('rpid'))) {
-                possibleSlots.push(rec);
+            nrecs = store.count(),
+            i, rec;
+        
+        // first check if the player is already in the roster
+        // if so, select only that spot
+        var pid = playerRec.get('id');
+        var existingRec = store.findRecord('pid', pid);
+        if (existingRec) { 
+            possibleSlots.push(existingRec);
+        } else {
+            for (i=0; i<nrecs; i++) {
+                rec = store.getAt(i);
+                if (Ext.Array.contains(playerRec.get('rpel'), rec.get('rpid'))) {
+                    possibleSlots.push(rec);
+                }
             }
         }
+
         rgrid.view.selModel.select(possibleSlots, false, true);
     }
 });
