@@ -7,30 +7,24 @@ Ext.define('DFST.view.bet.Display', {
 	border: false,
     header:false,
     margins: '5 0 5 5',
+    padding: 5,
+    width: 250,
 	
 	initComponent: function() {
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(
-                '<table class="bet-display">',
-                '<tr>',
-                '<th>Favorite</th>',
-                '<th>Spread</th>',
-                '<th>{home}</th>',
-                '<th>{away}</th>',
-                '<th>Projected Points</th>',
-                '</tr>',
-                '<tr>',
+                '<dl>',
+                '<dt>Projected Points</dt><dd>{pts}</dd>',
+                '<dt>Favorite</dt>',
                 '<tpl if="sh &lt; 0">',
-                    '<td>{home}</td>',
+                    '<dd>{home}</dd>',
                 '<tpl else>',
-                    '<td>{away}</td>',
+                    '<dd>{away}</dd>',
                 '</tpl>',                
-                '<td>{sh:this.formatSpread}</td>',
-                '<td>{mh:this.formatMoneyline}</td>',
-                '<td>{ma:this.formatMoneyline}</td>',
-                '<td>{pts}</td>',
-                '</tr>',
-                '</table>',
+                '<dt>Spread</dt><dd>{sh:this.formatSpread}</dd>',
+                '<dt>Moneyline {home}</dt><dd>{mh:this.formatMoneyline}</dd>',
+                '<dt>Moneyline {away}</dt><dd>{ma:this.formatMoneyline}</dd>',
+                '</dl>',
                 {
                     formatSpread: function(floatValue) {
                         return (Math.abs(floatValue));

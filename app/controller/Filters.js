@@ -23,7 +23,7 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'notInLineupFilter', selector: 'filterlist checkbox#notinlineup'},
         {ref: 'gamesFilters', selector: 'filterlist fieldcontainer#games'},
         {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
-        {ref: 'weatherdisplay', selector: 'weatherdisplay'},
+        {ref: 'gamedetails', selector: 'gamedetails'},
         {ref: 'export', selector: 'export'},
         {ref: 'rosterbuilder', selector: 'rosterbuilder'}
     ],
@@ -42,6 +42,9 @@ Ext.define('DFST.controller.Filters', {
             'sitepicker combobox':{
                 change: this.changeWeek
             },
+            'sitepicker fieldcontainer radio':{
+                change: this.changeScoring
+            },
             'filterlist checkbox#probables':{
                 change: this.changeProbables
             },
@@ -56,9 +59,6 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist fieldcontainer#positions checkbox':{
                 change: this.changePositions
-            },
-            'filterlist fieldcontainer radio':{
-                change: this.changeScoring
             },
             'filterlist splitbutton menu':{
                 click: this.changePositionGroups
@@ -398,7 +398,7 @@ Ext.define('DFST.controller.Filters', {
     onScoringChanged: function(store, records, wasSuccessful, options) {
         if (!wasSuccessful || records.length === 0) {
             this.getStatsStore().removeAll();
-            this.getWeatherdisplay().hide();
+            this.getGamedetails().hide();
             this.getDrilldowndetails().hide();            
             return;
         }
@@ -568,7 +568,7 @@ Ext.define('DFST.controller.Filters', {
                 id: 'gamesGo'
             }));
         } else {
-            this.getWeatherdisplay().hide();
+            this.getGameDetails().hide();
             this.getDrilldowndetails().hide();
         }
     },

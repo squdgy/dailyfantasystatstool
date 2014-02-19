@@ -55,9 +55,25 @@ footer a { color: white; }
 footer a:visited {color: gray; }
 .sport-link { margin-left: 20px;}
 
-.bet-display td,
-.bet-display th
-{ padding: 5px; font-size:14px; }
+/* used on bet display */
+dl {
+ padding:0;
+ margin:0;    
+ width:100%;
+ overflow:hidden;
+}
+dt {
+ padding:0;
+ margin:0;    
+ float:left;
+ width:50%;
+}
+dd {
+ padding:0;
+ margin:0;    
+ float:left;
+ width:50%;
+}
 
 /* for sort buttons above grid*/
 .x-btn .sort-direction-asc {

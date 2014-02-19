@@ -15,7 +15,7 @@ Ext.define('DFST.controller.Stats', {
         { ref: 'drilldowndetails',  selector: 'drilldowndetails'},
         { ref: 'drilldowninfo', selector: 'drilldowninfo' },
         { ref: 'drilldownnextopp', selector: 'drilldowndetails checkbox#nextopp'},
-        { ref: 'weatherdisplay', selector: 'weatherdisplay' }
+        { ref: 'gamedetails', selector: 'gamedetails' }
         ],
 
     init: function() {
@@ -101,12 +101,12 @@ Ext.define('DFST.controller.Stats', {
     },
     
     /**
-     * Load game data into the WeatherDisplay view
+     * Load game data into the Game Details view
      * @param {DFST.model.StatSet} statset The statset to load
      */
     showGameDetail: function(grid, statsets) {        
         var statset = statsets[0],
-            gameView = this.getWeatherdisplay(),
+            gameView = this.getGamedetails(),
             gamesStore = this.getGamesStore();
 
         if (statset && gameView) {

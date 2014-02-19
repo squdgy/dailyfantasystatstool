@@ -33,7 +33,8 @@ Ext.define('DFST.view.statset.Grid', {
         //'Ext.toolbar.*',
         'Ext.ux.BoxReorderer',
         'Ext.ux.ToolbarDroppable',
-        'Ext.ux.DFSTGridViewDragDrop'
+        'Ext.ux.DFSTGridViewDragDrop',
+        'Ext.ux.PageSizePicker'
         ],
     
     border: false,    
@@ -42,7 +43,8 @@ Ext.define('DFST.view.statset.Grid', {
         xtype: 'pagingtoolbar',
         dock: 'bottom',
         store: 'Stats',
-        displayInfo: true
+        displayInfo: true,
+        plugins: { ptype: 'pagesizepicker' }
     }],
     
     viewConfig: {
@@ -423,13 +425,6 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'afp',
                     width: 70,
                     tooltip: 'average fantasy points as reported by the selected site',
-                    renderer: Ext.util.Format.numberRenderer('0.00')
-                },{
-                    text: 'Avg FP-C',
-                    dataIndex: 'afpc',
-                    width: 70,
-                    hidden: true,
-                    tooltip: 'average fantasy points as computed by this site',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
                     text: 'Avg FP-5',

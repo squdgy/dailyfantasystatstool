@@ -1,1 +1,6 @@
 Restart on 2/16/2014
+- fixed vs2013 crash after windows upgrade
+weather display should be renamed, since it contains other game details : done
+moved game details to east panel and re-formatted
+removed afpc value server-side and client-side
+Added pagesizepicker to both player and stats grid

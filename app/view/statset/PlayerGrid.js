@@ -5,16 +5,15 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 
 	cls: 'player-grid',
 	disabled: false,
-
-    requires: ['Ext.toolbar.Toolbar'],
+    width: 900,
+    requires: ['Ext.toolbar.Toolbar', 'Ext.ux.PageSizePicker'],
     
-    border: false,
-
     dockedItems: [{
         xtype: 'pagingtoolbar',
-        dock: 'bottom',
+        dock: 'top',
         store: 'PlayerStats',
-        displayInfo: true
+        displayInfo: true,
+        plugins: { ptype: 'pagesizepicker', displayText: 'Games per Page', options: [5, 10, 20, 50, 200] }
     }],
 
     getCols: function(sport, position) {

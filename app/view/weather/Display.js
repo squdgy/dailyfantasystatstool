@@ -1,15 +1,16 @@
 /*global Ext: false */
 Ext.define('DFST.view.weather.Display', {
 	extend: 'Ext.panel.Panel',
-    alias: 'widget.weatherdisplay',
+    alias: 'widget.gamedetails',
     requires: [
         'DFST.view.bet.Display',
         'DFST.view.weather.Hour'
     ],
 
+    cls: 'gamedetails',
 	autoScroll: true,
 	border: false,
-    title: 'Weather',
+    title: 'Game Details',
     collapsible: true,
 	animCollapse: true,    
     margins: '5 0 5 5',

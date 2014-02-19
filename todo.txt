@@ -1,6 +1,5 @@
 NEXT:
 ========
-
 Create a full site!
 Mobile!
 
@@ -39,8 +38,6 @@ siteDetails store should only need to filter by gameId & not site id
 - Hadoop?
 fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
 whenupdated table: increase tableName column/change column name : minor re-architect!
-export top grid to csv
-drag/drop to lineup list
 more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 some view models still in the data layer, move to view layer
 theme
@@ -49,7 +46,7 @@ new scrapers: - fan throwdown, draftstreet, star street?
 add venue information to game data
 Figure out build process for Ext JS 4 - slow now!!
 Add who's hot option; do some daily computation and put in db
-should put a help bar icon on the toolbar in the filters with a popup to expain the section
+should put a help bar icon on the toolbar in the filters with a popup to explain the section
 need to check out project to new area -to make sure I can do everything I need to
 create state manager for grids
 more logging
@@ -60,9 +57,7 @@ need to figure out how to deal with sites where player can play multiple positio
 create team ui/drag + drop for players
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
-Attach domain name to wordpress site?
-embed azure app within wordpress site?
-start adding headers, logos, themes, affiliate links etc. to wordpress site
+delete wordpress site (where is it)?
 weather: schedule to retrieve it a little more often
 - players that might need nickname mappings:
     select * from player p
@@ -75,16 +70,14 @@ another performance check on the webapi (rosterpositions takes too long to load)
 Major Schema related:
 =======
 Change to support double headers
-Convert all dates to UTC?
 add support for multiple projection sets
 
 UI:
 ==========
 Possible ui improvements for roster position eligibility: show comma separated values in UI
 much better icons for probable/likely/injured
-weather display should be renamed, since it contains other game details
 - new UI: plan for MLB season
-sencha cmd
+sencha cmd to combine/minify?
 all game definitions pre-loaded 1x, instead of ajax calls for each change?
 add time of update for starting lineup
 add column with position played in bottom grid?
@@ -156,7 +149,6 @@ Maintenance:
 ===========
 check db backups
 back up schema and domain data and commit to git
-upgrade to VS 2013
 consolidate azure accounts, know which account stuff is under
 add copyrights to all files
 combine webapi and load projects into one github repo?
@@ -167,7 +159,7 @@ MLB - leave until 2014:
 odds - add id mappings, test
 stats grid pass 2 - genericise mlb/nba stats to match 
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
-- every once in  a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
+- every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
 - show venue and show better indication of wind speed etc.
@@ -175,6 +167,6 @@ lineups for doubleheaders? 5/28/2012 - need to change filter to search on double
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - area for game info:
 - betting line
-- fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start:
+- fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
 
 
