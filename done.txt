@@ -4,3 +4,6 @@ weather display should be renamed, since it contains other game details : done
 moved game details to east panel and re-formatted
 removed afpc value server-side and client-side
 Added pagesizepicker to both player and stats grid
+better loading indicator - should show over whole page when site store is loading
+search for player
+

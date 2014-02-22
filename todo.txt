@@ -1,6 +1,9 @@
 NEXT:
 ========
-Create a full site!
+make player search case insensitive
+fix 'bad int number' exception
+Create a full site: work on umbraco site
+
 Mobile!
 
 NBA:

@@ -25,7 +25,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'drilldowndetails',  selector: 'drilldowndetails'},
         {ref: 'gamedetails', selector: 'gamedetails'},
         {ref: 'export', selector: 'export'},
-        {ref: 'rosterbuilder', selector: 'rosterbuilder'}
+        {ref: 'rosterbuilder', selector: 'rosterbuilder'},
+        {ref: 'viewport', selector: 'viewport'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -74,8 +75,29 @@ Ext.define('DFST.controller.Filters', {
             }*/,
             'filterlist button#export':{
                 click: this.exportPlayers
-            }            
+            },
+            'statsetgrid' : {
+                search: this.searchForPlayer
+            }
         });
+        
+        // set up load masking
+        var me = this;
+        this.getSiteDetailsStore().on('beforeload', function(){
+            me.getViewport().setLoading('Retrieving player salaries...');
+        });
+        this.getStatsStore().on('load', function(){
+            me.getViewport().setLoading(false);
+        });
+    },
+
+    searchForPlayer: function(value) {
+        var statsStore = this.getStatsStore();
+        if (value === '') {
+            statsStore.filters.removeAtKey('name');
+            statsStore.filter();
+        }
+        statsStore.filter([{id:'name', property: 'name', value: value}]);
     },
 
     exportPlayers: function() {

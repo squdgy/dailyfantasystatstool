@@ -34,7 +34,8 @@ Ext.define('DFST.view.statset.Grid', {
         'Ext.ux.BoxReorderer',
         'Ext.ux.ToolbarDroppable',
         'Ext.ux.DFSTGridViewDragDrop',
-        'Ext.ux.PageSizePicker'
+        'Ext.ux.PageSizePicker',
+        'Ext.ux.GridSearch'
         ],
     
     border: false,    
@@ -45,6 +46,15 @@ Ext.define('DFST.view.statset.Grid', {
         store: 'Stats',
         displayInfo: true,
         plugins: { ptype: 'pagesizepicker' }
+    }],
+    
+    plugins: [{
+        ptype:'gridsearch',
+        position: 'bottom',
+        searchText: 'Search for player',
+        searchTipText: 'Searches first name and last name',
+        searchFields: ['fname', 'lname'],
+        width: 200
     }],
     
     viewConfig: {
@@ -549,7 +559,7 @@ Ext.define('DFST.view.statset.Grid', {
             itemId: 'tbar',
             items  : [{
                 xtype: 'button',
-                text: 'Reset',
+                text: 'Reset sort',
                 id: 'clearsort',
                 reorderable: false,
                 hidden: true,
@@ -571,6 +581,10 @@ Ext.define('DFST.view.statset.Grid', {
 		this.callParent(arguments);
 	},
 
+    onTextFieldChange: function() {
+        console.log('tfc');
+    },
+    
     /**
      * Callback handler used when a sorter button is clicked or reordered
      * @param {Ext.Button} button The button that was clicked

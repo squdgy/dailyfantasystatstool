@@ -34,7 +34,7 @@ Ext.application({
                 }
             }
         }
-    }    
+    } 
 });
 
 /* Fix for ExtJS 4.1.0 bug */
