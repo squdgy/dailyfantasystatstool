@@ -93,3 +93,8 @@ background-position: 4px center;
 }
 
 /* send roster slot css */
+
+.screenshot-btn {
+float: right;
+margin: 10px;
+}

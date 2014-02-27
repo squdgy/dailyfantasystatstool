@@ -1,14 +1,15 @@
-/*global Ext: false DFST: false*/
+/*global Ext: false DFST: false html2canvas: false*/
 Ext.define('DFST.controller.Rosters', {
     extend: 'Ext.app.Controller',
 
     stores: ['SiteDetails', 'Roster'],
     models: ['SiteDetails', 'RosterPosition', 'RosterSlot'],
-    views:  ['statset.Grid'],
+    views:  ['statset.Grid', 'rosterbuilder.Panel'],
     
     refs: [
         {ref: 'siteInfo', selector: '#siteinfo'},
-        {ref: 'siteGrid', selector: '.rosterbuilder grid'}
+        {ref: 'siteGrid', selector: 'rosterbuilder grid'},
+        {ref: 'screenShotButton', selector: 'rosterbuilder button#screenshot'},
     ],
     
     init: function() {
@@ -22,9 +23,50 @@ Ext.define('DFST.controller.Rosters', {
         this.control({
             'statsetgrid': {
                 selectionchange: this.changeSelections
-        }});
+            },
+            'rosterbuilder button#screenshot': {
+                click: this.screenShot
+            }
+        });
     },
 
+    screenShot: function() {
+        var rosterBuilder = this.getSiteGrid();
+        html2canvas(rosterBuilder.getEl().dom, {
+            onrendered: function(canvas) {
+                var dataURL = canvas.toDataURL();
+                
+                Ext.create('Ext.window.Window', {
+                    title: 'Your Lineup as an Image',
+                    height: canvas.height + 100,
+                    width: canvas.width + 50,
+                    layout: {
+                        type: 'vbox',
+                        align: 'center'
+                    },
+                    defaults: {
+                        padding: 5  
+                    },
+                    items: [{
+                        xtype: 'panel',
+                        html: '<img title="lineup" src="' + dataURL +'">'
+                    }, {
+                        xtype: 'button',
+                        text: 'Download',
+                        listeners: {
+                            click: function(){
+                                var link = document.createElement("a");
+                                link.setAttribute("href", dataURL);
+                                link.setAttribute("download", "lineup.png");
+                                link.click();
+                            }
+                        }
+                    }]
+                }).show();                
+            }
+        });    
+    },
+    
     changeRosterDefinition: function(store, records, successful, eOpts ) {
         var site = records[0];
         var positions = site.getAssociatedData().positions;

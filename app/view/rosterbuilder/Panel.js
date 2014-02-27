@@ -102,6 +102,11 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                     '</table>',
                     '</div>'
                 ]
+            }, {
+                xtype: 'button',
+                id: 'screenshot',
+                cls: 'screenshot-btn',
+                text: 'Take Screenshot'
             }]
 		});
 
