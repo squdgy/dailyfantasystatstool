@@ -14,6 +14,9 @@ Ext.define('DFST.view.drilldown.Details', {
 	animCollapse: true,    
     margins: '5 0 5 5',
 	
+    stateful: true,
+    stateId: 'drilldowndetails',
+	
 	initComponent: function() {
 		Ext.apply(this, {
             items: [{   

@@ -22,6 +22,14 @@ Ext.application({
     autoCreateViewport: true,
     
     init : function(application) { // configure for sport
+        var provider = Ext.supports.LocalStorage ? 
+            new Ext.state.LocalStorageProvider() 
+            : new Ext.state.CookieProvider();
+        Ext.state.Manager.setProvider(provider);
+        
+        var siteId = Ext.state.Manager.get('site');
+        DFST.AppSettings.siteId = siteId || 1; //default to DK
+
         var cururl = document.URL;
         //console.log(cururl);
         var lqs = cururl.lastIndexOf("?");
@@ -34,7 +42,7 @@ Ext.application({
                 }
             }
         }
-    } 
+    }
 });
 
 /* Fix for ExtJS 4.1.0 bug */

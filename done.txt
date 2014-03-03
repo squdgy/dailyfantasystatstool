@@ -7,4 +7,12 @@ Added pagesizepicker to both player and stats grid
 better loading indicator - should show over whole page when site store is loading
 search for player
 fix 'bad int number' exception
-
+added screenshot of roster
+make player search case insensitive
+added local storage state provider
+added state save to:
+- sitepicker, filters, lineup, perplayerstats, and gamedetails panels
+- stats grid
+on load exception: clear loading mask, give error message
+added state save to:
+- site picker, also defaults to DK now!

@@ -8,6 +8,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     width: 900,
     requires: ['Ext.toolbar.Toolbar', 'Ext.ux.PageSizePicker'],
     
+    stateful: true,
+    stateId: 'statsetplayergrid',
+    
     dockedItems: [{
         xtype: 'pagingtoolbar',
         dock: 'top',

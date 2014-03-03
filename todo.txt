@@ -1,10 +1,15 @@
 NEXT:
 ========
-screenshot of roster
-make player search case insensitive
+save current state of filters etc.!! - use html5 local storage
+state: change player grid to be by sport
+state: set on page size (filter bar)
+state: add to player stats grid
+state: add to player details check box, change checkbox to be on toolbar?
+state: fix on game details
+state: fix bottom grid, if starts collapsed, won't show data
+
 Create a full site: work on umbraco site
 Add to lineup without drag/drop?
-save current state of filters etc.
 
 Mobile!
 

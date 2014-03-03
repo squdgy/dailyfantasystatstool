@@ -24,13 +24,15 @@ Ext.define('DFST.view.statset.Grid', {
 
 	cls: 'statset-grid',
 	disabled: false,
-
+	
+	stateful: true,
+	stateId: 'statsetgrid',
+	
     requires: [
         'Ext.toolbar.Toolbar',
         'Ext.data.*',
         'Ext.grid.*',
         'Ext.util.*',
-        //'Ext.toolbar.*',
         'Ext.ux.BoxReorderer',
         'Ext.ux.ToolbarDroppable',
         'Ext.ux.DFSTGridViewDragDrop',

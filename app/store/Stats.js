@@ -52,8 +52,7 @@ Ext.define('DFST.store.Stats', {
              str[i] = "sport" + '#' + DFST.AppSettings.sport;
 
             return str.join(",");
-         }         
-         
+         }
 	},
     remoteSort: true,
     remoteFilter: true

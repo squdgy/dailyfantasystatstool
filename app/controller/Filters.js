@@ -86,6 +86,10 @@ Ext.define('DFST.controller.Filters', {
         this.getSiteDetailsStore().on('beforeload', function(){
             me.getViewport().setLoading('Retrieving player salaries...');
         });
+        this.getSiteDetailsStore().proxy.on('exception', function(){
+            me.getViewport().setLoading(false);
+            Ext.Msg.alert('Error', 'Unable to reach server. Please try again later.');
+        });        
         this.getStatsStore().on('load', function(){
             me.getViewport().setLoading(false);
         });
@@ -406,6 +410,7 @@ Ext.define('DFST.controller.Filters', {
             if (siteId == 3) dfsGameId = 3; //ds
             if (siteId == 4) dfsGameId = 4; //dd
             if (siteId == 5) dfsGameId = 5; //ff
+            Ext.state.Manager.set('site', dfsGameId);
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
@@ -637,18 +642,18 @@ Ext.define('DFST.controller.Filters', {
         }
         this.host = host;
         
-        var defaultGameId = 2;
+        var defaultGameId = DFST.AppSettings.siteId;
         if (DFST.AppSettings.sport == "mlb") 
-            defaultGameId = 102;
+            defaultGameId += 100;
         else if (DFST.AppSettings.sport == "nfl")
-            defaultGameId = 202;
+            defaultGameId += 200;
         else if (DFST.AppSettings.sport == "nhl")
-            defaultGameId = 302;
+            defaultGameId += 300;
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
         siteDetailsStore.filter([
-            {id:'siteId', property: 'siteId', value: '2'},
+            {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId},
             {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
             ]);
         siteDetailsStore.on('load', this.onScoringChanged, this);

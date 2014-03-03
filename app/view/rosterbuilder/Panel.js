@@ -10,6 +10,9 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
     collapsible: true,
     collapsed: true,
 	animCollapse: true,
+	
+    stateful: true,
+    stateId: 'rosterbuilder',
 
 	initComponent: function() {
 		Ext.apply(this, {

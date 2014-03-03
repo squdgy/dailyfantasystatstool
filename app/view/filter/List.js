@@ -5,10 +5,15 @@ Ext.define('DFST.view.filter.List', {
     id: 'filterlist',
     requires: ['Ext.toolbar.Toolbar'],
 
+    stateful: true,
+    stateId: 'filterlist',
+    stateEvents: ['expand', 'collapse'],
+    
 	title: 'Narrow Down the List of Players',
 	collapsible: true,
 	collapsed: true,
 	animCollapse: true,
+	
     layout: {
         type: 'vbox',
         align : 'stretch',
