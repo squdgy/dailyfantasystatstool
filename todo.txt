@@ -2,14 +2,15 @@ NEXT:
 ========
 save current state of filters etc.!! - use html5 local storage
 state: change player grid to be by sport
-state: set on page size (filter bar)
+state: set on page size (filter bar) via pagesizepicker
 state: add to player stats grid
-state: add to player details check box, change checkbox to be on toolbar?
 state: fix on game details
-state: fix bottom grid, if starts collapsed, won't show data
+
+simplify - Reduce the #of things showing to new user (columns), hide most extra stuff
 
 Create a full site: work on umbraco site
 Add to lineup without drag/drop?
+: double click to add player to first eligible open spot
 
 Mobile!
 

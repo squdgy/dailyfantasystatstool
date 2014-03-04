@@ -16,3 +16,6 @@ added state save to:
 on load exception: clear loading mask, give error message
 added state save to:
 - site picker, also defaults to DK now!
+- player details check box on player stats grid
+fixed expand when player stats grid loads collapsed (work-around for extjs bug)
+change player details check box to be on a toolbar and move paging toolbar to bottom, also adjust grid height

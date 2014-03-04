@@ -2,18 +2,37 @@
 Ext.define('DFST.view.statset.PlayerGrid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetplayergrid',
+    requires: ['Ext.toolbar.Toolbar', 'Ext.ux.PageSizePicker'],
 
 	cls: 'player-grid',
 	disabled: false,
+    maxHeight: 190,
     width: 900,
-    requires: ['Ext.toolbar.Toolbar', 'Ext.ux.PageSizePicker'],
-    
+    autoScroll: true,
     stateful: true,
     stateId: 'statsetplayergrid',
     
     dockedItems: [{
-        xtype: 'pagingtoolbar',
+        xtype: 'toolbar',
         dock: 'top',
+        items: {
+            xtype: 'checkbox',
+            stateful: true,
+            stateId: 'nextopp',
+            stateEvents: ['change'],
+            getState: function() {
+                return {checked: this.getValue()};
+            },
+            applyState: function(state) {
+                this.setValue(state.checked);
+            },
+            boxLabel: 'Only show games against next opponent',
+            id: 'nextopp',
+            name: 'nextopp'
+        }
+    }, {
+        xtype: 'pagingtoolbar',
+        dock: 'bottom',
         store: 'PlayerStats',
         displayInfo: true,
         plugins: { ptype: 'pagesizepicker', displayText: 'Games per Page', options: [5, 10, 20, 50, 200] }

@@ -16,7 +16,11 @@ Ext.define('DFST.view.Viewport', {
 
 	layout: 'border',
 
-	items: [{
+	items: [/*put summary of choices here? site, filters, etc.
+	{ 
+        region: 'north',
+        html: '<header>Summary</header>'
+    },*/{
 		region: 'center',
         xtype: 'container',
         layout: {

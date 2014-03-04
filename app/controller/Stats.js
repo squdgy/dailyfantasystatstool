@@ -14,7 +14,7 @@ Ext.define('DFST.controller.Stats', {
         { ref: 'playerGrid', selector: 'statsetplayergrid' },
         { ref: 'drilldowndetails',  selector: 'drilldowndetails'},
         { ref: 'drilldowninfo', selector: 'drilldowninfo' },
-        { ref: 'drilldownnextopp', selector: 'drilldowndetails checkbox#nextopp'},
+        { ref: 'drilldownnextopp', selector: 'statsetplayergrid checkbox#nextopp'},
         { ref: 'gamedetails', selector: 'gamedetails' }
         ],
 
@@ -38,7 +38,7 @@ Ext.define('DFST.controller.Stats', {
                 itemdblclick: this.loadStatSet,
                 refresh: this.selectStatSet
             },
-            'drilldowninfo checkbox#nextopp':{
+            'statsetplayergrid checkbox#nextopp':{
                 change: this.loadStatSetData
             }
         });

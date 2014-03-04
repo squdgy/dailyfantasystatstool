@@ -11,7 +11,7 @@ Ext.define('DFST.view.drilldown.Details', {
 	border: false,
     title: 'Game Log',
     collapsible: true,
-	animCollapse: true,    
+    animCollapse: false, /* to get around extjs bug: http://www.sencha.com/forum/showthread.php?234627*/
     margins: '5 0 5 5',
 	
     stateful: true,
