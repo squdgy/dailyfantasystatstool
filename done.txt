@@ -19,3 +19,8 @@ added state save to:
 - player details check box on player stats grid
 fixed expand when player stats grid loads collapsed (work-around for extjs bug)
 change player details check box to be on a toolbar and move paging toolbar to bottom, also adjust grid height
+state save: change player grid to be by sport
+double click to add player to first eligible open spot on roster
+fix errors from logs: dk scrape, nhl advanced stats calculations
+
+

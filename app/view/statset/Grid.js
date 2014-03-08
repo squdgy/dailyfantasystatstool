@@ -25,9 +25,6 @@ Ext.define('DFST.view.statset.Grid', {
 	cls: 'statset-grid',
 	disabled: false,
 	
-	stateful: true,
-	stateId: 'statsetgrid',
-	
     requires: [
         'Ext.toolbar.Toolbar',
         'Ext.data.*',
@@ -471,6 +468,10 @@ Ext.define('DFST.view.statset.Grid', {
                 ]
 			}
 		}; 
+		
+		// State will vary by sport
+		this.stateId = DFST.AppSettings.sport + '-statsetgrid';
+		this.stateful = true;
 		
 		Ext.apply(this, gridConfig[DFST.AppSettings.sport]);
 

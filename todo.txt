@@ -1,16 +1,19 @@
 NEXT:
 ========
-save current state of filters etc.!! - use html5 local storage
-state: change player grid to be by sport
+state save roster by site, sport, gamedate : use localstorage 
+
+save current state of filters - by sport
 state: set on page size (filter bar) via pagesizepicker
 state: add to player stats grid
 state: fix on game details
-
+drag/drop: should move handlers into controller
 simplify - Reduce the #of things showing to new user (columns), hide most extra stuff
+
+
+google analytics
 
 Create a full site: work on umbraco site
 Add to lineup without drag/drop?
-: double click to add player to first eligible open spot
 
 Mobile!
 
@@ -30,10 +33,13 @@ MLB:
 add to dfsrosterpositionmap for all sites
 set teamid in dfsgameplayerstats for MLB
 generate projections
+re-enable scrapes
+re-enable weather
 had disabled yahoo matchups repo - need to re-enable/improve
 
 NFL:
 ==========
+how to set DFST.AppSettings.date
 add to dfsrosterpositionmap for all sites
 game details - stadiums
 more on projections: scrape more? or edit myself
@@ -59,7 +65,6 @@ Figure out build process for Ext JS 4 - slow now!!
 Add who's hot option; do some daily computation and put in db
 should put a help bar icon on the toolbar in the filters with a popup to explain the section
 need to check out project to new area -to make sure I can do everything I need to
-create state manager for grids
 more logging
 upgrade generate schema script to capture pks and not null attributes!!!
 why doesn't sitedetailsstore make ajax call when filtered()?

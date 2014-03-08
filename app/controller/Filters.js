@@ -183,6 +183,8 @@ Ext.define('DFST.controller.Filters', {
 
         var statsStore = this.getStatsStore();
         if (this.gameDateIsChanging) {
+            this.fireEvent('appDateChanged', newValue);
+            
             statsStore.filters.removeAtKey('gameId'); // clear all game filters
             statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
             var gamesStore = this.getGamesStore();
@@ -530,6 +532,7 @@ Ext.define('DFST.controller.Filters', {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
         }
+        this.fireEvent('appScoringChanged', site.get('dfsGameId'));
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
@@ -670,6 +673,7 @@ Ext.define('DFST.controller.Filters', {
             gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
                                {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
         }
+        this.fireEvent('appDateChanged', new Date());
         
         // Set up a timer to update the games store periodically, so we can
         // show a visual indicator that the lineup is ready

@@ -31,7 +31,6 @@ Ext.application({
         DFST.AppSettings.siteId = siteId || 1; //default to DK
 
         var cururl = document.URL;
-        //console.log(cururl);
         var lqs = cururl.lastIndexOf("?");
         if (lqs >= 0) {
             var qs = cururl.substring(lqs+1);
@@ -64,3 +63,5 @@ Ext.Ajax.defaultHeaders = {
     'Accept' : 'application/json',  
     'Content-Type' : 'application/json'
 };
+
+

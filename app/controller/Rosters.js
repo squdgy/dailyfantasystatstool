@@ -12,24 +12,99 @@ Ext.define('DFST.controller.Rosters', {
         {ref: 'screenShotButton', selector: 'rosterbuilder button#screenshot'},
     ],
     
+    /* internal variables */
+    _dfsGameId: null,
+    _date: null,
+    
     init: function() {
-        // listens for changes to the site filter to change roster positions
-        this.getSiteDetailsStore().on('load', this.changeRosterDefinition, this);
-        
-        // listens for edits to the roster store in order to update summary info
-        this.getRosterStore().on('update', this.changeRoster, this);
-        
-        // listens to selection changes on the stats grid, in order to change highlighting
-        this.control({
-            'statsetgrid': {
-                selectionchange: this.changeSelections
+        this.listen({
+            component: {
+                'statsetgrid': {
+                    selectionchange: this.highlightPossibleSlots
+                },
+                'statsetgrid > tableview': {
+                    itemdblclick: this.addToRoster
+                },
+                'rosterbuilder button#screenshot': {
+                    click: this.screenShot
+                }
             },
-            'rosterbuilder button#screenshot': {
-                click: this.screenShot
+            controller: {
+                '*': {
+                    appDateChanged: this.changeDate,
+                    appScoringChanged: this.changeScoring
+                }
+            },
+            store: {
+                '#Roster' : {
+                    beforesync : this.changeRoster
+                }  
             }
         });
     },
+    
+    changeDate: function(newDate) {
+        this._date = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
+        this.changeRosterDefinition();
+    },
 
+    changeScoring: function(dfsGameId) {
+        this._dfsGameId = dfsGameId;
+        this.changeRosterDefinition();
+    },
+    
+    changeRosterDefinition: function() {
+        var siteRec = this.getSiteDetailsStore().findRecord('dfsGameId', this._dfsGameId);
+        var date = this._date;
+        if (date === null || siteRec === null) return;
+        
+        var me = this;
+        var positions = siteRec.getAssociatedData().positions;
+        var cap = siteRec.get('cap');
+
+        // load roster from cache if there is one,
+        var npos = positions.length;
+        var rStore = this.getRosterStore();
+        rStore.load(function(records, operation, success) {
+            // only show players from the dfs game and date we care about
+            rStore.filterBy(function(rec, id) {
+                return rec.get('dfsGameId') === me._dfsGameId &&
+                    rec.get('dt').getTime() === me._date.getTime();
+            });
+            
+            // if store is empty, nothing was in cache
+            var numSlots = 0;
+            if (rStore.count() === 0) {
+                var dateUtc = new Date(me._date.getTime() + me._date.getTimezoneOffset()*60000);
+                for (var i=0; i<npos; i++) {
+                    var pos = positions[i];
+                    // fill rosterStore with empty spots
+                    for (var j=0; j<pos.count; j++) {
+                        rStore.add(Ext.create('DFST.model.RosterSlot', {
+                            dfsGameId: me._dfsGameId, 
+                            dt: dateUtc,
+                            rpos: pos.name, 
+                            rpid: pos.id
+                        }));
+                        numSlots++;
+                    }
+                }
+            }
+
+            var fmtcap = Ext.util.Format.currency(cap, '$', -1);
+            var perplayer = Ext.util.Format.currency(cap/numSlots, '$', -1);
+            me.getSiteInfo().update({
+                cap: fmtcap,
+                remaining: fmtcap,
+                perplayer: perplayer
+            });
+            var sportString = DFST.AppSettings.sport.toUpperCase();
+            var dateString = me._date.toDateString();
+            me.getSiteGrid().setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+            me.salaryCap = cap; // save for later use
+        });
+    },
+    
     screenShot: function() {
         var rosterBuilder = this.getSiteGrid();
         html2canvas(rosterBuilder.getEl().dom, {
@@ -66,40 +141,12 @@ Ext.define('DFST.controller.Rosters', {
             }
         });    
     },
-    
-    changeRosterDefinition: function(store, records, successful, eOpts ) {
-        var site = records[0];
-        var positions = site.getAssociatedData().positions;
-        var npos = positions.length;
-        var rStore = this.getRosterStore();
-        rStore.removeAll();
-        var numSlots = 0;        
-        for (var i=0; i<npos; i++) {
-            var pos = positions[i];
-            // fill rosterStore with empty spots
-            for (var j=0; j<pos.count; j++) {
-                rStore.add(Ext.create('DFST.model.RosterSlot', {rpos: pos.name, rpid: pos.id}));
-                numSlots++;
-            }
-        }
-        var cap = site.get('cap');
-        var fmtcap = Ext.util.Format.currency(cap, '$', -1);
-        var perplayer = Ext.util.Format.currency(cap/numSlots, '$', -1);
-        this.getSiteInfo().update({
-            cap: fmtcap,
-            remaining: fmtcap,
-            perplayer: perplayer
-        });
-        this.getSiteGrid().setTitle(site.get('name') + ' - ' + fmtcap + ' - ' + DFST.AppSettings.sport.toUpperCase());
-        this.salaryCap = cap; // save for later use
-    },
-    
+
     /*
         When a roster changes update the summary information
     */
-    changeRoster: function( store, record, operation, modifiedFieldNames, eOpts ) {
-        if (operation !== Ext.data.Model.COMMIT) return;
-        
+    changeRoster: function( options ) {
+        var store = this.getRosterStore();
         var numSlots = store.count();
         var usedcap = 0;
         var slotsrem = 0;
@@ -127,11 +174,43 @@ Ext.define('DFST.controller.Rosters', {
             perplayer: pphtml
         });
     },
+   
+    /*
+    Add player to first eligible, open roster spot, if any
+    */
+    addToRoster: function(view, playerRec, item, index, e, eOpts ) {
+        var store = Ext.getCmp('rostergrid').store,
+            nrecs = store.count(),
+            i, rec;
+
+        // first check if the player is already in the roster; if so, return
+        var pid = playerRec.get('id');
+        if (store.findRecord('pid', pid)) { 
+            return;
+        } else {
+            for (i=0; i<nrecs; i++) {
+                rec = store.getAt(i);
+                if (rec.get('pid') > 0) { //slot filled
+                    continue;   
+                }
+                if (Ext.Array.contains(playerRec.get('rpel'), rec.get('rpid'))) {
+                    //found empty slot
+                    rec.set('name', playerRec.get('fname') + ' ' + playerRec.get('lname'));
+                    rec.set('pid', pid);
+                    rec.set('fppg', playerRec.get('afp'));
+                    rec.set('salary', playerRec.get('sal'));
+                    store.sync();
+                    return;
+                }
+            }
+        }
+    },
+    
     
     /*
     * select (highlights) rows in roster grid where a selected player may be placed
     */
-    changeSelections: function(grid, recs) {
+    highlightPossibleSlots: function(grid, recs) {
         if (!recs || recs.length === 0) return;
         
         var possibleSlots = [],

@@ -22,6 +22,8 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                 store: 'Roster',
                 multiSelect: true,
                 title: '-',
+                stateful: true,
+                stateId: 'rosterbuilder',
                 titleAlign: 'center',
                 features: [{
                     ftype: 'summary'
@@ -45,7 +47,7 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                                 rec.set('pid', null);
                                 rec.set('fppg', null);
                                 rec.set('salary', null);
-                                store.commitChanges();
+                                store.sync();
                             }
                         }]
                 }],
@@ -86,7 +88,7 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                                 droprec.set('pid', playerId);
                                 droprec.set('fppg', dragrec.get('afp'));
                                 droprec.set('salary', dragrec.get('sal'));
-                                this.view.store.commitChanges();
+                                this.view.store.sync();
                                 return true;
                             }
                             return false;

@@ -35,7 +35,6 @@ Ext.define('DFST.controller.Stats', {
                 selectionchange: this.onPlayerChanged
             },
             'statsetgrid > tableview': {
-                itemdblclick: this.loadStatSet,
                 refresh: this.selectStatSet
             },
             'statsetplayergrid checkbox#nextopp':{
