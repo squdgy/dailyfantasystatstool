@@ -22,5 +22,7 @@ change player details check box to be on a toolbar and move paging toolbar to bo
 state save: change player grid to be by sport
 double click to add player to first eligible open spot on roster
 fix errors from logs: dk scrape, nhl advanced stats calculations
+add date to title of roster panel
+lots of work to save roster to local storage by site/sport/date
 
 

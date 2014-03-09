@@ -37,10 +37,38 @@ Ext.define('DFST.controller.Rosters', {
             },
             store: {
                 '#Roster' : {
-                    beforesync : this.changeRoster
+                    beforesync : this.updateSummary
                 }  
             }
         });
+    },
+    
+    onLaunch: function() {
+        // clear rosters saved before yesterday
+        var store = this.getRosterStore();
+        store.load();
+        var delTime = new Date().getTime() - (1000 * 60 * 60 * 24 * 2);
+        var nrecs = store.count();
+        var didRemove = false;
+        for (var i = nrecs; i > 0; i--) {
+            var rec = store.getAt(i-1);
+            if (rec.get('dt').getTime() < delTime) {
+                didRemove = true;
+                store.removeAt(i-1);
+            }
+        }
+        if (didRemove) { store.sync(); }
+        this.changeRosterDefinition();
+        
+        /* no clue why this doesn't work, seems like it should:
+        var records = store.queryBy(function(rec, id){
+            return rec.get('dt').getTime() < delTime;
+        });
+        if (records.length > 0) {
+            store.remove(records);
+            store.sync();
+        }
+        */
     },
     
     changeDate: function(newDate) {
@@ -65,44 +93,48 @@ Ext.define('DFST.controller.Rosters', {
         // load roster from cache if there is one,
         var npos = positions.length;
         var rStore = this.getRosterStore();
-        rStore.load(function(records, operation, success) {
-            // only show players from the dfs game and date we care about
-            rStore.filterBy(function(rec, id) {
-                return rec.get('dfsGameId') === me._dfsGameId &&
-                    rec.get('dt').getTime() === me._date.getTime();
-            });
-            
-            // if store is empty, nothing was in cache
-            var numSlots = 0;
-            if (rStore.count() === 0) {
-                var dateUtc = new Date(me._date.getTime() + me._date.getTimezoneOffset()*60000);
-                for (var i=0; i<npos; i++) {
-                    var pos = positions[i];
-                    // fill rosterStore with empty spots
-                    for (var j=0; j<pos.count; j++) {
-                        rStore.add(Ext.create('DFST.model.RosterSlot', {
-                            dfsGameId: me._dfsGameId, 
-                            dt: dateUtc,
-                            rpos: pos.name, 
-                            rpid: pos.id
-                        }));
-                        numSlots++;
-                    }
+
+        // only show players from the dfs game and date we care about
+        rStore.filterBy(function(rec, id) {
+            return rec.get('dfsGameId') === me._dfsGameId &&
+                rec.get('dt').getTime() === me._date.getTime();
+        });
+        
+        // if store is empty, nothing was in cache
+        var numSlots = 0;
+        if (rStore.count() === 0) {
+            for (var i=0; i<npos; i++) {
+                var pos = positions[i];
+                // fill rosterStore with empty spots
+                for (var j=0; j<pos.count; j++) {
+                    rStore.add(Ext.create('DFST.model.RosterSlot', {
+                        dfsGameId: me._dfsGameId, 
+                        dt: me._date,
+                        rpos: pos.name, 
+                        rpid: pos.id
+                    }));
+                    numSlots++;
                 }
             }
+        }
+        // if > 0, but less than npos, something went wrong
+        if (numSlots > 0 && numSlots < rStore.count()) {
+            if (console.log) { console.log('problem deserializing roster'); }
+        }
 
-            var fmtcap = Ext.util.Format.currency(cap, '$', -1);
-            var perplayer = Ext.util.Format.currency(cap/numSlots, '$', -1);
-            me.getSiteInfo().update({
-                cap: fmtcap,
-                remaining: fmtcap,
-                perplayer: perplayer
-            });
-            var sportString = DFST.AppSettings.sport.toUpperCase();
-            var dateString = me._date.toDateString();
-            me.getSiteGrid().setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
-            me.salaryCap = cap; // save for later use
+        var fmtcap = Ext.util.Format.currency(cap, '$', -1);
+        var perplayer = Ext.util.Format.currency(cap/numSlots, '$', -1);
+        me.getSiteInfo().update({
+            cap: fmtcap,
+            remaining: fmtcap,
+            perplayer: perplayer
         });
+        var sportString = DFST.AppSettings.sport.toUpperCase();
+        var dateString = me._date.toDateString();
+        me.getSiteGrid().setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+        me.salaryCap = cap; // save for later use
+        
+        this.updateSummary();
     },
     
     screenShot: function() {
@@ -142,10 +174,8 @@ Ext.define('DFST.controller.Rosters', {
         });    
     },
 
-    /*
-        When a roster changes update the summary information
-    */
-    changeRoster: function( options ) {
+    /* When a roster changes update the summary information  */
+    updateSummary: function( options ) {
         var store = this.getRosterStore();
         var numSlots = store.count();
         var usedcap = 0;
@@ -175,9 +205,7 @@ Ext.define('DFST.controller.Rosters', {
         });
     },
    
-    /*
-    Add player to first eligible, open roster spot, if any
-    */
+    /* Add player to first eligible, open roster spot, if any */
     addToRoster: function(view, playerRec, item, index, e, eOpts ) {
         var store = Ext.getCmp('rostergrid').store,
             nrecs = store.count(),
@@ -206,10 +234,7 @@ Ext.define('DFST.controller.Rosters', {
         }
     },
     
-    
-    /*
-    * select (highlights) rows in roster grid where a selected player may be placed
-    */
+    /* selects (highlights) rows in roster grid where a selected player may be placed  */
     highlightPossibleSlots: function(grid, recs) {
         if (!recs || recs.length === 0) return;
         

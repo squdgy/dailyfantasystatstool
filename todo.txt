@@ -1,6 +1,10 @@
 NEXT:
 ========
-state save roster by site, sport, gamedate : use localstorage 
+finish save roster by site, sport, gamedate : clear anything older than 2 days on launch, test, test, test
+move drag/drop code into roster controller
+disable animation on roster drag/select
+update text about lineup
+property for perl scripts to log to standard out - don't log goalies/odds
 
 save current state of filters - by sport
 state: set on page size (filter bar) via pagesizepicker
