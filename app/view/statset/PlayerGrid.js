@@ -41,6 +41,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     getCols: function(sport, position) {
         var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
+        if (sport === 'mlb') colmap = this.mlbPosStatMap[position];
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
         var statMap = this.statMap[sport];
@@ -59,6 +60,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     
 	initComponent: function() {
         this.colExtrasMap = {
+            'mlb': {
+                'si20': {renderer: Ext.util.Format.numberRenderer('0.0')}
+            },
             'nba': {
                 'si14': {renderer: this.intToBoolRenderer}
             },
@@ -75,6 +79,36 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             }
         };
         this.statMap = {
+            'mlb':{
+                //hitter:
+                si1: 'AB',
+                si2: 'H',
+                si3: '1B',
+                si4: '2B',
+                si5: '3B',
+                si6: 'HR',
+                si7: 'RBI',
+                si8: 'R',
+                si9: 'W',
+                si10: 'SB',
+                si11: 'HbP',
+                si12: 'SAC',
+                si13: 'SO',
+                si14: 'GIDP',
+                si15: 'CS',
+                si16: 'O',
+                //pitcher:
+                si17: 'W',
+                si18: 'ER',
+                si19: 'K',
+                si20: 'IP',
+                si21: 'H',
+                si22: 'BB',
+                si23: 'CG',
+                si24: 'CGSO',
+                si25: 'NH',
+                si26: 'L'
+            },
             'nba':{
                 si1: 'P',
                 si2: 'A',
@@ -163,6 +197,18 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si19: 'PPM',
                 si20: 'SHM'
         }};
+        var mlbHitterMap = ['si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si14', 'si15', 'si16'];
+        this.mlbPosStatMap = {
+            '1B' : mlbHitterMap,
+            '2B' : mlbHitterMap,
+            '3B' : mlbHitterMap,
+            'SS' : mlbHitterMap,
+            'LF' : mlbHitterMap,
+            'CF' : mlbHitterMap,
+            'RF' : mlbHitterMap,
+            'C' : mlbHitterMap,
+            'P' : ['si17', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si26'],
+        },
         this.nbaPosStatMap = {
             PG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
             SG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
@@ -207,84 +253,6 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
-        this.mlbhCols = this.firstCols.concat([
-                {
-                    text: 'AB',
-                    dataIndex: 'ab'
-                }, {
-                    text: 'H',
-                    dataIndex: 'h'
-                }, {
-                    text: '1B',
-                    dataIndex: 'x1b'
-                }, {
-                    text: '2B',
-                    dataIndex: 'x2b'
-                },{
-                    text: '3B',
-                    dataIndex: 'x3b'
-                },{
-                    text: 'HR',
-                    dataIndex: 'hr'
-                },{
-                    text: 'R',
-                    dataIndex: 'r'
-                },{
-                    text: 'RBI',
-                    dataIndex: 'rbi'
-                },{
-                    text: 'BB',
-                    dataIndex: 'bb'
-                },{
-                    text: 'SO',
-                    dataIndex: 'bso'
-                },{
-                    text: 'SB',
-                    dataIndex: 'sb'
-                },{
-                    text: 'CS',
-                    dataIndex: 'cs'
-                },{
-                    text: 'HBP',
-                    dataIndex: 'hbp'
-                },{
-                    text: 'GIDP',
-                    dataIndex: 'hidp'
-                },{
-                    text: 'SAC',
-                    dataIndex: 'sac'
-                },
-                {
-                    text: 'OUTS',
-                    dataIndex: 'o'
-                }], this.lastCols);
-        this.mlbpCols = this.firstCols.concat([{
-                    text: 'Win',
-                    dataIndex: 'w'
-                },{
-                    text: 'Loss',
-                    dataIndex: 'l'
-                },{
-                    text: 'IP',
-                    dataIndex: 'ip',
-                    renderer: Ext.util.Format.numberRenderer('0.0')
-                },{
-                    text: 'H',
-                    dataIndex: 'ha'
-                },{
-                    text: 'ER',
-                    dataIndex: 'er'
-                },{
-                    text: 'BB',
-                    dataIndex: 'bba'
-                },{
-                    text: 'HB',
-                    dataIndex: 'hb'
-                },{
-                    text: 'SO',
-                    dataIndex: 'so'
-                }], this.lastCols);
-
 		Ext.apply(this, {
             store: 'PlayerStats',
 			columns: {
@@ -293,7 +261,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     style: 'text-align:center',
                     width: 35
                 },
-                items: this.mlbpCols
+                items: this.firstCols.concat(this.lastCols)
             }
 		});
 

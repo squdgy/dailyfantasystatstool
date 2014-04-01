@@ -82,14 +82,7 @@ Ext.define('DFST.controller.Stats', {
 
             var pos = statset.data.spos;
             var pgrid = this.getPlayerGrid();
-            if (DFST.AppSettings.sport === 'mlb') {
-                if (pos == 'P')
-                    pgrid.reconfigure(null, pgrid.mlbpCols);
-                else 
-                    pgrid.reconfigure(null, pgrid.mlbhCols);
-            } else {
-                pgrid.reconfigure(null, pgrid.getCols(DFST.AppSettings.sport, pos));
-            }
+            pgrid.reconfigure(null, pgrid.getCols(DFST.AppSettings.sport, pos));
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);

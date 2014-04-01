@@ -25,8 +25,14 @@ Ext.define('DFST.controller.Rosters', {
                 'statsetgrid > tableview': {
                     itemdblclick: this.addToRoster
                 },
+                'rosterbuilder': {
+                    removefromroster: this.removeFromRoster
+                },
                 'rosterbuilder button#screenshot': {
                     click: this.screenShot
+                },
+                'rosterbuilder button#clear': {
+                    click: this.clearRoster
                 }
             },
             controller: {
@@ -232,6 +238,27 @@ Ext.define('DFST.controller.Rosters', {
                 }
             }
         }
+    },
+    
+    removeFromRoster: function(store, rec){
+        rec.set('name', null);
+        rec.set('pid', null);
+        rec.set('fppg', null);
+        rec.set('salary', null);
+        store.sync();
+    },
+
+    clearRoster: function(){
+        var store = this.getRosterStore();
+        var nrecs = store.count();
+        for (var i=0; i<nrecs; i++) {
+            var rec = store.getAt(i);
+            rec.set('name', null);
+            rec.set('pid', null);
+            rec.set('fppg', null);
+            rec.set('salary', null);
+        }
+        store.sync();
     },
     
     /* selects (highlights) rows in roster grid where a selected player may be placed  */

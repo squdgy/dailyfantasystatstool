@@ -38,9 +38,10 @@ table {
     margin-top: 5px;
 }
 
-.sitepicker .x-form-item {
-    margin: 5px 0 3px 5px;
+#sitepicker-body {
+    padding: 10px;
 }
+
 .sitepicker .x-form-trigger-wrap {
     margin: 5px 0 10px 10px;
 }
@@ -51,8 +52,6 @@ margin-right: 8px;
 vertical-align: top;
 }
 
-footer a { color: white; }
-footer a:visited {color: gray; }
 .sport-link { margin-left: 20px;}
 
 /* used on bet display */
@@ -93,8 +92,9 @@ background-position: 4px center;
 }
 
 /* send roster slot css */
-
+.ros-btn {
+margin: 10px;
+}
 .screenshot-btn {
 float: right;
-margin: 10px;
 }

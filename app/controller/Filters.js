@@ -46,6 +46,9 @@ Ext.define('DFST.controller.Filters', {
             'sitepicker fieldcontainer radio':{
                 change: this.changeScoring
             },
+            'sitepicker button#globalreset' : {
+                click: this.resetEverything
+            },
             'filterlist checkbox#probables':{
                 change: this.changeProbables
             },
@@ -86,7 +89,12 @@ Ext.define('DFST.controller.Filters', {
         this.getSiteDetailsStore().on('beforeload', function(){
             me.getViewport().setLoading('Retrieving player salaries...');
         });
-        this.getSiteDetailsStore().proxy.on('exception', function(){
+        this.getSiteDetailsStore().proxy.on('exception', function(proxy, response){
+            if (response.status === 200) {
+                var firstSiteRadio = Ext.ComponentQuery.query('sitepicker fieldcontainer radio')[0];
+                firstSiteRadio.setValue(true);
+                return;
+            }
             me.getViewport().setLoading(false);
             Ext.Msg.alert('Error', 'Unable to reach server. Please try again later.');
         });        
@@ -95,6 +103,14 @@ Ext.define('DFST.controller.Filters', {
         });
     },
 
+    resetEverything: function() {
+        var cp = Ext.state.Manager.getProvider();
+        for (var item in cp.state) {
+            Ext.state.Manager.clear(item);
+        }
+        window.location = document.URL;
+    },
+    
     searchForPlayer: function(value) {
         var statsStore = this.getStatsStore();
         if (value === '') {

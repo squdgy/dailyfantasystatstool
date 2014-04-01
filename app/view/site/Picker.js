@@ -70,16 +70,20 @@ Ext.define('DFST.view.site.Picker', {
         var siteItems = [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
-                    { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
                 ];
-        var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
-            return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
-        });
-        selectedSiteItem.checked = true;
+        if (DFST.AppSettings.sport === 'nba' || DFST.AppSettings.sport === 'nhl') {
+            // no FF for mlb, yet
+            siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
+        }
         if (DFST.AppSettings.sport === 'nfl') {
             //siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
         }
+        var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
+            return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
+        });
+        if (selectedSiteItem !== null)
+            selectedSiteItem.checked = true;
 
 		Ext.apply(this, {
 			items: [{
@@ -95,10 +99,16 @@ Ext.define('DFST.view.site.Picker', {
                 xtype: 'panel',
                 border: false,
                 html: '<ul class="notes">Notes:' +
-                    '<li>Changing sites or dates will clear the lineup.</li>' +
-                    '<li>Changing sites will reset all filters that rely on site specific data, such as roster position.</li>' +
+                    '<li>You can switch back and forth amongst sites, dates, and sports and any lineup edits will be saved (for up to 3 days).</li>' +
+                    '<li>Switching amongst sites will reset all filters that rely on site specific data, such as roster position.</li>' +
                     '<li>Salaries may not be available for all dates. If not, the player grid will be empty.</li>' +
                     '</ul>'
+			},
+			{
+                xtype: 'button',
+                id: 'globalreset',
+                text: 'Reset Panels',
+                tooltip: 'This will reset all panel and grid settings to app defaults (ex. expand/collapse, column order) and reload the page.'
 			}
         ]});
 

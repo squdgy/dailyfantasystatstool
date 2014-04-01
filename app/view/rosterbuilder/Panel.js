@@ -15,6 +15,8 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
     stateId: 'rosterbuilder',
 
 	initComponent: function() {
+        var me = this;
+
 		Ext.apply(this, {
             items: [{
                 xtype: 'grid',
@@ -37,17 +39,13 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                         items: [{
                             icon: 'images/delete.gif',
                             tooltip: 'Remove player',
-                            isDisabled: function(view, rowIndex, colIndex, item, record) {                                // Returns true if 'editable' is false (, null, or undefined)
+                            isDisabled: function(view, rowIndex, colIndex, item, record) {// Returns true if 'editable' is false (, null, or undefined)
                                 return !record.get('pid');
                             },
                             handler: function(grid, rowIndex, colIndex) {
                                 var store = grid.getStore(),
                                     rec = store.getAt(rowIndex);
-                                rec.set('name', null);
-                                rec.set('pid', null);
-                                rec.set('fppg', null);
-                                rec.set('salary', null);
-                                store.sync();
+                                me.fireEvent('removefromroster', store, rec);
                             }
                         }]
                 }],
@@ -109,8 +107,13 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                 ]
             }, {
                 xtype: 'button',
+                id: 'clear',
+                cls: 'ros-btn',
+                text: 'Clear Lineup'
+            }, {
+                xtype: 'button',
                 id: 'screenshot',
-                cls: 'screenshot-btn',
+                cls: 'ros-btn screenshot-btn',
                 text: 'Take Screenshot'
             }]
 		});

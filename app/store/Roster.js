@@ -8,7 +8,7 @@ Ext.define('DFST.store.Roster', {
     model: 'DFST.model.RosterSlot',
 
     autoLoad: false,
-
+    
     proxy : { 
         type : 'localstorage', 
         id : 'rosterstore'

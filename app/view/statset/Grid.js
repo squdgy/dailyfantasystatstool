@@ -1,23 +1,4 @@
 /*global Ext: false, DFST: false */
-Ext.grid.header.Container.prototype.setSortState = function(val) {
-    var store   = this.up('[store]').store,
-        sorters = store.getSorters();
-
-    // adjust grid headers
-    var me = this;
-    if (sorters) {
-        this.clearOtherSortStates(null);
-        Ext.each(sorters, function(sorter) {
-            var hd = me.down('gridcolumn[dataIndex=' + sorter.property  +']');
-            if (hd) {
-                hd.setSortState(sorter.direction, true, true);
-            }
-        }, this);
-    } else {
-        this.clearOtherSortStates(null);
-    }
-};
-
 Ext.define('DFST.view.statset.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetgrid',

@@ -70,6 +70,8 @@ Ext.define('Ext.ux.DFSTGridViewDragDrop', {
                 dragText: me.dragText,
                 containerScroll: me.containerScroll,
                 scrollEl: scrollEl,
+                animRepair: false, // doesn't seem to work
+                repairHighlightColor: 'FFFFFF',
                 onBeforeDrag: function(data, e) {
                     var record = data.view.getRecord(data.item);
                     this.dragText = me.dragTextRenderer(record);

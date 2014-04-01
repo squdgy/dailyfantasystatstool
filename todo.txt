@@ -1,24 +1,44 @@
 NEXT:
 ========
-finish save roster by site, sport, gamedate : clear anything older than 2 days on launch, test, test, test
-move drag/drop code into roster controller
-disable animation on roster drag/select
-update text about lineup
-property for perl scripts to log to standard out - don't log goalies/odds
+re-start mlb:
 
-save current state of filters - by sport
-state: set on page size (filter bar) via pagesizepicker
-state: add to player stats grid
-state: fix on game details
-drag/drop: should move handlers into controller
-simplify - Reduce the #of things showing to new user (columns), hide most extra stuff
+fix - mlb eligibility maps
+fix 'UpdateRosterPositions' sproc to change the inserts for position 2 to a merge statement
+
+prices!!
+odds - add id mappings, test - every day until all mapped
+odds - get gameid mapping to work
+
+fix local storage save/restore of lineup
+if player has no salary, don't allow in lineup
+
+MLB:
+==========
+look for scoring rules changes/roster changes at:
+: draft day
+: fanduel
+add to dfsrosterpositionmap for all sites
+set teamid in dfsgameplayerstats for MLB
+verify stats
+generate projections!
+re-enable scrapes
+had disabled yahoo matchups repo - need to re-enable/improve
+lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
+- every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
+- add pitchers info to game view
+- need venue information: city, roofType, direction, then add wind direction
+- show venue and show better indication of wind speed etc.
+- problem with game ids of double headers in stats?
+- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
+- area for game info:
+- betting line
+- fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
 
 
+SITE WORK:
+==========
+Create a full site: work on umbraco site?
 google analytics
-
-Create a full site: work on umbraco site
-Add to lineup without drag/drop?
-
 Mobile!
 
 NBA:
@@ -28,18 +48,8 @@ generate projections
 
 NHL:
 ==========
-pass 2 of nhl projections, pretty basic now; take into account opponent values
 game details - stadiums
 add starting goalie to game view
-
-MLB:
-==========
-add to dfsrosterpositionmap for all sites
-set teamid in dfsgameplayerstats for MLB
-generate projections
-re-enable scrapes
-re-enable weather
-had disabled yahoo matchups repo - need to re-enable/improve
 
 NFL:
 ==========
@@ -52,6 +62,18 @@ move to generic projections table and key off of playerid/gameid (not week)
 Roster Generation
 ==========
 change code to use new salary table to get per/game
+
+State:
+========
+save current state of filters - by sport
+state: set on page size (filter bar) via pagesizepicker
+state: add to player stats grid
+state: fix on game details
+
+ExtJS Controllers:
+==================
+Move all 'controlling' logic into controller over time
+* drag/drop: should move handlers into controller
 
 Misc.
 ==========
@@ -73,18 +95,12 @@ more logging
 upgrade generate schema script to capture pks and not null attributes!!!
 why doesn't sitedetailsstore make ajax call when filtered()?
 dealing with positions and mappings is still less than ideal
-need to figure out how to deal with sites where player can play multiple positions (for position filters)
-create team ui/drag + drop for players
 Write a detailed document with information on all projects, deployments, accounts etc.
 disable draftaid.com/twitter until ready
 delete wordpress site (where is it)?
 weather: schedule to retrieve it a little more often
 - players that might need nickname mappings:
-    select * from player p
-    inner join fanduel f on (f.namelast = p.namelast)
-    where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
-    and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
-    order by p.position desc;
+
 another performance check on the webapi (rosterpositions takes too long to load)
 
 Major Schema related:
@@ -94,6 +110,7 @@ add support for multiple projection sets
 
 UI:
 ==========
+simplify - Reduce the #of things showing to new user (columns), hide most extra stuff
 Possible ui improvements for roster position eligibility: show comma separated values in UI
 much better icons for probable/likely/injured
 - new UI: plan for MLB season
@@ -127,6 +144,8 @@ Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
+remove dependence on si data
+move to python? gasp!
 when local game id provided by site (fd/dd/dk) use an idmapping to get actual game id, could be important for double headers!!
 deal with future days' contests and/or 2-day contests?
 move quartz working code back into the WEBAPI solution and into a worker role
@@ -140,6 +159,7 @@ save_to_db is unwieldy - clean it up?
 
 Loader/Data - baseball
 ===========
+change data sources (not dk)
 add backup to lineups script to look for other games from another site?
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
 change load_teamrosters to ignore players that are already ok?
@@ -171,20 +191,9 @@ consolidate azure accounts, know which account stuff is under
 add copyrights to all files
 combine webapi and load projects into one github repo?
 query to Find problems in mappings: select daId, srcName, count(*) from idmapping where tableName = 'player' group by daId, srcName having count(*) > 1;
-
-MLB - leave until 2014:
-=========
-odds - add id mappings, test
-stats grid pass 2 - genericise mlb/nba stats to match 
-lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
-- every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
-- add pitchers info to game view
-- need venue information: city, roofType, direction, then add wind direction
-- show venue and show better indication of wind speed etc.
-- problem with game ids of double headers in stats?
-- aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
-- area for game info:
-- betting line
-- fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
-
-
+to find player that need nickname mappings:
+    select * from player p
+    inner join fanduel f on (f.namelast = p.namelast)
+    where  f.playerId = 0 and f.sportId = 1 and p.teamId >=255
+    and positionId not in (21, 22, 23, 24, 25, 27, 28, 29, 32, 33)
+    order by p.position desc;
