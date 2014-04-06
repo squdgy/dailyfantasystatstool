@@ -481,7 +481,52 @@ Roster Builder cleanup - play around and fix little things
 - disable picking up player that's already in roster or that has no available roster spots to go to
 - etc.
 css changes, slight updates to roster builder, time to move on from this feature!
-
+Restart on 2/16/2014
+- fixed vs2013 crash after windows upgrade
+weather display should be renamed, since it contains other game details : done
+moved game details to east panel and re-formatted
+removed afpc value server-side and client-side
+Added pagesizepicker to both player and stats grid
+better loading indicator - should show over whole page when site store is loading
+search for player
+fix 'bad int number' exception
+added screenshot of roster
+make player search case insensitive
+added local storage state provider
+added state save to:
+- sitepicker, filters, lineup, perplayerstats, and gamedetails panels
+- stats grid
+on load exception: clear loading mask, give error message
+added state save to:
+- site picker, also defaults to DK now!
+- player details check box on player stats grid
+fixed expand when player stats grid loads collapsed (work-around for extjs bug)
+change player details check box to be on a toolbar and move paging toolbar to bottom, also adjust grid height
+state save: change player grid to be by sport
+double click to add player to first eligible open spot on roster
+fix errors from logs: dk scrape, nhl advanced stats calculations
+add date to title of roster panel
+lots of work to save roster to local storage by site/sport/date
+finish save roster by site, sport, gamedate : clear anything older than 2 days on launch
+pass 2 of nhl projections, pretty basic now; take into account opponent values
+property for perl scripts to log to standard out - don't log goalies/odds = less junk in the logs
+update text about lineup
+moved remove-from-lineup handling from grid into controller
+reset panels button: to clear state and reload page
+disable animation on roster drag/select - changed repairHighlightColor to the same as the grid background color to look like there's no animation
+re-enable mlb footer link
+mlb: make sure schedule load works - updated to ignore all but regular season games
+make sure rosters load works: work on nicknames
+re-enable weather
+re-enable mlb roster import
+re-enable mlb injury import
+re-enable daily schedule import for mlb
+get update_db to work, to update box scores, change to only include reg. season games
+re-enable mlb boxscore import
+if site not supported by sport and that's the default sport as saved in settings, switch to supported site (DK)
+re-enable calculatefantasypoints for mlb
+stats grid pass 2 - genericise mlb stats to match 
+re-enabled mlb prices scrapes for 3 sites
 
 
 

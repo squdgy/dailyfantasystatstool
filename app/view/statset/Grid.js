@@ -112,11 +112,11 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: 'MR',
                     dataIndex: 'mr1',
-                    hidden: false
+                    hidden: true
                 },{
                     text: 'G',
                     dataIndex: 'ng'
-                },{
+                },/*{
                     text: '1B',
                     dataIndex: 'x1b',
                     hidden: true
@@ -191,7 +191,7 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'IP/G',
                     dataIndex: 'aip',
                     hidden: true
-                },{
+                },*/{
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,

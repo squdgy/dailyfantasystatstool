@@ -14,7 +14,7 @@ Ext.define('DFST.view.weather.Hour', {
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(
                 '<div class="post-data">',
-                '<h1>{su}</h1>',
+                '<h3>{su}</h3>',
                 '<div>{pp:this.formatPercent}% chance of rain</div>',
                 '<div>wind speed: {ws:this.formatSpeed} mph</div>',
                 '</div>',

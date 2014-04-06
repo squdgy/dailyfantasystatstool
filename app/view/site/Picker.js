@@ -70,12 +70,9 @@ Ext.define('DFST.view.site.Picker', {
         var siteItems = [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
+                    { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
                 ];
-        if (DFST.AppSettings.sport === 'nba' || DFST.AppSettings.sport === 'nhl') {
-            // no FF for mlb, yet
-            siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
-        }
         if (DFST.AppSettings.sport === 'nfl') {
             //siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
         }

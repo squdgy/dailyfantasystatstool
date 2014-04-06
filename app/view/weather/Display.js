@@ -25,7 +25,7 @@ Ext.define('DFST.view.weather.Display', {
                 },{
                 xtype: 'container',
                 layout: {
-                    type: 'hbox',
+                    type: 'vbox',
                     padding: 5,
                     align: 'stretch'
                 },
