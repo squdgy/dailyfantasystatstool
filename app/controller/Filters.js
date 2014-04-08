@@ -408,7 +408,7 @@ Ext.define('DFST.controller.Filters', {
                 checkbox = positionCheckboxes[i];                
                 checkbox.suspendEvents(false);
                 pos = checkbox.boxLabel;
-                if (pos === '1B' || pos === '2B' || pos === '3B' || pos === 'SS'){                 
+                if (pos === '1B' || pos === '2B' || pos === '3B' || pos === 'SS' ){
                     checkbox.setValue(true);
                 } else {
                     checkbox.setValue(false);

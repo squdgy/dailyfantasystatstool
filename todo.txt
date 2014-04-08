@@ -1,27 +1,20 @@
 NEXT:
 ========
 
-keep an eye on nickname mappings;
-fix weather display
-
 fix local storage save/restore of lineup
-if player has no salary, don't allow in lineup
-fix N/A for pitcher batting order
+fix weather display
+keep an eye on nickname mappings;
 
 draftstreet?!
-in lineup builder, change sort to be by dfsroster.sort, not by rosterpositionid
 
 MLB:
 ==========
 l/r/s filter
-
-add to dfsrosterpositionmap for all sites
 fix hidden columns for mlb, ex. hr, 1b etc.
 set teamid in dfsgameplayerstats for MLB
 generate projections!
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 also for doubleheaders: the gameid for odds changes for a double header so for odds/dbl header, get gameid mapping to work
-
 - every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
@@ -29,7 +22,6 @@ also for doubleheaders: the gameid for odds changes for a double header so for o
 - problem with game ids of double headers in stats?
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - area for game info:
-- betting line
 - fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
 - "perfect game" stat and calculation for use in draftday scoring
 
@@ -108,7 +100,6 @@ add support for multiple projection sets
 
 UI:
 ==========
-fix sport footer (gray nfl, unselect current sport)
 simplify - Reduce the #of things showing to new user (columns), hide most extra stuff
 Possible ui improvements for roster position eligibility: show comma separated values in UI
 much better icons for probable/likely/injured

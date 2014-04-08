@@ -17,6 +17,28 @@ Ext.define('DFST.view.Viewport', {
 	layout: 'border',
 	
 	initComponent: function(){
+        var sportLinks = '';
+        var sports = ['mlb', 'nfl', 'nba', 'nhl'];
+        for (var i in sports) {
+            var sport = sports[i];
+            if (sport === DFST.AppSettings.sport) {
+                sportLinks += '<span class="sport-link">' + 
+                    sport.toUpperCase() + '</span>';
+            } else if (sport === 'nfl') { // off-season
+                sportLinks += '<span class="sport-link off-season">' + 
+                    sport.toUpperCase() + '</span>';
+            } else {  
+                sportLinks += '<span class="sport-link"><a href="index.html?sport=' + 
+                sport + '">' + 
+                sport.toUpperCase() + '</a></span>';
+            }
+        }
+        var footerHtml = '<footer>Daily Fantasy Stats Tool, Version ' + 
+            DFST.AppSettings.version + 
+            ', Copyright 2012-2014 Development Partners Software Corp. ' + 
+            'Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a>' + 
+            sportLinks + 
+            '</footer>';
 		Ext.apply(this, {
             items: [
             /*put summary of choices here? site, filters, etc.
@@ -61,7 +83,7 @@ Ext.define('DFST.view.Viewport', {
                 hidden: true
             }, {
                 region: 'south',
-                html: '<footer>Daily Fantasy Stats Tool, Version ' + DFST.AppSettings.version + ', Copyright 2012-2014 Development Partners Software Corp. Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a><span class="sport-link"><a href="index.html?sport=mlb">MLB</a></span><span class="sport-link"><!--<a href="index.html?sport=nfl">NFL</a>-->NFL</span><span class="sport-link"><a href="index.html?sport=nba">NBA</a></span><span class="sport-link"><a href="index.html?sport=nhl">NHL</a></span></footer>'
+                html: footerHtml
             }]}
 		);
 

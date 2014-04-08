@@ -6,6 +6,7 @@ Ext.define('DFST.model.RosterPosition', {
     fields: [ 
         { name: 'id', type: 'int', defaultValue: 0 },
         { name: 'name', type: 'string', defaultValue: '' },
-        { name: 'count', type: 'int', defaultValue: 1 }
+        { name: 'count', type: 'int', defaultValue: 1 },
+        { name: 'sort', type: 'int', defaultValue: 0 }
     ]
 });

@@ -78,7 +78,8 @@ Ext.define('DFST.controller.Rosters', {
     },
     
     changeDate: function(newDate) {
-        this._date = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
+        this._date = new Date(newDate.getFullYear(), newDate.getMonth(), 
+            newDate.getDate());
         this.changeRosterDefinition();
     },
 
@@ -88,7 +89,8 @@ Ext.define('DFST.controller.Rosters', {
     },
     
     changeRosterDefinition: function() {
-        var siteRec = this.getSiteDetailsStore().findRecord('dfsGameId', this._dfsGameId);
+        var siteRec = this.getSiteDetailsStore().findRecord('dfsGameId', 
+            this._dfsGameId);
         var date = this._date;
         if (date === null || siteRec === null) return;
         
@@ -217,7 +219,11 @@ Ext.define('DFST.controller.Rosters', {
             nrecs = store.count(),
             i, rec;
 
-        // first check if the player is already in the roster; if so, return
+        // no salary?, return
+        if (playerRec.get('sal') === 0) {
+            return;
+        }
+        // if the player is already in the roster; if so, return
         var pid = playerRec.get('id');
         if (store.findRecord('pid', pid)) { 
             return;
@@ -272,12 +278,14 @@ Ext.define('DFST.controller.Rosters', {
             nrecs = store.count(),
             i, rec;
         
-        // first check if the player is already in the roster
+        // check if the player is already in the roster
         // if so, select only that spot
         var pid = playerRec.get('id');
         var existingRec = store.findRecord('pid', pid);
         if (existingRec) { 
             possibleSlots.push(existingRec);
+        } else if (playerRec.get('sal') === 0) { // no salary
+            // do nothing
         } else {
             for (i=0; i<nrecs; i++) {
                 rec = store.getAt(i);

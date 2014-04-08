@@ -2,7 +2,7 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
     
-    sport: 'nba',   // app supports one at a time: mlb, nba, nfl, nhl
+    sport: 'mlb',   // app supports one at a time: mlb, nba, nfl, nhl
     siteId: 1,      // default to DK
     mlb: {
         gameCnt: 162
@@ -16,5 +16,5 @@ Ext.define('DFST.AppSettings', {
     nhl: {
         gameCnt: 82
     },
-    version: '2.2.0'
+    version: '2.3.1'
 });  

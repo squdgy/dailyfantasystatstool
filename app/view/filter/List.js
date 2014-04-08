@@ -28,43 +28,52 @@ Ext.define('DFST.view.filter.List', {
                 animCollapse: true,
                 layout: 'vbox',
                 title: 'Roster Position Filters',
-                items: [
-                {
-                    xtype: 'checkbox',
-                    boxLabel: DFST.AppSettings.sport === 'mlb' ? 'Exclude Pitchers Not Expected To Start' : 'Include only Confirmed &amp; Probable Goalies',
-                    id: 'probables',
-                    name: 'probables',
-                    hidden: DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl',
-                    checked: true
-                },{
-                    xtype: 'splitbutton',
-                    text: 'Position Subset',
-                    hidden: DFST.AppSettings.sport !== 'mlb',                    
-                    menu: {
-                        xtype: 'menu',
-                        items: [
-                            {text: 'all'},
-                            {text: 'none'},
-                            {text: 'pitchers'},
-                            {text: 'outfielders'},
-                            {text: 'infielders'}
-                        ]
+                items: [{
+                    xtype: 'panel',
+                    border: false,
+                    layout : {
+                        type : 'hbox',
+                        pack : 'end'
+                    },
+                    width: '100%',
+                    items: [{
+                        xtype: 'checkbox',
+                        boxLabel: DFST.AppSettings.sport === 'mlb' ? 'Starting Pitchers Only' : 'Include only Confirmed &amp; Probable Goalies',
+                        id: 'probables',
+                        name: 'probables',
+                        hidden: DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl',
+                        checked: true
+                    },{
+                        xtype: 'splitbutton',
+                        text: 'Position Subset',
+                        hidden: DFST.AppSettings.sport !== 'mlb',                    
+                        menu: {
+                            xtype: 'menu',
+                            items: [
+                                {text: 'all'},
+                                {text: 'none'},
+                                {text: 'pitchers'},
+                                {text: 'outfielders'},
+                                {text: 'infielders'}
+                            ]
+                        }
                     }
-                },
+                ]},
                 {
                     xtype: 'fieldcontainer',
                     id: 'positions',
                     fieldLabel: 'Include:',
+                    labelWidth: 60,
                     defaultType: 'checkboxfield',
-                    width: '100%',
                     layout: {
                         type: 'table',
-                        columns: 6
+                        columns: 7
                     }
                 }]
             },
             {
                 xtype: 'panel',
+                border: false,
                 hidden: DFST.AppSettings.sport !== 'mlb',                    
                 collapsible: true,
                 animCollapse: true,

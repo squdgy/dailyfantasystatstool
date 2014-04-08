@@ -11,8 +11,10 @@ table {
     margin-left: 3px;
 }
 
+#probables { left: 0 !important; }
 #filterlist label {
     margin-left: 5px;
+    margin-right: 6px;
 }
 
 #filterlist .x-panel-body .x-panel-body {
@@ -52,7 +54,8 @@ margin-right: 8px;
 vertical-align: top;
 }
 
-.sport-link { margin-left: 20px;}
+.sport-link { margin-left: 20px; font-weight:bold;}
+.off-season { color: gray; font-weight:normal;}
 
 /* used on bet display */
 dl {

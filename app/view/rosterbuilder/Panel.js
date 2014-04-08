@@ -63,9 +63,11 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                         enableDrag: false,
                         dropGroup: 'ddplayer',
                         onNodeOver: function(target, dd, e, data ) {
-                            var rpel = data.records[0].get('rpel');
+                            var prec = data.records[0];
+                            var rpel = prec.get('rpel');
+                            var sal = prec.get('sal');
                             var droprpid = this.view.getRecord(target).get('rpid');
-                            if (Ext.Array.contains(rpel, droprpid)) {
+                            if (Ext.Array.contains(rpel, droprpid) && sal > 0) {
                                 return Ext.dd.DropZone.prototype.dropAllowed;
                             }
                             return Ext.dd.DropZone.prototype.dropNotAllowed;
@@ -74,6 +76,9 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                             var dragrec = data.records[0];
                             var store = this.view.store;
                             var playerId = dragrec.get('id');
+                            var sal = dragrec.get('sal');
+                            
+                            if (sal === 0) { return false; } // no salary
                             
                             // make sure player not already in roster
                             var existingRec = store.findRecord('pid', playerId);

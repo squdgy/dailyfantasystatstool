@@ -11,6 +11,16 @@ fix all mlb nicknames so far
 comment out hidden columns for mlb, ex. hr until they can be added back server-side
 double check scoring/stats at ff/dd/dk - done
 add ff game definition for mlb
+--- Release 2.3.0 (start of mlb, with dd, dk, fd, ff) ---
+force loaded nba prices because there are no Monday games
+fix sport footer (gray nfl, unselect current sport)
+if player has no salary, don't allow in lineup
+in lineup builder, change sort to be by dfsroster.sort, not by rosterpositionid
+check position subset dropdown: it's ok
+change default sport to baseball
+fix spacing of positions
+remove N/A for pitcher batting order
 
+--- Release 2.3.1 ---
 
 

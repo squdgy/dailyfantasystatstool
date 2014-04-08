@@ -43,16 +43,17 @@ Ext.define('DFST.view.statset.Grid', {
             dragGroup: 'ddplayer',
             enableDrop: false,
             dragTextRenderer : function(record) {
-                return 'Drag ' + record.get('fname') + ' ' + record.get('lname') + ' to the lineup builder';
+                return 'Drag ' + record.get('fname') + ' ' + 
+                    record.get('lname') + ' to the lineup builder';
             },
             doStartDrag: function(dragrec) {
                 var playerId = dragrec.get('id');
                 var rgrid = Ext.getCmp('rostergrid');
                 var store = rgrid.store;
                           
-                // make sure player not already in roster
+                // make sure player not already in roster & ahas salary
                 var existingRec = store.findRecord('pid', playerId);
-                if (existingRec) { 
+                if (existingRec && existingRec.get('sal') > 0) { 
                     return false; 
                 }
                 
@@ -648,7 +649,7 @@ Ext.define('DFST.view.statset.Grid', {
         if (value === 0) {
             return "";
         } else if (value === 10) { //pitcher
-            return "N/A";
+            return "";
         } else {
             return value;
         }
