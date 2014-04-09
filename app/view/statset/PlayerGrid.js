@@ -42,7 +42,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
         if (sport === 'mlb') colmap = this.mlbPosStatMap[position];
-        if (colmap === null) return;
+        if (colmap === undefined) return;
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
         var statMap = this.statMap[sport];
@@ -207,6 +207,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             'LF' : mlbHitterMap,
             'CF' : mlbHitterMap,
             'RF' : mlbHitterMap,
+            'DH' : mlbHitterMap,
             'C' : mlbHitterMap,
             'P' : ['si17', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si26'],
         },
