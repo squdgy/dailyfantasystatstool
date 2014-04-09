@@ -64,17 +64,6 @@ Ext.define('DFST.controller.Rosters', {
             }
         }
         if (didRemove) { store.sync(); }
-        this.changeRosterDefinition();
-        
-        /* no clue why this doesn't work, seems like it should:
-        var records = store.queryBy(function(rec, id){
-            return rec.get('dt').getTime() < delTime;
-        });
-        if (records.length > 0) {
-            store.remove(records);
-            store.sync();
-        }
-        */
     },
     
     changeDate: function(newDate) {
