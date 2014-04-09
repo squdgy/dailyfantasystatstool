@@ -23,4 +23,5 @@ remove N/A for pitcher batting order
 
 --- Release 2.3.1 ---
 
-
+Think I fixed local storage save/restore of lineup
+fix yahoo matchup ratings to be by game

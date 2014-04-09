@@ -42,6 +42,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
         if (sport === 'mlb') colmap = this.mlbPosStatMap[position];
+        if (colmap === null) return;
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
         var statMap = this.statMap[sport];
