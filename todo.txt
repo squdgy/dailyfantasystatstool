@@ -1,18 +1,16 @@
 NEXT:
 ========
 
-show current site somewhere when site panel hidden
-check fix for local storage save/restore of lineup
-fix weather display
+fix for local storage save/restore of lineup
 set teamid in dfsgameplayerstats for MLB - in sproc ConvertMlbStats: should be the team they played for in that game (not current team)
 keep an eye on nickname mappings;
+l/r/s filter
 
 draftstreet?!
 
 MLB:
 ==========
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
-l/r/s filter
 fix hidden columns for mlb, ex. hr, 1b etc.
 generate projections!
 also for doubleheaders: the gameid for odds changes for a double header so for odds/dbl header, get gameid mapping to work

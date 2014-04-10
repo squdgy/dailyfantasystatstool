@@ -113,9 +113,6 @@ Ext.define('DFST.controller.Stats', {
                     var hourView = hourViews[i];
                     if (hourView) {
                         hourView.update(weather[i]);
-                        var hour = new Date(weather[i].ti);
-                        hour = Ext.Date.add(hour, Ext.Date.MINUTE, hour.getTimezoneOffset());
-                        hourView.setTitle(Ext.Date.format(hour, 'g:i a'));
                     }
                 }
                 

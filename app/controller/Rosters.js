@@ -100,6 +100,8 @@ Ext.define('DFST.controller.Rosters', {
         // if store is empty, nothing was in cache
         var numSlots = 0;
         if (rStore.count() === 0) {
+            console.log('rstore.count is 0');
+            console.log ('npos = ' + npos);
             for (var i=0; i<npos; i++) {
                 var pos = positions[i];
                 // fill rosterStore with empty spots

@@ -6,13 +6,12 @@ Ext.define('DFST.view.site.Picker', {
 	cls: 'sitepicker',
 	id: 'sitepicker',
 	border: false,
-    title: 'Pick a Site',
     collapsible: true,
 	animCollapse: true,
 	
     stateful: true,
     stateId: 'sitepicker',
-
+    
 	initComponent: function() {
         var nflweeks = Ext.create('Ext.data.Store', {
             fields: ['week', 'name', 'startdate', 'enddate'],
@@ -79,10 +78,14 @@ Ext.define('DFST.view.site.Picker', {
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
         });
-        if (selectedSiteItem !== null)
+        var title = 'Select a Site';
+        if (selectedSiteItem !== null) {
             selectedSiteItem.checked = true;
+            title += '- ' + selectedSiteItem.boxLabel;
+        }
 
 		Ext.apply(this, {
+            title: title,
 			items: [{
                 xtype: 'radiogroup',
                 layout: {

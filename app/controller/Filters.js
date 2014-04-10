@@ -26,7 +26,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'gamedetails', selector: 'gamedetails'},
         {ref: 'export', selector: 'export'},
         {ref: 'rosterbuilder', selector: 'rosterbuilder'},
-        {ref: 'viewport', selector: 'viewport'}
+        {ref: 'viewport', selector: 'viewport'},
+        {ref: 'sitePanel', selector: 'sitepicker'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -437,6 +438,8 @@ Ext.define('DFST.controller.Filters', {
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
                 ]);
             siteDetailsStore.load();
+            
+            this.getSitePanel().setTitle('Pick a Site - ' + radiobutton.boxLabel);
         }
     },
 

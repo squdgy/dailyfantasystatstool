@@ -8,18 +8,23 @@ Ext.define('DFST.view.weather.Hour', {
 
 	autoScroll: true,
 	border: false,
-    title: '',
 
 	initComponent: function() {
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(
-                '<div class="post-data">',
-                '<h3>{su}</h3>',
+                '<div class="weather-hour">',
+                '<hr/>',
+                '<h4>{ti:this.formatTime}</h4>',
+                '<h4>{su}</h4>',
                 '<div>{pp:this.formatPercent}% chance of rain</div>',
                 '<div>wind speed: {ws:this.formatSpeed} mph</div>',
                 '</div>',
-                '<div></div>',
                 {
+                    formatTime: function(value) {
+                        var hour = new Date(value);
+                        hour = Ext.Date.add(hour, Ext.Date.MINUTE, hour.getTimezoneOffset());
+                        return Ext.Date.format(hour, 'g:i a');
+                    },
                     formatPercent: function(floatValue) {
                         return (Number(floatValue*100)).toFixed(0);
                     },

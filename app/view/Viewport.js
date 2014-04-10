@@ -79,6 +79,7 @@ Ext.define('DFST.view.Viewport', {
                 xtype: 'rosterbuilder'
             }, {
                 region: 'east',
+                width: 200,
                 xtype: 'gamedetails',
                 hidden: true
             }, {

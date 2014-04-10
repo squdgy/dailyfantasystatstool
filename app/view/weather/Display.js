@@ -13,7 +13,7 @@ Ext.define('DFST.view.weather.Display', {
     title: 'Game Details',
     collapsible: true,
 	animCollapse: true,    
-    margins: '5 0 5 5',
+    margins: '0 0 0 0',
     
     stateful: true,
     stateId: 'gamedetails',
@@ -30,7 +30,7 @@ Ext.define('DFST.view.weather.Display', {
                     align: 'stretch'
                 },
                 defaults:{
-                    margins:'0 0 5 0',
+                    margins:'5 0 5 0',
                     flex: 1
                 },
                 items: [{

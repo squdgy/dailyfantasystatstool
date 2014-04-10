@@ -8,8 +8,7 @@ Ext.define('DFST.view.bet.Display', {
     header:false,
     margins: '5 0 5 5',
     padding: 5,
-    width: 250,
-	
+
 	initComponent: function() {
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(
