@@ -10,9 +10,11 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
     collapsible: true,
     collapsed: true,
 	animCollapse: true,
-	
-    stateful: true,
-    stateId: 'rosterbuilder',
+	// state bug: when stateful a collapsed panel will result in the grid not
+	// being sized correctly. Need to fix that before re-enabling state here
+    //stateful: true,
+    //stateId: 'rosterbuilder',
+    layout: 'anchor',    
 
 	initComponent: function() {
         var me = this;

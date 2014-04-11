@@ -11,7 +11,9 @@ fix all mlb nicknames so far
 comment out hidden columns for mlb, ex. hr until they can be added back server-side
 double check scoring/stats at ff/dd/dk - done
 add ff game definition for mlb
+
 --- Release 2.3.0 (start of mlb, with dd, dk, fd, ff) ---
+
 force loaded nba prices because there are no Monday games
 fix sport footer (gray nfl, unselect current sport)
 if player has no salary, don't allow in lineup
@@ -29,3 +31,11 @@ fix FD NHL salary cap value which was wrong (55,000 is right)
 show current site somewhere when site panel hidden - shown in title of site picker
 some clean up of weather display
 move back to minified ext js file
+
+--- Release 2.3.2 ---
+
+fix for local storage save/restore of lineup - needed to disable state save/restore on rosterbuilder panel
+l/r/s batting filter
+set teamid in dfsgameplayerstats for MLB - in sproc ConvertMlbStats: should be the team they played for in that game (not current team) : done
+
+

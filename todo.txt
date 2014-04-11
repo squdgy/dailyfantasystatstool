@@ -1,10 +1,9 @@
 NEXT:
 ========
 
-fix for local storage save/restore of lineup
-set teamid in dfsgameplayerstats for MLB - in sproc ConvertMlbStats: should be the team they played for in that game (not current team)
+fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
+- "perfect game" stat and calculation for use in draftday scoring
 keep an eye on nickname mappings;
-l/r/s filter
 
 draftstreet?!
 
@@ -21,8 +20,6 @@ also for doubleheaders: the gameid for odds changes for a double header so for o
 - problem with game ids of double headers in stats?
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - area for game info:
-- fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
-- "perfect game" stat and calculation for use in draftday scoring
 
 SITE WORK:
 ==========

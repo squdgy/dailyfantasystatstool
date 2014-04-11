@@ -242,6 +242,37 @@ Ext.define('DFST.view.filter.List', {
                     maxValue: 30,
                     hidden: DFST.AppSettings.sport !== 'nba'
                 }, {
+                    xtype: 'fieldcontainer',
+                    id: 'bats',
+                    fieldLabel: 'Bats',
+                    hidden: DFST.AppSettings.sport !== 'mlb',
+                    labelWidth: 60,
+                    defaultType: 'checkboxfield',
+                    layout: {
+                        type: 'table',
+                        columns: 3
+                    },
+                    items: [
+                    {
+                        boxLabel  : 'Left',
+                        name      : 'bats',
+                        inputValue: '1',
+                        checked   : true,
+                        id        : 'batsLeft'
+                    }, {
+                        boxLabel  : 'Right',
+                        name      : 'bats',
+                        inputValue: '2',
+                        checked   : true,
+                        id        : 'batsRight'
+                    }, {
+                        boxLabel  : 'Switch',
+                        name      : 'bats',
+                        inputValue: '3',
+                        checked   : true,
+                        id        : 'batsSwitch'
+                    }]
+                }, {
                     xtype: 'checkbox',
                     id: 'injured',
                     boxLabel: 'Hide Injured Players',

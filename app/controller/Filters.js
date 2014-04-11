@@ -12,6 +12,7 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'probablesFilter', selector: 'filterlist checkbox#probables'},
         {ref: 'injuredFilter', selector: 'filterlist checkbox#injured'},
         {ref: 'positionFilters', selector: 'filterlist fieldcontainer#positions'},
+        {ref: 'batsFilters', selector: 'filterlist fieldcontainer#bats'},
         {ref: 'salRangeFilter', selector: 'filterlist multislider#salRange'},
         {ref: 'cppRangeFilter', selector: 'filterlist multislider#cppRange'},
         {ref: 'cpp5RangeFilter', selector: 'filterlist multislider#cpp5Range'},
@@ -64,6 +65,9 @@ Ext.define('DFST.controller.Filters', {
             },
             'filterlist fieldcontainer#positions checkbox':{
                 change: this.changePositions
+            },
+            'filterlist fieldcontainer#bats checkbox':{
+                change: this.changeBats
             },
             'filterlist splitbutton menu':{
                 click: this.changePositionGroups
@@ -333,9 +337,13 @@ Ext.define('DFST.controller.Filters', {
     },
     
     getPositionsFilterValue: function() {
+        return this.getCheckboxFilterValues('positions');
+    },
+
+    getCheckboxFilterValues: function(checkboxFieldId) {
         /* Return the value that will be sent to the server as the position
         filter value, filter id = posId*/
-        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
+        var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#' + checkboxFieldId + ' checkbox');
         var value = '';
         for (var i=0; i<positionCheckboxes.length; i++) {
             var checkbox2 = positionCheckboxes[i];
@@ -348,7 +356,7 @@ Ext.define('DFST.controller.Filters', {
             }
         }
         return value;
-    },
+    },  
     
     changePositions: function(checkbox, newValue, oldValue, options) {
         /*
@@ -361,7 +369,13 @@ Ext.define('DFST.controller.Filters', {
             .filter([{id:'posId', property: 'posId', 
             value: this.getPositionsFilterValue()}]);
     },
-    
+
+    changeBats: function(checkbox, newValue, oldValue, options) {
+        var filterValue = this.getCheckboxFilterValues('bats');
+        this.getStatsStore()
+            .filter([{id:'bats',property:'bats',value:filterValue}]);
+    },
+
     changePositionGroups: function(menu, menuItem, e, options) {
         var positionCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#positions checkbox');
         var len = positionCheckboxes.length;
