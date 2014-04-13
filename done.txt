@@ -38,4 +38,9 @@ fix for local storage save/restore of lineup - needed to disable state save/rest
 l/r/s batting filter
 set teamid in dfsgameplayerstats for MLB - in sproc ConvertMlbStats: should be the team they played for in that game (not current team) : done
 
+--- Release 2.3.3 ---
+
+add google analytics code to site
+delete perl nickname mappings - once we have an id for a player we should be good
+
 

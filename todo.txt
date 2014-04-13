@@ -1,7 +1,9 @@
 NEXT:
 ========
 
-fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL. This is not the query, but it's a start
+check google analytics
+adding starting pitcher to game data
+fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL
 - "perfect game" stat and calculation for use in draftday scoring
 keep an eye on nickname mappings;
 
