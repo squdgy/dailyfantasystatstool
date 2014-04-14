@@ -1,13 +1,23 @@
 NEXT:
 ========
 
-check google analytics
-adding starting pitcher to game data
-fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL
-- "perfect game" stat and calculation for use in draftday scoring
-keep an eye on nickname mappings;
+double headers: work on strategy to deal with these
+added logging to check for extend of this problem:
+ fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
 
-draftstreet?!
+double headers to do:
+- find all data that is not by game id, figure out how to make it by game id if possible
+-- schedule
+-- lineups
+-- odds
+-- prices
+-- starting pitchers???
+- add a double header flag to the schedule table
+
+Monitor:
+========
+check google analytics
+keep an eye on nickname mappings
 
 MLB:
 ==========
@@ -38,6 +48,8 @@ NHL:
 ==========
 game details - stadiums
 add starting goalie to game view
+in upper grid stats, show minutes per game/pp minutes per game
+add lines, powerplay units
 
 NFL:
 ==========
@@ -67,8 +79,6 @@ Misc.
 ==========
 siteDetails store should only need to filter by gameId & not site id  
 - Hadoop?
-fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
-whenupdated table: increase tableName column/change column name : minor re-architect!
 more code cleanup - Fix SportPlayer return in WEBAPI use a datacontract resolver; don't assume NBA; fix generics 
 some view models still in the data layer, move to view layer
 theme
@@ -152,10 +162,8 @@ change data sources (not dk)
 add backup to lineups script to look for other games from another site?
 Clean up logging - don't exit on errors, just log and continue, use a logging api?
 change load_teamrosters to ignore players that are already ok?
-fantasyfeud might be easy to load data for: http://www.fantasyfeud.com/#draftkit.salaries
 add flag to all scripts to prepare it for a reload of data, ex. when importing fanduel scores delete the pricing data
-for fanduel for the current day from both the fanduel table and the dfspricing table.
-whenupdated table: add column for sport
+  for fanduel for the current day from both the fanduel table and the dfspricing table.
 
 Perl/Azure (rdp password is P3rlUser):
 ============

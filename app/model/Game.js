@@ -8,16 +8,18 @@ Ext.define('DFST.model.Game', {
         'DFST.model.Bet'
     ],
     
-    fields: [ // default values assume from fanduel
+    fields: [
         { name: 'gid', type: 'string', defaultValue: '' },
         { name: 'gtime', type: 'string', defaultValue: '' },
         { name: 'home', type: 'string', defaultValue: '' },
         { name: 'away', type: 'string', defaultValue: '' },
         { name: 'hpid', type: 'int', defaultValue: 0 },
         { name: 'hpname', type: 'string', defaultValue: '' },
+        { name: 'hpthrows', type: 'int', defaultValue: 0 },
         { name: 'hlin', type: 'bool', defaultValue: false },
         { name: 'apid', type: 'int', defaultValue: 0 },
         { name: 'apname', type: 'string', defaultValue: '' },
+        { name: 'apthrows', type: 'int', defaultValue: 0 },
         { name: 'alin', type: 'bool', defaultValue: false }
     ],
     idProperty: 'gid',

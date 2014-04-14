@@ -1,4 +1,4 @@
-/*global Ext: false */
+/*global Ext: false, DFST: false */
 Ext.define('DFST.view.bet.Display', {
 	extend: 'Ext.panel.Panel',
     alias: 'widget.betdisplay',
@@ -10,10 +10,12 @@ Ext.define('DFST.view.bet.Display', {
     padding: 5,
 
 	initComponent: function() {
+        var ptsLabel = 'Points';
+        if (DFST.AppSettings.sport === 'mlb') ptsLabel = 'Runs';
 		Ext.apply(this, {
             tpl: new Ext.XTemplate(
                 '<dl>',
-                '<dt>Projected Points</dt><dd>{pts}</dd>',
+                '<dt>Projected ' + ptsLabel + '</dt><dd>{pts}</dd>',
                 '<dt>Favorite</dt>',
                 '<tpl if="sh &lt; 0">',
                     '<dd>{home}</dd>',

@@ -81,7 +81,7 @@ Ext.define('DFST.view.site.Picker', {
         var title = 'Select a Site';
         if (selectedSiteItem !== null) {
             selectedSiteItem.checked = true;
-            title += '- ' + selectedSiteItem.boxLabel;
+            title += ' - ' + selectedSiteItem.boxLabel;
         }
 
 		Ext.apply(this, {

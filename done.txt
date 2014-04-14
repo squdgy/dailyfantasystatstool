@@ -23,6 +23,7 @@ change default sport to baseball
 fix spacing of positions
 remove N/A for pitcher batting order
 
+
 --- Release 2.3.1 ---
 
 fix yahoo matchup ratings to be by game
@@ -41,6 +42,12 @@ set teamid in dfsgameplayerstats for MLB - in sproc ConvertMlbStats: should be t
 --- Release 2.3.3 ---
 
 add google analytics code to site
-delete perl nickname mappings - once we have an id for a player we should be good
+delete perl nickname mappings - once we have an id for a player we should be good and not need these anymore
+change text of projected points to projected runs for baseball
+add pitcher name and handedness to game detail data
+fix active flag on player - when they are in a starting lineup, probably means they just came off of the DL : done at end of starting lineup import
+added "perfect game" stat and calculation for use in ff scoring
+added indexes to improve performance of calculatefantasypoints, was 2:05, now 1:25-139
+more performance improvements to calculatefantasypoints, don't recompute baseball stats older than yesterday, now 1:05 - 1:25.
 
 
