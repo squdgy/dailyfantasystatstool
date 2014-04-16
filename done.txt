@@ -50,4 +50,8 @@ added "perfect game" stat and calculation for use in ff scoring
 added indexes to improve performance of calculatefantasypoints, was 2:05, now 1:25-139
 more performance improvements to calculatefantasypoints, don't recompute baseball stats older than yesterday, now 1:05 - 1:25.
 
+--- Release 2.3.4 ---
 
+draftstreet nhl - game definition, mappings etc. for playoffs
+
+--- Release 2.3.5 ---

@@ -1,18 +1,29 @@
 NEXT:
 ========
+quick pass at nhl draftstreet for tourney
 
-double headers: work on strategy to deal with these
-added logging to check for extend of this problem:
- fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
-
-double headers to do:
-- find all data that is not by game id, figure out how to make it by game id if possible
--- schedule
--- lineups
--- odds
--- prices
--- starting pitchers???
-- add a double header flag to the schedule table
+double headers: work on strategy to deal with these:
+2014/04/02/clemlb-oakmlb-1
+2014/04/02/clemlb-oakmlb-2
+- Need to start storing mlb game ids in idmapping table - load_schedule
+- Need to retrieve gameId from idmapping table. This will make sure that games always have the same id throughout the season and that not all
+stats need to be recalculated every day - load_schedule
+- Rainouts rescheduled for later will get a new id, just be much later than other ids
+- Need to clear out all data from mlb and re-import for the season, to get new game ids
+- add a double header flag to the schedule table?
+- make sure to calculate all stats for entire season
+- check all scripts
+    "update_db.pl",                     //mlb box scores
+    "load_schedule.pl",                 //mlb schedule
+    "load_yahoo_player_matchups.pl",    //mlb matchups
+    "load_teamrosters.pl",              //mlb roster
+    "load_draftkings_prices.pl",
+    "load_fanduel_prices.pl",
+    "load_fantasyfeud_prices.pl",
+    "load_draftday_prices.pl"
+    bettingJob - the gameid for odds changes for a double header so for odds/dbl header, get gameid mapping to work
+    lineupsJob
+- convertmlb stats to get id?   
 
 Monitor:
 ========
@@ -24,12 +35,10 @@ MLB:
 lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 fix hidden columns for mlb, ex. hr, 1b etc.
 generate projections!
-also for doubleheaders: the gameid for odds changes for a double header so for odds/dbl header, get gameid mapping to work
 - every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
 - add pitchers info to game view
 - need venue information: city, roofType, direction, then add wind direction
 - show venue and show better indication of wind speed etc.
-- problem with game ids of double headers in stats?
 - aggregate stats for top grid: games played, avg mins over last n, avg pts over last n
 - area for game info:
 
@@ -53,6 +62,8 @@ add lines, powerplay units
 
 NFL:
 ==========
+draftstreet abbreviations are not unique across sports, so need to change teamid from abbreviation to something else like for fantasyfeud
+& then fix team mappings in idmapping table
 how to set DFST.AppSettings.date
 add to dfsrosterpositionmap for all sites
 game details - stadiums
@@ -167,6 +178,7 @@ add flag to all scripts to prepare it for a reload of data, ex. when importing f
 
 Perl/Azure (rdp password is P3rlUser):
 ============
+fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
 - should change to worker role?
 - new trace provider or new web.config version, so don't have to comment out azure diagnostics trace provider when running locally?
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
