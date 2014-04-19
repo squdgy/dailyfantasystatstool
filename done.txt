@@ -55,3 +55,15 @@ more performance improvements to calculatefantasypoints, don't recompute basebal
 draftstreet nhl - game definition, mappings etc. for playoffs
 
 --- Release 2.3.5 ---
+
+fix delete problem in azure: loops through every file even though it was not just copied, to find a source file to delete (after copy), take much longer than necessary
+deleted load_db and updated update_db to be able to load a full season and to delete game info before re-importing
+doubleheader rework:
+- changed load_schedule to: use merge into, not re-generate game ids from scratch, update idmapping table with mlb game ids
+- re-imported and recalculated all stats for entire season
+- added a double header order to the schedule table: 0 = not double header, 1 = game 1 of dh, 2 = game 2 of dh
+
+--- Release 2.3.6 ---
+
+
+

@@ -20,7 +20,8 @@ Ext.define('DFST.model.Game', {
         { name: 'apid', type: 'int', defaultValue: 0 },
         { name: 'apname', type: 'string', defaultValue: '' },
         { name: 'apthrows', type: 'int', defaultValue: 0 },
-        { name: 'alin', type: 'bool', defaultValue: false }
+        { name: 'alin', type: 'bool', defaultValue: false },
+        { name: 'dho', type: 'int', defaultValue: 0 }
     ],
     idProperty: 'gid',
     hasOne : [

@@ -73,7 +73,7 @@ Ext.define('DFST.view.site.Picker', {
                     { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
                 ];
         if (DFST.AppSettings.sport === 'nhl') {
-            siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
+            //siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
         }
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
