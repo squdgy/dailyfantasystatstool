@@ -203,16 +203,23 @@ Ext.define('DFST.controller.Filters', {
         this.gameDateIsChanging = oldValue !== undefined;
 
         var statsStore = this.getStatsStore();
+        var filters = [{id:'gameDate', property: 'gameDate', value: newValue.toJSON()}];
+        //TODO: This is here for nba/nhl playoffs, need to add end date ui element
+        if (DFST.AppSettings.sport !== 'mlb') {
+            var gameDateLast = new Date(newValue);
+            gameDateLast.setDate(newValue.getDate() + 1);
+            filters.push({id:'gameDateLast', property: 'gameDateLast', value: gameDateLast.toJSON()});
+        }
         if (this.gameDateIsChanging) {
             this.fireEvent('appDateChanged', newValue);
             
             statsStore.filters.removeAtKey('gameId'); // clear all game filters
             statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
             var gamesStore = this.getGamesStore();
-            gamesStore.filter([{id:'gameDate', property: 'gameDate', value: newValue.toJSON()},
-                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+            filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
+            gamesStore.filter(filters);
         } else {
-            statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+            statsStore.filter(filters);
         }
     },
 
@@ -703,8 +710,16 @@ Ext.define('DFST.controller.Filters', {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
         } else {
-            gamesStore.filter([{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
-                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}]);
+            var filters = [{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
+                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}];
+            //TODO: This is here for nba/nhl playoffs, need to add end date ui element
+            if (DFST.AppSettings.sport !== 'mlb') {
+                var gameDateLast = new Date(new Date());
+                gameDateLast.setDate(new Date().getDate() + 1);
+                filters.push({id:'gameDateLast', property: 'gameDateLast', value: gameDateLast.toJSON()});
+            }
+            
+            gamesStore.filter(filters);
         }
         this.fireEvent('appDateChanged', new Date());
         

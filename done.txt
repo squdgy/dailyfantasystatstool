@@ -62,8 +62,36 @@ doubleheader rework:
 - changed load_schedule to: use merge into, not re-generate game ids from scratch, update idmapping table with mlb game ids
 - re-imported and recalculated all stats for entire season
 - added a double header order to the schedule table: 0 = not double header, 1 = game 1 of dh, 2 = game 2 of dh
+- plumb doubleheadernumber through from db to front end
+added in-database nicknames for use within perl code
 
 --- Release 2.3.6 ---
 
+doubleheader rework:
+ - all mlb.com scrapes are fine: most don't need generated gameid
+ - odds scrape -get teamids for double headers, get most game ids for double headers
+ - yahoo matchups - not enough info to do anything about, game id is good enough
+more nicknames
+install and learn a bunch about orchard
+odds job stopped working so researched new ones, but then it started working again
+couple more nicknames - moving nicknames to db: when no mapping found, add records to nickname table
+fix dk scrapes - crawl lobby to get contest now - should change to use API eventually
+changed dd and fd to better deal with multi-day contests - still not ideal but good enough for the foreseeable future
+change roster scrapes to NOT delete and re-add.
+doubleheader rework:
+ - download htmlagilitypack to scrape mlb lineup
+ - need new, non-rw source for starting lineup, where able to distinguish double-headers - used one from mlb (not sure of speed)
+    http://mlb.mlb.com/mlb/lineups/index.jsp?game_id=2014_04_19_arimlb_lanmlb_1
+    http://m.espn.go.com/mlb/lineups?wjb
+ - 1 day and already abandoned mlb lineup (not fast enough), switched to starting lineups from mlblineups twitter feed 
+orchard work:
+- created derived theme in order to override stuff in the theme
+- figure out how to edit/publish: webmatrix will publish to azure, so ok
+- clean up attribution in theme, create attribution page
+lineup code cleanup - delete all traces of rw lineups and perl lineups
+lineup code cleanup - fix dates so it really compares current day's tweets
+lineup code cleanup - speed up, using bulk importer; remove htmlagilitypack
+lineup code cleanup - more special cases based on names
+temporarily changed nba and nhl to get 2 days of games/players in UI
 
-
+--- Release 2.3.7 ---

@@ -1,23 +1,21 @@
 NEXT:
 ========
 
-double headers: work on strategy to deal with these:
+double headers:
+- last of lineups code cleanup
 - batting order in ui?
-- lineups in?
-- check all scripts
-    "update_db.pl",                     //mlb box scores
-    "load_schedule.pl",                 //mlb schedule
-    "load_yahoo_player_matchups.pl",    //mlb matchups
-    "load_teamrosters.pl",              //mlb roster
-    "load_draftkings_prices.pl",
-    "load_fanduel_prices.pl",
-    "load_fantasyfeud_prices.pl",
-    "load_draftday_prices.pl"
-    bettingJob - the gameid for odds changes for a double header so for odds/dbl header, get gameid mapping to work
-    lineupsJob
+- lineups indicator in ui - gameservice needs to do it by gameid, not date?
+- lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 
-split up calculate fantasy points guts, so some of it can be called without the point conversion stuff
-get Bill to help with Azure websites monitoring
+orchard:
+- favico (without hacking theme)
+- github
+- home page text
+- set up email account for draftaid.com
+- figure out best way to show app as full screen
+- about page
+- first blog post
+- add domain name to site
 
 Monitor:
 ========
@@ -26,7 +24,6 @@ keep an eye on nickname mappings
 
 MLB:
 ==========
-lineups for doubleheaders? 5/28/2012 - need to change filter to search on double headers (server side change :-()
 fix hidden columns for mlb, ex. hr, 1b etc.
 generate projections!
 - every once in a while run this to update nicknames: select * from mlbplayer where playerId = 0 and activeSW = 'A';
@@ -46,12 +43,13 @@ NBA:
 game detail? - stadiums, etc.
 generate projections
 
-NHL:
+NHL - for 2015:
 ==========
 game details - stadiums
 add starting goalie to game view
 in upper grid stats, show minutes per game/pp minutes per game
 add lines, powerplay units
+use nhl official game reports from nhl.com
 
 NFL:
 ==========
@@ -144,6 +142,7 @@ Go through TODO comments in code
 
 Loader/Data - generic:
 ===========
+change dk to be an api call
 remove dependence on si data
 move to python? gasp!
 when local game id provided by site (fd/dd/dk) use an idmapping to get actual game id, could be important for double headers!!
@@ -167,7 +166,8 @@ add flag to all scripts to prepare it for a reload of data, ex. when importing f
   for fanduel for the current day from both the fanduel table and the dfspricing table.
 
 Perl/Azure (rdp password is P3rlUser):
-============
+============\
+get Bill to help with Azure websites monitoring
 - should change to worker role?
 - new trace provider or new web.config version, so don't have to comment out azure diagnostics trace provider when running locally?
 (Bill) Add blob lease checking - when running from >1 instance, ensure only one instance runs
@@ -178,6 +178,7 @@ Write file with db connection?
 calling cpan.bat - any options that will make this faster, like skipping tests?
 keep jobs (script lists and schedules) in a db table?
 fix bad references when updating edmx file - runningperlinazure project
+double header gamedates on odds scrape are not exact - not sure I care that much though?
 
 Maintenance:
 ===========
