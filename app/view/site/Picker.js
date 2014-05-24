@@ -69,11 +69,12 @@ Ext.define('DFST.view.site.Picker', {
         var siteItems = [
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
+                    //{ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'},
                     { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
                     { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
                 ];
-        if (DFST.AppSettings.sport === 'nhl') {
-            //siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
+        if (DFST.AppSettings.sport === 'mlb' || DFST.AppSettings.sport === 'nhl') {
+            siteItems.push({ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'});
         }
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
