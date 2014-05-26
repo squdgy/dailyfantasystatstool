@@ -1,9 +1,6 @@
 /*global Ext: false */
 /*
-
 Copyright (c) 2012-2014 Maura Wilder
-
-
 */
 Ext.define('DFST.model.PlayerStatSet', {
     extend: 'Ext.data.Model',
@@ -63,35 +60,7 @@ Ext.define('DFST.model.PlayerStatSet', {
         { name: 'si46', type: 'float', defaultValue: 0.0 },
         { name: 'si47', type: 'float', defaultValue: 0.0 },
         { name: 'si48', type: 'float', defaultValue: 0.0 },
-/*
-        //hitter stats
-        { name: 'ab', type: 'int', defaultValue: 0 },    //at bats
-        { name: 'h', type: 'int', defaultValue: 0 },    //hits
-        { name: 'x1b', type: 'int', defaultValue: 0 },    //singles
-        { name: 'x2b', type: 'int', defaultValue: 0 },    //doubles
-        { name: 'x3b', type: 'int', defaultValue: 0 },     //triples
-        { name: 'hr', type: 'int', defaultValue: 0 },    //home runs
-        { name: 'r', type: 'int', defaultValue: 0 },     //runs scored
-        { name: 'rbi', type: 'int', defaultValue: 0 },   //runs batted in
-        { name: 'bb', type: 'int', defaultValue: 0 },    //walks
-        { name: 'bso', type: 'int', defaultValue: 0 },    //strike out (H)
-        { name: 'hidp', type: 'int', defaultValue: 0 },    //ground into dp
-        { name: 'sb', type: 'int', defaultValue: 0 },    //stolen bases
-        { name: 'cs', type: 'int', defaultValue: 0 },    //caught stealing
-        { name: 'hbp', type: 'int', defaultValue: 0 },   //hit by pitch
-        { name: 'sac', type: 'int', defaultValue: 0 },    //sacrifices       
-        { name: 'o', type: 'int', defaultValue: 0 },   //(calculated as at bats - hits)
-        
-        //pitcher stats
-        { name: 'w', type: 'int', defaultValue: 0 },     //wins
-        { name: 'er', type: 'int', defaultValue: 0 },    //earned runs
-        { name: 'so', type: 'int', defaultValue: 0 },    //strike outs
-        { name: 'ip', type: 'float', defaultValue: 0.0 },     //innings pitched
-        { name: 'ha', type: 'int', defaultValue: 0 },     //hits against
-        { name: 'hb', type: 'int', defaultValue: 0 },     //hits batsman
-        { name: 'bba', type: 'int', defaultValue: 0 },     //walks allowed
-        { name: 'l', type: 'int', defaultValue: 0 },     //loss
-*/        
+
         //derived stats
         { name: 'fp', type: 'float', defaultValue: 0.0}  //fantasy points per game
     ]

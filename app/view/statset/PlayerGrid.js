@@ -108,7 +108,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si23: 'CG',
                 si24: 'CGSO',
                 si25: 'NH',
-                si26: 'L'
+                si26: 'L',
+                si27: 'S',
+                si28: 'BS'
             },
             'nba':{
                 si1: 'P',
@@ -209,7 +211,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             'RF' : mlbHitterMap,
             'DH' : mlbHitterMap,
             'C' : mlbHitterMap,
-            'P' : ['si17', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si26'],
+            'P' : ['si17', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si26', 'si27', 'si28'],
         },
         this.nbaPosStatMap = {
             PG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
