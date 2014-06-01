@@ -8,8 +8,11 @@ Ext.define('DFST.controller.Rosters', {
     
     refs: [
         {ref: 'siteInfo', selector: '#siteinfo'},
+        {ref: 'siteScreenShotArea', selector: '#ssarea'},
         {ref: 'siteGrid', selector: 'rosterbuilder grid'},
         {ref: 'screenShotButton', selector: 'rosterbuilder button#screenshot'},
+        {ref: 'deleteButtons', selector: 'rosterbuilder actioncolumn[id=delete]'},
+        {ref: 'watermark', selector: 'rosterbuilder #watermark'}
     ],
     
     /* internal variables */
@@ -135,9 +138,27 @@ Ext.define('DFST.controller.Rosters', {
     },
     
     screenShot: function() {
-        var rosterBuilder = this.getSiteGrid();
-        html2canvas(rosterBuilder.getEl().dom, {
+        var watermark = this.getWatermark();
+        var rgrid = Ext.getCmp('rostergrid');
+        var selModel = rgrid.view.selModel;
+        var selections = selModel.getSelection();
+        var deleteButtons = this.getDeleteButtons();
+        
+        var ssArea = this.getSiteScreenShotArea();
+        // clear some things for screenshot
+        rgrid.showCopyright = true;
+        deleteButtons.hide();
+        selModel.deselectAll();
+        watermark.show();
+
+        html2canvas(ssArea.getEl().dom, {
             onrendered: function(canvas) {
+                //restore stuff cleared for screenshot
+                rgrid.showCopyright = false;
+                watermark.hide();
+                selModel.select(selections, false, true);
+                deleteButtons.show();
+                
                 var dataURL = canvas.toDataURL();
                 
                 Ext.create('Ext.window.Window', {
@@ -224,7 +245,20 @@ Ext.define('DFST.controller.Rosters', {
                 }
                 if (Ext.Array.contains(playerRec.get('rpel'), rec.get('rpid'))) {
                     //found empty slot
-                    rec.set('name', playerRec.get('fname') + ' ' + playerRec.get('lname'));
+                    var pname = playerRec.get('fname') + ' ' + playerRec.get('lname');
+                    if (DFST.AppSettings.sport === 'mlb') {
+                        var prop = playerRec.get('spos') === 'P' ? 'throws' : 'bats';
+                        var propVal = playerRec.get(prop);
+                        var val = 'S';
+                        if (propVal === 1) {
+                            val = 'L';
+                        } else if (propVal === 2) {
+                            val = 'R';
+                        }
+                        pname += ' (' + val + ')';
+                    }
+                    rec.set('name', pname);
+                    rec.set('team', playerRec.get('team'));
                     rec.set('pid', pid);
                     rec.set('fppg', playerRec.get('afp'));
                     rec.set('salary', playerRec.get('sal'));
@@ -237,6 +271,7 @@ Ext.define('DFST.controller.Rosters', {
     
     removeFromRoster: function(store, rec){
         rec.set('name', null);
+        rec.set('team', null);
         rec.set('pid', null);
         rec.set('fppg', null);
         rec.set('salary', null);
@@ -249,6 +284,7 @@ Ext.define('DFST.controller.Rosters', {
         for (var i=0; i<nrecs; i++) {
             var rec = store.getAt(i);
             rec.set('name', null);
+            rec.set('team', null);
             rec.set('pid', null);
             rec.set('fppg', null);
             rec.set('salary', null);

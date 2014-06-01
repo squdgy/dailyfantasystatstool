@@ -11,6 +11,7 @@ Ext.define('DFST.model.RosterSlot', {
         { name: 'rpos', type: 'string', defaultValue: '' },
         { name: 'pid', type: 'int', defaultValue: 0 },
         { name: 'name', type: 'string', defaultValue: '' },
+        { name: 'team', type: 'string', defaultValue: '' },
         { name: 'fppg', type: 'decimal', defaultValue: 0.0 },
         { name: 'salary', type: 'int', defaultValue: 0 }
     ]
