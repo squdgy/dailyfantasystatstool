@@ -616,7 +616,7 @@ Ext.define('DFST.controller.Filters', {
                 gameTime = Ext.Date.format(gameTime, 'g:i ') +
                     Ext.Date.format(gameTime, 'D').substring(0, 2);
             } else {
-                gameTime = Ext.Date.format(gameTime, 'g:i a');
+                gameTime = Ext.Date.format(gameTime, 'g:i');
             }
             alin = game.get('alin') ? '*' : '';
             hlin = game.get('hlin') ? '*' : '';

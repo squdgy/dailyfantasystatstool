@@ -27,7 +27,7 @@ Ext.define('DFST.view.filter.List', {
                 collapsible: true,
                 animCollapse: true,
                 layout: 'vbox',
-                title: 'Roster Position Filters',
+                title: 'By Position(s)',
                 items: [{
                     xtype: 'panel',
                     border: false,
@@ -73,16 +73,34 @@ Ext.define('DFST.view.filter.List', {
             },
             {
                 xtype: 'panel',
+                collapsible: true,
+                animCollapse: true,
+                layout: 'fit',
+                title: 'By Game(s)',
+                items: [{
+                    xtype: 'fieldcontainer',
+                    id: 'games',
+/*                    fieldLabel: 'Games to Include', */
+                    defaultType: 'checkboxfield',
+                    layout: {
+                        type: 'table',
+                        columns: 2
+                    }
+                }]
+            },
+            {
+                xtype: 'panel',
                 border: false,
                 hidden: DFST.AppSettings.sport !== 'mlb',                    
                 collapsible: true,
                 animCollapse: true,
+                collapsed: true,
                 layout: 'vbox',
-                title: 'Starting Lineup Filters',
+                title: 'By Expected Starters',
                 items: [
                     {
                         width: '100%',
-                        html: 'Starting lineups are updated periodically.<br/>To see which teams\' lineups are in, look at the Games Filters.<br/>Teams with known lineups are marked with a *.'
+                        html: 'To see which teams\' lineups are in, look at the Games Filters.<br/>Teams with known lineups are marked with a *.'
                     },{
                         xtype: 'checkbox',
                         id: 'notinlineup',
@@ -119,25 +137,9 @@ Ext.define('DFST.view.filter.List', {
                 xtype: 'panel',
                 collapsible: true,
                 animCollapse: true,
-                layout: 'fit',
-                title: 'Game Filters',
-                items: [{
-                    xtype: 'fieldcontainer',
-                    id: 'games',
-/*                    fieldLabel: 'Games to Include', */
-                    defaultType: 'checkboxfield',
-                    layout: {
-                        type: 'table',
-                        columns: 2
-                    }
-                }]
-            },
-            {
-                xtype: 'panel',
-                collapsible: true,
-                animCollapse: true,
+                collapsed: true,
                 layout: 'vbox',
-                title: 'Value Filters',
+                title: 'By Value',
                 items: [{
                     fieldLabel: '$',
                     xtype: 'multislider',
@@ -209,6 +211,7 @@ Ext.define('DFST.view.filter.List', {
                 xtype: 'panel',
                 collapsible: true,
                 animCollapse: true,
+                collapsed: true,
                 layout: 'vbox',
                 title: 'Miscellaneous',
                 items: [{
