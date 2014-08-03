@@ -64,9 +64,18 @@ Ext.define('DFST.model.StatSet', {
         { name: 'cpprojp', type: 'float', defaultValue: 0.0 }, //cost per projected fantasy points
         { name: 'dep', type: 'int', defaultValue: 0 },  //depth chart value
         
+        // baseball specific
         { name: 'bats', type: 'int', defaultValue: 0},  //handedness
         { name: 'throws', type: 'int', defaultValue: 0}, //handedness
+        { name: 'opp_throws', type: 'int', defaultValue: 0}, //opponent pitcher handedness
         
+        // baseball season stats, vs. pitching hand of opposing team's pitcher
+        { name: 'ph_ba', type: 'float', defaultValue: 0.0},
+        { name: 'ph_obp', type: 'float', defaultValue: 0.0},
+        { name: 'ph_slg', type: 'float', defaultValue: 0.0},
+        { name: 'ph_ops', type: 'float', defaultValue: 0.0},
+        { name: 'ph_woba', type: 'float', defaultValue: 0.0},
+
         { name: 'rpel' } // array of roster position ids that player is eligible for
     ]
     

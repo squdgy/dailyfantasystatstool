@@ -91,6 +91,12 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 25,
                     renderer: this.formatHandedness
                 },{
+                    text: 'Vs',
+                    dataIndex: 'opp_throws',
+                    align: 'left',
+                    width: 25,
+                    renderer: this.formatHandedness
+                },{
                     text: 'Team',
                     dataIndex: 'team',
                     align: 'left',
@@ -116,7 +122,38 @@ Ext.define('DFST.view.statset.Grid', {
                     hidden: true
                 },{
                     text: 'G',
-                    dataIndex: 'ng'
+                    dataIndex: 'ng',
+                    tooltip: 'games played'
+                },{
+                    text: 'BA(Ph)',
+                    dataIndex: 'ph_ba',
+                    width: 50,
+                    tooltip: 'batting average vs opponent pitcher\'s handedness',
+                    renderer: this.formatVsPitcherHandedness
+                },{
+                    text: 'OBP(Ph)',
+                    dataIndex: 'ph_obp',
+                    width: 50,
+                    tooltip: 'on-base percentage vs opponent pitcher\'s handedness',
+                    renderer: this.formatVsPitcherHandedness
+                },{
+                    text: 'SLG(Ph)',
+                    dataIndex: 'ph_slg',
+                    width: 50,
+                    tooltip: 'slugging vs opponent pitcher\'s handedness',
+                    renderer: this.formatVsPitcherHandedness
+                },{
+                    text: 'OPS(Ph)',
+                    dataIndex: 'ph_ops',
+                    width: 50,
+                    tooltip: 'on-base plus slugging vs opponent pitcher\'s handedness',
+                    renderer: this.formatVsPitcherHandedness
+                },{
+                    text: 'wOBA(Ph)',
+                    dataIndex: 'ph_woba',
+                    width: 50,
+                    tooltip: 'weighted on-base average vs opponent pitcher\'s handedness',
+                    renderer: this.formatVsPitcherHandedness
                 },/*{
                     text: '1B',
                     dataIndex: 'x1b',
@@ -196,28 +233,31 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,
+                    tooltip: 'average fantasy points season-to-date',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
                     text: 'Avg FP-5',
                     dataIndex: 'afp5',
-                    width: 70,
-                    tooltip: 'average fantasy points over last 5 games',
+                    width: 60,
+                    tooltip: 'average fantasy points over player\'s last 5 games',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
                     text: '$',
                     dataIndex: 'sal',
-                    width: 75,
+                    width: 60,
+                    tooltip: 'current salary',
                     renderer: this.moneyRenderer
                 },{
                     text: '$/Pt',
                     dataIndex: 'cpp',
-                    width: 75,
+                    width: 60,
+                    tooltip: 'cost per point season-to-date',
                     renderer: this.costPerPointRenderer
                 },{
                     text: '$/FP-5',
                     dataIndex: 'cpp5',
-                    width: 75,
-                    tooltip: 'cost per point over last 5 games',
+                    width: 60,
+                    tooltip: 'cost per point over player\'s last 5 games',
                     renderer: this.costPerPointRenderer
                 }]
 			}
@@ -708,12 +748,20 @@ Ext.define('DFST.view.statset.Grid', {
      * @private
      */
     formatHandedness: function(value, p, record) {
-        if (value == 2) return 'R';
-        if (value == 1) return 'L';
-        if (value == 3) return 'S';
+        if (value === 2) return 'R';
+        if (value === 1) return 'L';
+        if (value === 3) return 'S';
         return 'UNK';
 	},
 
+    formatVsPitcherHandedness: function(value, p, record) {
+        var pitcherhand = record.data.opp_throws;
+        if (pitcherhand === 1 || pitcherhand === 2) {
+            return Ext.util.Format.number(value, '0.000');
+        }
+        return 'UNK';
+    },
+    
 	/**
      * Team renderer
      * @private
