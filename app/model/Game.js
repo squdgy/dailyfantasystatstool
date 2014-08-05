@@ -15,11 +15,11 @@ Ext.define('DFST.model.Game', {
         { name: 'away', type: 'string', defaultValue: '' },
         { name: 'hpid', type: 'int', defaultValue: 0 },
         { name: 'hpname', type: 'string', defaultValue: '' },
-        { name: 'hpthrows', type: 'int', defaultValue: 0 },
+        { name: 'hthrows', type: 'int', defaultValue: 0 },
         { name: 'hlin', type: 'bool', defaultValue: false },
         { name: 'apid', type: 'int', defaultValue: 0 },
         { name: 'apname', type: 'string', defaultValue: '' },
-        { name: 'apthrows', type: 'int', defaultValue: 0 },
+        { name: 'athrows', type: 'int', defaultValue: 0 },
         { name: 'alin', type: 'bool', defaultValue: false },
         { name: 'dho', type: 'int', defaultValue: 0 }
     ],

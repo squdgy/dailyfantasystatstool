@@ -8,7 +8,7 @@ Ext.define('DFST.controller.Stats', {
 
     views: ['statset.Grid', 'statset.PlayerGrid', 
     'drilldown.Details', 'drilldown.DetailInfo',
-    'weather.Display'],
+    'weather.Display', 'game.Info'],
 
     refs: [
         { ref: 'playerGrid', selector: 'statsetplayergrid' },
@@ -118,6 +118,25 @@ Ext.define('DFST.controller.Stats', {
                 
                 var homeTeam = game.get('home').toUpperCase();
                 var awayTeam = game.get('away').toUpperCase();
+                var venue = game.getAssociatedData().venue;
+                var venueName = (venue !== undefined) ? venue.nm : '';
+                
+                // game info
+                var gameInfo = Ext.ComponentQuery.query('gameinfo')[0];
+                if (gameInfo) {
+                    var gi = {
+                        home: homeTeam,
+                        homePitcher: game.get('hpname'),
+                        hpthrows: game.get('hthrows'),
+                        away: awayTeam,
+                        awayPitcher: game.get('apname'),
+                        apthrows: game.get('athrows'),
+                        venue: venueName
+                    };
+                    gameInfo.update(gi);
+                    gameInfo.show();
+                }
+
                 // betting display
                 var bettingDisplay = Ext.ComponentQuery.query('betdisplay')[0];
                 var betting = game.getAssociatedData().bet;
@@ -131,12 +150,11 @@ Ext.define('DFST.controller.Stats', {
                 }
                 
                 // set game details title
-                var venue = game.getAssociatedData().venue;
                 var gameTime = new Date(game.get('gtime'));
                 gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, gameTime.getTimezoneOffset());
                 var title = 'Game data for ' + awayTeam + ' @ ' + 
                     homeTeam + ' ' + Ext.Date.format(gameTime, 'm-d g:i a');
-                if (venue !== undefined) title += ' ' + venue.name;
+                if (venue !== undefined) title += ' ' + venue.nm;
                 gameView.setTitle(title);
                 
                 gameView.show();

@@ -34,6 +34,8 @@ Ext.define('DFST.view.weather.Display', {
                     flex: 1
                 },
                 items: [{
+                    xtype: 'gameinfo'
+                },{
                     xtype: 'weatherhour'
                 },{
                     xtype: 'weatherhour'
