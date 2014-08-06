@@ -120,6 +120,7 @@ Ext.define('DFST.controller.Stats', {
                 var awayTeam = game.get('away').toUpperCase();
                 var venue = game.getAssociatedData().venue;
                 var venueName = (venue !== undefined) ? venue.nm : '';
+                var parkfactor = (venue !== undefined) ? venue.pf : 0;
                 
                 // game info
                 var gameInfo = Ext.ComponentQuery.query('gameinfo')[0];
@@ -131,7 +132,8 @@ Ext.define('DFST.controller.Stats', {
                         away: awayTeam,
                         awayPitcher: game.get('apname'),
                         apthrows: game.get('athrows'),
-                        venue: venueName
+                        venue: venueName,
+                        parkfactor: parkfactor
                     };
                     gameInfo.update(gi);
                     gameInfo.show();

@@ -4,6 +4,7 @@ Ext.define('DFST.model.Venue', {
     extend: 'Ext.data.Model',
     
     fields: [ 
-        { name: 'nm', type: 'string', defaultValue: '' }
+        { name: 'nm', type: 'string', defaultValue: '' },
+        { name: 'pf', type: 'int', defaultValue: 0 },
     ]
 });
