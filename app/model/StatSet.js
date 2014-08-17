@@ -75,6 +75,7 @@ Ext.define('DFST.model.StatSet', {
         { name: 'ph_slg', type: 'float', defaultValue: 0.0},
         { name: 'ph_ops', type: 'float', defaultValue: 0.0},
         { name: 'ph_woba', type: 'float', defaultValue: 0.0},
+        { name: 'tla', type: 'boolean', defaultValue: false},  //team lineup ready?
 
         { name: 'rpel' } // array of roster position ids that player is eligible for
     ]

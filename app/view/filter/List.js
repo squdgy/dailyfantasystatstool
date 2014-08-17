@@ -104,7 +104,7 @@ Ext.define('DFST.view.filter.List', {
                     },{
                         xtype: 'checkbox',
                         id: 'notinlineup',
-                        boxLabel: 'Hide players not known to be playing',
+                        boxLabel: 'Hide players not in starting lineup',
                         checked: false
                     },
                     {
