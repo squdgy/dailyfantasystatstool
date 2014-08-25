@@ -3,9 +3,9 @@ var http = require('http'),
     nodeStatic = require('node-static');
 
 var staticFileServer = new(nodeStatic.Server)();
+var port = process.env.PORT || 1337;
 
-ht
-var listenPort = tp.createServer(function (req, res) {
+http.createServer(function (req, res) {
     console.log(url.parse(req.url));
     req.addListener('end', function () {
         //
@@ -13,4 +13,4 @@ var listenPort = tp.createServer(function (req, res) {
         //
         staticFileServer.serve(req, res);
     });
-}).listen(process.env.PORT);
+}).listen(port);
