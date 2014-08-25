@@ -4,7 +4,8 @@ var http = require('http'),
 
 var staticFileServer = new(nodeStatic.Server)();
 
-http.createServer(function (req, res) {
+ht
+var listenPort = tp.createServer(function (req, res) {
     console.log(url.parse(req.url));
     req.addListener('end', function () {
         //
