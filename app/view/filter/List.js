@@ -176,7 +176,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 30,
-                    hidden: DFST.AppSettings.sport !== 'nhl'
+                    hidden: DFST.AppSettings.sport === 'mlb'
                 },{
                     fieldLabel: '$/FP',
                     xtype: 'multislider',
@@ -204,7 +204,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1000,
                     minValue: 0,
                     maxValue: 75000,
-                    hidden: DFST.AppSettings.sport !== 'nhl'
+                    hidden: DFST.AppSettings.sport === 'mlb'
                 }]
             },
             {
@@ -234,6 +234,17 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 5,
                     hidden: DFST.AppSettings.sport !== 'mlb'
+                },
+                {   //nfl
+                    fieldLabel: 'Depth',
+                    xtype: 'multislider',
+                    id: 'depRange',
+                    width: 350,
+                    values: [0, 5],
+                    increment: 1,
+                    minValue: 0,
+                    maxValue: 5,
+                    hidden: DFST.AppSettings.sport !== 'nfl'
                 }, {
                     fieldLabel: 'ODR-5',
                     xtype: 'multislider',

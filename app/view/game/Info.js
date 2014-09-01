@@ -10,13 +10,14 @@ Ext.define('DFST.view.game.Info', {
     padding: 5,
 
 	initComponent: function() {
-		Ext.apply(this, {
-            tpl: new Ext.XTemplate(
+	    var template;
+	    if (DFST.AppSettings.sport === 'mlb') {
+	        template = new Ext.XTemplate(
                 '<div>',
                 '<h4>{awayPitcher} ({apthrows:this.formatHandedness}) - {away}</h4>',
                 '<h4>{homePitcher} ({hpthrows:this.formatHandedness}) - {home}</h4>',
                 '<div>{venue}</span>',
-                '<div>park factor: {parkfactor}</span>',
+                '<div>park factor: {parkfactor}</div>',
                 '</div>',
                 {
                     formatHandedness: function(value) {
@@ -25,7 +26,12 @@ Ext.define('DFST.view.game.Info', {
                         if (value === 3) return 'S';
                         return 'UNK' + value;
 	                }
-                })
+                });
+	    } else {
+	        template = new Ext.XTemplate('<div><div>{venue}</div></div>');
+	    }
+		Ext.apply(this, {
+            tpl: template
         });
 		this.callParent(arguments);
 	}

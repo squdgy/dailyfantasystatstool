@@ -16,30 +16,31 @@ Ext.define('DFST.view.site.Picker', {
         var nflweeks = Ext.create('Ext.data.Store', {
             fields: ['week', 'name', 'startdate', 'enddate'],
             data : [
-                {'week': 1, 'name':'Week 1', startdate: new Date('2013-09-05'), enddate: new Date('2013-09-09')},
-                {'week': 2, 'name':'Week 2', startdate: new Date('2013-09-12'), enddate: new Date('2013-09-16')},
-                {'week': 3, 'name':'Week 3', startdate: new Date('2013-09-19'), enddate: new Date('2013-09-23')},
-                {'week': 4, 'name':'Week 4', startdate: new Date('2013-09-26'), enddate: new Date('2013-09-30')},
-                {'week': 5, 'name':'Week 5', startdate: new Date('2013-10-03'), enddate: new Date('2013-10-07')},
-                {'week': 6, 'name':'Week 6', startdate: new Date('2013-10-10'), enddate: new Date('2013-10-14')},
-                {'week': 7, 'name':'Week 7', startdate: new Date('2013-10-17'), enddate: new Date('2013-10-21')},
-                {'week': 8, 'name':'Week 8', startdate: new Date('2013-10-24'), enddate: new Date('2013-10-28')},
-                {'week': 9, 'name':'Week 9', startdate: new Date('2013-10-31'), enddate: new Date('2013-11-04')},
-                {'week': 10, 'name':'Week 10', startdate: new Date('2013-11-07'), enddate: new Date('2013-11-11')},
-                {'week': 11, 'name':'Week 11', startdate: new Date('2013-11-14'), enddate: new Date('2013-11-18')},
-                {'week': 12, 'name':'Week 12', startdate: new Date('2013-11-21'), enddate: new Date('2013-11-25')},
-                {'week': 13, 'name':'Week 13', startdate: new Date('2013-11-28'), enddate: new Date('2013-12-02')},
-                {'week': 14, 'name':'Week 14', startdate: new Date('2013-12-05'), enddate: new Date('2013-12-09')},
-                {'week': 15, 'name':'Week 15', startdate: new Date('2013-12-12'), enddate: new Date('2013-12-16')},
-                {'week': 16, 'name':'Week 16', startdate: new Date('2013-12-22'), enddate: new Date('2013-12-23')},
-                {'week': 17, 'name':'Week 17', startdate: new Date('2013-12-29'), enddate: new Date('2013-12-29')}
+                {'week': 1, 'name':'Week 1', startdate: new Date('2014-09-04'), enddate: new Date('2014-09-08')},
+                {'week': 2, 'name':'Week 2', startdate: new Date('2014-09-11'), enddate: new Date('2014-09-15')},
+                {'week': 3, 'name':'Week 3', startdate: new Date('2014-09-18'), enddate: new Date('2014-09-22')},
+                {'week': 4, 'name':'Week 4', startdate: new Date('2014-09-25'), enddate: new Date('2014-09-29')},
+                {'week': 5, 'name':'Week 5', startdate: new Date('2014-10-02'), enddate: new Date('2014-10-06')},
+                {'week': 6, 'name':'Week 6', startdate: new Date('2014-10-09'), enddate: new Date('2014-10-13')},
+                {'week': 7, 'name':'Week 7', startdate: new Date('2014-10-16'), enddate: new Date('2014-10-20')},
+                {'week': 8, 'name':'Week 8', startdate: new Date('2014-10-23'), enddate: new Date('2014-10-27')},
+                {'week': 9, 'name':'Week 9', startdate: new Date('2014-10-30'), enddate: new Date('2014-11-03')},
+                {'week': 10, 'name':'Week 10', startdate: new Date('2014-11-06'), enddate: new Date('2014-11-10')},
+                {'week': 11, 'name':'Week 11', startdate: new Date('2014-11-13'), enddate: new Date('2014-11-17')},
+                {'week': 12, 'name':'Week 12', startdate: new Date('2014-11-20'), enddate: new Date('2014-11-24')},
+                {'week': 13, 'name':'Week 13', startdate: new Date('2014-11-27'), enddate: new Date('2014-12-01')},
+                {'week': 14, 'name':'Week 14', startdate: new Date('2014-12-04'), enddate: new Date('2014-12-08')},
+                {'week': 15, 'name':'Week 15', startdate: new Date('2014-12-11'), enddate: new Date('2014-12-15')},
+                {'week': 16, 'name':'Week 16', startdate: new Date('2014-12-21'), enddate: new Date('2014-12-22')},
+                {'week': 17, 'name':'Week 17', startdate: new Date('2014-12-28'), enddate: new Date('2014-12-28')}
             ]
         });        
         var getNearestNFLWeek = function(){
-            var seasonStart = new Date(2013, 8, 5); // Thu Wk 1
+            var seasonStart = new Date(2014, 9, 4); // Thu Wk 1
             var today = new Date();
             today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var diff = today - seasonStart; // in ms
+            if (diff < 1) return 1;
             var daysSince = Math.abs(Math.round(diff/(1000*60*60*24)));
             var weeksSince = Math.abs(Math.floor(diff/(1000*60*60*24*7)));
             //Figure out what week to show based on day of week
@@ -57,7 +58,7 @@ Ext.define('DFST.view.site.Picker', {
         datesConfig.nhl = datesConfig.mlb;
         datesConfig.nfl = {
                 xtype: 'combobox',
-                fieldLabel: 'Change',
+                //fieldLabel: 'Change',
                 name: 'game_week',
                 store: nflweeks,
                 queryMode: 'local',
@@ -70,9 +71,12 @@ Ext.define('DFST.view.site.Picker', {
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
                     //{ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'},
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
-                    { boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
+                    //{ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
                 ];
+        if (DFST.AppSettings.sport !== 'nfl'){
+            siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
+        }                
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
         });

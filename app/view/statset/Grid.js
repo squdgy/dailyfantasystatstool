@@ -701,7 +701,7 @@ Ext.define('DFST.view.statset.Grid', {
      */
     moneyRenderer: function(value, p, record) {
         if (value === 0)
-            return 'N/A';
+            return '∞';
         return Ext.util.Format.currency(value, '$', -1); 
     },
     

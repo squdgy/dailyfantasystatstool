@@ -24,7 +24,7 @@ Ext.define('DFST.view.Viewport', {
             if (sport === DFST.AppSettings.sport) {
                 sportLinks += '<span class="sport-link">' + 
                     sport.toUpperCase() + '</span>';
-            } else if (sport === 'nfl' || sport === 'nba' || sport === 'nhl') { // off-season
+            } else if (sport === 'nba' || sport === 'nhl') { // off-season
                 sportLinks += '<span class="sport-link off-season">' + 
                     sport.toUpperCase() + '</span>';
             } else {  
