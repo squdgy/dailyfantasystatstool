@@ -62,7 +62,7 @@ Ext.define('DFST.view.filter.List', {
                 {
                     xtype: 'fieldcontainer',
                     id: 'positions',
-                    fieldLabel: 'Include:',
+                    fieldLabel: '',
                     labelWidth: 60,
                     defaultType: 'checkboxfield',
                     layout: {
