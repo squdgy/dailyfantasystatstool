@@ -673,7 +673,7 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onLaunch: function() {
-        var host = 'http://localhost:49533';
+        var host = 'https://localhost:44301';
         if (location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://dfstapi.cloudapp.net';  //live azure
         }

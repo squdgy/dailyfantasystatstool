@@ -4,7 +4,7 @@ Ext.define('DFST.AppSettings', {
     
     appCopyRight: '&copy; DraftAid.com',
     
-    sport: 'nfl',   // app supports one at a time: mlb, nba, nfl, nhl
+    sport: 'nhl',   // app supports one at a time: mlb, nba, nfl, nhl
     siteId: 1,      // default to DK
     mlb: {
         gameCnt: 162
