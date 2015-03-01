@@ -24,7 +24,7 @@ Ext.define('DFST.view.Viewport', {
             if (sport === DFST.AppSettings.sport) {
                 sportLinks += '<span class="sport-link">' + 
                     sport.toUpperCase() + '</span>';
-            } else if (sport === 'mlb') { // off-season
+            } else if (sport === 'mlb' || sport === 'nfl') { // off-season
                 sportLinks += '<span class="sport-link off-season">' + 
                     sport.toUpperCase() + '</span>';
             } else {  
@@ -35,7 +35,7 @@ Ext.define('DFST.view.Viewport', {
         }
         var footerHtml = '<footer>Daily Fantasy Stats Tool, Version ' + 
             DFST.AppSettings.version + 
-            ', Copyright 2012-2014 Development Partners Software Corp. ' + 
+            ', Copyright 2012-2015 Development Partners Software Corp. ' + 
             'Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a>' + 
             sportLinks + 
             '</footer>';
