@@ -186,6 +186,19 @@ Ext.define('DFST.controller.Rosters', {
                                 link.click();
                             }
                         }
+                    }, {
+                        xtype: 'button',
+                        text: 'Upload',
+                        listeners: {
+                            click: function(){
+                                var b64src = dataURL.replace(/.*,/, '');
+                                Ext.Ajax.request({
+                                   url: 'https://lineupbragproxy.azurewebsites.net/',
+                                   method: 'post',
+                                   params: { base64Image : b64src }
+                                });                                
+                            }
+                        }
                     }]
                 }).show();                
             }
