@@ -76,8 +76,14 @@ Ext.define('DFST.controller.Stats', {
             detailsView = this.getDrilldowndetails();
                     
         if (statset && detailsView) {
+            var statsStore = this.getStatsStore();
+            if (statsStore) {
+                var scoringFilter = statsStore.filters.get("scoring");
+                if (scoringFilter) {
+                    this.siteId = scoringFilter.value;
+                }
+            }
             this.playerId = statset.data.id;
-            this.siteId = this.getStatsStore().filters.get("scoring").value;
             this.gameId = statset.data.gameId;
 
             var pos = statset.data.spos;

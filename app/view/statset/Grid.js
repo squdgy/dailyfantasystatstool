@@ -50,6 +50,7 @@ Ext.define('DFST.view.statset.Grid', {
             doStartDrag: function(dragrec) {
                 var playerId = dragrec.get('id');
                 var rgrid = Ext.getCmp('rostergrid');
+                if (!rgrid) return;
                 var store = rgrid.store;
                           
                 // make sure player not already in roster & ahas salary

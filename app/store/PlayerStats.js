@@ -18,13 +18,14 @@ Ext.define('DFST.store.PlayerStats', {
         direction: 'DESC'
     }],        
 	proxy: {
-		type: 'ajax',
+		type: 'rest',
 		url: 'app/data/playerstats.json', //local data, overridden in controller
 		reader: {
             type: 'json',
             rootProperty: 'stats',
             totalProperty: 'total'            
 		},
+		noCache: false,
 /*TODO		
         encodeSorters: function(sorters) {
             // ASP.Net WEB API can't handle the json-ized sort url param?

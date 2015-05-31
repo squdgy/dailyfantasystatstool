@@ -1,6 +1,6 @@
 /*global Ext: false */
 /*
-Copyright (c) 2012-2013 Maura Wilder
+Copyright (c) 2012-2015 Maura Wilder
 */
 Ext.define('DFST.store.SiteDetails', {
     extend: 'Ext.data.Store',
@@ -9,17 +9,16 @@ Ext.define('DFST.store.SiteDetails', {
 
     model: 'DFST.model.SiteDetails',
 
-    autoLoad: false,
+    autoLoad: true,
+    remoteSort: false,
+    remoteFilter: false,
     proxy: {
-        type: 'ajax',
+        type: 'rest',
+        headers: {'Accept': 'application/json'},
         url: 'app/data/sitedetails.json', //test data, url overridden in controller
 		reader: {
-			type: 'json',
-            rootProperty: 'players',
-            totalProperty: 'total'            
-		},
-        remoteSort: true,
-        remoteFilter: true
+			type: 'json'
+		}
 	}
 });
 
