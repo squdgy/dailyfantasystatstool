@@ -21,47 +21,49 @@ Ext.define('Ext.ux.BoxReorderer', {
     animate: 100,
 
     constructor: function() {
-        this.addEvents(
-            /**
-             * @event StartDrag
-             * Fires when dragging of a child Component begins.
-             * @param {Ext.ux.BoxReorderer} this
-             * @param {Ext.container.Container} container The owning Container
-             * @param {Ext.Component} dragCmp The Component being dragged
-             * @param {Number} idx The start index of the Component being dragged.
-             */
-             'StartDrag',
-            /**
-             * @event Drag
-             * Fires during dragging of a child Component.
-             * @param {Ext.ux.BoxReorderer} this
-             * @param {Ext.container.Container} container The owning Container
-             * @param {Ext.Component} dragCmp The Component being dragged
-             * @param {Number} startIdx The index position from which the Component was initially dragged.
-             * @param {Number} idx The current closest index to which the Component would drop.
-             */
-             'Drag',
-            /**
-             * @event ChangeIndex
-             * Fires when dragging of a child Component causes its drop index to change.
-             * @param {Ext.ux.BoxReorderer} this
-             * @param {Ext.container.Container} container The owning Container
-             * @param {Ext.Component} dragCmp The Component being dragged
-             * @param {Number} startIdx The index position from which the Component was initially dragged.
-             * @param {Number} idx The current closest index to which the Component would drop.
-             */
-             'ChangeIndex',
-            /**
-             * @event Drop
-             * Fires when a child Component is dropped at a new index position.
-             * @param {Ext.ux.BoxReorderer} this
-             * @param {Ext.container.Container} container The owning Container
-             * @param {Ext.Component} dragCmp The Component being dropped
-             * @param {Number} startIdx The index position from which the Component was initially dragged.
-             * @param {Number} idx The index at which the Component is being dropped.
-             */
-             'Drop'
-        );
+        // TODO
+        // this.addEvents(
+        //     /**
+        //      * @event StartDrag
+        //      * Fires when dragging of a child Component begins.
+        //      * @param {Ext.ux.BoxReorderer} this
+        //      * @param {Ext.container.Container} container The owning Container
+        //      * @param {Ext.Component} dragCmp The Component being dragged
+        //      * @param {Number} idx The start index of the Component being dragged.
+        //      */
+        //      'StartDrag',
+        //     /**
+        //      * @event Drag
+        //      * Fires during dragging of a child Component.
+        //      * @param {Ext.ux.BoxReorderer} this
+        //      * @param {Ext.container.Container} container The owning Container
+        //      * @param {Ext.Component} dragCmp The Component being dragged
+        //      * @param {Number} startIdx The index position from which the Component was initially dragged.
+        //      * @param {Number} idx The current closest index to which the Component would drop.
+        //      */
+        //      'Drag',
+        //     /**
+        //      * @event ChangeIndex
+        //      * Fires when dragging of a child Component causes its drop index to change.
+        //      * @param {Ext.ux.BoxReorderer} this
+        //      * @param {Ext.container.Container} container The owning Container
+        //      * @param {Ext.Component} dragCmp The Component being dragged
+        //      * @param {Number} startIdx The index position from which the Component was initially dragged.
+        //      * @param {Number} idx The current closest index to which the Component would drop.
+        //      */
+        //      'ChangeIndex',
+        //     /**
+        //      * @event Drop
+        //      * Fires when a child Component is dropped at a new index position.
+        //      * @param {Ext.ux.BoxReorderer} this
+        //      * @param {Ext.container.Container} container The owning Container
+        //      * @param {Ext.Component} dragCmp The Component being dropped
+        //      * @param {Number} startIdx The index position from which the Component was initially dragged.
+        //      * @param {Number} idx The index at which the Component is being dropped.
+        //      */
+        //      'Drop'
+        // );
+        
         this.mixins.observable.constructor.apply(this, arguments);
     },
 

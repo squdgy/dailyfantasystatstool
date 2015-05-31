@@ -69,11 +69,12 @@ Ext.define('DFST.view.Viewport', {
                 region: 'west',
                 width: 200,
                 xtype: 'sitepicker'
+/*
             }, {
                 region: 'west',
                 width: 340,
                 xtype: 'rosterbuilder'
-            }, {
+*/            }, {
                 region: 'west',
                 width: 370,
                 xtype: 'filterlist'

@@ -20,9 +20,10 @@ Ext.define('DFST.store.Stats', {
         url: 'app/data/stats.json', //test data, url overridden in controller
 		reader: {
 			type: 'json',
-            root: 'players',
+            rootProperty: 'players',
             totalProperty: 'total'            
 		},
+/*TODO
         encodeSorters: function(sorters) {
             // ASP.Net WEB API can't handle the json-ized sort url param?
              var length   = sorters.length,
@@ -53,6 +54,7 @@ Ext.define('DFST.store.Stats', {
 
             return str.join(",");
          }
+*/         
 	},
     remoteSort: true,
     remoteFilter: true

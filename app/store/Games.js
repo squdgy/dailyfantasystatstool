@@ -18,7 +18,7 @@ Ext.define('DFST.store.Games', {
         url: 'app/data/games.json', //test data, url overridden in controller
 		reader: {
 			type: 'json',
-            root: 'games',
+            rootProperty: 'games',
             totalProperty: 'total'            
 		}
 	},

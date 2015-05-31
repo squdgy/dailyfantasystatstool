@@ -15,7 +15,7 @@ Ext.define('DFST.store.SiteDetails', {
         url: 'app/data/sitedetails.json', //test data, url overridden in controller
 		reader: {
 			type: 'json',
-            root: 'players',
+            rootProperty: 'players',
             totalProperty: 'total'            
 		},
         remoteSort: true,
