@@ -29,6 +29,9 @@ Ext.define('DFST.controller.Stats', {
         var playerStatsStore = this.getPlayerStatsStore();
         statsStore.proxy.url = host + '/api/players/';
         playerStatsStore.proxy.url = host + '/api/playerstats/';
+        playerStatsStore.on('beforeload', function(){
+            if (this.filters.length == 0) return false; // don't load if no player selected
+        });
 
         this.control({
             'statsetgrid': {
@@ -55,9 +58,11 @@ Ext.define('DFST.controller.Stats', {
     
     selectStatSet: function(view) {
         var first = this.getStatsStore().getAt(0);
-        if (first) {
-            view.getSelectionModel().deselectAll();
-            view.getSelectionModel().select(first);
+        var selModel = view.getSelectionModel();
+        var selection = selModel.getSelection();
+        if (first && (selection.length == 0 || selection[0].id !== first.id)) {
+            selModel.deselectAll();
+            selModel.select(first);
         }
     },
 
@@ -80,7 +85,7 @@ Ext.define('DFST.controller.Stats', {
             if (statsStore) {
                 var scoringFilter = statsStore.filters.get("scoring");
                 if (scoringFilter) {
-                    this.siteId = scoringFilter.value;
+                    this.siteId = scoringFilter.getValue();
                 }
             }
             this.playerId = statset.data.id;

@@ -551,11 +551,11 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
                 
-        // statsStore.filters.addAll([
-        //     {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
-        //     {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
-        //     {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
-        // ]);
+        statsStore.filters.add([
+            {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
+            {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
+            {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
+        ]);
 
         // call the changedate methods which will also refresh the player store
         var dateFilter = this.getDateFilter();
