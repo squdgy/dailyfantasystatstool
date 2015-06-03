@@ -10,13 +10,16 @@ Ext.define('DFST.store.Stats', {
     model: 'DFST.model.StatSet',
 
     autoLoad: false,
+    remoteSort: true,
+    remoteFilter: true,
     pageSize: 20,
     sorters: [{
         property : 'sal',
         direction: 'DESC'
     }],
     proxy: {
-		type: 'ajax',
+		type: 'rest',
+        headers: {'Accept': 'application/json'},
         url: 'app/data/stats.json', //test data, url overridden in controller
 		reader: {
 			type: 'json',
@@ -24,7 +27,10 @@ Ext.define('DFST.store.Stats', {
             totalProperty: 'total'            
 		},
 	},
-    remoteSort: true,
-    remoteFilter: true
+    listeners: {
+        beforeload: function(store, operation, options){
+            if (store.filters.length == 0) return false; // need site, date etc.
+        }
+    }	
 });
 

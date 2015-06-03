@@ -212,8 +212,6 @@ Ext.define('DFST.controller.Filters', {
             var gamesStore = this.getGamesStore();
             filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
             gamesStore.filter(filters);
-        } else {
-            statsStore.filter(filters);
         }
     },
 
@@ -550,12 +548,14 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('afp');
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
-                
+
         statsStore.filters.add([
             {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
             {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
         ]);
+
+        //statsStore.suspendEvents(true); //prevent multiple calls to server
 
         // call the changedate methods which will also refresh the player store
         var dateFilter = this.getDateFilter();
@@ -565,6 +565,8 @@ Ext.define('DFST.controller.Filters', {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
         }
+
+        //statsStore.resumeEvents(true);
         this.fireEvent('appScoringChanged', site.get('dfsGameId'));
     },
     
@@ -695,7 +697,7 @@ Ext.define('DFST.controller.Filters', {
                 {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
                 ]);
         });
-
+        
         // Set things up to update games filters when we switch sites
         var gamesStore = this.getGamesStore();
         gamesStore.proxy.url = host + '/api/games/';
