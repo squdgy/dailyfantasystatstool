@@ -1,7 +1,7 @@
 /*global Ext: false */
 /*
 
-Copyright (c) 2012-2013 Maura Wilder
+Copyright (c) 2012-2015 Maura Wilder
 
 */
 Ext.define('DFST.store.Games', {
@@ -12,8 +12,9 @@ Ext.define('DFST.store.Games', {
     model: 'DFST.model.Game',
 
     autoLoad: false,
+    remoteFilter: true,
     proxy: {
-		type: 'ajax',
+		type: 'rest',
         headers: {'Accept': 'application/json'},
         url: 'app/data/games.json', //test data, url overridden in controller
 		reader: {
@@ -22,5 +23,15 @@ Ext.define('DFST.store.Games', {
             totalProperty: 'total'            
 		}
 	},
-    remoteFilter: true
+    listeners: {
+        beforeload: function(store, operation, options){
+            if (store.filters.length == 0) 
+            {
+                console.log('no sport');
+                return false; // need site, date etc.
+            }
+            
+            console.log('about to load games');
+        }
+    }	
 });

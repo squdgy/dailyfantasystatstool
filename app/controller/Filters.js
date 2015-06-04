@@ -716,15 +716,18 @@ Ext.define('DFST.controller.Filters', {
         // show a visual indicator that the lineup is ready
         if (DFST.AppSettings.sport == "mlb")
         {
-            var task = {
-                run: function(){
-                    var gamesStore = this.getGamesStore();
-                    gamesStore.load();
-                },
-                scope: this,
-                interval: 1000 * 60 // every 60 seconds
-            };
-            Ext.TaskManager.start(task);        
+            var thisScope = this;
+            setTimeout(function(){
+                var task = {
+                    run: function(){
+                        var gamesStore = thisScope.getGamesStore();
+                        gamesStore.load();
+                    },
+                    scope: thisScope,
+                    interval: 1000 * 60 // every 60 seconds
+                };
+                Ext.TaskManager.start(task);        
+            }, 5000);  // don't start this until the page has been up for 5 sec
         }
     }
     
