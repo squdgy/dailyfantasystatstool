@@ -92,7 +92,7 @@ Ext.define('DFST.controller.Filters', {
         // set up load masking
         var me = this;
         this.getSiteDetailsStore().on('beforeload', function(){
-            //me.getViewport().setLoading('Retrieving player salaries...');
+            me.getViewport().setLoading('Retrieving player salaries...');
         });
         this.getSiteDetailsStore().proxy.on('exception', function(proxy, response){
             me.getViewport().setLoading(false);

@@ -11,10 +11,6 @@ Ext.Loader.setConfig({
 Ext.application({
     name: 'DFST',
 
-    compatibility: {
-        ext: '4.2'
-    },
-      
     // All controllers that should initialize
     controllers: [
         'Stats',
