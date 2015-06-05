@@ -27,6 +27,7 @@ Ext.define('DFST.view.statset.Grid', {
         displayInfo: true,
         plugins: { ptype: 'pagesizepicker' }
     }],
+    
     plugins: [{
         ptype:'gridsearch',
         position: 'bottom',
@@ -35,6 +36,7 @@ Ext.define('DFST.view.statset.Grid', {
         searchFields: ['fname', 'lname'],
         width: 200
     }],
+    
     viewConfig: {
         plugins: {
             ptype: 'dfstgridviewdragdrop',
@@ -511,7 +513,6 @@ Ext.define('DFST.view.statset.Grid', {
                 //alert('sortchange');
             }
         });        
-
 
         var reorderer = Ext.create('Ext.ux.BoxReorderer', {
             listeners: {
