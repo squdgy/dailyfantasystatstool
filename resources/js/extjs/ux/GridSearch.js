@@ -123,27 +123,6 @@ Ext.define('Ext.ux.GridSearch', {
 
         // do our processing after grid render and reconfigure
         grid.onRender = Ext.Function.createSequence(grid.onRender, this.onRender, this);
-
-        // this.addEvents(
-        //     /**
-        //      * @event beforesearch
-        //      * Fires before the first search trigger is clicked, returning FALSE 
-        //      * from this event will cancel event.
-        //      * @param {Ext.ux.grid.Search} this This search field
-        //      * @param {Ext.data.Store} store Data store connected to the search field
-        //      * @param {String} value The current value of the field
-        //      */
-        //     'beforesearch',
-        //     /**
-        //      * @event search
-        //      * Fires when the first trigger button is clicked
-        //      * @param {Ext.ux.grid.Search} this This search field
-        //      * @param {Ext.data.Store} store Data store connected to the search field
-        //      * @param {String} value The current value of the field
-        //      */
-        //     'search'
-        // );
-
     },
 
     /**

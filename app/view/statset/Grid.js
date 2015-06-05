@@ -11,7 +11,7 @@ Ext.define('DFST.view.statset.Grid', {
         'Ext.data.*',
         'Ext.grid.*',
         'Ext.util.*',
-        /*'Ext.ux.BoxReorderer',*/
+        'Ext.ux.BoxReorderer',
         'Ext.ux.ToolbarDroppable',
         'Ext.ux.DFSTGridViewDragDrop',
         'Ext.ux.PageSizePicker',
@@ -503,7 +503,7 @@ Ext.define('DFST.view.statset.Grid', {
             // tell the toolbar's droppable plugin that it accepts items from the columns' dragdrop group
             afterlayout: function(grid) {
                 var headerCt = grid.child("headercontainer");
-                //droppable.addDDGroup(headerCt.reorderer.dragZone.ddGroup);
+                droppable.addDDGroup(headerCt.reorderer.dragZone.ddGroup);
             }
         });
         me.on({
@@ -512,7 +512,7 @@ Ext.define('DFST.view.statset.Grid', {
             }
         });        
 
-/*   
+
         var reorderer = Ext.create('Ext.ux.BoxReorderer', {
             listeners: {
                 Drop: function(r, c, button) { //update sort direction when button is dropped
@@ -520,21 +520,21 @@ Ext.define('DFST.view.statset.Grid', {
                 }
             }
         });    
-*/        
+        
         var droppable = Ext.create('Ext.ux.ToolbarDroppable', {
             /**
              * Creates the new toolbar item from the drop event
              */
             createItem: function(data) {
                 var header = data.header,
-                    headerCt = header.ownerCt/*,
-                    reorderer = headerCt.reorderer*/;
+                    headerCt = header.ownerCt,
+                    reorderer = headerCt.reorderer;
 
-                // // Hide the drop indicators of the standard HeaderDropZone
-                // // in case user had a pending valid drop in 
-                // if (reorderer) {
-                //     reorderer.dropZone.invalidateDrop();
-                // }
+                // Hide the drop indicators of the standard HeaderDropZone
+                // in case user had a pending valid drop in 
+                if (reorderer) {
+                    reorderer.dropZone.invalidateDrop();
+                }
 
                 me.down("#sortlabel").hide();
                 me.down("#clearsort").show();
@@ -601,7 +601,7 @@ Ext.define('DFST.view.statset.Grid', {
                 id: 'sortlabel',
                 text: 'Drag headers here to enable sorting by multiple columns. Click on header to sort by 1 column.'
             }],
-            plugins: [/*reorderer, */droppable]
+            plugins: [reorderer, droppable]
         };
         
 		this.callParent(arguments);
