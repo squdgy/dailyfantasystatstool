@@ -14,8 +14,8 @@ Ext.define('DFST.view.statset.Grid', {
         /*'Ext.ux.BoxReorderer',*/
         'Ext.ux.ToolbarDroppable',
         'Ext.ux.DFSTGridViewDragDrop',
-        'Ext.ux.PageSizePicker'/*,
-        'Ext.ux.GridSearch'*/
+        'Ext.ux.PageSizePicker',
+        'Ext.ux.GridSearch'
         ],
     
     border: false,    
@@ -27,8 +27,6 @@ Ext.define('DFST.view.statset.Grid', {
         displayInfo: true,
         plugins: { ptype: 'pagesizepicker' }
     }],
-    
-/*    
     plugins: [{
         ptype:'gridsearch',
         position: 'bottom',
@@ -37,7 +35,6 @@ Ext.define('DFST.view.statset.Grid', {
         searchFields: ['fname', 'lname'],
         width: 200
     }],
-*/    
     viewConfig: {
         plugins: {
             ptype: 'dfstgridviewdragdrop',

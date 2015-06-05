@@ -324,7 +324,7 @@ Ext.define('DFST.controller.Rosters', {
             i, rec;
         
         if (rgrid == null) return;
-        var store = rgrid.store, recs = store.count();
+        var store = rgrid.store, nrecs = store.count();
         
         // check if the player is already in the roster
         // if so, select only that spot

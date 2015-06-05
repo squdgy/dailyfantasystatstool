@@ -220,11 +220,11 @@ Ext.define('Ext.ux.GridSearch', {
 
             // install key map
             var map = new Ext.util.KeyMap(this.field.el, [{
-                key: Ext.EventObject.ENTER,
+                key: Ext.event.Event.ENTER,
                 scope: this,
                 fn: this.onTriggerSearch
             },{
-                key: Ext.EventObject.ESC,
+                key: Ext.event.Event.ESC,
                 scope: this,
                 fn: this.onTriggerClear
             }]);
