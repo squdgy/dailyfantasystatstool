@@ -1,5 +1,6 @@
 body {
     font-family:tahoma,arial,verdana,sans-serif;
+    font-size: 8px;
 }
 
 table {
@@ -115,4 +116,18 @@ float: right;
    background-repeat: no-repeat;
    background-position: center;
    background-size: 85%;
+}
+
+/* crisp theme overrides */
+.x-column-header {
+    font-size: 11px;
+}
+.x-panel-header-title-default {
+    font-size: 13px;
+}
+.x-grid-item, .x-table-layout {
+    font-size: 12px;
+}
+.featured {
+    font-weight: bold;
 }

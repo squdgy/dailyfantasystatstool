@@ -50,13 +50,12 @@ Ext.define('DFST.view.Viewport', {
                 xtype: 'container',
                 layout: {
                     type: 'vbox',
-                    padding: 5,
+                    padding: 0,
                     align: 'stretch'
                 },
-                defaults:{
-                    margins:'0 0 5 0',
-                    flex: 1
-                    },
+                defaults: {
+                  margin: 1 
+                },
                 items: [{
                     xtype: 'statsetgrid',
                     flex: 3
