@@ -2,7 +2,7 @@
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats', 'Games'],
+    stores: ['Stats', 'PlayerStats', 'PlayerStatsMemory', 'Games'],
 
     models: ['StatSet', 'PlayerStatSet', 'Game'],
 
@@ -27,11 +27,19 @@ Ext.define('DFST.controller.Stats', {
 //        host = 'http://localhost:81';       //local azure dev fabric 
         var statsStore = this.getStatsStore();
         var playerStatsStore = this.getPlayerStatsStore();
+        var playerStatsStoreMemory = this.getPlayerStatsMemoryStore();
         statsStore.proxy.url = host + '/api/players/';
         playerStatsStore.proxy.url = host + '/api/playerstats/';
         playerStatsStore.on('beforeload', function(){
             if (this.filters.length == 0) return false; // don't load if no player selected
         });
+        playerStatsStore.on('load', function(store, records, success, eOpts) { // also load, in memory store
+            if (success) {
+                this.getPlayerGrid().query('pagingtoolbar')[0].moveFirst();
+                playerStatsStoreMemory.getProxy().setData(records);
+                playerStatsStoreMemory.load();
+            }
+        }, this);
 
         this.control({
             'statsetgrid': {

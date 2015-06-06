@@ -12,7 +12,7 @@ Ext.define('DFST.store.PlayerStats', {
     model: 'DFST.model.PlayerStatSet',
 
     autoLoad: false,
-    pageSize: 5,
+    pageSize: 500,
     sorters: [{
         property : 'gd',
         direction: 'DESC'

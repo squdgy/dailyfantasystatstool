@@ -121,9 +121,9 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'position',
                     align: 'left'
                 },{
-                    text: 'B-Order',
+                    text: 'Lineup',
                     dataIndex: 'border',
-                    tooltip: 'position in batting order',
+                    tooltip: 'position in batting order (when known)',
                     renderer: this.formatBattingOrder
                 },{
                     text: 'MR',
@@ -138,30 +138,35 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'ph_ba',
                     width: 50,
                     tooltip: 'batting average vs opponent pitcher\'s handedness',
+                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OBP(Ph)',
                     dataIndex: 'ph_obp',
                     width: 50,
                     tooltip: 'on-base percentage vs opponent pitcher\'s handedness',
+                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'SLG(Ph)',
                     dataIndex: 'ph_slg',
                     width: 50,
                     tooltip: 'slugging vs opponent pitcher\'s handedness',
+                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OPS(Ph)',
                     dataIndex: 'ph_ops',
                     width: 50,
                     tooltip: 'on-base plus slugging vs opponent pitcher\'s handedness',
+                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'wOBA(Ph)',
                     dataIndex: 'ph_woba',
                     width: 50,
                     tooltip: 'weighted on-base average vs opponent pitcher\'s handedness',
+                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },/*{
                     text: '1B',
