@@ -94,8 +94,14 @@ background-position: 4px center;
 /* end sort buttons above grid*/
 
 /* start roster slot css */
+.rosterbuilder .x-grid-cell-inner {
+    padding: 5px;
+}
 .rosterbuilder .x-grid-row-selected .x-grid-cell-inner {
     background-color: rgb(255, 248, 0);
+}
+.rosterbuilder .x-grid-item, .rosterbuilder .x-grid-row-summary .x-grid-cell {
+    font-size: 10px;
 }
 
 /* send roster slot css */

@@ -192,7 +192,7 @@ Ext.define('DFST.controller.Rosters', {
                                 link.click();
                             }
                         }
-                    }, {
+                    }/*, {
                         xtype: 'button',
                         text: 'Upload',
                         listeners: {
@@ -205,7 +205,7 @@ Ext.define('DFST.controller.Rosters', {
                                 });                                
                             }
                         }
-                    }]
+                    }*/]
                 }).show();                
             }
         });    
@@ -343,6 +343,8 @@ Ext.define('DFST.controller.Rosters', {
             }
         }
 
-        rgrid.view.selModel.select(possibleSlots, false, true);
+debugger;
+        //rgrid.view.selModel.select(possibleSlots, false, true);
+        //rgrid.view.refresh();
     }
 });

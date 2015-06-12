@@ -136,37 +136,32 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: 'BA(Ph)',
                     dataIndex: 'ph_ba',
-                    width: 50,
+                    width: 55,
                     tooltip: 'batting average vs opponent pitcher\'s handedness',
-                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OBP(Ph)',
                     dataIndex: 'ph_obp',
-                    width: 50,
+                    width: 55,
                     tooltip: 'on-base percentage vs opponent pitcher\'s handedness',
-                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'SLG(Ph)',
                     dataIndex: 'ph_slg',
-                    width: 50,
+                    width: 55,
                     tooltip: 'slugging vs opponent pitcher\'s handedness',
-                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OPS(Ph)',
                     dataIndex: 'ph_ops',
-                    width: 50,
+                    width: 55,
                     tooltip: 'on-base plus slugging vs opponent pitcher\'s handedness',
-                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'wOBA(Ph)',
                     dataIndex: 'ph_woba',
-                    width: 50,
+                    width: 55,
                     tooltip: 'weighted on-base average vs opponent pitcher\'s handedness',
-                    hidden: true,
                     renderer: this.formatVsPitcherHandedness
                 },/*{
                     text: '1B',
