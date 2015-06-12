@@ -124,14 +124,20 @@ Ext.define('DFST.controller.Rosters', {
 
         var fmtcap = Ext.util.Format.currency(cap, '$', -1);
         var perplayer = Ext.util.Format.currency(cap/numSlots, '$', -1);
-        me.getSiteInfo().update({
-            cap: fmtcap,
-            remaining: fmtcap,
-            perplayer: perplayer
-        });
+        var siteInfo = me.getSiteInfo();
+        if (siteInfo) {
+            siteInfo.update({
+                cap: fmtcap,
+                remaining: fmtcap,
+                perplayer: perplayer
+            });
+        }
         var sportString = DFST.AppSettings.sport.toUpperCase();
         var dateString = me._date.toDateString();
-        me.getSiteGrid().setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+        var siteGrid = me.getSiteGrid();
+        if (siteGrid) {
+            siteGrid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+        }
         me.salaryCap = cap; // save for later use
         
         this.updateSummary();
@@ -186,7 +192,7 @@ Ext.define('DFST.controller.Rosters', {
                                 link.click();
                             }
                         }
-                    }, {
+                    }/*, {
                         xtype: 'button',
                         text: 'Upload',
                         listeners: {
@@ -199,7 +205,7 @@ Ext.define('DFST.controller.Rosters', {
                                 });                                
                             }
                         }
-                    }]
+                    }*/]
                 }).show();                
             }
         });    
@@ -229,11 +235,14 @@ Ext.define('DFST.controller.Rosters', {
         var highlightTpl = new Ext.Template('<span style="color:red;font-weight:bold;">{0}</span>');
         var fmthtml = rem >= 0 ? fmtrem : highlightTpl.apply([fmtrem]);
         var pphtml = rem >= 0 ? fmtpp : highlightTpl.apply([fmtpp]);
-        this.getSiteInfo().update({
-            cap: fmtcap,
-            remaining: fmthtml,
-            perplayer: pphtml
-        });
+        var siteInfo = this.getSiteInfo();
+        if (siteInfo) {
+            siteInfo.update({
+                cap: fmtcap,
+                remaining: fmthtml,
+                perplayer: pphtml
+            });
+        }
     },
    
     /* Add player to first eligible, open roster spot, if any */
@@ -312,9 +321,10 @@ Ext.define('DFST.controller.Rosters', {
         var possibleSlots = [],
             playerRec = recs[0],
             rgrid = Ext.getCmp('rostergrid'),
-            store = rgrid.store,
-            nrecs = store.count(),
             i, rec;
+        
+        if (rgrid == null) return;
+        var store = rgrid.store, nrecs = store.count();
         
         // check if the player is already in the roster
         // if so, select only that spot
@@ -333,6 +343,8 @@ Ext.define('DFST.controller.Rosters', {
             }
         }
 
-        rgrid.view.selModel.select(possibleSlots, false, true);
+debugger;
+        //rgrid.view.selModel.select(possibleSlots, false, true);
+        //rgrid.view.refresh();
     }
 });

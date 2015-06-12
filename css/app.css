@@ -1,5 +1,6 @@
 body {
     font-family:tahoma,arial,verdana,sans-serif;
+    font-size: 8px;
 }
 
 table {
@@ -93,8 +94,14 @@ background-position: 4px center;
 /* end sort buttons above grid*/
 
 /* start roster slot css */
+.rosterbuilder .x-grid-cell-inner {
+    padding: 5px;
+}
 .rosterbuilder .x-grid-row-selected .x-grid-cell-inner {
     background-color: rgb(255, 248, 0);
+}
+.rosterbuilder .x-grid-item, .rosterbuilder .x-grid-row-summary .x-grid-cell {
+    font-size: 10px;
 }
 
 /* send roster slot css */
@@ -115,4 +122,21 @@ float: right;
    background-repeat: no-repeat;
    background-position: center;
    background-size: 85%;
+}
+
+/* crisp theme overrides */
+.x-column-header {
+    font-size: 11px;
+}
+.x-panel-header-title-default {
+    font-size: 13px;
+}
+.x-grid-item, .x-table-layout {
+    font-size: 12px;
+}
+.x-column-header-inner {
+  padding: 7px 3px 7px 3px;
+}
+.featured {
+    font-weight: bold;
 }

@@ -123,27 +123,6 @@ Ext.define('Ext.ux.GridSearch', {
 
         // do our processing after grid render and reconfigure
         grid.onRender = Ext.Function.createSequence(grid.onRender, this.onRender, this);
-
-        this.addEvents(
-            /**
-             * @event beforesearch
-             * Fires before the first search trigger is clicked, returning FALSE 
-             * from this event will cancel event.
-             * @param {Ext.ux.grid.Search} this This search field
-             * @param {Ext.data.Store} store Data store connected to the search field
-             * @param {String} value The current value of the field
-             */
-            'beforesearch',
-            /**
-             * @event search
-             * Fires when the first trigger button is clicked
-             * @param {Ext.ux.grid.Search} this This search field
-             * @param {Ext.data.Store} store Data store connected to the search field
-             * @param {String} value The current value of the field
-             */
-            'search'
-        );
-
     },
 
     /**
@@ -220,11 +199,11 @@ Ext.define('Ext.ux.GridSearch', {
 
             // install key map
             var map = new Ext.util.KeyMap(this.field.el, [{
-                key: Ext.EventObject.ENTER,
+                key: Ext.event.Event.ENTER,
                 scope: this,
                 fn: this.onTriggerSearch
             },{
-                key: Ext.EventObject.ESC,
+                key: Ext.event.Event.ESC,
                 scope: this,
                 fn: this.onTriggerClear
             }]);

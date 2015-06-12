@@ -95,12 +95,12 @@ Ext.define('DFST.controller.Filters', {
             me.getViewport().setLoading('Retrieving player salaries...');
         });
         this.getSiteDetailsStore().proxy.on('exception', function(proxy, response){
+            me.getViewport().setLoading(false);
             if (response.status === 200) {
                 var firstSiteRadio = Ext.ComponentQuery.query('sitepicker fieldcontainer radio')[0];
                 firstSiteRadio.setValue(true);
                 return;
             }
-            me.getViewport().setLoading(false);
             Ext.Msg.alert('Error', 'Unable to reach server. Please try again later.');
         });        
         this.getStatsStore().on('load', function(){
@@ -212,8 +212,6 @@ Ext.define('DFST.controller.Filters', {
             var gamesStore = this.getGamesStore();
             filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
             gamesStore.filter(filters);
-        } else {
-            statsStore.filter(filters);
         }
     },
 
@@ -452,20 +450,19 @@ Ext.define('DFST.controller.Filters', {
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
                 ]);
-            siteDetailsStore.load();
             
             this.getSitePanel().setTitle('Pick a Site - ' + radiobutton.boxLabel);
         }
     },
 
-    onScoringChanged: function(store, records, wasSuccessful, options) {
-        if (!wasSuccessful || records.length === 0) {
+    onScoringFilterChanged: function(store, filters, options) {
+        if (store.count() === 0) {
             this.getStatsStore().removeAll();
             this.getGamedetails().hide();
             this.getDrilldowndetails().hide();            
             return;
         }
-        var site = records[0];
+        var site = store.first();
         
         // Change the list of position filters
         // All positions will reset to checked
@@ -551,12 +548,14 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('afp');
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
-                
-        statsStore.filters.addAll([
+
+        statsStore.filters.add([
             {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
             {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
         ]);
+
+        //statsStore.suspendEvents(true); //prevent multiple calls to server
 
         // call the changedate methods which will also refresh the player store
         var dateFilter = this.getDateFilter();
@@ -566,6 +565,8 @@ Ext.define('DFST.controller.Filters', {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
         }
+
+        //statsStore.resumeEvents(true);
         this.fireEvent('appScoringChanged', site.get('dfsGameId'));
     },
     
@@ -689,12 +690,13 @@ Ext.define('DFST.controller.Filters', {
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
-        siteDetailsStore.filter([
-            {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId},
-            {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
-            ]);
-        siteDetailsStore.on('load', this.onScoringChanged, this);
-        siteDetailsStore.load();
+        siteDetailsStore.on('filterchange', this.onScoringFilterChanged, this);
+        siteDetailsStore.load(function(records, operation, success) {
+            siteDetailsStore.filter([
+                {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId},
+                {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
+                ]);
+        });
         
         // Set things up to update games filters when we switch sites
         var gamesStore = this.getGamesStore();
@@ -714,15 +716,18 @@ Ext.define('DFST.controller.Filters', {
         // show a visual indicator that the lineup is ready
         if (DFST.AppSettings.sport == "mlb")
         {
-            var task = {
-                run: function(){
-                    var gamesStore = this.getGamesStore();
-                    gamesStore.load();
-                },
-                scope: this,
-                interval: 1000 * 60 // every 60 seconds
-            };
-            Ext.TaskManager.start(task);        
+            var thisScope = this;
+            setTimeout(function(){
+                var task = {
+                    run: function(){
+                        var gamesStore = thisScope.getGamesStore();
+                        gamesStore.load();
+                    },
+                    scope: thisScope,
+                    interval: 1000 * 60 // every 60 seconds
+                };
+                Ext.TaskManager.start(task);        
+            }, 5000);  // don't start this until the page has been up for 5 sec
         }
     }
     

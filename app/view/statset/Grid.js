@@ -49,6 +49,7 @@ Ext.define('DFST.view.statset.Grid', {
             doStartDrag: function(dragrec) {
                 var playerId = dragrec.get('id');
                 var rgrid = Ext.getCmp('rostergrid');
+                if (!rgrid) return;
                 var store = rgrid.store;
                           
                 // make sure player not already in roster & ahas salary
@@ -77,44 +78,52 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'name',
                     align: 'left',
                     width: 150,
+                    tooltip: 'name',
                     renderer: this.formatName
                 },{
                     text: 'B',
                     dataIndex: 'bats',
                     align: 'left',
                     width: 25,
+                    tooltip: 'bats',
                     renderer: this.formatHandedness
                 },{
                     text: 'Th',
                     dataIndex: 'throws',
                     align: 'left',
                     width: 25,
+                    tooltip: 'throws',
                     renderer: this.formatHandedness
                 },{
                     text: 'Vs',
                     dataIndex: 'opp_throws',
                     align: 'left',
                     width: 25,
+                    tooltip: 'handedness of opposing pitcher',
                     renderer: this.formatHandedness
                 },{
                     text: 'Team',
                     dataIndex: 'team',
                     align: 'left',
                     width: 60,
+                    tooltip: 'team',
                     renderer: this.formatTeam
                 },{
                     text: 'Opp',
                     dataIndex: 'opp',
                     align: 'left',
                     width: 60,
+                    tooltip: 'opponent',
                     renderer: this.formatOpponent
                 },{
                     text: 'Pos',
                     dataIndex: 'spos',
+                    tooltip: 'position',
                     align: 'left'
                 },{
-                    text: 'B-Order',
+                    text: 'Lineup',
                     dataIndex: 'border',
+                    tooltip: 'position in batting order (when known)',
                     renderer: this.formatBattingOrder
                 },{
                     text: 'MR',
@@ -127,31 +136,31 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: 'BA(Ph)',
                     dataIndex: 'ph_ba',
-                    width: 50,
+                    width: 55,
                     tooltip: 'batting average vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OBP(Ph)',
                     dataIndex: 'ph_obp',
-                    width: 50,
+                    width: 55,
                     tooltip: 'on-base percentage vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'SLG(Ph)',
                     dataIndex: 'ph_slg',
-                    width: 50,
+                    width: 55,
                     tooltip: 'slugging vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'OPS(Ph)',
                     dataIndex: 'ph_ops',
-                    width: 50,
+                    width: 55,
                     tooltip: 'on-base plus slugging vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
                 },{
                     text: 'wOBA(Ph)',
                     dataIndex: 'ph_woba',
-                    width: 50,
+                    width: 55,
                     tooltip: 'weighted on-base average vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
                 },/*{
@@ -512,7 +521,7 @@ Ext.define('DFST.view.statset.Grid', {
                 //alert('sortchange');
             }
         });        
-   
+
         var reorderer = Ext.create('Ext.ux.BoxReorderer', {
             listeners: {
                 Drop: function(r, c, button) { //update sort direction when button is dropped
@@ -520,6 +529,7 @@ Ext.define('DFST.view.statset.Grid', {
                 }
             }
         });    
+        
         var droppable = Ext.create('Ext.ux.ToolbarDroppable', {
             /**
              * Creates the new toolbar item from the drop event

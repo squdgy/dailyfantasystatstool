@@ -44,44 +44,10 @@ Ext.application({
     }
 });
 
-/* Fix for ExtJS 4.1.0 bug */
-Ext.override(Ext.view.AbstractView, {
-    onRender: function() 
-    {
-        var me = this;
-        
-        this.callOverridden();
-        
-        if (me.mask && Ext.isObject(me.store)) {
-            me.setMaskBind(me.store);
-        }
-    }
-});
-
 /* Fix for ajax requests not sending json request header in Firefox */
 Ext.Ajax.defaultHeaders = {              
     'Accept' : 'application/json',  
     'Content-Type' : 'application/json'
-};
-
-/* Allow grid header to show multi-column sort indicators */
-Ext.grid.header.Container.prototype.setSortState = function(val) {
-    var store   = this.up('[store]').store,
-        sorters = store.getSorters();
-
-    // adjust grid headers
-    var me = this;
-    if (sorters) {
-        this.clearOtherSortStates(null);
-        Ext.each(sorters, function(sorter) {
-            var hd = me.down('gridcolumn[dataIndex=' + sorter.property  +']');
-            if (hd) {
-                hd.setSortState(sorter.direction, true, true);
-            }
-        }, this);
-    } else {
-        this.clearOtherSortStates(null);
-    }
 };
 
 /* override date encoding to include time zone */

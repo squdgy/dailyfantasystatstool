@@ -2,7 +2,7 @@
 Ext.define('DFST.view.statset.PlayerGrid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetplayergrid',
-    requires: ['Ext.toolbar.Toolbar', 'Ext.ux.PageSizePicker'],
+    requires: ['Ext.toolbar.Toolbar'],
 
 	cls: 'player-grid',
 	disabled: false,
@@ -33,9 +33,8 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     }, {
         xtype: 'pagingtoolbar',
         dock: 'bottom',
-        store: 'PlayerStats',
-        displayInfo: true,
-        plugins: { ptype: 'pagesizepicker', displayText: 'Games per Page', options: [5, 10, 20, 50, 200] }
+        store: 'PlayerStatsMemory',
+        displayInfo: true
     }],
 
     getCols: function(sport, position) {
@@ -258,7 +257,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
 		Ext.apply(this, {
-            store: 'PlayerStats',
+            store: 'PlayerStatsMemory',
 			columns: {
                 defaults: {
                     align: 'right',

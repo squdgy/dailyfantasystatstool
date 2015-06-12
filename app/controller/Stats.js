@@ -2,7 +2,7 @@
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats', 'Games'],
+    stores: ['Stats', 'PlayerStats', 'PlayerStatsMemory', 'Games'],
 
     models: ['StatSet', 'PlayerStatSet', 'Game'],
 
@@ -27,8 +27,19 @@ Ext.define('DFST.controller.Stats', {
 //        host = 'http://localhost:81';       //local azure dev fabric 
         var statsStore = this.getStatsStore();
         var playerStatsStore = this.getPlayerStatsStore();
+        var playerStatsStoreMemory = this.getPlayerStatsMemoryStore();
         statsStore.proxy.url = host + '/api/players/';
         playerStatsStore.proxy.url = host + '/api/playerstats/';
+        playerStatsStore.on('beforeload', function(){
+            if (this.filters.length == 0) return false; // don't load if no player selected
+        });
+        playerStatsStore.on('load', function(store, records, success, eOpts) { // also load, in memory store
+            if (success) {
+                this.getPlayerGrid().query('pagingtoolbar')[0].moveFirst();
+                playerStatsStoreMemory.getProxy().setData(records);
+                playerStatsStoreMemory.load();
+            }
+        }, this);
 
         this.control({
             'statsetgrid': {
@@ -55,9 +66,11 @@ Ext.define('DFST.controller.Stats', {
     
     selectStatSet: function(view) {
         var first = this.getStatsStore().getAt(0);
-        if (first) {
-            view.getSelectionModel().deselectAll();
-            view.getSelectionModel().select(first);
+        var selModel = view.getSelectionModel();
+        var selection = selModel.getSelection();
+        if (first && (selection.length == 0 || selection[0].id !== first.id)) {
+            selModel.deselectAll();
+            selModel.select(first);
         }
     },
 
@@ -76,8 +89,14 @@ Ext.define('DFST.controller.Stats', {
             detailsView = this.getDrilldowndetails();
                     
         if (statset && detailsView) {
+            var statsStore = this.getStatsStore();
+            if (statsStore) {
+                var scoringFilter = statsStore.filters.get("scoring");
+                if (scoringFilter) {
+                    this.siteId = scoringFilter.getValue();
+                }
+            }
             this.playerId = statset.data.id;
-            this.siteId = this.getStatsStore().filters.get("scoring").value;
             this.gameId = statset.data.gameId;
 
             var pos = statset.data.spos;

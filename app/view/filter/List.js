@@ -13,7 +13,12 @@ Ext.define('DFST.view.filter.List', {
 	collapsible: true,
 	collapsed: true,
 	animCollapse: true,
-	
+	padding: 0,
+	defaults: {
+	    margin: '1 -1 0 0',
+	    border: false
+	},
+
     layout: {
         type: 'vbox',
         align : 'stretch',
@@ -96,18 +101,14 @@ Ext.define('DFST.view.filter.List', {
                 animCollapse: true,
                 collapsed: true,
                 layout: 'vbox',
-                title: 'By Expected Starters',
+                title: 'By Starting Lineup',
                 items: [
                     {
                         width: '100%',
-                        html: 'To see which teams\' lineups are in, look at the Games Filters.<br/>Teams with known lineups are marked with a *.'
+                        border: false,
+                        bodyCls: 'featured',
+                        html: 'Teams with posted lineups have a * in the games list'
                     },{
-                        xtype: 'checkbox',
-                        id: 'notinlineup',
-                        boxLabel: 'Hide players not in starting lineup',
-                        checked: false
-                    },
-                    {
                         xtype: 'fieldcontainer',
                         id: 'battingorderFilter',
                         fieldLabel: 'Include players batting in these positions',
@@ -130,6 +131,12 @@ Ext.define('DFST.view.filter.List', {
                             { name: 'boFilter', boxLabel: '8', inputValue: '8' },
                             { name: 'boFilter', boxLabel: '9', inputValue: '9' }
                         ]                
+                    },{
+                        xtype: 'checkbox',
+                        id: 'notinlineup',
+                        boxLabel: 'Hide Benchwarmers',
+                        tooltip: 'Until starting lineups are posted, this will have no effect',
+                        checked: false
                     }            
                     ]
             },
@@ -224,6 +231,7 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: DFST.AppSettings[DFST.AppSettings.sport].gameCnt
                 },
+/*
                 {   //mlb specific
                     fieldLabel: 'MR Value',
                     xtype: 'multislider',
@@ -235,6 +243,7 @@ Ext.define('DFST.view.filter.List', {
                     maxValue: 5,
                     hidden: DFST.AppSettings.sport !== 'mlb'
                 },
+*/                
                 {   //nfl
                     fieldLabel: 'Depth',
                     xtype: 'multislider',

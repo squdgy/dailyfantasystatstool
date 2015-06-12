@@ -30,29 +30,29 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
             stateId: 'rosterbuilder',
             titleAlign: 'center',
             showCopyright: false,
-            features: [{
-                ftype: 'summary'
-            }],                
+            // features: [{
+            //     ftype: 'summary'
+            // }],                
             columns: [
                 { text: 'Pos', dataIndex: 'rpos', hideable: false, sortable: false, width: 34 },
                 { text: 'Name', dataIndex: 'name', hideable: false, sortable: false, width: 125, summaryType: 'count', summaryRenderer: this.copyRightRenderer},
-                { text: 'Team', dataIndex: 'team', hideable: false, sortable: false, width: 37 },
-                { text: 'FPPG', dataIndex: 'fppg', xtype: 'numbercolumn', align: 'right', sortable: false, hideable: false, width: 42, format:'0.00', summaryType: 'sum' },
-                { text: 'Salary', dataIndex: 'salary', xtype: 'numbercolumn', align: 'right', sortable: false, hideable: false, width: 70, format: '$0,000', summaryType: 'sum' },
-                { text: '', xtype: 'actioncolumn', id:'delete', sortable: false, hideable: false, width: 20,
-                    items: [{
-                        icon: 'images/delete.gif',
-                        tooltip: 'Remove player',
-                        isDisabled: function(view, rowIndex, colIndex, item, record) {// Returns true if 'editable' is false (, null, or undefined)
-                            return !record.get('pid');
-                        },
-                        handler: function(grid, rowIndex, colIndex) {
-                            var store = grid.getStore(),
-                                rec = store.getAt(rowIndex);
-                            me.fireEvent('removefromroster', store, rec);
-                        }
-                    }]
-            }],
+                { text: 'Team', dataIndex: 'team', hideable: false, sortable: false, width: 38 },
+                { text: 'FPPG', dataIndex: 'fppg', xtype: 'numbercolumn', align: 'right', sortable: false, hideable: false, width: 42, format:'0.00', summaryType: 'sum', summaryRenderer: Ext.util.Format.numberRenderer('0.00')},
+                { text: 'Salary', dataIndex: 'salary', xtype: 'numbercolumn', align: 'right', sortable: false, hideable: false, width: 70, format: '$0,000', summaryType: 'sum', summaryRenderer: function(value, p, record) {
+                    if (value === 0) return '$0'; return Ext.util.Format.currency(value, '$', -1); }},
+                { text: '', xtype: 'actioncolumn', id:'delete', sortable: false, hideable: false, width: 22, items: [{
+                    icon: 'images/delete.gif',
+                    tooltip: 'Remove player',
+                    isDisabled: function(view, rowIndex, colIndex, item, record) {// Returns true if 'editable' is false (, null, or undefined)
+                        return !record.get('pid');
+                    },
+                    handler: function(grid, rowIndex, colIndex) {
+                        var store = grid.getStore(),
+                            rec = store.getAt(rowIndex);
+                        me.fireEvent('removefromroster', store, rec);
+                    }}] 
+                }
+            ],
             forceFit: true,
             viewConfig: {
                 getRowClass: function(record) {
