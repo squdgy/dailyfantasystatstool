@@ -343,7 +343,6 @@ Ext.define('DFST.controller.Rosters', {
             }
         }
 
-debugger;
         //rgrid.view.selModel.select(possibleSlots, false, true);
         //rgrid.view.refresh();
     }

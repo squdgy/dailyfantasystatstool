@@ -17,7 +17,7 @@ Ext.define('DFST.store.PlayerStatsMemory', {
         property : 'gd',
         direction: 'DESC'
     }],
-    remoteSort: false,
+    remoteSort: true,
     remoteFilter: false,
     proxy: {
         type: 'memory',

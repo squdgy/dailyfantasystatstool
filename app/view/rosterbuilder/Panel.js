@@ -29,10 +29,10 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
             stateful: true,
             stateId: 'rosterbuilder',
             titleAlign: 'center',
-            showCopyright: false,
-            // features: [{
-            //     ftype: 'summary'
-            // }],                
+            showCopyright: false,/*
+            features: [{
+                 ftype: 'summary'
+            }],*/
             columns: [
                 { text: 'Pos', dataIndex: 'rpos', hideable: false, sortable: false, width: 34 },
                 { text: 'Name', dataIndex: 'name', hideable: false, sortable: false, width: 125, summaryType: 'count', summaryRenderer: this.copyRightRenderer},
