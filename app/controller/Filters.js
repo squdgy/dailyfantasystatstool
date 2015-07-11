@@ -442,6 +442,7 @@ Ext.define('DFST.controller.Filters', {
             if (siteId == 3) dfsGameId = 3; //ds
             if (siteId == 4) dfsGameId = 4; //dd
             if (siteId == 5) dfsGameId = 5; //ff
+            if (siteId == 6) dfsGameId = 6; //yahoo
             Ext.state.Manager.set('site', dfsGameId);
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;

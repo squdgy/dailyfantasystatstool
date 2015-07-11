@@ -71,8 +71,9 @@ Ext.define('DFST.view.site.Picker', {
                     { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
                     { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
                     //{ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'},
-                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'}
-                    //{ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
+                    { boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
+                   //{ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
+                    { boxLabel: 'Yahoo', name: 'rb', inputValue: '6'}
                 ];
         if (DFST.AppSettings.sport !== 'nfl'){
             siteItems.push({ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'});
