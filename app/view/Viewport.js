@@ -51,7 +51,8 @@ Ext.define('DFST.view.Viewport', {
                 layout: {
                     type: 'vbox',
                     padding: 0,
-                    align: 'stretch'
+                    align: 'stretch',
+                    pack: 'justify'
                 },
                 defaults: {
                   margin: 1 

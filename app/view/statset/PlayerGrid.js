@@ -6,7 +6,6 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 
 	cls: 'player-grid',
 	disabled: false,
-    maxHeight: 190,
     width: 900,
     autoScroll: true,
     stateful: true,
@@ -32,9 +31,10 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         }
     }, {
         xtype: 'pagingtoolbar',
-        dock: 'bottom',
+        dock: 'top',
         store: 'PlayerStatsMemory',
-        displayInfo: true
+        displayInfo: true,
+        plugins: { ptype: 'pagesizepicker', displayText: 'games per page', options: [5, 10, 20, 50, 200] }
     }],
 
     getCols: function(sport, position) {

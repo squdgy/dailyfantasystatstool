@@ -5,7 +5,7 @@ Ext.define('Ext.ux.PageSizePicker', {
 
   options: [20, 50, 100, 500, 1000],
   
-  displayText: 'Players per Page',
+  displayText: 'players per page',
 
   constructor: function(config) {
 	
@@ -22,7 +22,7 @@ Ext.define('Ext.ux.PageSizePicker', {
 	
     var comboBox = Ext.create('Ext.form.field.ComboBox',{
       store: optionsStore,
-      width:50,
+      width:75,
       typeAhead: false,
       triggerAction: 'all',
       forceSelection: true,
@@ -31,7 +31,7 @@ Ext.define('Ext.ux.PageSizePicker', {
       value: store.pageSize,
       listeners: {
         select: function(combo, value, i){
-            store.pageSize = value[0].data.field1;
+            store.pageSize = combo.getValue();
             store.loadPage(1);
         }
       }
