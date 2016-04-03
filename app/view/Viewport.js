@@ -34,8 +34,7 @@ Ext.define('DFST.view.Viewport', {
             }
         }
         var footerHtml = '<footer>Daily Fantasy Stats Tool, Version ' + 
-            DFST.AppSettings.version + 
-            ', Copyright 2012-2015 Development Partners Software Corp. ' + 
+            DFST.AppSettings.version + ' ' + DFST.AppSettings.appCopyRight + ' - ' +
             'Game time weather powered by <a href="http://www.forecast.io">Forecast.io</a>' + 
             sportLinks + 
             '</footer>';

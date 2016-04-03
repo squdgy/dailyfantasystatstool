@@ -55,7 +55,9 @@ Ext.define('DFST.controller.Stats', {
     },
     
     loadStatSetData: function() {
-        var limit = this.getDrilldownnextopp().getValue();
+        var extopp = this.getDrilldownnextopp();
+        if (!extopp) return; // might happen with restoring saved grid settings
+        var limit = extopp.getValue();
         var store = this.getPlayerStatsStore();
         store.filter([
             {id:'id', property: 'id', value: this.playerId},

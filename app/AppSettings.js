@@ -2,7 +2,7 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
     
-    appCopyRight: '&copy; DraftAid.com',
+    appCopyRight: '&copy;DraftAid.com 2012-2016',
     
     sport: 'mlb',   // app supports one at a time: mlb, nba, nfl, nhl
     siteId: 1,      // default to DK
@@ -18,5 +18,5 @@ Ext.define('DFST.AppSettings', {
     nhl: {
         gameCnt: 82
     },
-    version: '2.7'
+    version: '3.0'
 });  
