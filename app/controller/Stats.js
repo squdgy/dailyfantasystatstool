@@ -22,7 +22,7 @@ Ext.define('DFST.controller.Stats', {
         // Set up service URLs
         var host = 'https://localhost:44301';    //local
         if (location.hostname.indexOf('azurewebsites') > 0) {
-            host = 'http://dfstapi.cloudapp.net';  //live azure
+            host = 'http://draftaidapi.azurewebsites.net';  //live azure
         }
 //        host = 'http://localhost:81';       //local azure dev fabric 
         var statsStore = this.getStatsStore();
