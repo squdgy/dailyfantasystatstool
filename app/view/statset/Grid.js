@@ -126,10 +126,6 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'position in batting order (when known)',
                     renderer: this.formatBattingOrder
                 },{
-                    text: 'MR',
-                    dataIndex: 'mr1',
-                    hidden: true
-                },{
                     text: 'G',
                     dataIndex: 'ng',
                     tooltip: 'games played'

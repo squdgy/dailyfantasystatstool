@@ -231,19 +231,6 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: DFST.AppSettings[DFST.AppSettings.sport].gameCnt
                 },
-/*
-                {   //mlb specific
-                    fieldLabel: 'MR Value',
-                    xtype: 'multislider',
-                    id: 'mr1Range',
-                    width: 350,
-                    values: [0, 5],
-                    increment: 1,
-                    minValue: 0,
-                    maxValue: 5,
-                    hidden: DFST.AppSettings.sport !== 'mlb'
-                },
-*/                
                 {   //nfl
                     fieldLabel: 'Depth',
                     xtype: 'multislider',
