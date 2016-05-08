@@ -1,10 +1,10 @@
 [
     {
-        gd: "05/01/2012",
-        opp: "Yankees"
+        LastName: "Cabrera",
+        FantasyPoints: 32.4
     },
     {
-        gd: "05/01/2012",
-        opp: "Red Sox"
+        LastName: "Ortiz",
+        FantasyPoints: 16.2
     }
 ]

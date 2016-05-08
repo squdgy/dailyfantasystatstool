@@ -1,30 +1,19 @@
-/*global Ext: false, DFST: false */
+/*global Ext: false */
 Ext.application({
-    name: 'Yesterday',
+    name: 'yesterdayApp',
+    appFolder: 'yesterdayApp',
+    controllers: ['Yesterday'],
 
-    appFolder : 'yesterdayApp',
-    
-    // All controllers that should initialize
-    controllers: [ 'Yesterday' ],
-
-    //automatically load and instantiate DFST.view.Viewport
-    autoCreateViewport: true,
-    
-    init : function(application) { // configure for sport
-    alert('bar');
-        var siteId = Ext.state.Manager.get('site');
-        DFST.AppSettings.siteId = siteId || 1; //default to DK
-
-        var cururl = document.URL;
-        var lqs = cururl.lastIndexOf("?");
-        if (lqs >= 0) {
-            var qs = cururl.substring(lqs+1);
-            if (qs.indexOf("sport=") >= 0) {
-                var sport = qs.substring(6);
-                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl") { //supported sports
-                    DFST.AppSettings.sport = sport;
-                }
-            }
-        }
+    launch: function () {
+        Ext.create('Ext.container.Viewport', {
+            layout: 'fit',
+            items: [{ xtype: 'yesterdaygrid' }]
+        });
     }
 });
+
+/* Fix for ajax requests not sending json request header in Firefox */
+Ext.Ajax.defaultHeaders = {              
+    'Accept' : 'application/json',  
+    'Content-Type' : 'application/json'
+};

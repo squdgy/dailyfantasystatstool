@@ -1,20 +1,18 @@
 /*global Ext: false */
 /* 
-
-Copyright (c) 2015 Maura Wilder
-
+Copyright (c) 2016 Maura Wilder
 */
-Ext.define('DFST.store.Yesterday', {
+Ext.define('yesterdayApp.store.Yesterday', {
     extend: 'Ext.data.Store',
 
     requires: ['Ext.data.reader.Json'],
     
-    model: 'DFST.model.Yesterday',
+    model: 'yesterdayApp.model.PlayerFantasyPoints',
 
     autoLoad: false,
     pageSize: 1000,
     sorters: [{
-        property : 'gd',
+        property : 'FantasyPoints',
         direction: 'DESC'
     }],
     remoteSort: false,
