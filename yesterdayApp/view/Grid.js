@@ -6,11 +6,11 @@ Ext.define('yesterdayApp.view.Grid', {
 	autoScroll: true,
     store: 'Yesterday',
     columns: [
-        {text: "Team", dataIndex: 'Team', width: 100, filter: 'string'},
-        {text: "Position", dataIndex: 'Position', width: 100, filter: 'string'},
+        {text: "Team", dataIndex: 'Team', width: 100, filter: 'list'},
+        {text: "Position", dataIndex: 'Position', width: 100, filter: 'list'},
         {text: "First", dataIndex: 'FirstName', width: 120, filter: 'string'},
         {text: "Last", dataIndex: 'LastName', width: 120, filter: 'string'},
-        {text: "Game", dataIndex: 'Game', width: 120, filter: 'string'},
+        {text: "Game", dataIndex: 'Game', width: 120, filter: 'list'},
         {text: "Salary", dataIndex: 'Salary', width: 120, filter: 'number', renderer: function(value, p, record) {
             if (value === 0)
                 return 'N/A';

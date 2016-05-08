@@ -10,7 +10,7 @@ Ext.define('yesterdayApp.store.Yesterday', {
     model: 'yesterdayApp.model.PlayerFantasyPoints',
 
     autoLoad: false,
-    pageSize: 1000,
+    pageSize: 100,
     sorters: [{
         property : 'FantasyPoints',
         direction: 'DESC'
