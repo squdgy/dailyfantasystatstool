@@ -4,6 +4,9 @@ Ext.define('yesterdayApp.controller.Yesterday', {
 
     stores: ['Yesterday'],
     views: ['Grid'],
+    refs: [
+        { ref: 'dataGrid', selector: 'grid' }
+    ],
 
     init: function() {
         var host = 'https://localhost:44301';    //local

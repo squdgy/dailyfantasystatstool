@@ -6,6 +6,9 @@ Ext.define('yesterdayApp.view.Grid', {
 	autoScroll: true,
     store: 'Yesterday',
     columns: [
+        {text: "Report", dataIndex: 'HistoryType', width: 100, sortable: false,
+            filter: { type: 'list', options:['Fantasy Points', 'Home Runs'], value: 'Home Runs', active: true, single:true}
+        },
         {text: "Team", dataIndex: 'Team', width: 100, filter: 'list'},
         {text: "Position", dataIndex: 'Position', width: 100, filter: 'list'},
         {text: "First", dataIndex: 'FirstName', width: 120, filter: 'string'},
@@ -17,9 +20,9 @@ Ext.define('yesterdayApp.view.Grid', {
             return Ext.util.Format.currency(value, '$', -1); 
             }},
         {text: "FantasyPoints", dataIndex: 'FantasyPoints', width: 120, filter: 'number', renderer: Ext.util.Format.numberRenderer('0.00')},
-        {text: "$/Pt", dataIndex: 'DollarsPerPoint', width: 120, filter: 'number', renderer: Ext.util.Format.numberRenderer('0.00')}
+        {text: "$/Pt", dataIndex: 'DollarsPerPoint', width: 120, filter: 'number', renderer: Ext.util.Format.numberRenderer('0.00')},
+        {text: "HomeRuns", dataIndex: "HomeRuns", width: 80, hidden: false }
     ],
     
      plugins: 'gridfilters'
 });
-
