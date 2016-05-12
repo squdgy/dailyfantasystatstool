@@ -7,7 +7,7 @@ Ext.define('yesterdayApp.view.Grid', {
     store: 'Yesterday',
     columns: [
         {text: "Choose Report >", dataIndex: 'HistoryType', width: 200, sortable: false,
-            filter: { type: 'list', value: 'Home Runs', active: true, single:true}
+            filter: { type: 'list', value: 'Fantasy Points', active: true, single:true}
         },
         {text: "Team", dataIndex: 'Team', width: 100, filter: 'list'},
         {text: "Position", dataIndex: 'Position', width: 100, filter: 'list'},
