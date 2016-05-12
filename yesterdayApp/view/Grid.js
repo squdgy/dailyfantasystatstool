@@ -2,12 +2,12 @@
 Ext.define('yesterdayApp.view.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.yesterdaygrid',
-	title: 'Yesterday\'s Fantasy Points',
+	title: 'DFS stats from yesterday. Change reports via the filters on the Choose Report column',
 	autoScroll: true,
     store: 'Yesterday',
     columns: [
-        {text: "Report", dataIndex: 'HistoryType', width: 100, sortable: false,
-            filter: { type: 'list', options:['Fantasy Points', 'Home Runs'], value: 'Home Runs', active: true, single:true}
+        {text: "Choose Report >", dataIndex: 'HistoryType', width: 200, sortable: false,
+            filter: { type: 'list', value: 'Home Runs', active: true, single:true}
         },
         {text: "Team", dataIndex: 'Team', width: 100, filter: 'list'},
         {text: "Position", dataIndex: 'Position', width: 100, filter: 'list'},

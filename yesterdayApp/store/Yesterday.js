@@ -11,10 +11,10 @@ Ext.define('yesterdayApp.store.Yesterday', {
 
     autoLoad: false,
     pageSize: 100,
-    sorters: [{
-        property : 'FantasyPoints',
-        direction: 'DESC'
-    }],
+    sorters: [
+        { property : 'FantasyPoints', direction: 'DESC'},
+        { property : 'HomeRuns', direction: 'DESC'},
+    ],
     remoteSort: false,
     remoteFilter: false,
 	proxy: {

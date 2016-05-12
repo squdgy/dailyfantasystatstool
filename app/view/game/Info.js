@@ -16,8 +16,9 @@ Ext.define('DFST.view.game.Info', {
                 '<div>',
                 '<h4>{awayPitcher} ({apthrows:this.formatHandedness}) - {away}</h4>',
                 '<h4>{homePitcher} ({hpthrows:this.formatHandedness}) - {home}</h4>',
+                '<h4>{gameTime}</h4>',
                 '<div>{venue}</span>',
-                '<div>park factor: {parkfactor}</div>',
+                '<div>Park factor (2015/runs): <em>{parkfactor}</em></div>',
                 '</div>',
                 {
                     formatHandedness: function(value) {
