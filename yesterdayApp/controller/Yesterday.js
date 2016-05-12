@@ -25,6 +25,7 @@ Ext.define('yesterdayApp.controller.Yesterday', {
     onReportFilterChanged: function(store, filters, options) {
         var reportType = filters[0].getValue()[0];
         var grid = this.getDataGrid();
+        var store = this.getYesterdayStore();
         var cols = grid.columnManager.getColumns();
         var homeRunsCol = cols.find(function(x){
             if (x.dataIndex == "HomeRuns")
@@ -47,12 +48,18 @@ Ext.define('yesterdayApp.controller.Yesterday', {
             fpCol.setVisible(false);
             salCol.setVisible(false);
             dppCol.setVisible(false);
+            store.sort([
+                { property : 'HomeRuns', direction: 'DESC'}
+            ]);
         }
         if (reportType === "Fantasy Points") {
             homeRunsCol.setVisible(false);
             fpCol.setVisible(true);
             salCol.setVisible(true);
             dppCol.setVisible(true);
+            store.sort([
+                { property : 'FantasyPoints', direction: 'DESC'}
+            ]);
         }
     }
 });
