@@ -89,7 +89,7 @@ Ext.define('DFST.controller.Stats', {
         var statset = statsets[0],
             detailsInfoView = this.getDrilldowninfo(),
             detailsView = this.getDrilldowndetails();
-                    
+
         if (statset && detailsView) {
             var statsStore = this.getStatsStore();
             if (statsStore) {
@@ -107,8 +107,10 @@ Ext.define('DFST.controller.Stats', {
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
-            detailsView.setTitle('Game Log for ' + statset.data.fname +
-            ' ' + statset.data.lname);
+            
+            var dvTitle = 'Game Log for ' + statset.get('fname') +
+            ' ' + statset.get('lname') + ',' + statset.get('spos') + ' ' + statset.get('team');
+            detailsView.setTitle(dvTitle);
             detailsView.show();
         }
     },
