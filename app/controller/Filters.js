@@ -91,7 +91,10 @@ Ext.define('DFST.controller.Filters', {
         
         // set up load masking
         var me = this;
-        this.getSiteDetailsStore().on('beforeload', function(){
+        this.getSiteDetailsStore().on('beforeload', function(store){
+            store.getProxy().extraParams = {
+                sport: DFST.AppSettings.sport
+            };
             me.getViewport().setLoading('Retrieving player salaries...');
         });
         this.getSiteDetailsStore().proxy.on('exception', function(proxy, response){
@@ -199,16 +202,27 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filter([{id: filterId, property: filterId, value: min + '|' + max}]);
     },
 
+    getDateFilters: function(gameDate) {
+        var filters = [{id:'gameDate', property: 'gameDate', value: gameDate.toJSON()}];
+        if (DFST.AppSettings.sport === 'nas') {
+            var gameDateEnd = new Date(gameDate);
+            gameDateEnd.setDate(gameDate.getDate() + 6);
+            filters.push({id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()});
+        }
+        return filters; 
+    },
+
     changeDate: function(datefield, newValue, oldValue, options) {
         this.gameDateIsChanging = oldValue !== undefined;
 
         var statsStore = this.getStatsStore();
-        var filters = [{id:'gameDate', property: 'gameDate', value: newValue.toJSON()}];
+        var filters = this.getDateFilters(newValue);
         if (this.gameDateIsChanging) {
             this.fireEvent('appDateChanged', newValue);
             
             statsStore.filters.removeAtKey('gameId'); // clear all game filters
-            statsStore.filter([{id: 'gameDate', property: 'gameDate', value: newValue.toJSON()}]);
+            statsStore.filter(filters);
+
             var gamesStore = this.getGamesStore();
             filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
             gamesStore.filter(filters);
@@ -447,6 +461,7 @@ Ext.define('DFST.controller.Filters', {
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
+            if (DFST.AppSettings.sport == "nas") dfsGameId = 500;
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
@@ -608,7 +623,7 @@ Ext.define('DFST.controller.Filters', {
             // it like local time, so add the timeoffset : 
             var tzo = gameTime.getTimezoneOffset();
             gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, tzo);
-            if (DFST.AppSettings.sport === "nfl") {
+            if (DFST.AppSettings.sport === 'nfl') {
                 gameTime = Ext.Date.format(gameTime, 'g:i ') +
                     Ext.Date.format(gameTime, 'D').substring(0, 2);
             } else {
@@ -634,7 +649,7 @@ Ext.define('DFST.controller.Filters', {
                 id: 'gamesGo'
             }));
         } else {
-            this.getGameDetails().hide();
+            this.getGamedetails().hide();
             this.getDrilldowndetails().hide();
         }
     },
@@ -676,11 +691,17 @@ Ext.define('DFST.controller.Filters', {
     
     onLaunch: function() {
         var host = 'https://localhost:44301';
-        if (location.hostname.indexOf('azurewebsites') > 0) {
+        if (window.location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live azure
         }
         this.host = host;
         
+        // init filters, dates/sport
+        var statsStore = this.getStatsStore();
+        var filters = this.getDateFilters(new Date());
+        filters.push({id:'sport', property: 'sport', value: DFST.AppSettings.sport});
+        statsStore.filters.add(filters);
+
         var defaultGameId = DFST.AppSettings.siteId;
         if (DFST.AppSettings.sport == "mlb") 
             defaultGameId += 100;
@@ -688,6 +709,8 @@ Ext.define('DFST.controller.Filters', {
             defaultGameId += 200;
         else if (DFST.AppSettings.sport == "nhl")
             defaultGameId += 300;
+        else if (DFST.AppSettings.sport == "nas")
+            defaultGameId = 500;
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
@@ -703,12 +726,10 @@ Ext.define('DFST.controller.Filters', {
         var gamesStore = this.getGamesStore();
         gamesStore.proxy.url = host + '/api/games/';
         gamesStore.on('load', this.onGamesChanged, this);
-        if (DFST.AppSettings.sport === "nfl") {
+        if (DFST.AppSettings.sport === 'nfl') {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
         } else {
-            var filters = [{id:'gameDate', property: 'gameDate', value: (new Date()).toJSON()},
-                               {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}];
             gamesStore.filter(filters);
         }
         this.fireEvent('appDateChanged', new Date());

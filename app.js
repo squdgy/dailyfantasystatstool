@@ -36,7 +36,7 @@ Ext.application({
             var qs = cururl.substring(lqs+1);
             if (qs.indexOf("sport=") >= 0) {
                 var sport = qs.substring(6);
-                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl") { //supported sports
+                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
                     DFST.AppSettings.sport = sport;
                 }
             }

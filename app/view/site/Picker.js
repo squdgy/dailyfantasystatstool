@@ -34,7 +34,7 @@ Ext.define('DFST.view.site.Picker', {
                 {'week': 16, 'name':'Week 16', startdate: new Date('2014-12-21'), enddate: new Date('2014-12-22')},
                 {'week': 17, 'name':'Week 17', startdate: new Date('2014-12-28'), enddate: new Date('2014-12-28')}
             ]
-        });        
+        });    
         var getNearestNFLWeek = function(){
             var seasonStart = new Date(2014, 8, 4); // Thu Wk 1
             var today = new Date();
@@ -56,6 +56,11 @@ Ext.define('DFST.view.site.Picker', {
             };
         datesConfig.nba = datesConfig.mlb;
         datesConfig.nhl = datesConfig.mlb;
+        datesConfig.nas = {
+                xtype: 'datefield',
+                name: 'game_date',
+                value: new Date()//,   // defaults to today
+            };
         datesConfig.nfl = {
                 xtype: 'combobox',
                 //fieldLabel: 'Change',

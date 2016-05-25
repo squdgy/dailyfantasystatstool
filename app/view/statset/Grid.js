@@ -496,6 +496,30 @@ Ext.define('DFST.view.statset.Grid', {
 			}
 		}; 
 		
+		gridConfig.nas = {
+            store: 'Stats',
+            columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    tooltip: 'player salary at the selected site',
+                    renderer: this.moneyRenderer
+                }]
+            }
+		};
+		
 		// State will vary by sport
 		this.stateId = DFST.AppSettings.sport + '-statsetgrid';
 		this.stateful = true;

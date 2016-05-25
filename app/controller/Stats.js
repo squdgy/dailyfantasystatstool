@@ -21,10 +21,9 @@ Ext.define('DFST.controller.Stats', {
     init: function() {
         // Set up service URLs
         var host = 'https://localhost:44301';    //local
-        if (location.hostname.indexOf('azurewebsites') > 0) {
+        if (window.location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live azure
         }
-//        host = 'http://localhost:81';       //local azure dev fabric 
         var statsStore = this.getStatsStore();
         var playerStatsStore = this.getPlayerStatsStore();
         var playerStatsStoreMemory = this.getPlayerStatsMemoryStore();
@@ -120,6 +119,8 @@ Ext.define('DFST.controller.Stats', {
      * @param {DFST.model.StatSet} statset The statset to load
      */
     showGameDetail: function(grid, statsets) {        
+        if (DFST.AppSettings.sport === 'nas') return;
+        
         var statset = statsets[0],
             gameView = this.getGamedetails(),
             gamesStore = this.getGamesStore();
@@ -131,11 +132,13 @@ Ext.define('DFST.controller.Stats', {
                 // weather display, if any
                 var hourViews = Ext.ComponentQuery.query('weatherhour');
                 var weather = game.getAssociatedData().weather;
-                var wi = weather.length;
-                for (var i=0; i < wi; i++) {
-                    var hourView = hourViews[i];
-                    if (hourView) {
-                        hourView.update(weather[i]);
+                if (weather) {
+                    var wi = weather.length;
+                    for (var i=0; i < wi; i++) {
+                        var hourView = hourViews[i];
+                        if (hourView) {
+                            hourView.update(weather[i]);
+                        }
                     }
                 }
                 

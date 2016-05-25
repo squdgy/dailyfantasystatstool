@@ -18,7 +18,7 @@ Ext.define('DFST.view.Viewport', {
 	
 	initComponent: function(){
         var sportLinks = '';
-        var sports = ['mlb', 'nfl', 'nba', 'nhl'];
+        var sports = ['mlb', 'nfl', 'nba', 'nhl', 'nas'];
         for (var i in sports) {
             var sport = sports[i];
             if (sport === DFST.AppSettings.sport) {

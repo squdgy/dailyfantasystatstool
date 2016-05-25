@@ -41,6 +41,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
         if (sport === 'mlb') colmap = this.mlbPosStatMap[position];
+        if (sport === 'nas') colmap = this.nasPosStatMap[position];
         if (colmap === undefined) return;
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
@@ -237,6 +238,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             TE : ['si5', 'si6', 'si14', 'si48', 'si9', 'si8', 'si10', 'si11'],
             K : ['si35', 'si37', 'si38', 'si39', 'si40', 'si41'],
             D : ['si18', 'si43', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si27']
+        };
+        this.nasPosStatMap = {
+            D: []
         };
         this.firstCols = [
                 {   text: 'Date',
