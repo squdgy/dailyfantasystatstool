@@ -511,11 +511,39 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 150,
                     renderer: this.formatName
                 },{
+                    text: 'Races',
+                    dataIndex: 'ng',
+                    tooltip: '# races'
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    tooltip: 'average fantasy points season-to-date',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 60,
+                    tooltip: 'average fantasy points over player\'s last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
                     text: '$',
                     dataIndex: 'sal',
                     width: 75,
                     tooltip: 'player salary at the selected site',
                     renderer: this.moneyRenderer
+                },{
+                    text: '$/FP',
+                    dataIndex: 'cpp',
+                    width: 75,
+                    tooltip: 'cost per point over the season to date',
+                    renderer: this.costPerPointRenderer
+                },{
+                    text: '$/FP-5',
+                    dataIndex: 'cpp5',
+                    width: 75,
+                    tooltip: 'cost per point over last 5 games',
+                    renderer: this.costPerPointRenderer
                 }]
             }
 		};

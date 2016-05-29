@@ -32,6 +32,7 @@ Ext.define('DFST.view.filter.List', {
                 collapsible: true,
                 animCollapse: true,
                 layout: 'vbox',
+                hidden: DFST.AppSettings.sport === 'nas',
                 title: 'By Position(s)',
                 items: [{
                     xtype: 'panel',
@@ -81,6 +82,7 @@ Ext.define('DFST.view.filter.List', {
                 collapsible: true,
                 animCollapse: true,
                 layout: 'fit',
+                hidden: DFST.AppSettings.sport === 'nas',
                 title: 'By Game(s)',
                 items: [{
                     xtype: 'fieldcontainer',
@@ -286,6 +288,7 @@ Ext.define('DFST.view.filter.List', {
                     xtype: 'checkbox',
                     id: 'injured',
                     boxLabel: 'Hide Injured Players',
+                    hidden: DFST.AppSettings.sport === 'nas',
                     checked: false
                 }, {
                     text: 'Export Player List',

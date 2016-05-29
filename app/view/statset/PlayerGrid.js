@@ -199,7 +199,14 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si18: 'MIN',
                 si19: 'PPM',
                 si20: 'SHM'
-        }};
+            },
+            nas :{
+                si1: 'Diff',
+                si2: 'Fastest',
+                si3: 'Led',
+                si4: 'Finish',
+            }
+        };
         var mlbHitterMap = ['si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si14', 'si15', 'si16'];
         this.mlbPosStatMap = {
             '1B' : mlbHitterMap,
@@ -240,7 +247,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             D : ['si18', 'si43', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si27']
         };
         this.nasPosStatMap = {
-            D: []
+            D: ['si1', 'si2', 'si3', 'si4']
         };
         this.firstCols = [
                 {   text: 'Date',
