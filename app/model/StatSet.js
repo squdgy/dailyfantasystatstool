@@ -75,6 +75,15 @@ Ext.define('DFST.model.StatSet', {
         { name: 'ph_ops', type: 'float', defaultValue: 0.0},
         { name: 'ph_woba', type: 'float', defaultValue: 0.0},
         { name: 'tla', type: 'boolean', defaultValue: false},  //team lineup ready?
+        
+        // nas specific, qualifying position and practice posiiton/speeds
+        { name: 'qpos', type: 'int', defaultValue: 0},
+        { name: 'p1pos', type: 'int', defaultValue: 0},
+        { name: 'p1sp', type: 'float', defaultValue: 0.0},
+        { name: 'p2pos', type: 'int', defaultValue: 0},
+        { name: 'p2sp', type: 'float', defaultValue: 0.0},
+        { name: 'p3pos', type: 'int', defaultValue: 0},
+        { name: 'p3sp', type: 'float', defaultValue: 0.0},
 
         { name: 'rpel' } // array of roster position ids that player is eligible for
     ]

@@ -515,17 +515,9 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'ng',
                     tooltip: '# races'
                 },{
-                    text: 'Avg Pts',
-                    dataIndex: 'afp',
-                    width: 60,
-                    tooltip: 'average fantasy points season-to-date',
-                    renderer: Ext.util.Format.numberRenderer('0.00')
-                },{
-                    text: 'Avg FP-5',
-                    dataIndex: 'afp5',
-                    width: 60,
-                    tooltip: 'average fantasy points over player\'s last 5 games',
-                    renderer: Ext.util.Format.numberRenderer('0.00')
+                    text: 'Pos',
+                    dataIndex: 'qpos',
+                    tooltip: 'Qualifying Position'
                 },{
                     text: '$',
                     dataIndex: 'sal',
@@ -544,6 +536,48 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    tooltip: 'average fantasy points season-to-date',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 60,
+                    tooltip: 'average fantasy points over player\'s last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'P1 Pos',
+                    dataIndex: 'p1pos',
+                    width: 50,
+                    tooltip: 'Practice 1 Position'
+                },{
+                    text: 'P1 Speed',
+                    dataIndex: 'p1sp',
+                    width: 60,
+                    tooltip: 'Practice 1 Best Lap Speed'
+                },{
+                    text: 'P2 Pos',
+                    dataIndex: 'p2pos',
+                    width: 50,
+                    tooltip: 'Practice 2 Position'
+                },{
+                    text: 'P2 Speed',
+                    dataIndex: 'p2sp',
+                    width: 60,
+                    tooltip: 'Practice 2 Best Lap Speed'
+                },{
+                    text: 'P3 Pos',
+                    dataIndex: 'p3pos',
+                    width: 50,
+                    tooltip: 'Practice 3 Position'
+                },{
+                    text: 'P3 Speed',
+                    dataIndex: 'p3sp',
+                    width: 60,
+                    tooltip: 'Practice 3 Best Lap Speed'
                 }]
             }
 		};
