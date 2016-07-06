@@ -21,6 +21,7 @@ Ext.define('DFST.controller.Rosters', {
     
     init: function() {
         this.listen({
+            
             component: {
                 'statsetgrid': {
                     selectionchange: this.highlightPossibleSlots
@@ -50,7 +51,10 @@ Ext.define('DFST.controller.Rosters', {
             store: {
                 '#Roster' : {
                     beforesync : this.updateSummary
-                }  
+                },
+                '#Lineup' : {
+                    load : this.fillRosterFromLineup
+                }
             }
         });
     },
@@ -322,6 +326,25 @@ Ext.define('DFST.controller.Rosters', {
         var statsStore = this.getStatsStore();
         var filters = statsStore.filters.getRange();
         lineupStore.filter(filters);
+    },
+    
+    fillRosterFromLineup: function(lineupStore, records, wasSuccessful, options){
+        var nrecs = lineupStore.count();
+        var rosterStore = this.getRosterStore();
+        var rec, playerRec;
+        
+        for (var i=0; i<nrecs; i++) {
+            rec = rosterStore.getAt(i);
+            playerRec = lineupStore.getAt(i);
+            
+            rec.set('name', playerRec.get('name'));
+            rec.set('team', playerRec.get('team'));
+            rec.set('pid', playerRec.get('pid'));
+            rec.set('fppg', playerRec.get('fppg'));
+            rec.set('salary', playerRec.get('salary'));
+        }
+        rosterStore.sync();
+        return;
     },
     
     /* selects (highlights) rows in roster grid where a selected player may be placed  */

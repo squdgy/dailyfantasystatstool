@@ -21,7 +21,7 @@ Ext.define('DFST.store.Lineup', {
         url: 'app/data/lineup.json', //test data, url overridden in controller
 		reader: {
 			type: 'json',
-            rootProperty: 'players',
+            rootProperty: 'list',
             totalProperty: 'total'
 		},
 	},
