@@ -9,7 +9,7 @@ Ext.define('DFST.controller.Rosters', {
     refs: [
         {ref: 'siteInfo', selector: '#siteinfo'},
         {ref: 'siteScreenShotArea', selector: '#ssarea'},
-        {ref: 'siteGrid', selector: 'rosterbuilder grid'},
+        {ref: 'rosterGrid', selector: 'rosterbuilder grid'},
         {ref: 'screenShotButton', selector: 'rosterbuilder button#screenshot'},
         {ref: 'deleteButtons', selector: 'rosterbuilder actioncolumn[id=delete]'},
         {ref: 'watermark', selector: 'rosterbuilder #watermark'}
@@ -53,6 +53,8 @@ Ext.define('DFST.controller.Rosters', {
                     beforesync : this.updateSummary
                 },
                 '#Lineup' : {
+                    beforeLoad : this.setRosterMask,
+                    exception : this.clearRosterMask,
                     load : this.fillRosterFromLineup
                 }
             }
@@ -141,9 +143,9 @@ Ext.define('DFST.controller.Rosters', {
         }
         var sportString = DFST.AppSettings.sport.toUpperCase();
         var dateString = me._date.toDateString();
-        var siteGrid = me.getSiteGrid();
-        if (siteGrid) {
-            siteGrid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+        var grid = me.getRosterGrid();
+        if (grid) {
+            grid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
         }
         me.salaryCap = cap; // save for later use
         
@@ -344,7 +346,16 @@ Ext.define('DFST.controller.Rosters', {
             rec.set('salary', playerRec.get('salary'));
         }
         rosterStore.sync();
+        this.clearRosterMask();
         return;
+    },
+    
+    setRosterMask: function() {
+        this.getRosterGrid().setLoading('********');
+    },
+    
+    clearRosterMask: function() {
+        this.getRosterGrid().setLoading(false);
     },
     
     /* selects (highlights) rows in roster grid where a selected player may be placed  */
