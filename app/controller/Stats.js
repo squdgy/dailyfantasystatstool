@@ -2,7 +2,7 @@
 Ext.define('DFST.controller.Stats', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Stats', 'PlayerStats', 'PlayerStatsMemory', 'Games'],
+    stores: ['Stats', 'PlayerStats', 'PlayerStatsMemory', 'Games', 'Lineup'],
 
     models: ['StatSet', 'PlayerStatSet', 'Game'],
 
@@ -27,8 +27,10 @@ Ext.define('DFST.controller.Stats', {
         var statsStore = this.getStatsStore();
         var playerStatsStore = this.getPlayerStatsStore();
         var playerStatsStoreMemory = this.getPlayerStatsMemoryStore();
+        var lineupStore = this.getLineupStore();
         statsStore.proxy.url = host + '/api/players/';
         playerStatsStore.proxy.url = host + '/api/playerstats/';
+        lineupStore.proxy.url = host + '/api/lineup/';
         playerStatsStore.on('beforeload', function(){
             if (this.filters.length == 0) return false; // don't load if no player selected
         });

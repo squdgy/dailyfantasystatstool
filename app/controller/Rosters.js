@@ -2,7 +2,7 @@
 Ext.define('DFST.controller.Rosters', {
     extend: 'Ext.app.Controller',
 
-    stores: ['SiteDetails', 'Roster'],
+    stores: ['SiteDetails', 'Roster', 'Lineup', 'Stats'],
     models: ['SiteDetails', 'RosterPosition', 'RosterSlot'],
     views:  ['statset.Grid', 'rosterbuilder.Panel'],
     
@@ -36,6 +36,9 @@ Ext.define('DFST.controller.Rosters', {
                 },
                 'rosterbuilder button#clear': {
                     click: this.clearRoster
+                },
+                'rosterbuilder button#fill': {
+                    click: this.fillLineup
                 }
             },
             controller: {
@@ -312,6 +315,13 @@ Ext.define('DFST.controller.Rosters', {
             rec.set('salary', null);
         }
         store.sync();
+    },
+    
+    fillLineup: function(){
+        var lineupStore = this.getLineupStore();
+        var statsStore = this.getStatsStore();
+        var filters = statsStore.filters.getRange();
+        lineupStore.filter(filters);
     },
     
     /* selects (highlights) rows in roster grid where a selected player may be placed  */

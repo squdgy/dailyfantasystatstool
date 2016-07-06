@@ -149,7 +149,12 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                 xtype: 'button',
                 id: 'clear',
                 cls: 'ros-btn',
-                text: 'Clear Lineup'
+                text: 'Clear'
+            }, {
+                xtype: 'button',
+                id: 'fill',
+                cls: 'ros-btn',
+                text: 'Fill'
             }, {
                 xtype: 'button',
                 id: 'screenshot',
