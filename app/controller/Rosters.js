@@ -53,7 +53,7 @@ Ext.define('DFST.controller.Rosters', {
                     beforesync : this.updateSummary
                 },
                 '#Lineup' : {
-                    beforeLoad : this.setRosterMask,
+                    beforeLoad : this.beforeLineupLoad,
                     exception : this.clearRosterMask,
                     load : this.fillRosterFromLineup
                 }
@@ -339,6 +339,7 @@ Ext.define('DFST.controller.Rosters', {
             rec = rosterStore.getAt(i);
             playerRec = lineupStore.getAt(i);
             
+            if (rec == null || playerRec == null) continue;
             rec.set('name', playerRec.get('name'));
             rec.set('team', playerRec.get('team'));
             rec.set('pid', playerRec.get('pid'));
@@ -350,8 +351,22 @@ Ext.define('DFST.controller.Rosters', {
         return;
     },
     
-    setRosterMask: function() {
+    beforeLineupLoad: function() {
         this.getRosterGrid().setLoading('********');
+        var lineupStore = this.getLineupStore();
+        var rosterStore = this.getRosterStore();
+        var prefilled = [];
+        var nrecs = rosterStore.count();
+        for (var i=0; i<nrecs; i++) {
+            var rec = rosterStore.getAt(i);
+            if (rec.get('pid')){
+                prefilled.push({
+                    pid : rec.get('pid'),
+                    rpos: rec.get('rpos')
+                });
+            }
+        }
+        lineupStore.proxy.extraParams.prefilled = Ext.JSON.encode(prefilled);
     },
     
     clearRosterMask: function() {
