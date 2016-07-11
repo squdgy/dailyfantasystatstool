@@ -331,7 +331,11 @@ Ext.define('DFST.controller.Rosters', {
     },
     
     fillRosterFromLineup: function(lineupStore, records, wasSuccessful, options){
+        this.clearRosterMask();
         var nrecs = lineupStore.count();
+        if (nrecs == 0) {
+             Ext.Msg.alert('Lineup Fill', 'Unable to fill roster. Things to try: manually fill more of the slots; narrow down the player list by using some of the filters; pick cheaper players.');
+        }
         var rosterStore = this.getRosterStore();
         var rec, playerRec;
         
@@ -347,7 +351,6 @@ Ext.define('DFST.controller.Rosters', {
             rec.set('salary', playerRec.get('salary'));
         }
         rosterStore.sync();
-        this.clearRosterMask();
         return;
     },
     
