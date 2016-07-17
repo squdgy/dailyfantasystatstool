@@ -693,6 +693,8 @@ Ext.define('DFST.controller.Filters', {
         var host = 'https://localhost:44301';
         if (window.location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live azure
+        } else if (window.location.hostname.indexOf('draftaid.com')) {
+            host = 'http://api.draftaid.com';  //live azure
         }
         this.host = host;
         

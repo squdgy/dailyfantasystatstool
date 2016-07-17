@@ -12,6 +12,8 @@ Ext.define('yesterdayApp.controller.Yesterday', {
         var host = 'https://localhost:44301';    //local
         if (window.location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live
+        } else if (window.location.hostname.indexOf('draftaid.com')) {
+            host = 'http://api.draftaid.com';  //live azure
         }
         var yesterdayStore = this.getYesterdayStore();
         yesterdayStore.proxy.url = host + '/api/history/';

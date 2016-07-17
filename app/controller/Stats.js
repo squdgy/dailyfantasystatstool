@@ -23,6 +23,8 @@ Ext.define('DFST.controller.Stats', {
         var host = 'https://localhost:44301';    //local
         if (window.location.hostname.indexOf('azurewebsites') > 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live azure
+        } else if (window.location.hostname.indexOf('draftaid.com')) {
+            host = 'http://api.draftaid.com';  //live azure
         }
         var statsStore = this.getStatsStore();
         var playerStatsStore = this.getPlayerStatsStore();
