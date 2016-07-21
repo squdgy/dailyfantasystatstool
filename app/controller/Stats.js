@@ -21,9 +21,9 @@ Ext.define('DFST.controller.Stats', {
     init: function() {
         // Set up service URLs
         var host = 'https://localhost:44301';    //local
-        if (window.location.hostname.indexOf('azurewebsites') > 0) {
+        if (window.location.hostname.indexOf('azurewebsites') >= 0) {
             host = 'http://draftaidapi.azurewebsites.net';  //live azure
-        } else if (window.location.hostname.indexOf('draftaid.com')) {
+        } else if (window.location.hostname.indexOf('draftaid.com') >= 0) {
             host = 'http://api.draftaid.com';  //live azure
         }
         var statsStore = this.getStatsStore();

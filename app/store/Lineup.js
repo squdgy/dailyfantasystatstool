@@ -31,4 +31,3 @@ Ext.define('DFST.store.Lineup', {
         }
     }	
 });
-

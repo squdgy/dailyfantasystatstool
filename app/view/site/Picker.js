@@ -73,8 +73,8 @@ Ext.define('DFST.view.site.Picker', {
             };
             
         var siteItems = [
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'}
-                    //{ boxLabel: 'FanDuel', name: 'rb', inputValue: '2' },
+                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
+                    { boxLabel: 'FanDuel', name: 'rb', inputValue: '2' }
                     //{ boxLabel: 'DraftStreet', name: 'rb', inputValue: '3'},
                     //{ boxLabel: 'DraftDay', name: 'rb', inputValue: '4'},
                     //{ boxLabel: 'FantasyFeud', name: 'rb', inputValue: '5'}
