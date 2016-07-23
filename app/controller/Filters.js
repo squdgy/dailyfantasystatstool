@@ -531,33 +531,6 @@ Ext.define('DFST.controller.Filters', {
         afp5Filter.setValue(0, site.get('afpmin'));
         afp5Filter.setValue(1, site.get('afpmax'));
         
-/*        
-        // set all other filters to default values
-        var probablesFilter = this.getProbablesFilter();
-        probablesFilter.suspendEvents(false);
-        probablesFilter.setValue(true);
-        probablesFilter.resumeEvents();    
-        var injuredFilter = this.getInjuredFilter();
-        injuredFilter.suspendEvents(false);
-        injuredFilter.setValue(false);
-        injuredFilter.resumeEvents();
-        var ngRangeFilter = this.getNgRangeFilter();
-        ngRangeFilter.setValue(0, ngRangeFilter.minValue);
-        ngRangeFilter.setValue(1, ngRangeFilter.maxValue);
-        
-        // reset the filters for batting order
-        var notinlineupFilter = this.getNotInLineupFilter();
-        notinlineupFilter.suspendEvents(false);
-        notinlineupFilter.setValue(false);
-        notinlineupFilter.resumeEvents();
-        var bOrderCheckboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#battingorderFilter checkbox');
-        for (i=0; i<bOrderCheckboxes.length; i++) {
-            var cb = bOrderCheckboxes[i];
-            cb.suspendEvents(false);
-            cb.setValue(true);
-            cb.resumeEvents();
-        }        
-*/
         // reset player store filters
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('pos');
