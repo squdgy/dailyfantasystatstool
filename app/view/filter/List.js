@@ -144,9 +144,9 @@ Ext.define('DFST.view.filter.List', {
             },
             {
                 xtype: 'panel',
-                collapsible: true,
+                collapsible: DFST.AppSettings.sport != 'nas',
                 animCollapse: true,
-                collapsed: true,
+                collapsed: DFST.AppSettings.sport != 'nas',
                 layout: 'vbox',
                 title: 'By Value',
                 items: [{
@@ -176,7 +176,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 2,
                     minValue: 0,
                     maxValue: 70
-                },{
+                },/*{
                     fieldLabel: 'Proj',
                     xtype: 'multislider',
                     id: 'projpRange',
@@ -186,7 +186,7 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 30,
                     hidden: DFST.AppSettings.sport === 'mlb'
-                },{
+                }*/,{
                     fieldLabel: '$/FP',
                     xtype: 'multislider',
                     id: 'cppRange',
@@ -204,7 +204,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 0,
                     minValue: 0,
                     maxValue: 800
-                },{
+                }/*,{
                     fieldLabel: '$/Proj',
                     xtype: 'multislider',
                     id: 'cpprojpRange',
@@ -214,13 +214,13 @@ Ext.define('DFST.view.filter.List', {
                     minValue: 0,
                     maxValue: 75000,
                     hidden: DFST.AppSettings.sport === 'mlb'
-                }]
+                }*/]
             },
             {
                 xtype: 'panel',
-                collapsible: true,
+                collapsible: DFST.AppSettings.sport != 'nas',
                 animCollapse: true,
-                collapsed: true,
+                collapsed: DFST.AppSettings.sport != 'nas',
                 layout: 'vbox',
                 title: 'Miscellaneous',
                 items: [{

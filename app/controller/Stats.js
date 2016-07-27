@@ -110,10 +110,15 @@ Ext.define('DFST.controller.Stats', {
             this.loadStatSetData();
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
-            
-            var dvTitle = 'Game Log for ' + statset.get('fname') +
-            ' ' + statset.get('lname') + ',' + statset.get('spos') + ' ' + statset.get('team');
-            detailsView.setTitle(dvTitle);
+           
+            var format = "Game Log for {0} {1}, {2} {3}";
+            var nasFormat = 'Race Log for {0} {1}';
+            if (DFST.AppSettings.sport === 'nas') {
+                detailsView.setTitle(Ext.String.format(nasFormat, statset.get('fname'), statset.get('lname')));         
+            } else {
+                detailsView.setTitle(Ext.String.format(format, statset.get('fname'), statset.get('lname'),
+                    statset.get('spos'), statset.get('team')));           
+            }
             detailsView.show();
         }
     },

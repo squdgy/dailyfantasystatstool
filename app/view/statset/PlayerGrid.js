@@ -1,4 +1,4 @@
-/*global Ext: false */
+/*global Ext: false, DFST:false*/
 Ext.define('DFST.view.statset.PlayerGrid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.statsetplayergrid',
@@ -14,8 +14,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     dockedItems: [{
         xtype: 'toolbar',
         dock: 'top',
-        items: {
+        items: [{
             xtype: 'checkbox',
+            hidden: DFST.AppSettings.sport != 'nas',
             stateful: true,
             stateId: 'nextopp',
             stateEvents: ['change'],
@@ -28,7 +29,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             boxLabel: 'Only show games against next opponent',
             id: 'nextopp',
             name: 'nextopp'
-        }
+        }]
     }, {
         xtype: 'pagingtoolbar',
         dock: 'top',
@@ -77,6 +78,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 'si39' : {width: 60},
                 'si40' : {width: 60},
                 'si41' : {width: 60}
+            },
+            'nas': {
+                'si3' : {width: 50}
             }
         };
         this.statMap = {

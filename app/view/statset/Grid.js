@@ -249,7 +249,7 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: '$',
                     dataIndex: 'sal',
-                    width: 60,
+                    width: 80,
                     tooltip: 'current salary',
                     renderer: this.moneyRenderer
                 },{
