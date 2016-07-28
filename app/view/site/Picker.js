@@ -9,9 +9,6 @@ Ext.define('DFST.view.site.Picker', {
     collapsible: true,
 	animCollapse: true,
 	
-    stateful: true,
-    stateId: 'sitepicker',
-    
 	initComponent: function() {
         var nflweeks = Ext.create('Ext.data.Store', {
             fields: ['week', 'name', 'startdate', 'enddate'],

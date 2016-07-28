@@ -27,9 +27,6 @@ Ext.application({
             : new Ext.state.CookieProvider();
         Ext.state.Manager.setProvider(provider);
         
-        var siteId = Ext.state.Manager.get('site');
-        DFST.AppSettings.siteId = siteId || 1; //default to DK
-
         var cururl = document.URL;
         var lqs = cururl.lastIndexOf("?");
         if (lqs >= 0) {
@@ -41,6 +38,14 @@ Ext.application({
                 }
             }
         }
+
+        if (DFST.AppSettings.sport === 'nas') {
+            siteId = 1;
+        } else {
+            var siteId = Ext.state.Manager.get('site');
+            siteId = siteId || 1;
+        }
+        DFST.AppSettings.siteId = siteId; //default to DK
     }
 });
 

@@ -11,33 +11,6 @@ Ext.define('DFST.view.statset.PlayerGrid', {
     stateful: true,
     stateId: 'statsetplayergrid',
     
-    dockedItems: [{
-        xtype: 'toolbar',
-        dock: 'top',
-        items: [{
-            xtype: 'checkbox',
-            hidden: DFST.AppSettings.sport != 'nas',
-            stateful: true,
-            stateId: 'nextopp',
-            stateEvents: ['change'],
-            getState: function() {
-                return {checked: this.getValue()};
-            },
-            applyState: function(state) {
-                this.setValue(state.checked);
-            },
-            boxLabel: 'Only show games against next opponent',
-            id: 'nextopp',
-            name: 'nextopp'
-        }]
-    }, {
-        xtype: 'pagingtoolbar',
-        dock: 'top',
-        store: 'PlayerStatsMemory',
-        displayInfo: true,
-        plugins: { ptype: 'pagesizepicker', displayText: 'games per page', options: [5, 10, 20, 50, 200] }
-    }],
-
     getCols: function(sport, position) {
         var colmap = (sport === 'nfl') ? this.nflPosStatMap[position] : this.nhlPosStatMap[position];
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
@@ -262,6 +235,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     text: 'Opp.',
                     dataIndex: 'opp',
                     renderer: this.formatOpponent,
+                    hidden: DFST.AppSettings.sport === 'nas',
                     width: 60
                 }];
         this.lastCols = [
@@ -271,7 +245,39 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
-		Ext.apply(this, {
+        var pagingRow = {
+            xtype: 'pagingtoolbar',
+            dock: 'top',
+            store: 'PlayerStatsMemory',
+            displayInfo: true,
+            plugins: { ptype: 'pagesizepicker', displayText: 'games per page', options: [5, 10, 20, 50, 200] }
+        };
+        var toolsRow = {
+            xtype: 'toolbar',
+            dock: 'top',
+            items: [{
+                xtype: 'checkbox',
+                stateful: true,
+                stateId: 'nextopp',
+                stateEvents: ['change'],
+                getState: function() {
+                    return {checked: this.getValue()};
+                },
+                applyState: function(state) {
+                    this.setValue(state.checked);
+                },
+                boxLabel: 'Only show games against next opponent',
+                id: 'nextopp',
+                name: 'nextopp'
+            }]
+        };
+        var includeToolsRow = DFST.AppSettings.sport != 'nas';
+        if (includeToolsRow) {
+            this.dockedItems = [toolsRow, pagingRow];
+        } else {
+            this.dockedItems = [pagingRow];
+        }
+        Ext.apply(this, {
             store: 'PlayerStatsMemory',
 			columns: {
                 defaults: {
@@ -280,7 +286,8 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     width: 35
                 },
                 items: this.firstCols.concat(this.lastCols)
-            }
+            },
+            dockedItems: this.dockedItems
 		});
 
 		this.callParent(arguments);
