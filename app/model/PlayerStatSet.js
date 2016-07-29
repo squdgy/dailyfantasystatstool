@@ -7,6 +7,7 @@ Ext.define('DFST.model.PlayerStatSet', {
     
     fields: [
         { name: 'gd', type: 'date' },   //gamedate
+        { name: 'gameName', type: 'string' }, // name of event
         { name: 'opp', type: 'string', defaultValue: '' },
         { name: 'isHome', type: 'boolean', defaultValue: true },
         { name: 'pos', type: 'string', defaultValue: '' },

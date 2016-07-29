@@ -515,7 +515,7 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'ng',
                     tooltip: '# races'
                 },{
-                    text: 'Pos',
+                    text: 'Start',
                     dataIndex: 'qpos',
                     tooltip: 'Qualifying Position'
                 },{

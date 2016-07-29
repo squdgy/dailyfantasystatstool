@@ -127,8 +127,6 @@ Ext.define('DFST.controller.Stats', {
      * @param {DFST.model.StatSet} statset The statset to load
      */
     showGameDetail: function(grid, statsets) {        
-        if (DFST.AppSettings.sport === 'nas') return;
-        
         var statset = statsets[0],
             gameView = this.getGamedetails(),
             gamesStore = this.getGamesStore();
@@ -152,6 +150,7 @@ Ext.define('DFST.controller.Stats', {
                 
                 var homeTeam = game.get('home').toUpperCase();
                 var awayTeam = game.get('away').toUpperCase();
+                var name = game.get('gname');
                 var venue = game.getAssociatedData().venue;
                 var venueName = (venue !== undefined) ? venue.nm : '';
                 var parkfactor = (venue !== undefined) ? venue.pf : 0;
@@ -171,7 +170,8 @@ Ext.define('DFST.controller.Stats', {
                         apthrows: game.get('athrows'),
                         venue: venueName,
                         parkfactor: parkfactor,
-                        gameTime: fmtdGameTime
+                        gameTime: fmtdGameTime,
+                        name: name
                     };
                     gameInfo.update(gi);
                     gameInfo.show();
@@ -192,7 +192,10 @@ Ext.define('DFST.controller.Stats', {
                 // set game details title
                 var title = 'Game data for ' + awayTeam + ' @ ' + 
                     homeTeam + ' ' + fmtdGameTime;
-                if (venue !== undefined) title += ' ' + venue.nm;
+                if (DFST.AppSettings.sport === 'nas') {
+                    title = 'Game data for ' + name;
+                }
+                if (venue !== undefined) title += ' at ' + venue.nm;
                 gameView.setTitle(title);
                 
                 gameView.show();

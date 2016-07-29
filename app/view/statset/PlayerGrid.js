@@ -231,13 +231,23 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     dataIndex: 'gd',
                     renderer: Ext.util.Format.dateRenderer('m-d'),
                     width: 60
-                },{
-                    text: 'Opp.',
-                    dataIndex: 'opp',
-                    renderer: this.formatOpponent,
-                    hidden: DFST.AppSettings.sport === 'nas',
-                    width: 60
                 }];
+        if (DFST.AppSettings.sport === 'nas') {
+            this.firstCols.push({
+                text: 'Race',
+                dataIndex: 'gameName',
+                align: 'left',
+                width: 200                
+            });
+        } else {
+            this.firstCols.push({
+                text: 'Opp.',
+                dataIndex: 'opp',
+                renderer: this.formatOpponent,
+                width: 60                
+            });
+        }
+
         this.lastCols = [
                 {
                     text: 'FP',

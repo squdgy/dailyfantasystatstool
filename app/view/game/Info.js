@@ -29,7 +29,7 @@ Ext.define('DFST.view.game.Info', {
 	                }
                 });
 	    } else {
-	        template = new Ext.XTemplate('<div><div>{venue}</div></div>');
+	        template = new Ext.XTemplate('<div><div>{name}</div><div>{venue}</div></div>');
 	    }
 		Ext.apply(this, {
             tpl: template
