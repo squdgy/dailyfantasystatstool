@@ -8,7 +8,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 	disabled: false,
     width: 900,
     autoScroll: true,
-    stateful: true,
+    stateful: false,
     stateId: 'statsetplayergrid',
     
     getCols: function(sport, position) {
@@ -267,7 +267,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             dock: 'top',
             items: [{
                 xtype: 'checkbox',
-                stateful: true,
+                stateful: false,
                 stateId: 'nextopp',
                 stateEvents: ['change'],
                 getState: function() {

@@ -14,7 +14,7 @@ Ext.define('DFST.view.drilldown.Details', {
     animCollapse: false, /* to get around extjs bug: http://www.sencha.com/forum/showthread.php?234627*/
     margins: '5 0 5 5',
 	
-    stateful: true,
+    stateful: false,
     stateId: 'drilldowndetails',
 	
 	initComponent: function() {

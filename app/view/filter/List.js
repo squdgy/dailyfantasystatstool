@@ -5,7 +5,7 @@ Ext.define('DFST.view.filter.List', {
     id: 'filterlist',
     requires: ['Ext.toolbar.Toolbar'],
 
-    stateful: true,
+    stateful: false,
     stateId: 'filterlist',
     stateEvents: ['expand', 'collapse'],
     

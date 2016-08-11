@@ -457,7 +457,7 @@ Ext.define('DFST.controller.Filters', {
             if (siteId == 4) dfsGameId = 4; //dd
             if (siteId == 5) dfsGameId = 5; //ff
             if (siteId == 6) dfsGameId = 6; //yahoo
-            Ext.state.Manager.set('site', dfsGameId);
+            //Ext.state.Manager.set('site', dfsGameId);
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
@@ -675,6 +675,7 @@ Ext.define('DFST.controller.Filters', {
         var statsStore = this.getStatsStore();
         var filters = this.getDateFilters(new Date());
         filters.push({id:'sport', property: 'sport', value: DFST.AppSettings.sport});
+        statsStore.filters.beginUpdate();
         statsStore.filters.add(filters);
 
         var defaultGameId = DFST.AppSettings.siteId;
@@ -690,17 +691,19 @@ Ext.define('DFST.controller.Filters', {
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
         siteDetailsStore.on('filterchange', this.onScoringFilterChanged, this);
-        siteDetailsStore.load(function(records, operation, success) {
-            siteDetailsStore.filter([
+        siteDetailsStore.on('load', function(records, operation, success) {
+            siteDetailsStore.filter([ //client side filtering on this store
                 {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId},
                 {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
-                ]);
+            ]);
         });
+        siteDetailsStore.load();
         
         // Set things up to update games filters when we switch sites
         var gamesStore = this.getGamesStore();
         gamesStore.proxy.url = host + '/api/games/';
         gamesStore.on('load', this.onGamesChanged, this);
+        gamesStore.filters.beginUpdate();
         if (DFST.AppSettings.sport === 'nfl') {
             var weekFilter = this.getWeekFilter();
             this.changeWeek(weekFilter, weekFilter.value);
@@ -708,6 +711,10 @@ Ext.define('DFST.controller.Filters', {
             gamesStore.filter(filters);
         }
         this.fireEvent('appDateChanged', new Date());
+
+        // allow stores to be loaded with all start up filters
+        statsStore.filters.endUpdate();
+        gamesStore.filters.endUpdate();
         
         // Set up a timer to update the games store periodically, so we can
         // show a visual indicator that the lineup is ready

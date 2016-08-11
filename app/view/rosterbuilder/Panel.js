@@ -26,7 +26,7 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
             //bodyCls: 'watermark',
             multiSelect: true,
             title: '-',
-            stateful: true,
+            stateful: false,
             stateId: 'rosterbuilder',
             titleAlign: 'center',
             showCopyright: false,/*

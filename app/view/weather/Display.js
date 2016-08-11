@@ -15,7 +15,7 @@ Ext.define('DFST.view.weather.Display', {
 	animCollapse: true,    
     margins: '0 0 0 0',
     
-    stateful: true,
+    stateful: false,
     stateId: 'gamedetails',
 	
 	initComponent: function() {

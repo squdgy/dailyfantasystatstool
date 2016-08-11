@@ -13,27 +13,27 @@ Ext.define('DFST.view.site.Picker', {
         var nflweeks = Ext.create('Ext.data.Store', {
             fields: ['week', 'name', 'startdate', 'enddate'],
             data : [
-                {'week': 1, 'name':'Week 1', startdate: new Date('2014-09-04'), enddate: new Date('2014-09-08')},
-                {'week': 2, 'name':'Week 2', startdate: new Date('2014-09-11'), enddate: new Date('2014-09-15')},
-                {'week': 3, 'name':'Week 3', startdate: new Date('2014-09-18'), enddate: new Date('2014-09-22')},
-                {'week': 4, 'name':'Week 4', startdate: new Date('2014-09-25'), enddate: new Date('2014-09-29')},
-                {'week': 5, 'name':'Week 5', startdate: new Date('2014-10-02'), enddate: new Date('2014-10-06')},
-                {'week': 6, 'name':'Week 6', startdate: new Date('2014-10-09'), enddate: new Date('2014-10-13')},
-                {'week': 7, 'name':'Week 7', startdate: new Date('2014-10-16'), enddate: new Date('2014-10-20')},
-                {'week': 8, 'name':'Week 8', startdate: new Date('2014-10-23'), enddate: new Date('2014-10-27')},
-                {'week': 9, 'name':'Week 9', startdate: new Date('2014-10-30'), enddate: new Date('2014-11-03')},
-                {'week': 10, 'name':'Week 10', startdate: new Date('2014-11-06'), enddate: new Date('2014-11-10')},
-                {'week': 11, 'name':'Week 11', startdate: new Date('2014-11-13'), enddate: new Date('2014-11-17')},
-                {'week': 12, 'name':'Week 12', startdate: new Date('2014-11-20'), enddate: new Date('2014-11-24')},
-                {'week': 13, 'name':'Week 13', startdate: new Date('2014-11-27'), enddate: new Date('2014-12-01')},
-                {'week': 14, 'name':'Week 14', startdate: new Date('2014-12-04'), enddate: new Date('2014-12-08')},
-                {'week': 15, 'name':'Week 15', startdate: new Date('2014-12-11'), enddate: new Date('2014-12-15')},
-                {'week': 16, 'name':'Week 16', startdate: new Date('2014-12-21'), enddate: new Date('2014-12-22')},
-                {'week': 17, 'name':'Week 17', startdate: new Date('2014-12-28'), enddate: new Date('2014-12-28')}
+                {'week': 1, 'name':'Week 1', startdate: new Date('2016-09-08'), enddate: new Date('2016-09-14')},
+                {'week': 2, 'name':'Week 2', startdate: new Date('2016-09-15'), enddate: new Date('2016-09-21')},
+                {'week': 3, 'name':'Week 3', startdate: new Date('2016-09-22'), enddate: new Date('2016-09-28')},
+                {'week': 4, 'name':'Week 4', startdate: new Date('2016-09-29'), enddate: new Date('2016-10-05')},
+                {'week': 5, 'name':'Week 5', startdate: new Date('2016-10-06'), enddate: new Date('2016-10-12')},
+                {'week': 6, 'name':'Week 6', startdate: new Date('2016-10-13'), enddate: new Date('2016-10-19')},
+                {'week': 7, 'name':'Week 7', startdate: new Date('2016-10-20'), enddate: new Date('2016-10-26')},
+                {'week': 8, 'name':'Week 8', startdate: new Date('2016-10-27'), enddate: new Date('2016-11-02')},
+                {'week': 9, 'name':'Week 9', startdate: new Date('2016-11-03'), enddate: new Date('2016-11-09')},
+                {'week': 10, 'name':'Week 10', startdate: new Date('2016-11-10'), enddate: new Date('2016-11-16')},
+                {'week': 11, 'name':'Week 11', startdate: new Date('2016-11-17'), enddate: new Date('2016-11-23')},
+                {'week': 12, 'name':'Week 12', startdate: new Date('2016-11-24'), enddate: new Date('2016-11-30')},
+                {'week': 13, 'name':'Week 13', startdate: new Date('2016-12-01'), enddate: new Date('2016-12-07')},
+                {'week': 14, 'name':'Week 14', startdate: new Date('2016-12-08'), enddate: new Date('2016-12-14')},
+                {'week': 15, 'name':'Week 15', startdate: new Date('2016-12-15'), enddate: new Date('2016-12-21')},
+                {'week': 16, 'name':'Week 16', startdate: new Date('2016-12-22'), enddate: new Date('2016-12-31')},
+                {'week': 17, 'name':'Week 17', startdate: new Date('2016-01-01'), enddate: new Date('2016-01-02')}
             ]
         });    
         var getNearestNFLWeek = function(){
-            var seasonStart = new Date(2014, 8, 4); // Thu Wk 1
+            var seasonStart = new Date(2016, 8, 4); // Thu Wk 1
             var today = new Date();
             today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var diff = today - seasonStart; // in ms

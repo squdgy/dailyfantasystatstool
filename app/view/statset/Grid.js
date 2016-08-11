@@ -584,7 +584,7 @@ Ext.define('DFST.view.statset.Grid', {
 		
 		// State will vary by sport
 		this.stateId = DFST.AppSettings.sport + '-statsetgrid';
-		this.stateful = true;
+		this.stateful = false;
 		
 		Ext.apply(this, gridConfig[DFST.AppSettings.sport]);
 

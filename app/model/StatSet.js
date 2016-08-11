@@ -1,7 +1,7 @@
 /*global Ext: false */
 /*
 
-Copyright (c) 2012-2014 Maura Wilder
+Copyright (c) 2012-2016 DraftAid.com
 
 */
 Ext.define('DFST.model.StatSet', {
