@@ -155,7 +155,6 @@ Ext.define('DFST.controller.Stats', {
                 var venueName = (venue !== undefined) ? venue.nm : '';
                 var parkfactor = (venue !== undefined) ? venue.pf : 0;
                 var gameTime = new Date(game.get('gtime'));
-                gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, gameTime.getTimezoneOffset());
                 var fmtdGameTime = Ext.Date.format(gameTime, 'M j, g:i a');
                 
                 // game info
