@@ -605,7 +605,7 @@ Ext.define('DFST.controller.Filters', {
             alin = game.get('alin') ? '*' : '';
             hlin = game.get('hlin') ? '*' : '';
             gameString = this.getTeamCode(game.get('away')) + 
-                alin + ' @ ' + this.getTeamCode(game.get('home')) + 
+                alin + ' @ ' + this.getTeamCode(game.get('home')) +
                 hlin + ' ' + gameTime;
             var gameId = game.get('gid');
             var isChecked = isNewDate ? true : checkedGames[gameId] === 1; // true on first load of games list

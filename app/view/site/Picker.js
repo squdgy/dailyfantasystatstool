@@ -33,7 +33,7 @@ Ext.define('DFST.view.site.Picker', {
             ]
         });    
         var getNearestNFLWeek = function(){
-            var seasonStart = new Date(2016, 8, 4); // Thu Wk 1
+            var seasonStart = new Date(2016, 8, 8); // Thu Wk 1
             var today = new Date();
             today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             var diff = today - seasonStart; // in ms
