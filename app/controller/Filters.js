@@ -592,10 +592,6 @@ Ext.define('DFST.controller.Filters', {
             game = records[i];
             gameTime = game.get('gtime');
             gameTime = new Date(gameTime); 
-            // this time is actually utc, but new Date treats
-            // it like local time, so add the timeoffset : 
-            var tzo = gameTime.getTimezoneOffset();
-            gameTime = Ext.Date.add(gameTime, Ext.Date.MINUTE, tzo);
             if (DFST.AppSettings.sport === 'nfl') {
                 gameTime = Ext.Date.format(gameTime, 'g:i ') +
                     Ext.Date.format(gameTime, 'D').substring(0, 2);
