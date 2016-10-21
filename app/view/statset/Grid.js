@@ -376,6 +376,11 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'spos',
                     align: 'left'
                 },{
+                    text: 'Line',
+                    dataIndex: 'border',
+                    tooltip: 'which line he plays on',
+                    renderer: this.formatBattingOrder
+                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{
