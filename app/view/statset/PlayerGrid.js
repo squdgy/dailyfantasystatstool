@@ -23,7 +23,11 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         var colExtrasMap = this.colExtrasMap[sport];
         for (var i=0; i<ncols; i++){
             var stat = colmap[i];
-            var width = (stat === 'si18') ? 60 : 40;
+            var width = (
+                (sport === 'nfl' && (stat === 'si2' || stat === 'si5' || stat === 'si8')) ||
+                (sport === 'nba' && stat === 'si13') ||
+                (sport === 'nhl' && (stat === 'si18' || stat === 'si19' || stat === 'si20'))
+                ) ? 55 : 38;
             var colDef = {text: statMap[stat], dataIndex: stat, width:width};
             if (colExtrasMap && colExtrasMap[stat]) {
                 Ext.apply(colDef, colExtrasMap[stat]);
