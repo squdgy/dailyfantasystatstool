@@ -2,7 +2,7 @@
 Ext.define('yesterdayApp.view.Grid', {
     extend: 'Ext.grid.Panel',
 	alias: 'widget.yesterdaygrid',
-	title: 'All NBA DK performances - defaults to showing performances with > 50 pts with best performances first. Use column header filters/sort to change',
+	title: 'All DK performances - defaults to showing performances with > 50 pts with best performances first. Use column header filters/sort to change',
 	autoScroll: true,
     store: 'Yesterday',
     columns: [
@@ -19,9 +19,10 @@ Ext.define('yesterdayApp.view.Grid', {
                  return rowIndex + 1;     
             }
         },
+        {text: "Sport", dataIndex: 'Sport', width: 60,  filter: { type: 'list' }},
         {text: "Team", dataIndex: 'Team', width: 60, filter: 'list'},
         {text: "Opp", dataIndex: 'Opponent', width: 60, filter: 'list'},
-        {text: "GameDate", dataIndex: 'GameDate', width: 60, filter: 'list', renderer: Ext.util.Format.dateRenderer('m-d')},
+        {text: "GameDate", dataIndex: 'GameDate', width: 60, filter: 'date', renderer: Ext.util.Format.dateRenderer('m-d')},
         {text: "Position", dataIndex: 'Position', width: 60, filter: 'list'},
         {text: "First", dataIndex: 'FirstName', width: 120, filter: 'string'},
         {text: "Last", dataIndex: 'LastName', width: 120, filter: 'string'},
