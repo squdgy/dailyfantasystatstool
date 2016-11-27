@@ -98,22 +98,22 @@ Ext.define('DFST.view.filter.List', {
             {
                 xtype: 'panel',
                 border: false,
-                hidden: DFST.AppSettings.sport !== 'mlb',                    
+                hidden: DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl',                    
                 collapsible: true,
                 animCollapse: true,
                 collapsed: true,
                 layout: 'vbox',
-                title: 'By Starting Lineup',
+                title: DFST.AppSettings.sport === 'mlb' ? 'By Starting Lineup' : 'By Line',
                 items: [
                     {
                         width: '100%',
                         border: false,
                         bodyCls: 'featured',
-                        html: 'Teams with posted lineups have a * in the games list'
+                        html: DFST.AppSettings.sport === 'mlb' ? 'Teams with posted lineups have a * in the games list' : ''
                     },{
                         xtype: 'fieldcontainer',
                         id: 'battingorderFilter',
-                        fieldLabel: 'Include players batting in these positions',
+                        fieldLabel: DFST.AppSettings.sport === 'mlb' ? 'Include players batting in these positions' : 'Only skaters on these lines',
                         defaultType: 'checkboxfield',
                         layout: {
                             type: 'table',
@@ -127,11 +127,11 @@ Ext.define('DFST.view.filter.List', {
                             { name: 'boFilter', boxLabel: '2', inputValue: '2' },
                             { name: 'boFilter', boxLabel: '3', inputValue: '3' },
                             { name: 'boFilter', boxLabel: '4', inputValue: '4' },
-                            { name: 'boFilter', boxLabel: '5', inputValue: '5' },
-                            { name: 'boFilter', boxLabel: '6', inputValue: '6' },
-                            { name: 'boFilter', boxLabel: '7', inputValue: '7' },
-                            { name: 'boFilter', boxLabel: '8', inputValue: '8' },
-                            { name: 'boFilter', boxLabel: '9', inputValue: '9' }
+                            { name: 'boFilter', boxLabel: '5', inputValue: '5', hidden: DFST.AppSettings.sport !== 'mlb' },
+                            { name: 'boFilter', boxLabel: '6', inputValue: '6', hidden: DFST.AppSettings.sport !== 'mlb' },
+                            { name: 'boFilter', boxLabel: '7', inputValue: '7', hidden: DFST.AppSettings.sport !== 'mlb' },
+                            { name: 'boFilter', boxLabel: '8', inputValue: '8', hidden: DFST.AppSettings.sport !== 'mlb' },
+                            { name: 'boFilter', boxLabel: '9', inputValue: '9', hidden: DFST.AppSettings.sport !== 'mlb' }
                         ]                
                     },{
                         xtype: 'checkbox',
