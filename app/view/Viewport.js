@@ -28,7 +28,7 @@ Ext.define('DFST.view.Viewport', {
                 sportLinks += '<span class="sport-link off-season">' + 
                     sport.toUpperCase() + '</span>';
             } else {  
-                sportLinks += '<span class="sport-link"><a href="index.html?sport=' + 
+                sportLinks += '<span class="sport-link"><a href="statstool.html?sport=' + 
                 sport + '">' + 
                 sport.toUpperCase() + '</a></span>';
             }
