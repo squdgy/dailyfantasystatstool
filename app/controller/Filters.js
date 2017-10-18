@@ -590,8 +590,7 @@ Ext.define('DFST.controller.Filters', {
         gamesContainer.removeAll(true);
         for (i=0, mlen=records.length; i < mlen; i++) {
             game = records[i];
-            gameTime = game.get('gtime');
-            gameTime = new Date(gameTime); 
+            gameTime = Ext.Date.parse(game.get('gtime')+"Z","c");
             if (DFST.AppSettings.sport === 'nfl') {
                 gameTime = Ext.Date.format(gameTime, 'g:i ') +
                     Ext.Date.format(gameTime, 'D').substring(0, 2);
