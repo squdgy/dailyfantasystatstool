@@ -39,12 +39,13 @@ Ext.application({
             }
         }
 
-        if (DFST.AppSettings.sport === 'nas') {
-            siteId = 1;
-        } else {
-            var siteId = Ext.state.Manager.get('site');
-            siteId = siteId || 1;
-        }
+        var siteId = 1; //default
+        // if (DFST.AppSettings.sport === 'nas') {
+        //     siteId = 1;
+        // } else {
+        //     //var siteId = Ext.state.Manager.get('site');
+        //     //siteId = siteId || 1;
+        // }
         DFST.AppSettings.siteId = siteId; //default to DK
     }
 });
