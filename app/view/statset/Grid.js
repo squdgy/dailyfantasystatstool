@@ -474,6 +474,11 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'average fantasy points over last 5 games',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
+                    text: 'Proj',
+                    dataIndex: 'projp',
+                    width: 75,
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
                     text: '$',
                     dataIndex: 'sal',
                     width: 75,
@@ -492,12 +497,16 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
                 },{
+                    text: '$/Proj',
+                    dataIndex: 'cpprojp',
+                    width: 75,
+                    renderer: this.costPerPointRenderer
+                },{
                     text: 'ODR-5',
                     dataIndex: 'odr',
                     width: 75,
                     tooltip: 'opponent defensive efficiency rank over the last 5 games. A higher number indicates a better matchup for the player.'
-                }
-                ]
+                }]
 			}
 		}; 
 		

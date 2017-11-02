@@ -176,7 +176,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 2,
                     minValue: 0,
                     maxValue: 70
-                },/*{
+                },{
                     fieldLabel: 'Proj',
                     xtype: 'multislider',
                     id: 'projpRange',
@@ -185,8 +185,8 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 30,
-                    hidden: DFST.AppSettings.sport === 'mlb'
-                }*/,{
+                    hidden: DFST.AppSettings.sport !== 'nba'
+                },{
                     fieldLabel: '$/FP',
                     xtype: 'multislider',
                     id: 'cppRange',
@@ -204,7 +204,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 0,
                     minValue: 0,
                     maxValue: 800
-                }/*,{
+                },{
                     fieldLabel: '$/Proj',
                     xtype: 'multislider',
                     id: 'cpprojpRange',
@@ -213,8 +213,8 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1000,
                     minValue: 0,
                     maxValue: 75000,
-                    hidden: DFST.AppSettings.sport === 'mlb'
-                }*/]
+                    hidden: DFST.AppSettings.sport !== 'nba'
+                }]
             },
             {
                 xtype: 'panel',
