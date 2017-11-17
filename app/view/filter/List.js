@@ -242,7 +242,7 @@ Ext.define('DFST.view.filter.List', {
                     increment: 1,
                     minValue: 0,
                     maxValue: 5,
-                    hidden: DFST.AppSettings.sport !== 'nfl'
+                    hidden: true //DFST.AppSettings.sport !== 'nfl'
                 }, {
                     fieldLabel: 'ODR-5',
                     xtype: 'multislider',

@@ -300,10 +300,10 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: 'G',
                     dataIndex: 'ng'
-                },{
+                }/*,{
                     text: 'Depth',
                     dataIndex: 'dep'
-                },{
+                }*/,{
                     text: 'Avg Pts',
                     dataIndex: 'afp',
                     width: 60,
@@ -330,7 +330,7 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 75,
                     tooltip: 'cost per point over last 5 games',
                     renderer: this.costPerPointRenderer
-                },{
+                }/*,{
                     text: 'Proj',
                     dataIndex: 'projp',
                     width: 75,
@@ -340,7 +340,7 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'cpprojp',
                     width: 75,
                     renderer: this.costPerPointRenderer
-                }]
+                }*/]
 			}
 		}; 
         gridConfig.nhl = {

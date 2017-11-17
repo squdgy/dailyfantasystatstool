@@ -453,10 +453,9 @@ Ext.define('DFST.controller.Filters', {
             var dfsGameId = 2;//default fd game
             var siteId = radiobutton.inputValue;
             if (siteId == 1) dfsGameId = 1; //dk
-            if (siteId == 3) dfsGameId = 3; //ds
-            if (siteId == 4) dfsGameId = 4; //dd
-            if (siteId == 5) dfsGameId = 5; //ff
+            if (siteId == 2) dfsGameId = 2; //fanduel
             if (siteId == 6) dfsGameId = 6; //yahoo
+            if (siteId == 7) dfsGameId = 7; //fantasydraft
             //Ext.state.Manager.set('site', dfsGameId);
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;

@@ -23,16 +23,10 @@ Ext.define('DFST.view.bet.Display', {
                     '<dd>{away}</dd>',
                 '</tpl>',                
                 '<dt>Spread</dt><dd>{sh:this.formatSpread}</dd>',
-                '<dt>Moneyline {home}</dt><dd>{mh:this.formatMoneyline}</dd>',
-                '<dt>Moneyline {away}</dt><dd>{ma:this.formatMoneyline}</dd>',
                 '</dl>',
                 {
                     formatSpread: function(floatValue) {
                         return (Math.abs(floatValue));
-                    },
-                    formatMoneyline: function(ml) {
-                        if (ml === 0) return 'N/A';
-                        return ml;
                     }
                 })
         });
