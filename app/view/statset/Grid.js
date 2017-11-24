@@ -296,6 +296,7 @@ Ext.define('DFST.view.statset.Grid', {
                 },{
                     text: 'Pos',
                     dataIndex: 'spos',
+                    width: 50,
                     align: 'left'
                 },{
                     text: 'G',
