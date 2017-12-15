@@ -1,6 +1,7 @@
 /*global Ext: false, DFST: false */
 Ext.define('DFST.view.site.Picker', {
     extend: 'Ext.panel.Panel',
+    requires: ['DFST.store.Draftgroups'],
 	alias: 'widget.sitepicker',
 	
 	cls: 'sitepicker',
@@ -70,9 +71,9 @@ Ext.define('DFST.view.site.Picker', {
             };
             
         var siteItems = [
-                    { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
-                    //{ boxLabel: 'Yahoo', name: 'rb', inputValue: '6'}
-                ];
+            { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
+            //{ boxLabel: 'Yahoo', name: 'rb', inputValue: '6'}
+        ];
         if (DFST.AppSettings.sport !== 'nas'){
             siteItems.push({ boxLabel: 'FanDuel', name: 'rb', inputValue: '2' });
         }
@@ -88,6 +89,12 @@ Ext.define('DFST.view.site.Picker', {
             title += ' - ' + selectedSiteItem.boxLabel;
         }
 
+        var draftgroupsStore =  Ext.create('DFST.store.Draftgroups', {
+                data: [
+                    {name: 'Foo', dgid: 1},
+                    {name: 'Bar', dgid: 2}
+                ]
+            });
 		Ext.apply(this, {
             title: title,
 			items: [{
@@ -97,6 +104,15 @@ Ext.define('DFST.view.site.Picker', {
                     columns: 1
                 },
                 items: siteItems
+            },{
+                xtype: 'combobox',
+                //fieldLabel: 'Game Slates',
+                name: 'draftgroups',
+                id: 'draftgroups',
+                queryMode: 'local',
+                store: draftgroupsStore,
+                displayField: 'name',
+                valueField: 'dgid'
             },
             datesConfig[DFST.AppSettings.sport],
             {
