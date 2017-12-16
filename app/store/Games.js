@@ -4,6 +4,28 @@
 Copyright (c) 2012-2015 Maura Wilder
 
 */
+Ext.define('GamesProxy', {
+    extend: 'Ext.data.proxy.Rest',
+    alias: 'proxy.restgames',
+    host: null,
+    buildUrl: function(request) {
+        if (!request) {
+            return this.url;
+        }
+        var filter = request.getParams().filter;
+        var filters = JSON.parse(filter);
+        if (!filters) {
+            return this.url;
+        }
+        for (var i=0; i<filters.length; i++) {
+            if (filters[i].property === 'draftgroupId') {
+                return Ext.String.format('{0}/api/draftgroups/{1}/games/', this.host, filters[i].value);
+            }
+        }
+        return this.url;
+    }
+});
+
 Ext.define('DFST.store.Games', {
     extend: 'Ext.data.Store',
 
@@ -14,7 +36,7 @@ Ext.define('DFST.store.Games', {
     autoLoad: false,
     remoteFilter: true,
     proxy: {
-		type: 'rest',
+		type: 'restgames',
         headers: {'Accept': 'application/json'},
         url: 'app/data/games.json', //test data, url overridden in controller
 		reader: {

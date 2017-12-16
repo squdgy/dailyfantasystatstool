@@ -7,8 +7,6 @@ Ext.define('DFST.controller.Filters', {
     views: ['filter.List', 'site.Picker'],
     
     refs: [
-        {ref: 'dateFilter', selector: 'sitepicker datefield'},
-        {ref: 'weekFilter', selector: 'sitepicker combobox'},
         {ref: 'draftgroupFilter', selector: 'sitepicker combobox#draftgroups'},
         {ref: 'probablesFilter', selector: 'filterlist checkbox#probables'},
         {ref: 'injuredFilter', selector: 'filterlist checkbox#injured'},
@@ -40,11 +38,8 @@ Ext.define('DFST.controller.Filters', {
         this.gameDateIsChanging = false;
         
         this.control({
-            'sitepicker datefield':{
-                change: this.changeDate
-            },
-            'sitepicker combobox':{
-                change: this.changeWeek
+            'sitepicker combobox#draftgroups':{
+                change: this.changeDraftgroup
             },
             'sitepicker fieldcontainer radio':{
                 change: this.changeScoring
@@ -213,58 +208,31 @@ Ext.define('DFST.controller.Filters', {
         return filters; 
     },
 
-    changeDate: function(datefield, newValue, oldValue, options) {
+
+    changeDraftgroup: function(draftgroupPicker, newValue, oldValue, options) {
+        //TODO: what is this value
         this.gameDateIsChanging = oldValue !== undefined;
+        this.draftgroupIsChanging = oldValue !== undefined;
 
-        var statsStore = this.getStatsStore();
-        var filters = this.getDateFilters(newValue);
-        if (this.gameDateIsChanging) {
-            this.fireEvent('appDateChanged', newValue);
-            
-            statsStore.filters.removeAtKey('gameId'); // clear all game filters
-            statsStore.filter(filters);
-
+        if (this.draftgroupIsChanging) {
+            var statsStore = this.getStatsStore();
             var gamesStore = this.getGamesStore();
+
+            //TODO: make sure I update all places listening for this
+            //this.fireEvent('appDateChanged', newValue);
+            this.fireEvent('appDraftgroupChanged', newValue);
+            
+            var filters = [
+                {id: 'sport', property: 'sport', value: DFST.AppSettings.sport},
+                {id: 'draftgroupId', property: 'draftgroupId', value: newValue }
+            ];
+
             filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
             gamesStore.filter(filters);
-        }
-    },
+            gamesStore.load();
 
-    changeWeek: function(combobox, newValue, oldValue, options) {
-        this.gameDateIsChanging = oldValue !== undefined;
-        var statsStore = this.getStatsStore();
-        var weekRecord = combobox.findRecordByValue(newValue);
-        if (weekRecord === undefined)
-        {
-            return;
-        }
-        var gameDateStart = weekRecord.get('startdate');
-        var gameDateEnd = weekRecord.get('enddate');
-        var gamesStore = this.getGamesStore();
-        
-        if (this.gameDateIsChanging) {
-            statsStore.filters.removeAtKey('gameId'); // clear all game filters
-            statsStore.filter([
-                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
-            ]);
-            gamesStore.filter([
-                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
-                {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
-            ]);
-        } else {
-            if (gamesStore.getTotalCount() === 0) {
-                gamesStore.filter([
-                    {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-                    {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()},
-                    {id: 'sport', property: 'sport', value: DFST.AppSettings.sport}
-                ]);
-            }
-            statsStore.filter([
-                {id:'gameDate', property: 'gameDate', value: gameDateStart.toJSON()},
-                {id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()}
-            ]);
+            //statsStore.filters.removeAtKey('gameId'); // clear all game filters
+            //statsStore.filter(filters);
         }
     },
 
@@ -554,16 +522,7 @@ Ext.define('DFST.controller.Filters', {
         var draftgroups = site.getAssociatedData().draftgroups;
         var dgFilter = this.getDraftgroupFilter();
         dgFilter.getStore().loadData(draftgroups, false);
-
-        // TODO: DELETE ME
-        // // call the changedate methods which will also refresh the player store
-        // var dateFilter = this.getDateFilter();
-        // if (dateFilter) {
-        //     this.changeDate(dateFilter, dateFilter.value);
-        // } else {
-        //     var weekFilter = this.getWeekFilter();
-        //     this.changeWeek(weekFilter, weekFilter.value);
-        // }
+        dgFilter.setValue(draftgroups[0].dgid);
 
         //statsStore.resumeEvents(true);
         this.fireEvent('appScoringChanged', site.get('dfsGameId'));
@@ -706,16 +665,8 @@ Ext.define('DFST.controller.Filters', {
         
         // Set things up to update games filters when we switch sites
         var gamesStore = this.getGamesStore();
-        gamesStore.proxy.url = host + '/api/draftgroups/155/games/';
+        gamesStore.getProxy().host = host;
         gamesStore.on('load', this.onGamesChanged, this);
-        gamesStore.filters.beginUpdate();
-        if (DFST.AppSettings.sport === 'nfl') {
-            var weekFilter = this.getWeekFilter();
-            this.changeWeek(weekFilter, weekFilter.value);
-        } else {
-            gamesStore.filter(filters);
-        }
-        this.fireEvent('appDateChanged', new Date());
 
         // allow stores to be loaded with all start up filters
         statsStore.filters.endUpdate();

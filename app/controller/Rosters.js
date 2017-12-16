@@ -17,7 +17,7 @@ Ext.define('DFST.controller.Rosters', {
     
     /* internal variables */
     _dfsGameId: null,
-    _date: null,
+    _draftgroupId: null,
     
     init: function() {
         this.listen({
@@ -44,7 +44,7 @@ Ext.define('DFST.controller.Rosters', {
             },
             controller: {
                 '*': {
-                    appDateChanged: this.changeDate,
+                    appDraftgroupChanged: this.changeDraftgroup,
                     appScoringChanged: this.changeScoring
                 }
             },
@@ -78,9 +78,8 @@ Ext.define('DFST.controller.Rosters', {
         if (didRemove) { store.sync(); }
     },
     
-    changeDate: function(newDate) {
-        this._date = new Date(newDate.getFullYear(), newDate.getMonth(), 
-            newDate.getDate());
+    changeDraftgroup: function(draftgroupId) {
+        this._draftgroupId = draftgroupId;
         this.changeRosterDefinition();
     },
 
@@ -92,8 +91,8 @@ Ext.define('DFST.controller.Rosters', {
     changeRosterDefinition: function() {
         var siteRec = this.getSiteDetailsStore().findRecord('dfsGameId', 
             this._dfsGameId);
-        var date = this._date;
-        if (date === null || siteRec === null) return;
+        var draftgroupId = this._draftgroupId;
+        if (draftgroupId === null || siteRec === null) return;
         
         var me = this;
         var positions = siteRec.getAssociatedData().positions;
@@ -106,7 +105,7 @@ Ext.define('DFST.controller.Rosters', {
         // only show players from the dfs game and date we care about
         rStore.filterBy(function(rec, id) {
             return rec.get('dfsGameId') === me._dfsGameId &&
-                rec.get('dt').getTime() === me._date.getTime();
+                rec.get('draftgroupId') === me._draftgroupId;
         });
         
         // if store is empty, nothing was in cache
@@ -118,7 +117,7 @@ Ext.define('DFST.controller.Rosters', {
                 for (var j=0; j<pos.count; j++) {
                     rStore.add(Ext.create('DFST.model.RosterSlot', {
                         dfsGameId: me._dfsGameId, 
-                        dt: me._date,
+                        draftgroupId: me._draftgroupId,
                         rpos: pos.name, 
                         rpid: pos.id
                     }));
@@ -142,10 +141,10 @@ Ext.define('DFST.controller.Rosters', {
             });
         }
         var sportString = DFST.AppSettings.sport.toUpperCase();
-        var dateString = me._date.toDateString();
+        var dgString = me._draftgroupId;
         var grid = me.getRosterGrid();
         if (grid) {
-            grid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dateString);
+            grid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dgString);
         }
         me.salaryCap = cap; // save for later use
         
