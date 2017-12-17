@@ -6,6 +6,7 @@ Ext.define('DFST.view.site.Picker', {
 	
 	cls: 'sitepicker',
 	id: 'sitepicker',
+	layout: 'hbox',
 	border: false,
     collapsible: true,
 	animCollapse: true,
@@ -24,7 +25,7 @@ Ext.define('DFST.view.site.Picker', {
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
         });
-        var title = 'Select a Site';
+        var title = 'Select a Site and game slate';
         if (selectedSiteItem !== null) {
             selectedSiteItem.checked = true;
             title += ' - ' + selectedSiteItem.boxLabel;
@@ -35,8 +36,7 @@ Ext.define('DFST.view.site.Picker', {
 			items: [{
                 xtype: 'radiogroup',
                 layout: {
-                    type: 'table',
-                    columns: 1
+                    type: 'hbox',
                 },
                 items: siteItems
             },{
@@ -46,7 +46,14 @@ Ext.define('DFST.view.site.Picker', {
                 queryMode: 'local',
                 store: Ext.create('DFST.store.Draftgroups'),
                 displayField: 'name',
-                valueField: 'dgid'
+                valueField: 'dgid',
+                width: 300,
+                tpl: Ext.create('Ext.XTemplate', '<tpl for=".">', 
+                    '<div class="x-boundlist-item" style="border-bottom:1px solid #f0f0f0;">',
+                    '<div>{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}</div>',
+                    '</div></tpl>'),
+                displayTpl: Ext.create('Ext.XTemplate', '<tpl for=".">', '{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}', '</tpl>')
+
             }//,
 // 			{
 //                 xtype: 'button',

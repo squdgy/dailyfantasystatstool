@@ -40,11 +40,10 @@ Ext.define('DFST.view.Viewport', {
             '</footer>';
 		Ext.apply(this, {
             items: [
-            /*put summary of choices here? site, filters, etc.
             {
                 region: 'north',
-                html: '<header>Summary</header>'
-            },*/{
+                xtype: 'sitepicker'
+            },{
                 region: 'center',
                 xtype: 'container',
                 layout: {
@@ -64,10 +63,6 @@ Ext.define('DFST.view.Viewport', {
                     hidden: true,
                     flex:2
                 }]
-            }, {
-                region: 'west',
-                width: 200,
-                xtype: 'sitepicker'
             }, {
                 region: 'west',
                 width: 340,
