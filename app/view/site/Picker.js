@@ -25,7 +25,7 @@ Ext.define('DFST.view.site.Picker', {
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
         });
-        var title = 'Select a Site and game slate';
+        var title = 'Select a site and game slate';
         if (selectedSiteItem !== null) {
             selectedSiteItem.checked = true;
             title += ' - ' + selectedSiteItem.boxLabel;
@@ -50,9 +50,13 @@ Ext.define('DFST.view.site.Picker', {
                 width: 300,
                 tpl: Ext.create('Ext.XTemplate', '<tpl for=".">', 
                     '<div class="x-boundlist-item" style="border-bottom:1px solid #f0f0f0;">',
-                    '<div>{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}</div>',
+                    '<div>{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}<tpl if="lateSwap"> - late swap</tpl></div>',
                     '</div></tpl>'),
-                displayTpl: Ext.create('Ext.XTemplate', '<tpl for=".">', '{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}', '</tpl>')
+                displayTpl: Ext.create('Ext.XTemplate',
+                    '<tpl for=".">',
+                    '{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}',
+                    '<tpl if="lateSwap"> late swap</tpl>',
+                    '</tpl>')
 
             }//,
 // 			{

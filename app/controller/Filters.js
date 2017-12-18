@@ -35,7 +35,7 @@ Ext.define('DFST.controller.Filters', {
     init: function() {
         
         //local variables
-        this.gameDateIsChanging = false;
+        this.draftgroupIsChanging = false;
         
         this.control({
             'sitepicker combobox#draftgroups':{
@@ -198,30 +198,13 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filter([{id: filterId, property: filterId, value: min + '|' + max}]);
     },
 
-    getDateFilters: function(gameDate) {
-        var filters = [{id:'gameDate', property: 'gameDate', value: gameDate.toJSON()}];
-        if (DFST.AppSettings.sport === 'nas') {
-            var gameDateEnd = new Date(gameDate);
-            gameDateEnd.setDate(gameDate.getDate() + 6);
-            filters.push({id:'gameDateLast', property: 'gameDateLast', value: gameDateEnd.toJSON()});
-        }
-        return filters; 
-    },
-
-
     changeDraftgroup: function(draftgroupPicker, newValue, oldValue, options) {
-        //TODO: what is this value
-        this.gameDateIsChanging = oldValue !== undefined;
         this.draftgroupIsChanging = oldValue !== undefined;
 
         if (this.draftgroupIsChanging) {
             var statsStore = this.getStatsStore();
             var gamesStore = this.getGamesStore();
 
-            //TODO: make sure I update all places listening for this
-            //this.fireEvent('appDateChanged', newValue);
-            this.fireEvent('appDraftgroupChanged', newValue);
-            
             var filters = [
                 {id: 'sport', property: 'sport', value: DFST.AppSettings.sport},
                 {id: 'draftgroupId', property: 'draftgroupId', value: newValue }
@@ -231,8 +214,8 @@ Ext.define('DFST.controller.Filters', {
             gamesStore.filter(filters);
             gamesStore.load();
 
-            //statsStore.filters.removeAtKey('gameId'); // clear all game filters
-            //statsStore.filter(filters);
+            statsStore.filters.removeAtKey('gameId'); // clear all game filters
+            statsStore.filter(filters);
         }
     },
 
@@ -439,7 +422,7 @@ Ext.define('DFST.controller.Filters', {
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
                 ]);
             
-            this.getSitePanel().setTitle('Pick a Site - ' + radiobutton.boxLabel);
+            this.getSitePanel().setTitle('Select a site and game slate - ' + radiobutton.boxLabel);
         }
     },
 
@@ -510,21 +493,19 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
 
-        statsStore.filters.add([
-            {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
-            {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
-            {id:'posId', property: 'posId', value: this.getPositionsFilterValue()}
-        ]);
-
-        //statsStore.suspendEvents(true); //prevent multiple calls to server
-
         // change the draftgroup filters to match the site and set the default dg
         var draftgroups = site.getAssociatedData().draftgroups;
         var dgFilter = this.getDraftgroupFilter();
         dgFilter.getStore().loadData(draftgroups, false);
         dgFilter.setValue(draftgroups[0].dgid);
 
-        //statsStore.resumeEvents(true);
+        statsStore.filters.add([
+            {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
+            {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
+            {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
+            dgFilter
+        ]);
+
         this.fireEvent('appScoringChanged', site.get('dfsGameId'));
     },
     
@@ -537,11 +518,12 @@ Ext.define('DFST.controller.Filters', {
         var len = gameCheckboxes.length;
         var isNewDate = len === 0;
         
-        // If the game date has not changed, keep track of already checked games
+        // If the draftgroup has not changed, keep track of already checked games
+        // this is for MLB, where games are updated with info on lineup availability
         var checkedGames = {};
         if (len > 0) { // yyyy_mm_dd
-            if (this.gameDateIsChanging) {
-                this.gameDateIsChanging = false;
+            if (this.draftgroupIsChanging) {
+                this.draftgroupIsChanging = false;
                 isNewDate = true;
             } else {
                 for (i = 0; i < len; i++) {
@@ -635,13 +617,6 @@ Ext.define('DFST.controller.Filters', {
         }
         this.host = host;
         
-        // init filters, dates/sport
-        var statsStore = this.getStatsStore();
-        var filters = this.getDateFilters(new Date());
-        filters.push({id:'sport', property: 'sport', value: DFST.AppSettings.sport});
-        statsStore.filters.beginUpdate();
-        statsStore.filters.add(filters);
-
         var defaultGameId = DFST.AppSettings.siteId;
         if (DFST.AppSettings.sport == "mlb") 
             defaultGameId += 100;
@@ -669,7 +644,6 @@ Ext.define('DFST.controller.Filters', {
         gamesStore.on('load', this.onGamesChanged, this);
 
         // allow stores to be loaded with all start up filters
-        statsStore.filters.endUpdate();
         gamesStore.filters.endUpdate();
         
         // Set up a timer to update the games store periodically, so we can
