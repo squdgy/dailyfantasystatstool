@@ -9,7 +9,7 @@ Ext.define('DFST.view.filter.List', {
     stateId: 'filterlist',
     stateEvents: ['expand', 'collapse'],
     
-	title: 'Narrow Down the List of Players',
+	title: 'Apply Filters',
 	collapsible: true,
 	collapsed: true,
 	animCollapse: true,

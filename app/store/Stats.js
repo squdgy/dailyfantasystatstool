@@ -29,7 +29,10 @@ Ext.define('DFST.store.Stats', {
 	},
     listeners: {
         beforeload: function(store, operation, options){
-            if (store.filters.length == 0) return false; // need site, date etc.
+            if (store.filters.length == 0) {
+                console.log('no filters set - draftgroupId filter is required')
+                return false; // need site, slate etc.
+            }
         }
     }	
 });
