@@ -216,6 +216,8 @@ Ext.define('DFST.controller.Filters', {
 
             statsStore.filters.removeAtKey('gameId'); // clear all game filters
             statsStore.filter(filters);
+            
+            this.fireEvent('appDraftgroupChanged', newValue);
         }
     },
 
@@ -507,6 +509,7 @@ Ext.define('DFST.controller.Filters', {
         ]);
 
         this.fireEvent('appScoringChanged', site.get('dfsGameId'));
+        this.fireEvent('appDraftgroupChanged', draftgroups[0].dgid);
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {

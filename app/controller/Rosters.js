@@ -85,7 +85,6 @@ Ext.define('DFST.controller.Rosters', {
 
     changeScoring: function(dfsGameId) {
         this._dfsGameId = dfsGameId;
-        this.changeRosterDefinition();
     },
     
     changeRosterDefinition: function() {
