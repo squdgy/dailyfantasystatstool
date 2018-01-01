@@ -2,7 +2,7 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
     
-    appCopyRight: '&copy;DraftAid.com 2012-2017',
+    appCopyRight: '&copy;DraftAid.com 2012-2018',
     
     sport: 'nfl',   // app supports one at a time: mlb, nba, nfl, nhl, nas
     siteId: 1,      // default to FD
@@ -21,5 +21,5 @@ Ext.define('DFST.AppSettings', {
     nas: {
         gameCnt: 36
     },
-    version: '4.0'
+    version: '4.01'
 });  
