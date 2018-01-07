@@ -27,15 +27,16 @@ Ext.application({
             : new Ext.state.CookieProvider();
         Ext.state.Manager.setProvider(provider);
         
-        var cururl = document.URL;
-        var lqs = cururl.lastIndexOf("?");
-        if (lqs >= 0) {
-            var qs = cururl.substring(lqs+1);
-            if (qs.indexOf("sport=") >= 0) {
-                var sport = qs.substring(6);
-                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
-                    DFST.AppSettings.sport = sport;
-                }
+        var urlArgs = document.location.search.replace('?', '').split('&');
+        for (var i=0; i<urlArgs.length; i++)
+        {
+            var arg = urlArgs[i].split('=');
+            if (arg[0] !== 'sport') {
+                continue;
+            }
+            var sport = arg[1];
+            if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
+                DFST.AppSettings.sport = sport;
             }
         }
 
