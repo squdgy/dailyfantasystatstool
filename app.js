@@ -27,27 +27,42 @@ Ext.application({
             : new Ext.state.CookieProvider();
         Ext.state.Manager.setProvider(provider);
         
+        var siteId = 1; //default to DK
         var urlArgs = document.location.search.replace('?', '').split('&');
         for (var i=0; i<urlArgs.length; i++)
         {
             var arg = urlArgs[i].split('=');
-            if (arg[0] !== 'sport') {
-                continue;
+            var argName = arg[0];
+            var argValue = arg[1];
+            if (argName === 'sport') {
+                var sport = argValue;
+                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
+                    DFST.AppSettings.sport = sport;
+                }
             }
-            var sport = arg[1];
-            if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
-                DFST.AppSettings.sport = sport;
+            if (argName === 'site') {
+                switch (argValue) {
+                    case 'fanduel':
+                        siteId = 2;
+                        break;
+                    case 'fantasydraft':
+                        siteId = 7;
+                        break;
+                    case 'draftkings':
+                    default:
+                        siteId = 1;
+                        break;
+                }
             }
         }
 
-        var siteId = 1; //default
         // if (DFST.AppSettings.sport === 'nas') {
         //     siteId = 1;
         // } else {
         //     //var siteId = Ext.state.Manager.get('site');
         //     //siteId = siteId || 1;
         // }
-        DFST.AppSettings.siteId = siteId; //default to DK
+        DFST.AppSettings.siteId = siteId;
     }
 });
 
