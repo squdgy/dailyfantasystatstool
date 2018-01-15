@@ -23,7 +23,7 @@ Ext.define('DFST.view.site.Picker', {
 	        if (Ext.Array.findBy(site.sports, function(sport){
                 return (sport === DFST.AppSettings.sport); }) === null) {
                 continue;
-            };
+            }
            siteItems.push({
                boxLabel: site.name,
                name: 'rb',
