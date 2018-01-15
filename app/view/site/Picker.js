@@ -12,22 +12,30 @@ Ext.define('DFST.view.site.Picker', {
 	animCollapse: true,
 	
 	initComponent: function() {
-        var siteItems = [
-            { boxLabel: 'DraftKings', name: 'rb', inputValue: '1'},
-            //{ boxLabel: 'Yahoo', name: 'rb', inputValue: '6'}
-        ];
-        if (DFST.AppSettings.sport !== 'nas'){
-            siteItems.push({ boxLabel: 'FanDuel', name: 'rb', inputValue: '2' });
-        }
-        if (DFST.AppSettings.sport === 'nfl'){
-            siteItems.push({ boxLabel: 'FantasyDraft', name: 'rb', inputValue: '7'});
-        }
+	    var sites = [
+	        { name: 'DraftKings', id: 1, 'sports' : ['mlb', 'nas', 'nba', 'nfl', 'nhl']},
+	        { name: 'Fanduel', id: 2, 'sports': ['mlb', 'nba', 'nfl', 'nhl']},
+	        { name: 'FantasyDraft', id: 7, 'sports': ['nba'/*, 'nfl'*/]}
+	    ];
+	    var siteItems = [];
+	    for (var i=0; i< sites.length; i++) {
+	        var site = sites[i];
+	        if (Ext.Array.findBy(site.sports, function(sport){
+                return (sport === DFST.AppSettings.sport); }) === null) {
+                continue;
+            };
+           siteItems.push({
+               boxLabel: site.name,
+               name: 'rb',
+               inputValue: site.id,
+               checked: site.id === DFST.AppSettings.siteId
+           });
+	    }
+        var title = 'Select a site and game slate';
         var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
             return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
         });
-        var title = 'Select a site and game slate';
         if (selectedSiteItem !== null) {
-            selectedSiteItem.checked = true;
             title += ' - ' + selectedSiteItem.boxLabel;
         }
 
