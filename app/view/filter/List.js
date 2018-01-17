@@ -47,8 +47,8 @@ Ext.define('DFST.view.filter.List', {
                         boxLabel: DFST.AppSettings.sport === 'mlb' ? 'Starting Pitchers Only' : 'Include only Confirmed &amp; Probable Goalies',
                         id: 'probables',
                         name: 'probables',
-                        hidden: DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl',
-                        checked: true
+                        hidden: (DFST.AppSettings.sport !== 'mlb' && DFST.AppSettings.sport !== 'nhl'),
+                        checked: !(DFST.AppSettings.siteId === 7 && DFST.AppSettings.sport === 'nhl')
                     },{
                         xtype: 'splitbutton',
                         text: 'Position Subset',
