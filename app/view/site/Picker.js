@@ -1,7 +1,7 @@
 /*global Ext: false, DFST: false */
 Ext.define('DFST.view.site.Picker', {
     extend: 'Ext.panel.Panel',
-    requires: ['DFST.store.Draftgroups'],
+    requires: ['DFST.store.Draftgroups', 'DFST.view.site.SportPicker'],
 	alias: 'widget.sitepicker',
 	
 	cls: 'sitepicker',
@@ -48,6 +48,9 @@ Ext.define('DFST.view.site.Picker', {
                 },
                 items: siteItems
             },{
+                xtype: 'tbspacer',
+                width: 10
+            },{
                 xtype: 'combobox',
                 name: 'draftgroups',
                 id: 'draftgroups',
@@ -57,7 +60,7 @@ Ext.define('DFST.view.site.Picker', {
                 valueField: 'dgid',
                 width: 300,
                 tpl: Ext.create('Ext.XTemplate', '<tpl for=".">', 
-                    '<div class="x-boundlist-item" style="border-bottom:1px solid #f0f0f0;">',
+                    '<div class="x-boundlist-item" style="border-bottom:1px solid #f0f0f0;margin-right:30px;">',
                     '<div>{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}<tpl if="lateSwap"> - late swap</tpl></div>',
                     '</div></tpl>'),
                 displayTpl: Ext.create('Ext.XTemplate',
@@ -66,6 +69,11 @@ Ext.define('DFST.view.site.Picker', {
                     '<tpl if="lateSwap"> late swap</tpl>',
                     '</tpl>')
 
+            },{
+                xtype: 'tbspacer',
+                width: 10
+            },{
+                xtype: 'sportPicker'
             }//,
 // 			{
 //                 xtype: 'button',

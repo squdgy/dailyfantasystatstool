@@ -31,23 +31,23 @@ table {
     text-align: right;
 }
 
-.sitepicker ul{
-    font-size: 11px;
-    font-weight: bold;
-    -webkit-padding-start: 20px;
-    -moz-padding-start: 20px;
-}
-.sitepicker li {
-    margin-top: 5px;
-}
+/*.sitepicker ul{*/
+/*    font-size: 11px;*/
+/*    font-weight: bold;*/
+/*    -webkit-padding-start: 20px;*/
+/*    -moz-padding-start: 20px;*/
+/*}*/
+/*.sitepicker li {*/
+/*    margin-top: 5px;*/
+/*}*/
 
 #sitepicker-body {
     padding: 10px;
 }
 
-.sitepicker .x-form-trigger-wrap {
-    margin: 5px 0 10px 10px;
-}
+/*.sitepicker .x-form-trigger-wrap {*/
+/*    margin: 5px 0 10px 10px;*/
+/*}*/
 /* radio button spacing - see site filters */
 .x-form-cb-label-after {
 margin-left: 4px;
@@ -56,7 +56,9 @@ vertical-align: top;
 }
 
 .sport-link { margin-left: 20px; font-weight:bold;}
-.off-season { color: gray; font-weight:normal;}
+.off-season { color: lightgray; font-weight:normal;}
+
+.sport-picker {padding-top: 5px;}
 
 /* used on bet display */
 dl {
