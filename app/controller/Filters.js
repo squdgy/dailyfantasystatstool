@@ -499,7 +499,8 @@ Ext.define('DFST.controller.Filters', {
         var draftgroups = site.getAssociatedData().draftgroups;
         var dgFilter = this.getDraftgroupFilter();
         dgFilter.getStore().loadData(draftgroups, false);
-        dgFilter.setValue(draftgroups[0].dgid);
+        var dgid = (draftgroups.length > 0) ? draftgroups[0].dgid : 0;
+        dgFilter.setValue(dgid);
 
         statsStore.filters.add([
             {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},

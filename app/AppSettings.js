@@ -1,11 +1,23 @@
-/*global Ext: false */
+/*global Ext: false, DFST: false */
 Ext.define('DFST.AppSettings', {
     singleton: true,
-    
+
     appCopyRight: '&copy;DraftAid.com 2012-2018',
     
     sport: 'nba',   // app supports one at a time: mlb, nba, nfl, nhl, nas
     siteId: 1,      // default to DK
+    getSite: function() {
+        switch (DFST.AppSettings.siteId) {
+            case 1:
+                return 'draftkings';
+            case 2:
+                return 'fanduel';
+            case 7:
+                return 'fantasydraft';
+            default:
+                return '';
+        }
+    },
     mlb: {
         gameCnt: 162
     },

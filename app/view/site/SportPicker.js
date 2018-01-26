@@ -13,6 +13,7 @@ Ext.define('DFST.view.site.SportPicker', {
         var sports = ['mlb', 'nfl', 'nba', 'nhl', 'nas'];
         for (var i in sports) {
             var sport = sports[i];
+            var url = 'statstool.html?site=' + DFST.AppSettings.getSite() + '&sport=' + sport;
             if (sport === DFST.AppSettings.sport) {
                 sportLinks += '<span class="sport-link">' + 
                     sport.toUpperCase() + '</span>';
@@ -20,9 +21,8 @@ Ext.define('DFST.view.site.SportPicker', {
                 sportLinks += '<span class="sport-link off-season">' + 
                     sport.toUpperCase() + '</span>';
             } else {  
-                sportLinks += '<span class="sport-link"><a href="statstool.html?sport=' + 
-                sport + '">' + 
-                sport.toUpperCase() + '</a></span>';
+                sportLinks += '<span class="sport-link"><a href="' + url + '">' + 
+                    sport.toUpperCase() + '</a></span>';
             }
         }
 		Ext.apply(this, {
