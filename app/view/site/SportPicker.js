@@ -1,14 +1,13 @@
 /*global Ext: false, DFST: false */
 Ext.define('DFST.view.site.SportPicker', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.container.Container',
 	alias: 'widget.sportPicker',
 	
     requires: ['DFST.AppSettings'],
     cls: 'sportpicker',
-    border: false,
-	layout: 'hbox',
-	
-	initComponent: function(){
+    html: '<h1>-</h1>',
+
+    getSportLinks: function(){
         var sportLinks = '';
         var sports = ['mlb', 'nfl', 'nba', 'nhl', 'nas'];
         for (var i in sports) {
@@ -25,16 +24,11 @@ Ext.define('DFST.view.site.SportPicker', {
                     sport.toUpperCase() + '</a></span>';
             }
         }
-		Ext.apply(this, {
-            items: [
-            {
-                xtype: 'panel',
-                border: false,
-                html: sportLinks
-            }]}
-		);
-
-        this.callParent(arguments);
+        return sportLinks;
+ 	},
+ 	
+	updateSports: function(container) {
+	    this.update(this.getSportLinks());
 	}
 });
 

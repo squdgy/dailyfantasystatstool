@@ -26,7 +26,7 @@ Ext.define('DFST.view.Viewport', {
             items: [
             {
                 region: 'north',
-                height: 80,
+                height: 50,
                 xtype: 'sitepicker'
             },{
                 region: 'center',

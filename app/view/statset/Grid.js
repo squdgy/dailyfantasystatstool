@@ -18,7 +18,7 @@ Ext.define('DFST.view.statset.Grid', {
         'Ext.ux.GridSearch'
         ],
     
-    border: false,    
+    border: false,
     
     dockedItems: [{
         xtype: 'pagingtoolbar',

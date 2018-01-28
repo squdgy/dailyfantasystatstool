@@ -70,7 +70,8 @@ Ext.define('DFST.controller.Rosters', {
         var didRemove = false;
         for (var i = nrecs; i > 0; i--) {
             var rec = store.getAt(i-1);
-            if (rec.get('dt').getTime() < delTime) {
+            var dt = rec.get('dt');
+            if (dt !== null && dt.getTime() < delTime) {
                 didRemove = true;
                 store.removeAt(i-1);
             }
@@ -164,8 +165,7 @@ Ext.define('DFST.controller.Rosters', {
         selModel.deselectAll();
         watermark.show();
 
-        html2canvas(ssArea.getEl().dom, {
-            onrendered: function(canvas) {
+        html2canvas(ssArea.getEl().dom, {scale: 1}).then(function(canvas) {
                 //restore stuff cleared for screenshot
                 rgrid.showCopyright = false;
                 watermark.hide();
@@ -187,6 +187,8 @@ Ext.define('DFST.controller.Rosters', {
                     },
                     items: [{
                         xtype: 'panel',
+                        height: canvas.height + 12,
+                        width: canvas.width + 12,
                         html: '<img title="lineup" src="' + dataURL +'">'
                     }, {
                         xtype: 'button',
@@ -214,8 +216,7 @@ Ext.define('DFST.controller.Rosters', {
                         }
                     }*/]
                 }).show();                
-            }
-        });    
+            });    
     },
 
     /* When a roster changes update the summary information  */

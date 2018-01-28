@@ -1,16 +1,12 @@
 /*global Ext: false, DFST: false */
 Ext.define('DFST.view.site.Picker', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.toolbar.Toolbar',
     requires: ['DFST.store.Draftgroups', 'DFST.view.site.SportPicker'],
 	alias: 'widget.sitepicker',
 	
 	cls: 'sitepicker',
 	id: 'sitepicker',
-	layout: 'hbox',
-	border: false,
-    collapsible: true,
-	animCollapse: true,
-	
+
 	initComponent: function() {
 	    var sites = [
 	        { name: 'DraftKings', id: 1, 'sports' : ['mlb', 'nas', 'nba', 'nfl', 'nhl']},
@@ -31,25 +27,20 @@ Ext.define('DFST.view.site.Picker', {
                checked: site.id === DFST.AppSettings.siteId
            });
 	    }
-        var title = 'Select a site and game slate';
-        var selectedSiteItem = Ext.Array.findBy(siteItems, function(item, index){
-            return (item.inputValue == DFST.AppSettings.siteId); //compares string and int
-        });
-        if (selectedSiteItem !== null) {
-            title += ' - ' + selectedSiteItem.boxLabel;
-        }
 
 		Ext.apply(this, {
-            title: title,
-			items: [{
+			items: [
+			'DRAFTAID.COM',
+			{
+                xtype: 'tbseparator'
+            },{
                 xtype: 'radiogroup',
                 layout: {
                     type: 'hbox',
                 },
                 items: siteItems
             },{
-                xtype: 'tbspacer',
-                width: 10
+                xtype: 'tbseparator'
             },{
                 xtype: 'combobox',
                 name: 'draftgroups',
@@ -70,10 +61,12 @@ Ext.define('DFST.view.site.Picker', {
                     '</tpl>')
 
             },{
-                xtype: 'tbspacer',
-                width: 10
+                xtype: 'tbfill'
             },{
                 xtype: 'sportPicker'
+            },{
+                xtype: 'tbspacer',
+                width: 20
             }//,
 // 			{
 //                 xtype: 'button',

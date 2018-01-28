@@ -27,7 +27,8 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'export', selector: 'export'},
         {ref: 'rosterbuilder', selector: 'rosterbuilder'},
         {ref: 'viewport', selector: 'viewport'},
-        {ref: 'sitePanel', selector: 'sitepicker'}
+        {ref: 'sitePanel', selector: 'sitepicker'},
+        {ref: 'sportPicker', selector: 'sportPicker'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -423,8 +424,6 @@ Ext.define('DFST.controller.Filters', {
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
                 ]);
-            
-            this.getSitePanel().setTitle('Select a site and game slate - ' + radiobutton.boxLabel);
         }
     },
 
@@ -436,7 +435,9 @@ Ext.define('DFST.controller.Filters', {
             return;
         }
         var site = store.first();
-        
+        //update DFST global
+        DFST.AppSettings.siteId = site.get('siteId');
+
         // Change the list of position filters
         // All positions will reset to checked
         var posContainer = this.getPositionFilters();
@@ -494,7 +495,11 @@ Ext.define('DFST.controller.Filters', {
         statsStore.filters.removeAtKey('afp');
         statsStore.filters.removeAtKey('cpp');
         statsStore.filters.removeAtKey('sal');
-
+        
+        // update the sports links to have the correct site
+        var sportPicker = this.getSportPicker();
+        sportPicker.updateSports();
+        
         // change the draftgroup filters to match the site and set the default dg
         var draftgroups = site.getAssociatedData().draftgroups;
         var dgFilter = this.getDraftgroupFilter();
