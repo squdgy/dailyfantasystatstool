@@ -48,6 +48,9 @@ Ext.application({
                     case 'fantasydraft':
                         siteId = 7;
                         break;
+                    case 'yahoo':
+                        siteId = 6;
+                        break;
                     case 'draftkings':
                     default:
                         siteId = 1;

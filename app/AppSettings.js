@@ -12,6 +12,8 @@ Ext.define('DFST.AppSettings', {
                 return 'draftkings';
             case 2:
                 return 'fanduel';
+            case 6:
+                return 'yahoo';
             case 7:
                 return 'fantasydraft';
             default:
@@ -33,5 +35,5 @@ Ext.define('DFST.AppSettings', {
     nas: {
         gameCnt: 36
     },
-    version: '4.04'
+    version: '4.1'
 });  

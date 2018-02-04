@@ -3,7 +3,7 @@ Ext.define('DFST.view.filter.List', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.filterlist',
     id: 'filterlist',
-    requires: ['Ext.toolbar.Toolbar'],
+    requires: ['Ext.toolbar.Toolbar', 'DFST.view.game.Picker'],
 
     stateful: false,
     stateId: 'filterlist',
@@ -78,22 +78,7 @@ Ext.define('DFST.view.filter.List', {
                 }]
             },
             {
-                xtype: 'panel',
-                collapsible: true,
-                animCollapse: true,
-                layout: 'fit',
-                hidden: DFST.AppSettings.sport === 'nas',
-                title: 'By Game(s)',
-                items: [{
-                    xtype: 'fieldcontainer',
-                    id: 'games',
-/*                    fieldLabel: 'Games to Include', */
-                    defaultType: 'checkboxfield',
-                    layout: {
-                        type: 'table',
-                        columns: 2
-                    }
-                }]
+                xtype: 'gamepicker'
             },
             {
                 xtype: 'panel',
