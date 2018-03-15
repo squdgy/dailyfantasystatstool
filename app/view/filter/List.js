@@ -177,7 +177,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'cppRange',
                     width: 350,
                     values: [0, 800],
-                    increment: 0,
+                    increment: 40,
                     minValue: 0,
                     maxValue: 800
                 },{
@@ -186,7 +186,7 @@ Ext.define('DFST.view.filter.List', {
                     id: 'cpp5Range',
                     width: 350,
                     values: [0, 800],
-                    increment: 0,
+                    increment: 40,
                     minValue: 0,
                     maxValue: 800
                 },{

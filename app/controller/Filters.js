@@ -453,42 +453,6 @@ Ext.define('DFST.controller.Filters', {
                     }));
         }
         
-        // change the values for all value range filters
-        var salFilter = this.getSalRangeFilter();
-        salFilter.setMinValue(site.get('salmin'));
-        salFilter.setMaxValue(site.get('salmax'));
-        salFilter.increment = site.get('salstep');
-        salFilter.setValue(0, site.get('salmin'));
-        salFilter.setValue(1, site.get('salmax'));
-
-        var cppFilter = this.getCppRangeFilter();
-        cppFilter.setMinValue(site.get('cppmin'));
-        cppFilter.setMaxValue(site.get('cppmax'));
-        cppFilter.increment = site.get('cppstep');
-        cppFilter.setValue(0, site.get('cppmin'));
-        cppFilter.setValue(1, site.get('cppmax'));
-
-        var cpp5Filter = this.getCpp5RangeFilter();
-        cpp5Filter.setMinValue(site.get('cppmin'));
-        cpp5Filter.setMaxValue(site.get('cppmax'));
-        cpp5Filter.increment = site.get('cppstep');
-        cpp5Filter.setValue(0, site.get('cppmin'));
-        cpp5Filter.setValue(1, site.get('cppmax'));
-
-        var afpFilter = this.getAfpRangeFilter();
-        afpFilter.setMinValue(site.get('afpmin'));
-        afpFilter.setMaxValue(site.get('afpmax'));
-        afpFilter.increment = site.get('afpstep');
-        afpFilter.setValue(0, site.get('afpmin'));
-        afpFilter.setValue(1, site.get('afpmax'));
-
-        var afp5Filter = this.getAfp5RangeFilter();
-        afp5Filter.setMinValue(site.get('afpmin'));
-        afp5Filter.setMaxValue(site.get('afpmax'));
-        afp5Filter.increment = site.get('afpstep');
-        afp5Filter.setValue(0, site.get('afpmin'));
-        afp5Filter.setValue(1, site.get('afpmax'));
-        
         // reset player store filters
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('pos');
@@ -580,6 +544,47 @@ Ext.define('DFST.controller.Filters', {
             this.getGamedetails().hide();
             this.getDrilldowndetails().hide();
         }
+        
+        // update the filters related to draftgroups
+        // change the values for all value range filters
+        var dgId = this.getDraftgroupFilter().getValue();
+        var site = this.getSiteDetailsStore().first();
+        var draftgroup = site.getAssociatedData().draftgroups.find(function(dg){if (dg.dgid === dgId) return true;});
+        var dgstats = draftgroup.stats;
+        var salFilter = this.getSalRangeFilter();
+        salFilter.setMinValue(dgstats.minsal);
+        salFilter.setMaxValue(dgstats.maxsal);
+        salFilter.increment = (dgstats.maxSal - dgstats.minsal) / 20;
+        salFilter.setValue(0, dgstats.minsal);
+        salFilter.setValue(1, dgstats.maxsal);
+
+        var afpFilter = this.getAfpRangeFilter();
+        afpFilter.setMinValue(dgstats.minfppg);
+        afpFilter.setMaxValue(dgstats.maxfppg);
+        afpFilter.increment = (dgstats.maxfppg - dgstats.minfppg) / 20;
+        afpFilter.setValue(0, dgstats.minfppg);
+        afpFilter.setValue(1, dgstats.maxfppg);
+
+        var cppFilter = this.getCppRangeFilter();
+        cppFilter.setMinValue(dgstats.mincpp);
+        cppFilter.setMaxValue(dgstats.maxcpp);
+        cppFilter.increment = (dgstats.maxcpp - dgstats.mincpp) / 20;
+        cppFilter.setValue(0, dgstats.mincpp);
+        cppFilter.setValue(1, dgstats.maxcpp);
+
+        var afp5Filter = this.getAfp5RangeFilter();
+        afp5Filter.setMinValue(dgstats.minfppg5);
+        afp5Filter.setMaxValue(dgstats.maxfppg5);
+        afp5Filter.increment = (dgstats.maxfppg5 - dgstats.minfppg5) / 20;
+        afp5Filter.setValue(0, dgstats.minfppg5);
+        afp5Filter.setValue(1, dgstats.maxfppg5);
+
+        var cpp5Filter = this.getCpp5RangeFilter();
+        cpp5Filter.setMinValue(dgstats.mincpp5);
+        cpp5Filter.setMaxValue(dgstats.maxcpp5);
+        cpp5Filter.increment = (dgstats.maxcpp5 - dgstats.mincpp5) / 20;
+        cpp5Filter.setValue(0, dgstats.mincpp5);
+        cpp5Filter.setValue(1, dgstats.maxcpp5);
     },
     
     /* a team id is the 3 character identifier used by mlb;
