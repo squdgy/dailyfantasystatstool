@@ -129,12 +129,12 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'G',
                     dataIndex: 'ng',
                     tooltip: 'games played'
-                },{
+                },/*{
                     text: 'BA(Ph)',
                     dataIndex: 'ph_ba',
                     width: 55,
                     tooltip: 'batting average vs opponent pitcher\'s handedness',
-                    renderer: this.formatVsPitcherHandedness
+                    renderer: this.formatVsPitcherHandedness,
                 },{
                     text: 'OBP(Ph)',
                     dataIndex: 'ph_obp',
@@ -159,7 +159,7 @@ Ext.define('DFST.view.statset.Grid', {
                     width: 55,
                     tooltip: 'weighted on-base average vs opponent pitcher\'s handedness',
                     renderer: this.formatVsPitcherHandedness
-                },/*{
+                },*//*{
                     text: '1B',
                     dataIndex: 'x1b',
                     hidden: true

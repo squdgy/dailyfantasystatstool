@@ -9,7 +9,7 @@ Ext.define('DFST.view.site.SportPicker', {
 
     getSportLinks: function(){
         var sportLinks = '';
-        var sports = ['mlb', 'nfl', 'nba', 'nhl', 'nas'];
+        var sports = ['mlb', 'nba', 'nhl', 'nas', 'nfl'];
         for (var i in sports) {
             var sport = sports[i];
             var url = 'statstool.html?site=' + DFST.AppSettings.getSite() + '&sport=' + sport;
