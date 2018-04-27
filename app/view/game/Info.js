@@ -28,6 +28,8 @@ Ext.define('DFST.view.game.Info', {
                         return 'UNK' + value;
 	                }
                 });
+	    } else if (DFST.AppSettings.sport === 'nas') {
+	        template = new Ext.XTemplate('<div><div>{name}</div></div>');
 	    } else {
 	        template = new Ext.XTemplate('<div><div>{name}</div><div>{venue}</div></div>');
 	    }

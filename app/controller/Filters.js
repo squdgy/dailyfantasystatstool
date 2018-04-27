@@ -419,7 +419,12 @@ Ext.define('DFST.controller.Filters', {
             if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
             if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
             if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
-            if (DFST.AppSettings.sport == "nas") dfsGameId = 500;
+            if (DFST.AppSettings.sport == "nas") {
+                if (siteId == 1)
+                    dfsGameId = 500;
+                else
+                    dfsGameId += 500;
+            }
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
                 {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
@@ -639,7 +644,9 @@ Ext.define('DFST.controller.Filters', {
         else if (DFST.AppSettings.sport == "nhl")
             defaultGameId += 300;
         else if (DFST.AppSettings.sport == "nas")
-            defaultGameId = 500;
+        {
+            defaultGameId = (DFST.AppSettings.siteId == 1) ? 500 : defaultGameId + 500;
+        }
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
