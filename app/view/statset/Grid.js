@@ -564,6 +564,11 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'average fantasy points over player\'s last 5 games',
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 },{
+                    text: 'Q Speed',
+                    dataIndex: 'qsp',
+                    width: 60,
+                    tooltip: 'Qualifying Speed'
+                },{
                     text: 'P1 Pos',
                     dataIndex: 'p1pos',
                     width: 50,
