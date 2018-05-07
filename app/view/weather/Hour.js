@@ -22,7 +22,7 @@ Ext.define('DFST.view.weather.Hour', {
                 {
                     formatTime: function(value) {
                         var hour = new Date(value);
-                        hour = Ext.Date.add(hour, Ext.Date.MINUTE, hour.getTimezoneOffset());
+                        hour = Ext.Date.add(hour, Ext.Date.MINUTE, 0 - hour.getTimezoneOffset());
                         return Ext.Date.format(hour, 'g:i a');
                     },
                     formatPercent: function(floatValue) {
