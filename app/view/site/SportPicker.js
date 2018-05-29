@@ -9,19 +9,26 @@ Ext.define('DFST.view.site.SportPicker', {
 
     getSportLinks: function(){
         var sportLinks = '';
-        var sports = ['mlb', 'nba', 'nhl', 'nas', 'nfl'];
+        var sports = [
+            {name: 'mlb', text: 'MLB'}, 
+            {name: 'nba', text: 'NBA / WNBA'},
+            {name: 'nhl', text: 'NHL'},
+            {name: 'nas', text: 'NASCAR'},
+            {name: 'nfl', text: 'NFL'}
+        ];
         for (var i in sports) {
-            var sport = sports[i];
+            var sport = sports[i].name;
+            var sportText = sports[i].text;
             var url = 'statstool.html?site=' + DFST.AppSettings.getSite() + '&sport=' + sport;
             if (sport === DFST.AppSettings.sport) {
                 sportLinks += '<span class="sport-link">' + 
-                    sport.toUpperCase() + '</span>';
+                    sportText + '</span>';
             } else if (sport === 'nfl') { // off-season
                 sportLinks += '<span class="sport-link off-season">' + 
-                    sport.toUpperCase() + '</span>';
+                    sportText + '</span>';
             } else {  
                 sportLinks += '<span class="sport-link"><a href="' + url + '">' + 
-                    sport.toUpperCase() + '</a></span>';
+                    sportText + '</a></span>';
             }
         }
         return sportLinks;

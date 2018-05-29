@@ -476,15 +476,19 @@ Ext.define('DFST.controller.Filters', {
         var dgid = (draftgroups.length > 0) ? draftgroups[0].dgid : 0;
         dgFilter.setValue(dgid);
 
+        var dfsGameId = site.get('dfsGameId');
         statsStore.filters.add([
-            {id:'scoring', property: 'scoring', value: site.get('dfsGameId')},
+            {id:'scoring', property: 'scoring', value: dfsGameId},
             {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
             {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
             dgFilter
         ]);
 
-        this.fireEvent('appScoringChanged', site.get('dfsGameId'));
-        this.fireEvent('appDraftgroupChanged', draftgroups[0].dgid);
+        if (dgid > 0) {
+            // only fire if valid draftgroup found
+            this.fireEvent('appScoringChanged', dfsGameId);
+            this.fireEvent('appDraftgroupChanged', draftgroups[0].dgid);
+        }
     },
     
     onGamesChanged: function(store, records, wasSuccessful, options) {
@@ -555,6 +559,7 @@ Ext.define('DFST.controller.Filters', {
         var dgId = this.getDraftgroupFilter().getValue();
         var site = this.getSiteDetailsStore().first();
         var draftgroup = site.getAssociatedData().draftgroups.find(function(dg){if (dg.dgid === dgId) return true;});
+        if (!draftgroup) return;
         var dgstats = draftgroup.stats;
         var salFilter = this.getSalRangeFilter();
         salFilter.setMinValue(dgstats.minsal);

@@ -154,7 +154,7 @@ Ext.define('DFST.view.rosterbuilder.Panel', {
                 xtype: 'button',
                 id: 'fill',
                 cls: 'ros-btn',
-                hidden: false,
+                hidden: true,
                 text: 'Fill'
             }, {
                 xtype: 'button',
