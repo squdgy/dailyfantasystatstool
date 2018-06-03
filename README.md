@@ -8,8 +8,10 @@ It has up to date pricing and scoring rules for each dfs site, and so has data
 such as fppg over the last 5 games and complete player game logs.
 
 Currently, it supports 
-* DraftKings: NFL/MLB/NBA/NHL/NAS
-* FanDuel NFL/MLB/NBA/NHL
+* DraftKings: NFL/MLB/NBA/NHL/NAS/WNBA
+* FanDuel NFL/MLB/NBA/NHL/WNBA
+* FantasyDraft NFL/MLB/NBA/NHL
+* Yahoo NFL/MLB/NBA/NHL
 
 It is primarily a javaScript app, using Sencha Ext JS 5.x 
 and their MVC framework. This application is dependent on a backend web service,
@@ -18,4 +20,4 @@ for anyone out there, the code needs these services to work. There is a
 server.js file included, so this application can run on node, but node is not 
 required.
 
-The app is currently active at http://app.draftaid.com/. 
+The app is currently active at http://draftaidapp.azurewebsites.net/. 
