@@ -16,7 +16,6 @@ Ext.define('DFST.controller.Rosters', {
     ],
     
     /* internal variables */
-    _dfsGameId: null,
     _draftgroupId: null,
     
     init: function() {
@@ -44,8 +43,7 @@ Ext.define('DFST.controller.Rosters', {
             },
             controller: {
                 '*': {
-                    appDraftgroupChanged: this.changeDraftgroup,
-                    appScoringChanged: this.changeScoring
+                    appDraftgroupChanged: this.changeDraftgroup
                 }
             },
             store: {
@@ -83,47 +81,41 @@ Ext.define('DFST.controller.Rosters', {
         this._draftgroupId = draftgroupId;
         this.changeRosterDefinition();
     },
-
-    changeScoring: function(dfsGameId) {
-        this._dfsGameId = dfsGameId;
-    },
     
     changeRosterDefinition: function() {
-        var siteRec = this.getSiteDetailsStore().findRecord('dfsGameId', 
-            this._dfsGameId);
+        var me = this;
+        var siteRec = this.getSiteDetailsStore().findRecord('siteId', DFST.AppSettings.siteId);
         var draftgroupId = this._draftgroupId;
         if (draftgroupId === null || siteRec === null) return;
         
-        var me = this;
-        var positions = siteRec.getAssociatedData().positions;
-        var cap = siteRec.get('cap');
-
         // load roster from cache if there is one,
-        var npos = positions.length;
         var rStore = this.getRosterStore();
 
-        // only show players from the dfs game and date we care about
+        // only show slots from the dg we care about
         rStore.filterBy(function(rec, id) {
-            return rec.get('dfsGameId') === me._dfsGameId &&
-                rec.get('draftgroupId') === me._draftgroupId;
+            return rec.get('draftgroupId') === me._draftgroupId;
         });
+
+        // get details of slots, rules etc.
+        var draftgroup = siteRec.getAssociatedData().draftgroups.filter(function(dg){return dg.dgid === me._draftgroupId;})[0];
+        var positions = draftgroup.rules.pos;
+        var cap = draftgroup.rules.cap;
+        var npos = positions.length;
         
         // if store is empty, nothing was in cache
         var numSlots = 0;
         if (rStore.count() === 0) {
             for (var i=0; i<npos; i++) {
-                var pos = positions[i];
                 // fill rosterStore with empty spots
-                for (var j=0; j<pos.count; j++) {
-                    rStore.add(Ext.create('DFST.model.RosterSlot', {
-                        dfsGameId: me._dfsGameId, 
-                        draftgroupId: me._draftgroupId,
-                        rpos: pos.name, 
-                        rpid: pos.id
-                    }));
-                    numSlots++;
-                }
+                var pos = positions[i];
+                rStore.add(Ext.create('DFST.model.RosterSlot', {
+                    draftgroupId: draftgroup.dgid,
+                    rpos: pos.details.name, 
+                    rpid: pos.rpId
+                }));
+                numSlots++;
             }
+            rStore.sync();
         }
         // if > 0, but less than npos, something went wrong
         if (numSlots > 0 && numSlots < rStore.count()) {
@@ -141,10 +133,11 @@ Ext.define('DFST.controller.Rosters', {
             });
         }
         var sportString = DFST.AppSettings.sport.toUpperCase();
-        var dgString = me._draftgroupId;
+        var dgString = draftgroup.rules.description + ' (' + draftgroup.dgid + ')';
         var grid = me.getRosterGrid();
         if (grid) {
             grid.setTitle(siteRec.get('name') + ' - ' + fmtcap + ' - ' + sportString + ' - ' + dgString);
+            grid.getView().getSelectionModel().clearSelections();
         }
         me.salaryCap = cap; // save for later use
         
@@ -154,7 +147,7 @@ Ext.define('DFST.controller.Rosters', {
     screenShot: function() {
         var watermark = this.getWatermark();
         var rgrid = Ext.getCmp('rostergrid');
-        var selModel = rgrid.view.selModel;
+        var selModel = rgrid.getView().getSelectionModel();
         var selections = selModel.getSelection();
         var deleteButtons = this.getDeleteButtons();
         
@@ -404,7 +397,6 @@ Ext.define('DFST.controller.Rosters', {
             }
         }
 
-        //rgrid.view.selModel.select(possibleSlots, false, true);
-        //rgrid.view.refresh();
+        rgrid.getView().getSelectionModel().select(possibleSlots, false, true);
     }
 });

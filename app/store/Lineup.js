@@ -1,6 +1,6 @@
 /*global Ext: false, DFST: false */
 /*
-Copyright (c) 2012-2016 Maura Wilder
+Copyright (c) 2012-2018 DraftAid.com
 */
 Ext.define('DFST.store.Lineup', {
     extend: 'Ext.data.Store',

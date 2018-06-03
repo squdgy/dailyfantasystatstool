@@ -1,6 +1,6 @@
 /*global Ext: false */
 /*
-Copyright (c) 2016 Maura Wilder
+Copyright (c) 2012-2018 DraftAid.com
 */
 Ext.define('yesterdayApp.model.PlayerFantasyPoints', {
     extend: 'Ext.data.Model',

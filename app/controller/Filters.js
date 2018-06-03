@@ -43,7 +43,7 @@ Ext.define('DFST.controller.Filters', {
                 change: this.changeDraftgroup
             },
             'sitepicker fieldcontainer radio':{
-                change: this.changeScoring
+                change: this.changeSite
             },
             'sitepicker button#globalreset' : {
                 click: this.resetEverything
@@ -85,6 +85,15 @@ Ext.define('DFST.controller.Filters', {
                 search: this.searchForPlayer
             }
         });
+        
+        this.listen({            
+            controller: {
+                '*': {
+                    appDraftgroupChanged: this.onDraftgroupChanged
+                }
+            }
+        });
+
         
         // set up load masking
         var me = this;
@@ -222,6 +231,29 @@ Ext.define('DFST.controller.Filters', {
         }
     },
 
+    onDraftgroupChanged: function(draftgroupId){
+        // Change the list of position filters
+        // All positions will reset to checked
+        var posContainer = this.getPositionFilters();
+        posContainer.removeAll(true);
+        var draftgroup = this.getDraftGroup(draftgroupId);
+        if (!draftgroup) return;
+
+        var positions = draftgroup.rules.pos;
+        var added = [];
+        for (var i=0, mlen=positions.length; i < mlen; i++) {
+            var pos = positions[i];
+            if (added.includes(pos.rpId)) continue;
+            posContainer.add(new Ext.form.field.Checkbox({
+                        boxLabel: pos.details.name,
+                        name: 'pos',
+                        checked: true,
+                        inputValue: pos.rpId
+                    }));
+            added.push(pos.rpId);
+        }
+    },
+    
     changeProbables: function(checkbox, newValue, oldValue, options) {
         /*
         This next line shouldn't be needed work but is a work-around for the following bug, still not fixed in 4.1.0:
@@ -406,33 +438,16 @@ Ext.define('DFST.controller.Filters', {
         this.changePositions(checkbox, false, false, null);
     },
     
-    changeScoring: function(radiobutton, newValue, oldValue, options) {
+    changeSite: function(radiobutton, newValue, oldValue, options) {
         if (newValue) {
             var siteDetailsStore = this.getSiteDetailsStore();
-            var dfsGameId = 2;//default fd game
-            var siteId = radiobutton.inputValue;
-            if (siteId == 1) dfsGameId = 1; //dk
-            if (siteId == 2) dfsGameId = 2; //fanduel
-            if (siteId == 6) dfsGameId = 6; //yahoo
-            if (siteId == 7) dfsGameId = 7; //fantasydraft
-            //Ext.state.Manager.set('site', dfsGameId);
-            if (DFST.AppSettings.sport == "mlb") dfsGameId += 100;
-            if (DFST.AppSettings.sport == "nfl") dfsGameId += 200;
-            if (DFST.AppSettings.sport == "nhl") dfsGameId += 300;
-            if (DFST.AppSettings.sport == "nas") {
-                if (siteId == 1)
-                    dfsGameId = 500;
-                else
-                    dfsGameId += 500;
-            }
             siteDetailsStore.filter([
                 {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
-                {id:'dfsGameId', property: 'dfsGameId', value: dfsGameId}
-                ]);
+            ]);
         }
     },
 
-    onScoringFilterChanged: function(store, filters, options) {
+    onSiteChanged: function(store, filters, options) {
         if (store.count() === 0) {
             this.getStatsStore().removeAll();
             this.getGamedetails().hide();
@@ -443,21 +458,6 @@ Ext.define('DFST.controller.Filters', {
         //update DFST global
         DFST.AppSettings.siteId = site.get('siteId');
 
-        // Change the list of position filters
-        // All positions will reset to checked
-        var posContainer = this.getPositionFilters();
-        posContainer.removeAll(true);
-        var positions = site.getAssociatedData().positions;
-        for (var i=0, mlen=positions.length; i < mlen; i++) {
-            var pos = positions[i];
-            posContainer.add(new Ext.form.field.Checkbox({
-                        boxLabel: pos.name,
-                        name: 'pos',
-                        checked: true,
-                        inputValue: pos.id
-                    }));
-        }
-        
         // reset player store filters
         var statsStore = this.getStatsStore();
         statsStore.filters.removeAtKey('pos');
@@ -473,21 +473,18 @@ Ext.define('DFST.controller.Filters', {
         var draftgroups = site.getAssociatedData().draftgroups;
         var dgFilter = this.getDraftgroupFilter();
         dgFilter.getStore().loadData(draftgroups, false);
-        var dgid = (draftgroups.length > 0) ? draftgroups[0].dgid : 0;
-        dgFilter.setValue(dgid);
-
-        var dfsGameId = site.get('dfsGameId');
-        statsStore.filters.add([
-            {id:'scoring', property: 'scoring', value: dfsGameId},
-            {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
-            {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
-            dgFilter
-        ]);
-
-        if (dgid > 0) {
+        if (draftgroups.length > 0) {
+            var dg = draftgroups[0];
+            dgFilter.setValue(dg.dgid);
+    
+            statsStore.filters.add([
+                {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
+                {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
+                dgFilter
+            ]);
+    
             // only fire if valid draftgroup found
-            this.fireEvent('appScoringChanged', dfsGameId);
-            this.fireEvent('appDraftgroupChanged', draftgroups[0].dgid);
+            this.fireEvent('appDraftgroupChanged', dg.dgid);
         }
     },
     
@@ -557,8 +554,7 @@ Ext.define('DFST.controller.Filters', {
         // update the filters related to draftgroups
         // change the values for all value range filters
         var dgId = this.getDraftgroupFilter().getValue();
-        var site = this.getSiteDetailsStore().first();
-        var draftgroup = site.getAssociatedData().draftgroups.find(function(dg){if (dg.dgid === dgId) return true;});
+        var draftgroup = this.getDraftGroup(dgId);
         if (!draftgroup) return;
         var dgstats = draftgroup.stats;
         var salFilter = this.getSalRangeFilter();
@@ -595,6 +591,11 @@ Ext.define('DFST.controller.Filters', {
         cpp5Filter.increment = (dgstats.maxcpp5 - dgstats.mincpp5) / 20;
         cpp5Filter.setValue(0, dgstats.mincpp5);
         cpp5Filter.setValue(1, dgstats.maxcpp5);
+    },
+    
+    getDraftGroup: function(draftgroupId) {
+        var site = this.getSiteDetailsStore().first();
+        return site.getAssociatedData().draftgroups.find(function(dg){if (dg.dgid === draftgroupId) return true;});
     },
     
     /* a team id is the 3 character identifier used by mlb;
@@ -641,25 +642,13 @@ Ext.define('DFST.controller.Filters', {
         }
         this.host = host;
         
-        var defaultGameId = DFST.AppSettings.siteId;
-        if (DFST.AppSettings.sport == "mlb") 
-            defaultGameId += 100;
-        else if (DFST.AppSettings.sport == "nfl")
-            defaultGameId += 200;
-        else if (DFST.AppSettings.sport == "nhl")
-            defaultGameId += 300;
-        else if (DFST.AppSettings.sport == "nas")
-        {
-            defaultGameId = (DFST.AppSettings.siteId == 1) ? 500 : defaultGameId + 500;
-        }
         // Set things up to update filters when we switch sites
         var siteDetailsStore = this.getSiteDetailsStore();
         siteDetailsStore.proxy.url = host + '/api/site/';
-        siteDetailsStore.on('filterchange', this.onScoringFilterChanged, this);
+        siteDetailsStore.on('filterchange', this.onSiteChanged, this);
         siteDetailsStore.on('load', function(records, operation, success) {
             siteDetailsStore.filter([ //client side filtering on this store
-                {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId},
-                {id:'dfsGameId', property: 'dfsGameId', value: defaultGameId}
+                {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId}
             ]);
         });
         siteDetailsStore.load();

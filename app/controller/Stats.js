@@ -63,7 +63,7 @@ Ext.define('DFST.controller.Stats', {
         var store = this.getPlayerStatsStore();
         store.filter([
             {id:'id', property: 'id', value: this.playerId},
-            {id:'scoring', property: 'scoring', value: this.siteId},
+            {id:'siteId', property: 'siteId', value: this.siteId},
             {id:'nextopp', property: 'nextopp', value: limit ? this.gameId : limit},
         ]);
     },
@@ -93,13 +93,7 @@ Ext.define('DFST.controller.Stats', {
             detailsView = this.getDrilldowndetails();
 
         if (statset && detailsView) {
-            var statsStore = this.getStatsStore();
-            if (statsStore) {
-                var scoringFilter = statsStore.filters.get("scoring");
-                if (scoringFilter) {
-                    this.siteId = scoringFilter.getValue();
-                }
-            }
+            this.siteId = DFST.AppSettings.siteId;
             this.playerId = statset.data.id;
             this.gameId = statset.data.gameId;
 

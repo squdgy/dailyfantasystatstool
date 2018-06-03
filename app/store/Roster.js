@@ -1,6 +1,6 @@
 /*global Ext: false, DFST: false */
 /*
-Copyright (c) 2012-2016 DraftAid.com
+Copyright (c) 2012-2018 DraftAid.com
 */
 Ext.define('DFST.store.Roster', {
     extend: 'Ext.data.Store',
@@ -11,7 +11,7 @@ Ext.define('DFST.store.Roster', {
     
     proxy : { 
         type : 'localstorage', 
-        id : 'rosterstore'
+        id : 'rosterstorev2'
     }
 });
 

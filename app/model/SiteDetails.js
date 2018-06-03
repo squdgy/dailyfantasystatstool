@@ -5,11 +5,9 @@ Ext.define('DFST.model.SiteDetails', {
 
     requires: ['DFST.model.RosterPosition', 'DFST.model.Draftgroup'],
     
-    fields: [ // default values assume fanduel MLB
+    fields: [ // default values assume dk
         { name: 'name', type: 'string', defaultValue: 'site' },
-        { name: 'siteId', type: 'int', defaultValue: 2 },
-        { name: 'dfsGameId', type: 'int', defaultValue: 2 },
-        { name: 'cap', type: 'int', defaultValue: 60000 }
+        { name: 'siteId', type: 'int', defaultValue: 1 } //dk
     ],
     hasMany  : [
         {model: 'DFST.model.RosterPosition', name: 'positions', associationKey: 'pos',  getterName: 'getPositions'},

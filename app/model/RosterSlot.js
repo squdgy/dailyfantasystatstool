@@ -4,7 +4,7 @@ Ext.define('DFST.model.RosterSlot', {
     extend: 'Ext.data.Model',
     
     fields: [ 
-        { name: 'dfsGameId', type: 'int', defaultValue: 0 },
+        { name: 'draftgroupId', type: 'int', defaultValue: 0 },
         { name: 'dt', type: 'date', defaultValue: 0 },
         { name: 'rpid', type: 'int', defaultValue: 0 },
         { name: 'rpslot', type: 'int', defaultValue: 0 },
