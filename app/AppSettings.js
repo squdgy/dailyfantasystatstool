@@ -35,5 +35,5 @@ Ext.define('DFST.AppSettings', {
     nas: {
         gameCnt: 36
     },
-    version: '4.5.20180603'
+    version: '4.6.20180608'
 });  

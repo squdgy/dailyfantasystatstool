@@ -477,6 +477,7 @@ Ext.define('DFST.controller.Filters', {
             var dg = draftgroups[0];
             dgFilter.setValue(dg.dgid);
     
+            this.onDraftgroupChanged(dg.dgId);
             statsStore.filters.add([
                 {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
                 {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
