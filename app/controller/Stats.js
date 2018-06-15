@@ -79,8 +79,12 @@ Ext.define('DFST.controller.Stats', {
     },
 
     onPlayerChanged: function(grid, statsets) {
-        this.drillDown(grid, statsets); 
-        this.showGameDetail(grid, statsets);
+        if (DFST.AppSettings[DFST.AppSettings.sport].showGameLog) {
+            this.drillDown(grid, statsets); 
+        }
+        if (DFST.AppSettings[DFST.AppSettings.sport].showGameDetails) {
+            this.showGameDetail(grid, statsets);
+        }
     },
     
     /**
@@ -104,13 +108,14 @@ Ext.define('DFST.controller.Stats', {
             detailsInfoView.statset = statset;
             detailsInfoView.update(statset.data);
            
-            var format = "Game Log for {0} {1}, {2} {3}";
-            var nasFormat = 'Race Log for {0} {1}';
-            if (DFST.AppSettings.sport === 'nas') {
-                detailsView.setTitle(Ext.String.format(nasFormat, statset.get('fname'), statset.get('lname')));         
-            } else {
-                detailsView.setTitle(Ext.String.format(format, statset.get('fname'), statset.get('lname'),
+            var gameText = Ext.String.capitalize(DFST.AppSettings[DFST.AppSettings.sport].gameText);
+            var format = '{0} Log for {1} {2}, {3} {4}';
+            var noTeamFormat = '{0} Log for {1} {2}';
+            if (DFST.AppSettings[DFST.AppSettings.sport].hasTeams) {
+                detailsView.setTitle(Ext.String.format(format, gameText, statset.get('fname'), statset.get('lname'),
                     statset.get('spos'), statset.get('team')));           
+            } else {
+                detailsView.setTitle(Ext.String.format(noTeamFormat, gameText, statset.get('fname'), statset.get('lname')));         
             }
             detailsView.show();
         }
@@ -125,6 +130,10 @@ Ext.define('DFST.controller.Stats', {
             gameView = this.getGamedetails(),
             gamesStore = this.getGamesStore();
 
+        if (!DFST.AppSettings[DFST.AppSettings.sport].showGameDetails) {
+            gameView.hide();
+            return;
+        }
         if (statset && gameView) {
             var gameId = statset.data.gameId;
             var game = gamesStore.findRecord('gid', gameId);
@@ -183,10 +192,9 @@ Ext.define('DFST.controller.Stats', {
                 }
                 
                 // set game details title
-                var title = 'Game data for ' + awayTeam + ' @ ' + 
-                    homeTeam + ' ' + fmtdGameTime;
-                if (DFST.AppSettings.sport === 'nas') {
-                    title = 'Game data for ' + name;
+                var title = 'Game data for ' + awayTeam + ' @ ' + homeTeam + ' ' + fmtdGameTime;
+                if (!DFST.AppSettings[DFST.AppSettings.sport].hasTeams) {
+                    title = Ext.String.capitalize(DFST.AppSettings[DFST.AppSettings.sport].gameText) + ' data for ' + name;
                 }
                 if (venue !== undefined) title += ' at ' + venue.nm;
                 gameView.setTitle(title);

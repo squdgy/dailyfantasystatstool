@@ -9,9 +9,9 @@ Ext.define('DFST.view.site.Picker', {
 
 	initComponent: function() {
 	    var sites = [
-	        { name: 'DraftKings', id: 1, 'sports' : ['mlb', 'nba', 'nfl', 'nhl', 'nas']},
-	        { name: 'Fanduel', id: 2, 'sports': ['mlb', 'nba', 'nfl', 'nhl', 'nas']},
-	        { name: 'FantasyDraft', id: 7, 'sports': ['mlb'/*, 'nba', 'nfl', 'nhl'*/]},
+	        { name: 'DraftKings', id: 1, 'sports' : ['mlb', 'nba', 'nfl', 'nhl', 'nas', 'golf']},
+	        { name: 'Fanduel', id: 2, 'sports': ['mlb', 'nba', 'nfl', 'nhl', 'nas', 'golf']},
+	        { name: 'FantasyDraft', id: 7, 'sports': ['mlb'/*, 'nba', 'nfl', 'nhl'*/, 'golf']},
 	        { name: 'Yahoo', id: 6, 'sports': ['mlb'/*, 'nba', 'nhl'*/]}
 	    ];
 	    var siteItems = [];

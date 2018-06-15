@@ -16,6 +16,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         if (sport === 'nba') colmap = this.nbaPosStatMap[position];
         if (sport === 'mlb') colmap = this.mlbPosStatMap[position];
         if (sport === 'nas') colmap = this.nasPosStatMap[position];
+        if (sport === 'golf') colmap = this.golfPosStatMap[position];
         if (colmap === undefined) return;
         var ncols = colmap.length;
         var cols = this.firstCols.slice();
@@ -193,6 +194,8 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si4: 'Completed',
                 si5: 'Led',
                 si6: 'Fastest'
+            },
+            golf : {
             }
         };
         var mlbHitterMap = ['si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si14', 'si15', 'si16'];
@@ -237,25 +240,28 @@ Ext.define('DFST.view.statset.PlayerGrid', {
         this.nasPosStatMap = {
             D: ['si1', 'si2', 'si3', 'si4', 'si5', 'si6']
         };
+        this.golfPosStatMap = {
+            G: []
+        };
         this.firstCols = [
                 {   text: 'Date',
                     dataIndex: 'gd',
                     renderer: Ext.util.Format.dateRenderer('m-d'),
                     width: 60
                 }];
-        if (DFST.AppSettings.sport === 'nas') {
-            this.firstCols.push({
-                text: 'Race',
-                dataIndex: 'gameName',
-                align: 'left',
-                width: 200                
-            });
-        } else {
+        if (DFST.AppSettings[DFST.AppSettings.sport].hasTeams) {
             this.firstCols.push({
                 text: 'Opp.',
                 dataIndex: 'opp',
                 renderer: this.formatOpponent,
                 width: 60                
+            });
+        } else {
+            this.firstCols.push({
+                text: Ext.String.capitalize(DFST.AppSettings[DFST.AppSettings.sport].gameText),
+                dataIndex: 'gameName',
+                align: 'left',
+                width: 200                
             });
         }
 
@@ -266,12 +272,13 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                     width: 60,
                     renderer: Ext.util.Format.numberRenderer('0.00')
                 }];
+        var pagingText = DFST.AppSettings[DFST.AppSettings.sport].gameText + 's per page';
         var pagingRow = {
             xtype: 'pagingtoolbar',
             dock: 'top',
             store: 'PlayerStatsMemory',
             displayInfo: true,
-            plugins: { ptype: 'pagesizepicker', displayText: 'games per page', options: [5, 10, 20, 50, 200] }
+            plugins: { ptype: 'pagesizepicker', displayText: pagingText, options: [5, 10, 20, 50, 200] }
         };
         var toolsRow = {
             xtype: 'toolbar',
@@ -292,7 +299,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 name: 'nextopp'
             }]
         };
-        var includeToolsRow = DFST.AppSettings.sport != 'nas';
+        var includeToolsRow = DFST.AppSettings[DFST.AppSettings.sport].hasTeams;
         if (includeToolsRow) {
             this.dockedItems = [toolsRow, pagingRow];
         } else {

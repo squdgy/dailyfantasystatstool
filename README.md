@@ -8,9 +8,9 @@ It has up to date pricing and scoring rules for each dfs site, and so has data
 such as fppg over the last 5 games and complete player game logs.
 
 Currently, it supports 
-* DraftKings: NFL/MLB/NBA/NHL/NAS/WNBA
-* FanDuel NFL/MLB/NBA/NHL/WNBA
-* FantasyDraft NFL/MLB/NBA/NHL
+* DraftKings: NFL/MLB/NBA/NHL/NAS/WNBA/GOLF
+* FanDuel NFL/MLB/NBA/NHL/WNBA/GOLF
+* FantasyDraft NFL/MLB/NBA/NHL/GOLF
 * Yahoo NFL/MLB/NBA/NHL
 
 It is primarily a javaScript app, using Sencha Ext JS 5.x 

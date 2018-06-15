@@ -4,7 +4,7 @@ Ext.define('DFST.controller.Filters', {
 
     stores: ['Stats', 'PlayerStats', 'SiteDetails', 'Games'],
     models: ['StatSet'],
-    views: ['filter.List', 'site.Picker'],
+    views: ['filter.List', 'site.Picker', 'game.Picker'],
     
     refs: [
         {ref: 'draftgroupFilter', selector: 'sitepicker combobox#draftgroups'},
@@ -28,7 +28,9 @@ Ext.define('DFST.controller.Filters', {
         {ref: 'rosterbuilder', selector: 'rosterbuilder'},
         {ref: 'viewport', selector: 'viewport'},
         {ref: 'sitePanel', selector: 'sitepicker'},
-        {ref: 'sportPicker', selector: 'sportPicker'}
+        {ref: 'sportPicker', selector: 'sportPicker'},
+        {ref: 'gamePicker', selector: 'gamepicker'},
+        {ref: 'positionsPanel', selector: '#positionsPanel'}
     ],
     
     // At this point things haven't rendered yet since init gets called on controllers before the launch function
@@ -252,7 +254,18 @@ Ext.define('DFST.controller.Filters', {
                     }));
             added.push(pos.rpId);
         }
+        var posPanel = this.getPositionsPanel();
+        if (added.length === 1) {
+            posContainer.hide();
+            if (!DFST.AppSettings[DFST.AppSettings.sport].hasExtraPositionFilters) {
+                posPanel.hide();
+            }
+        } else {
+            posContainer.show();
+            posPanel.show();
+        }
     },
+    
     
     changeProbables: function(checkbox, newValue, oldValue, options) {
         /*
@@ -454,6 +467,7 @@ Ext.define('DFST.controller.Filters', {
             this.getDrilldowndetails().hide();            
             return;
         }
+        
         var site = store.first();
         //update DFST global
         DFST.AppSettings.siteId = site.get('siteId');
@@ -547,9 +561,21 @@ Ext.define('DFST.controller.Filters', {
                 text: 'Apply Game Filters',
                 id: 'gamesGo'
             }));
+            // if a sport has no game logs, then hide that panel
+            if (DFST.AppSettings[DFST.AppSettings.sport].showGameLog) {
+                this.getDrilldowndetails().show();
+            } else {
+                this.getDrilldowndetails().hide();
+            }
         } else {
             this.getGamedetails().hide();
             this.getDrilldowndetails().hide();
+        }
+        // if only 1 game then hide the gameFilters
+        if (records.length < 2) {
+            this.getGamePicker().hide();
+        } else {
+            this.getGamePicker().show();
         }
         
         // update the filters related to draftgroups

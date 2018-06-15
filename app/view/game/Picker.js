@@ -8,7 +8,7 @@ Ext.define('DFST.view.game.Picker', {
     collapsible: true,
     animCollapse: true,
     layout: 'fit',
-    hidden: DFST.AppSettings.sport === 'nas',
+    hidden: !DFST.AppSettings[DFST.AppSettings.sport].hasTeams,
     title: 'By Game(s)',
     items: [{
         xtype: 'fieldcontainer',

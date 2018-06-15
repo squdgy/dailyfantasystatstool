@@ -12,9 +12,10 @@ Ext.define('DFST.view.site.SportPicker', {
         var sports = [
             {name: 'mlb', text: 'MLB'}, 
             {name: 'nba', text: 'NBA / WNBA'},
-            {name: 'nhl', text: 'NHL'},
+            {name: 'golf', text: 'GOLF'},
             {name: 'nas', text: 'NASCAR'},
-            {name: 'nfl', text: 'NFL'}
+            {name: 'nfl', text: 'NFL'},
+            {name: 'nhl', text: 'NHL'}
         ];
         for (var i in sports) {
             var sport = sports[i].name;

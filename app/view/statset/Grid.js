@@ -602,6 +602,54 @@ Ext.define('DFST.view.statset.Grid', {
             }
 		};
 		
+		gridConfig.golf = {
+            store: 'Stats',
+            columns: {
+                defaults: {
+                    align: 'right',
+                    style: 'text-align:center',
+                    width: 40
+                },
+                items: [{
+                    text: 'Name',
+                    dataIndex: 'name',
+                    align: 'left',
+                    width: 150,
+                    renderer: this.formatName
+                },{
+                    text: '$',
+                    dataIndex: 'sal',
+                    width: 75,
+                    tooltip: 'player salary at the selected site',
+                    renderer: this.moneyRenderer
+                },{
+                    text: '$/FP',
+                    dataIndex: 'cpp',
+                    width: 75,
+                    tooltip: 'cost per point over the season to date',
+                    renderer: this.costPerPointRenderer
+                },{
+                    text: '$/FP-5',
+                    dataIndex: 'cpp5',
+                    width: 75,
+                    tooltip: 'cost per point over last 5 games',
+                    renderer: this.costPerPointRenderer
+                },{
+                    text: 'Avg Pts',
+                    dataIndex: 'afp',
+                    width: 60,
+                    tooltip: 'average fantasy points season-to-date',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                },{
+                    text: 'Avg FP-5',
+                    dataIndex: 'afp5',
+                    width: 60,
+                    tooltip: 'average fantasy points over golfer\'s last 5 games',
+                    renderer: Ext.util.Format.numberRenderer('0.00')
+                }]
+            }
+		};
+
 		// State will vary by sport
 		this.stateId = DFST.AppSettings.sport + '-statsetgrid';
 		this.stateful = false;

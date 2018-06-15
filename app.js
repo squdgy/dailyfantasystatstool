@@ -36,7 +36,7 @@ Ext.application({
             var argValue = arg[1];
             if (argName === 'sport') {
                 var sport = argValue;
-                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas") { //supported sports
+                if (sport === "nba" || sport === "mlb" || sport === "nfl" || sport === "nhl" || sport === "nas" || sport === 'golf') { //supported sports
                     DFST.AppSettings.sport = sport;
                 }
             }

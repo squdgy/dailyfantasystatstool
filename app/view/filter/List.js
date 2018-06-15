@@ -26,13 +26,14 @@ Ext.define('DFST.view.filter.List', {
     },
 
 	initComponent: function() {
+	    var numGamesText = '# ' + Ext.String.capitalize(DFST.AppSettings[DFST.AppSettings.sport].gameText) + 's';
 		Ext.apply(this, {
 			items: [{
                 xtype: 'panel',
+                id: 'positionsPanel',
                 collapsible: true,
                 animCollapse: true,
                 layout: 'vbox',
-                hidden: DFST.AppSettings.sport === 'nas',
                 title: 'By Position(s)',
                 items: [{
                     xtype: 'panel',
@@ -129,9 +130,9 @@ Ext.define('DFST.view.filter.List', {
             },
             {
                 xtype: 'panel',
-                collapsible: DFST.AppSettings.sport != 'nas',
+                collapsible: DFST.AppSettings[DFST.AppSettings.sport].hasTeams,
                 animCollapse: true,
-                collapsed: DFST.AppSettings.sport != 'nas',
+                collapsed: DFST.AppSettings[DFST.AppSettings.sport].hasTeams,
                 layout: 'vbox',
                 title: 'By Value',
                 items: [{
@@ -203,13 +204,13 @@ Ext.define('DFST.view.filter.List', {
             },
             {
                 xtype: 'panel',
-                collapsible: DFST.AppSettings.sport != 'nas',
+                collapsible: DFST.AppSettings[DFST.AppSettings.sport].hasTeams,
                 animCollapse: true,
-                collapsed: DFST.AppSettings.sport != 'nas',
+                collapsed: DFST.AppSettings[DFST.AppSettings.sport].hasTeams,
                 layout: 'vbox',
                 title: 'Miscellaneous',
                 items: [{
-                    fieldLabel: '# Games',
+                    fieldLabel: numGamesText,
                     xtype: 'multislider',
                     id: 'ngRange',
                     width: 350,
@@ -273,7 +274,7 @@ Ext.define('DFST.view.filter.List', {
                     xtype: 'checkbox',
                     id: 'injured',
                     boxLabel: 'Hide Injured Players',
-                    hidden: DFST.AppSettings.sport === 'nas',
+                    hidden: !DFST.AppSettings[DFST.AppSettings.sport].showInjuries,
                     checked: false
                 }, {
                     text: 'Export Player List',
