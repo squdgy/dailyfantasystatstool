@@ -12,7 +12,7 @@ Ext.define('DFST.view.site.Picker', {
 	        { name: 'DraftKings', id: 1, 'sports' : ['mlb', 'nba', 'nfl', 'nhl', 'nas', 'golf']},
 	        { name: 'Fanduel', id: 2, 'sports': ['mlb', 'nba', 'nfl', 'nhl', 'nas', 'golf']},
 	        { name: 'FantasyDraft', id: 7, 'sports': ['mlb'/*, 'nba', 'nfl', 'nhl'*/, 'golf']},
-	        { name: 'Yahoo', id: 6, 'sports': ['mlb'/*, 'nba', 'nhl'*/]}
+	        { name: 'Yahoo', id: 6, 'sports': ['mlb'/*, 'nba', 'nhl'*/, 'golf']}
 	    ];
 	    var siteItems = [];
 	    for (var i=0; i< sites.length; i++) {
