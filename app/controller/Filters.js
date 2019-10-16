@@ -661,9 +661,9 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onLaunch: function() {
-        var host = 'https://localhost:44301';
-        if (window.location.hostname.indexOf('azurewebsites') >= 0) {
-            host = 'http://draftaidapi.azurewebsites.net';  //live azure
+        var host = 'https://localhost:44302';
+        if (window.location.hostname.indexOf('windows') >= 0) {
+            host = 'https://draftaidapi.azurewebsites.net';  //live azure
         } else if (window.location.hostname.indexOf('draftaid.com') >= 0) {
             host = 'http://api.draftaid.com';  //live azure
         }
