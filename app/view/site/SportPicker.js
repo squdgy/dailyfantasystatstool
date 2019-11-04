@@ -11,7 +11,7 @@ Ext.define('DFST.view.site.SportPicker', {
         var sportLinks = '';
         var sports = [
             {name: 'mlb', text: 'MLB'}, 
-            {name: 'nba', text: 'NBA / WNBA'},
+            {name: 'nba', text: 'NBA'},
             {name: 'golf', text: 'GOLF'},
             {name: 'nas', text: 'NASCAR'},
             {name: 'nfl', text: 'NFL'},
@@ -24,7 +24,7 @@ Ext.define('DFST.view.site.SportPicker', {
             if (sport === DFST.AppSettings.sport) {
                 sportLinks += '<span class="sport-link">' + 
                     sportText + '</span>';
-            } else if (sport === 'mlb' || sport === 'nba' || sport === 'nas' || sport === 'golf') { // off-season
+            } else if (sport === 'mlb' || sport === 'nas' || sport === 'golf') { // off-season
                 sportLinks += '<span class="sport-link off-season">' + 
                     sportText + '</span>';
             } else {  
