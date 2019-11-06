@@ -1,7 +1,7 @@
 # README for dailyfantasystatstool
 This is an interactive tool to help when picking players to use for daily 
 fantasy sports lineups on web sites such as DraftKings, FanDuel, Yahoo, 
-DraftDay etc. It includes a lot of data for individual players, and games, 
+FantasyDraft etc. It includes a lot of data for individual players, and games, 
 including latest betting lines, weather, park factors, starting lineups, 
 injury info, batter vs. pitcher handedness splits, and last 5 games dfs stats.
 It has up to date pricing and scoring rules for each dfs site, and so has data
