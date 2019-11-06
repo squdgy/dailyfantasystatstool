@@ -20,4 +20,4 @@ for anyone out there, the code needs these services to work. There is a
 server.js file included, so this application can run on node, but node is not 
 required.
 
-The app is currently active at http://draftaidapp.azurewebsites.net/. 
+The app is currently active at https://draftaid.z13.web.core.windows.net/. 
