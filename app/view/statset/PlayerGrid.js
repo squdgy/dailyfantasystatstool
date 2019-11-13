@@ -113,7 +113,9 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si11: '3MM',
                 si12: '3A',
                 si13: 'MIN',
-                si14: 'Start'
+                si14: 'Start',
+                si15: 'DDbl',
+                si16: 'TDbl'
             },
             'nfl':{
                 si1: 'PTD',
@@ -212,15 +214,15 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             'P' : ['si17', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23', 'si24', 'si25', 'si26', 'si27', 'si28'],
         },
         this.nbaPosStatMap = {
-            PG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            SG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            G : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            "G-F" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            SF : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            F : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            PF : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            "F-C" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12'],
-            C : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12']
+            PG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            SG : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            G : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            "G-F" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            SF : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            F : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            PF : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            "F-C" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
+            C : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16']
         };
         this.nhlPosStatMap = {
             G : ['si16', 'si15', 'si14', 'si17', 'si3', 'si13', 'si18'],
