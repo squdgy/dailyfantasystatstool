@@ -74,5 +74,5 @@ Ext.define('DFST.AppSettings', {
         gameText: 'tournament',
         gameCnt: 52 // made up
     },
-    version: '4.11.191124'
+    version: '4.12.191129'
 });  

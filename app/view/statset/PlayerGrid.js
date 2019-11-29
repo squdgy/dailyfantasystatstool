@@ -6,7 +6,7 @@ Ext.define('DFST.view.statset.PlayerGrid', {
 
 	cls: 'player-grid',
 	disabled: false,
-    width: 900,
+    width: 1000,
     autoScroll: true,
     stateful: false,
     stateId: 'statsetplayergrid',
@@ -187,7 +187,12 @@ Ext.define('DFST.view.statset.PlayerGrid', {
                 si17: 'SO',
                 si18: 'MIN',
                 si19: 'PPM',
-                si20: 'SHM'
+                si20: 'SHM',
+                si21: '5+ S',
+                si22: '3+ BS',
+                si23: '3+ PTS',
+                si24: 'OTL',
+                si25: '35+ SV'
             },
             nas :{
                 si1: 'Start',
@@ -224,12 +229,13 @@ Ext.define('DFST.view.statset.PlayerGrid', {
             "F-C" : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16'],
             C : ['si13', 'si14', 'si1', 'si2', 'si3', 'si4','si5', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si15', 'si16']
         };
+        var skaterStats = ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20', 'si21', 'si22', 'si23'];
         this.nhlPosStatMap = {
-            G : ['si16', 'si15', 'si14', 'si17', 'si3', 'si13', 'si18'],
-            RW : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
-            C : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
-            LW : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20'],
-            D : ['si1', 'si2', 'si3', 'si4','si5', 'si8', 'si6', 'si7', 'si8', 'si9', 'si10', 'si11', 'si12', 'si13', 'si18', 'si19', 'si20']
+            G : ['si16', 'si15', 'si14', 'si17', 'si3', 'si13', 'si18', 'si24', 'si25'],
+            RW : skaterStats,
+            C :  skaterStats,
+            LW : skaterStats,
+            D :  skaterStats
         };
         this.nflPosStatMap = {
             QB : ['si45', 'si44', 'si2', 'si1', 'si4', 'si46', 'si3', 'si5', 'si6', 'si14'],

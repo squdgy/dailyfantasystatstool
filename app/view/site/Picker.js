@@ -50,7 +50,7 @@ Ext.define('DFST.view.site.Picker', {
                 store: Ext.create('DFST.store.Draftgroups'),
                 displayField: 'name',
                 valueField: 'dgid',
-                width: 300,
+                width: 400,
                 tpl: Ext.create('Ext.XTemplate', '<tpl for=".">', 
                     '<div class="x-boundlist-item" style="border-bottom:1px solid #f0f0f0;margin-right:30px;">',
                     '<div>{name} - {[Ext.util.Format.date(values.startTime+"Z", "D g:i a T")]}<tpl if="lateSwap"> - late swap</tpl></div>',

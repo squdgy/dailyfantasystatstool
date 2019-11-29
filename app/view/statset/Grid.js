@@ -380,7 +380,7 @@ Ext.define('DFST.view.statset.Grid', {
                     text: 'Line',
                     dataIndex: 'border',
                     tooltip: 'which line he plays on',
-                    renderer: this.formatBattingOrder
+                    renderer: this.formatNhlLine
                 },{
                     text: 'G',
                     dataIndex: 'ng'
@@ -849,6 +849,15 @@ Ext.define('DFST.view.statset.Grid', {
         if (value === 0) {
             return "";
         } else if (value === 10) { //pitcher
+            return "";
+        } else {
+            return value;
+        }
+    },
+
+    formatNhlLine: function(value, p, record) {
+        var positionId = record.data.posId;
+        if ((value === 0) || (positionId === 41)) { // goalie
             return "";
         } else {
             return value;

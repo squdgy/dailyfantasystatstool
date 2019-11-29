@@ -12,7 +12,7 @@ Ext.define('DFST.store.Stats', {
     autoLoad: false,
     remoteSort: true,
     remoteFilter: true,
-    pageSize: 50,
+    pageSize: 1000,
     sorters: [{
         property : 'sal',
         direction: 'DESC'

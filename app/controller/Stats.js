@@ -192,7 +192,7 @@ Ext.define('DFST.controller.Stats', {
                 }
                 
                 // set game details title
-                var title = 'Game data for ' + awayTeam + ' @ ' + homeTeam + ' ' + fmtdGameTime;
+                var title = awayTeam + ' @ ' + homeTeam + ' ' + fmtdGameTime;
                 if (!DFST.AppSettings[DFST.AppSettings.sport].hasTeams) {
                     title = Ext.String.capitalize(DFST.AppSettings[DFST.AppSettings.sport].gameText) + ' data for ' + name;
                 }
