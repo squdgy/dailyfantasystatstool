@@ -460,6 +460,11 @@ Ext.define('DFST.view.statset.Grid', {
                     dataIndex: 'spos',
                     align: 'left'
                 },{
+                    text: 'Starter',
+                    dataIndex: 'border',
+                    tooltip: 'Expected to start',
+                    renderer: this.formatNbaStarters
+                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{
@@ -855,6 +860,13 @@ Ext.define('DFST.view.statset.Grid', {
         }
     },
 
+    formatNbaStarters: function(value, p, record) {
+        if (value === 0) {
+            return "";
+        }
+        return "X";
+    },
+    
     formatNhlLine: function(value, p, record) {
         var positionId = record.data.posId;
         if ((value === 0) || (positionId === 41)) { // goalie
@@ -863,6 +875,7 @@ Ext.define('DFST.view.statset.Grid', {
             return value;
         }
     },
+    
     
     /**
      * Money renderer
