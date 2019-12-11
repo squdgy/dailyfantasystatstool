@@ -99,7 +99,7 @@ Ext.define('DFST.view.filter.List', {
                     },{
                         xtype: 'fieldcontainer',
                         id: 'battingorderFilter',
-                        fieldLabel: DFST.AppSettings.sport === 'mlb' ? 'Include players batting in these positions' : 'Only skaters on these lines',
+                        fieldLabel: DFST.AppSettings.sport === 'mlb' ? 'Include players batting in these positions' : 'lines',
                         defaultType: 'checkboxfield',
                         layout: {
                             type: 'table',
@@ -118,6 +118,22 @@ Ext.define('DFST.view.filter.List', {
                             { name: 'boFilter', boxLabel: '7', inputValue: '7', hidden: DFST.AppSettings.sport !== 'mlb' },
                             { name: 'boFilter', boxLabel: '8', inputValue: '8', hidden: DFST.AppSettings.sport !== 'mlb' },
                             { name: 'boFilter', boxLabel: '9', inputValue: '9', hidden: DFST.AppSettings.sport !== 'mlb' }
+                        ]                
+                    },{
+                        xtype: 'fieldcontainer',
+                        id: 'powerPlayFilter',
+                        fieldLabel: 'powerplay lines',
+                        defaultType: 'checkboxfield',
+                        layout: {
+                            type: 'table',
+                            columns: 4
+                        },
+                        defaults: {
+                            checked: false
+                        },
+                        items: [
+                            { name: 'ppFilter', boxLabel: '1', inputValue: '1' },
+                            { name: 'ppFilter', boxLabel: '2', inputValue: '2' }
                         ]                
                     },{
                         xtype: 'checkbox',

@@ -382,6 +382,11 @@ Ext.define('DFST.view.statset.Grid', {
                     tooltip: 'which line he plays on',
                     renderer: this.formatNhlLine
                 },{
+                    text: 'PP',
+                    dataIndex: 'ppline',
+                    tooltip: 'which power play line he plays on',
+                    renderer: this.formatNhlLine
+                },{
                     text: 'G',
                     dataIndex: 'ng'
                 },{

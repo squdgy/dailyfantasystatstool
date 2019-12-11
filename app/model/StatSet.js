@@ -85,6 +85,9 @@ Ext.define('DFST.model.StatSet', {
         { name: 'p3pos', type: 'int', defaultValue: 0},
         { name: 'p3sp', type: 'float', defaultValue: 0.0},
 
+        // nhl specific
+        { name: 'ppline', type: 'int', defaultValue: 0},
+
         { name: 'rpel' } // array of roster position ids that player is eligible for
     ]
     

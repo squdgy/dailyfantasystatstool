@@ -62,6 +62,9 @@ Ext.define('DFST.controller.Filters', {
             'filterlist fieldcontainer#battingorderFilter checkbox':{
                 change: this.changeLineupSpots
             },
+            'filterlist fieldcontainer#powerPlayFilter checkbox':{
+                change: this.changePowerPlayLines
+            },
             'filterlist fieldcontainer#positions checkbox':{
                 change: this.changePositions
             },
@@ -345,12 +348,38 @@ Ext.define('DFST.controller.Filters', {
         }
         value += "10"; // always include pitcher
         
-        if (value === '0:1:2:3:4:5:6:7:8:9:10') {
+        if (value === '') {
             statsStore.filters.removeAtKey('border');
             statsStore.filter();
             return;
         } 
         statsStore.filter([{id:'border', property: 'border', value: value}]);
+    },
+    
+    /* Hide or show skaters that are playing in a particular powerplay line (1-1) */
+    changePowerPlayLines: function(checkbox, newValue, oldValue, options) {
+        /* This next line shouldn't be needed (see other notes in file)*/
+        if (checkbox.eventsSuspended) return;
+
+        var statsStore = this.getStatsStore();
+        var checkboxes = Ext.ComponentQuery.query('filterlist fieldcontainer#powerPlayFilter checkbox');
+        var value = '';
+        for (var i=0; i< checkboxes.length; i++) {
+            var checkbox2 = checkboxes[i];
+            
+            if (checkbox2.getRawValue()) { // is checked
+                if (value !== '') {
+                    value += ':';
+                }
+                value += checkbox2.inputValue;
+            }
+        }
+        if (value === '') {
+            statsStore.filters.removeAtKey('ppline');
+            statsStore.filter();
+            return;
+        } 
+        statsStore.filter([{id:'ppline', property: 'ppline', value: value}]);
     },
     
     getPositionsFilterValue: function() {
