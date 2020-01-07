@@ -9,7 +9,7 @@ Ext.define('yesterdayApp.controller.Yesterday', {
     ],
 
     init: function() {
-        var host = 'https://localhost:44302';    //local
+        var host = 'https://localhost:44392';    //local
         if (window.location.hostname.indexOf('windows') >= 0) {
             host = 'https://draftaidapi.azurewebsites.net';  //live
         } else if (window.location.hostname.indexOf('draftaid.com') >= 0) {

@@ -2,7 +2,7 @@
 Ext.define('DFST.AppSettings', {
     singleton: true,
 
-    appCopyRight: '&copy;DraftAid.com 2012-2019',
+    appCopyRight: '&copy;DraftAid.com 2012-2020',
     
     sport: 'mlb',   // app supports one at a time: mlb, nba, nfl, nhl, nas, golf
     siteId: 1,      // default to DK
@@ -74,5 +74,5 @@ Ext.define('DFST.AppSettings', {
         gameText: 'tournament',
         gameCnt: 52 // made up
     },
-    version: '4.14.191211'
+    version: '4.15.200107'
 });  

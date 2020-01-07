@@ -20,7 +20,7 @@ Ext.define('DFST.controller.Stats', {
 
     init: function() {
         // Set up service URLs
-        var host = 'https://localhost:44302';    //local
+        var host = 'https://localhost:44392';    //local
         if (window.location.hostname.indexOf('windows') >= 0) {
             host = 'https://draftaidapi.azurewebsites.net';  //live azure
         } else if (window.location.hostname.indexOf('draftaid.com') >= 0) {
@@ -62,9 +62,9 @@ Ext.define('DFST.controller.Stats', {
         var limit = nextopp ? nextopp.getValue() : false;
         var store = this.getPlayerStatsStore();
         store.filter([
-            {id:'id', property: 'id', value: this.playerId},
-            {id:'siteId', property: 'siteId', value: this.siteId},
-            {id:'nextopp', property: 'nextopp', value: limit ? this.gameId : limit},
+            {id:'id', property: 'id', value: this.playerId.toString()},
+            {id:'siteId', property: 'siteId', value: this.siteId.toString()},
+            {id:'nextopp', property: 'nextopp', value: (limit ? this.gameId : limit).toString()},
         ]);
     },
     

@@ -222,7 +222,7 @@ Ext.define('DFST.controller.Filters', {
 
             var filters = [
                 {id: 'sport', property: 'sport', value: DFST.AppSettings.sport},
-                {id: 'draftgroupId', property: 'draftgroupId', value: newValue }
+                {id: 'draftgroupId', property: 'draftgroupId', value: newValue.toString() }
             ];
 
             filters.push({id: 'sport', property: 'sport', value: DFST.AppSettings.sport});
@@ -278,7 +278,7 @@ Ext.define('DFST.controller.Filters', {
         if (checkbox.eventsSuspended) return;
         
         var statsStore = this.getStatsStore();
-        statsStore.filter([{id:'probables', property: 'probables', value: newValue}]);
+        statsStore.filter([{id:'probables', property: 'probables', value: newValue.toString()}]);
     },
 
     changeInjured: function(checkbox, newValue, oldValue, options) {
@@ -290,7 +290,7 @@ Ext.define('DFST.controller.Filters', {
         
         var statsStore = this.getStatsStore();
         if (newValue) {
-            statsStore.filter([{id:'inj', property: 'inj', value: false}]);
+            statsStore.filter([{id:'inj', property: 'inj', value: false.toString()}]);
         } else {
             statsStore.filters.removeAtKey('inj');
             statsStore.filter();
@@ -353,7 +353,7 @@ Ext.define('DFST.controller.Filters', {
             statsStore.filter();
             return;
         } 
-        statsStore.filter([{id:'border', property: 'border', value: value}]);
+        statsStore.filter([{id:'border', property: 'border', value: value.toString()}]);
     },
     
     /* Hide or show skaters that are playing in a particular powerplay line (1-1) */
@@ -379,7 +379,7 @@ Ext.define('DFST.controller.Filters', {
             statsStore.filter();
             return;
         } 
-        statsStore.filter([{id:'ppline', property: 'ppline', value: value}]);
+        statsStore.filter([{id:'ppline', property: 'ppline', value: value.toString()}]);
     },
     
     getPositionsFilterValue: function() {
@@ -419,7 +419,7 @@ Ext.define('DFST.controller.Filters', {
     changeBats: function(checkbox, newValue, oldValue, options) {
         var filterValue = this.getCheckboxFilterValues('bats');
         this.getStatsStore()
-            .filter([{id:'bats',property:'bats',value:filterValue}]);
+            .filter([{id:'bats',property:'bats',value:filterValue.toString()}]);
     },
 
     changePositionGroups: function(menu, menuItem, e, options) {
@@ -484,7 +484,7 @@ Ext.define('DFST.controller.Filters', {
         if (newValue) {
             var siteDetailsStore = this.getSiteDetailsStore();
             siteDetailsStore.filter([
-                {id:'siteId', property: 'siteId', value: radiobutton.inputValue},
+                {id:'siteId', property: 'siteId', value: radiobutton.inputValue.toString()},
             ]);
         }
     },
@@ -522,7 +522,7 @@ Ext.define('DFST.controller.Filters', {
     
             this.onDraftgroupChanged(dg.dgId);
             statsStore.filters.add([
-                {id:'probables', property: 'probables', value: this.getProbablesFilter().value},
+                {id:'probables', property: 'probables', value: this.getProbablesFilter().value.toString()},
                 {id:'posId', property: 'posId', value: this.getPositionsFilterValue()},
                 dgFilter
             ]);
@@ -690,7 +690,7 @@ Ext.define('DFST.controller.Filters', {
     },
     
     onLaunch: function() {
-        var host = 'https://localhost:44302';
+        var host = 'https://localhost:44392';
         if (window.location.hostname.indexOf('windows') >= 0) {
             host = 'https://draftaidapi.azurewebsites.net';  //live azure
         } else if (window.location.hostname.indexOf('draftaid.com') >= 0) {
@@ -704,7 +704,7 @@ Ext.define('DFST.controller.Filters', {
         siteDetailsStore.on('filterchange', this.onSiteChanged, this);
         siteDetailsStore.on('load', function(records, operation, success) {
             siteDetailsStore.filter([ //client side filtering on this store
-                {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId}
+                {id:'siteId', property: 'siteId', value: DFST.AppSettings.siteId.toString()}
             ]);
         });
         siteDetailsStore.load();
